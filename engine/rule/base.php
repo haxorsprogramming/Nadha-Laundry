@@ -11,7 +11,7 @@
 * cth : localhost/uinsuWf atau http://haxorsprogramming.id
 * apabila di upload di hosting, perhatikan http/https nya, karena akan berpengaruh
 */
-$homeBase = 'http://sandbox.haxors.or.id/uinsuwf/';
+$homeBase = 'http://localhost/Nadha-Laundry/';
 
 /**
 * Site name (nama situs web)
@@ -24,7 +24,7 @@ $siteName = 'Uinsu Web Framework';
 $author = '';
 
 //main route,not index
-$mainRoute = 'home';
+$mainRoute = 'login';
 /**
 *
 *

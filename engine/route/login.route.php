@@ -1,16 +1,15 @@
 <?php
 
-class Tester extends Route{
+class Login extends Route{
     
     public function index()
     {       
-        $this -> bind('/tester/default');
-    }  
-   
-    public function datatable()
-    {
-        $this -> bind('/tester/datatable');
+        $this -> bind('/login/loginPage');
     }
-   
-    
+    public function prosesLogin()
+    {
+        $data['user'] = $this -> inp('username');
+        echo $data['user'];
+    }  
+
 }

@@ -35,7 +35,16 @@ class Route{
         $hasil = substr($acak,0,$length);
         echo $hasil;
         //var_dum("Data");
-    }        
+    } 
+    
+    public function rnint($length)
+    {
+      $bahan = '123456789012345678901234567890123456780';
+      $acak = str_shuffle($bahan);
+      $hasil = substr($acak, 0, $length);
+      echo $hasil;
+    }
+    
     //fungsi upload
     public function upload($path)
     {
