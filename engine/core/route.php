@@ -83,7 +83,7 @@ class Route{
       session_destroy();
     }
   
-    public function goTo($page)
+    public function goto($page)
     {
       header("Location:".$page);
       exit();

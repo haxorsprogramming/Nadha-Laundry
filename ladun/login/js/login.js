@@ -4,21 +4,50 @@ var loginForm = new Vue({
   el: "#login-app",
   data: {
     userInput: "",
-    passwordInput: "",
-    hitung: 0
+    passwordInput: ""
   },
   methods: {
     klikSaya: function() {
-      this.hitung += 1;
-      $.post(urlLoginProses,{'username':this.userInput},function(data) {
-        console.log(data);
-      });
-      //  if(this.userInput == ''){
-      //   window.alert("Isi woy");
-      //   document.getElementById("txtUsername").focus();
-      //  }else{
-
-      //  }
+      $.post(
+        urlLoginProses,
+        { username: this.userInput, password: this.passwordInput },
+        function(data) {
+          let obj = JSON.parse(data);
+          if (obj.jlh > 0) {
+            suksesLogin();
+          } else {
+            gagalLogin();
+          }
+        }
+      );
     }
   }
 });
+
+function suksesLogin() {
+  iziToast.info({
+    title: "Sukses",
+    message: "Berhasil login, ke halaman dasbor",
+    position: "topCenter",
+    timeout: 1000,
+    pauseOnHover: false,
+    onClosed: function() {
+      window.location.assign("dasbor");
+    }
+  });
+}
+
+function gagalLogin() {
+  iziToast.error({
+    title: "Gagal",
+    message: "Username / Password salah!!",
+    position: "topCenter",
+    timeout: 1000,
+    pauseOnHover: false,
+    onClosed: function() {
+      document.getElementById("txtUsername").value = "";
+      document.getElementById("txtPassword").value = "";
+      document.getElementById("txtUsername").focus();
+    }
+  });
+}

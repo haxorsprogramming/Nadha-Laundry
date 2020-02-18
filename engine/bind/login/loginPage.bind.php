@@ -16,7 +16,7 @@
   <!-- endinject -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/izitoast/css/iziToast.min.css">
   
 </head>
 
@@ -32,7 +32,7 @@
                   <img src="<?=STYLEBASE; ?>/login/images/kede_kita_fix.jpg" alt="logo" style='width:200px; '>
                 </div>
                 <div style='text-align:center;'>
-                <h6 class="font-weight-light">Harap masuk untuk melanjutkan. {{hitung}}</h6>
+                <h6 class="font-weight-light">Harap masuk untuk melanjutkan.</h6>
                 <div>
                 <div class="pt-3">
                   <div class="form-group">
@@ -66,6 +66,7 @@
   <!-- base:js -->
   <script src="<?=STYLEBASE; ?>/login/js/login.js"></script>
   <script src="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.js"></script>
+  <script src="https://demo.getstisla.com/assets/modules/izitoast/js/iziToast.min.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
   <script src="<?=STYLEBASE; ?>/login/js/template.js"></script>

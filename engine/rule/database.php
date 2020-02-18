@@ -14,17 +14,17 @@ $dbServer = 'localhost';
  * 
  * Database user
  */
-$dbUser = 'haxorsdbadmin';
+$dbUser = 'root';
 /**
  * 
  * Database password
  */
-$dbPassword = '3ncoding4sc11A@123';
+$dbPassword = '';
 /**
  * 
  * Database name
  */
-$dbName = 'dbs_mahasiswa';
+$dbName = 'dbs_nadha_laundry';
 /**
  * 
  * Database driver
