@@ -98,9 +98,13 @@ class Route{
         }
     }
 
-    public function cekSesi($ses, $get)
+    public function cekSesi($ses)
     {
-
+      if(!ISSET($_SESSION[$ses])){
+        return 'false';
+      }else{
+        return 'true';
+      }
     }
     
 }

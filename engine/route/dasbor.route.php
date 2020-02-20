@@ -8,22 +8,27 @@ class Dasbor extends Route{
     
     }
 
-    public function cekUser()
-    {
-        if(!ISSET($_SESSION['userSes'])){
-            echo 'gak ada';
-            // $this -> goto(HOMEBASE.'login');
-            die();
-        }else{
-            echo 'gak ada';
-            // $this -> goto(HOMEBASE.$to);
-        }    
-    }
+    // public function cekUser()
+    // {
+    //     if(!ISSET($_SESSION['userSes'])){
+    //         echo 'gak ada';
+    //         // $this -> goto(HOMEBASE.'login');
+    //         die();
+    //     }else{
+    //         echo 'gak ada';
+    //         // $this -> goto(HOMEBASE.$to);
+    //     }    
+    // }
 
     public function index()
     {       
-        $this -> goto(HOMEBASE.'dasbor/cekUser');
-        echo "Halaman dashboard";
+       $cu = $this -> cekSesi('userSes');
+       if($cu == 'false'){
+        $this -> goto(HOMEBASE.'login');
+        die();
+       }else{
+        $this -> bind('/dasbor/index');
+       }
     }
 
     public function logOut()

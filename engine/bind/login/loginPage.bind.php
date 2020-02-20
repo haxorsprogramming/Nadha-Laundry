@@ -4,7 +4,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1", shrink-to-fit="no">
-  <title>Kedai Kita</title>
+  <title>Nadha Laundry</title>
   <!-- base:css -->
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.css">
@@ -29,7 +29,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5" id='login-app'>
                 <div class="brand-logo" style='text-align:center;'>
-                  <img src="<?=STYLEBASE; ?>/login/images/kede_kita_fix.jpg" alt="logo" style='width:200px; '>
+                  <img src="<?=STYLEBASE; ?>/login/images/nadha_laundry.jpg" alt="logo" style='width:200px; '>
                 </div>
                 <div style='text-align:center;'>
                 <h6 class="font-weight-light">Harap masuk untuk melanjutkan.</h6>
