@@ -1,4 +1,5 @@
 const urlLoginProses = "login/prosesLogin";
+const awalLogin = true;
 
 var loginForm = new Vue({
   el: "#login-app",

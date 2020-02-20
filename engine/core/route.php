@@ -97,5 +97,10 @@ class Route{
           echo("false");
         }
     }
+
+    public function cekSesi($ses, $get)
+    {
+
+    }
     
 }
