@@ -50,9 +50,7 @@ function gagalLogin() {
     timeout: 1000,
     pauseOnHover: false,
     onClosed: function() {
-      document.getElementById("txtUsername").value = "";
-      document.getElementById("txtPassword").value = "";
-      document.getElementById("txtUsername").focus();
+      clearForm();
     }
   });
 }
@@ -66,9 +64,14 @@ function isiField()
     timeout: 2000,
     pauseOnHover : false,
     onClosed : function(){
-      document.getElementById("txtUsername").value = "";
-      document.getElementById("txtPassword").value = "";
-      document.getElementById("txtUsername").focus();
+      clearForm();
     }
   });
+}
+
+function clearForm()
+{
+  document.getElementById("txtUsername").value = "";
+  document.getElementById("txtPassword").value = "";
+  document.getElementById("txtUsername").focus();
 }

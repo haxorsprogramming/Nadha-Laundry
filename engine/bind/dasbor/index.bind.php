@@ -6,25 +6,26 @@
    <title>Nadha Laundry - Dashboard</title>
    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
    <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/bootstrap/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/izitoast/css/iziToast.min.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/iziToast.min.css">
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/jqvmap/dist/jqvmap.min.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/summernote/summernote-bs4.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/datatables/datatables.min.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/jqvmap.min.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/summernote-bs4.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/wl.theme.default.min.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/datatables.min.css">
   <!-- Template CSS -->
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/css/style.css">
-  <link rel="stylesheet" href="https://demo.getstisla.com/assets/css/components.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/style.css">
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/components.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
  </head>
 
- <body>
+ <body style="font-family: 'Nunito Sans';">
    <div id="app">
      <div class="main-wrapper">
-       <div class="navbar-bg"></div>
+       <div class="navbar-bg"  style='background-color:#0ab59e;'></div>
        <nav class="navbar navbar-expand-lg main-navbar">
          <form class="form-inline mr-auto">
            <ul class="navbar-nav mr-3">
@@ -86,11 +87,11 @@
    <!-- General JS Scripts -->
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://demo.getstisla.com/assets/modules/popper.js"></script>
-   <script src="https://demo.getstisla.com/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-   <script src="https://demo.getstisla.com/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-   <script src="https://demo.getstisla.com/assets/modules/moment.min.js"></script>
-   <script src="https://demo.getstisla.com/assets/js/stisla.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/popper.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/bootstrap.min.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/jquery.nicescroll.min.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/moment.min.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/stisla.js"></script>
 
    <!-- JS Libraies -->
  
@@ -100,14 +101,14 @@
    <!-- <script src="https://demo.getstisla.com/asset/maps/jquery.vmap.world.js"></script> -->
    <!-- <script src="https://demo.getstisla.com/assets/modules/summernote/summernote-bs4.js"></script> -->
    <!-- <script src="https://demo.getstisla.com/asset/modules/jquery.chocolat.min.js"></script> -->
-     <script src="https://demo.getstisla.com/assets/modules/datatables/datatables.min.js"></script>
-     <script src="https://demo.getstisla.com/assets/modules/izitoast/js/iziToast.min.js"></script>
+     <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/datatables.min.js"></script>
+     <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/iziToast.min.js"></script>
      
    <!-- Template JS File -->
-   <script src="https://demo.getstisla.com/assets/js/scripts.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
 
    <!-- Page Specific JS File -->
-   <script src="https://demo.getstisla.com/assets/js/page/index.js"></script>
+  
    <script src="<?=STYLEBASE; ?>/dasbor/index.js"></script>
  </body>
  </html>
