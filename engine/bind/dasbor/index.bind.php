@@ -3,7 +3,7 @@
  <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <title>Sistem Pakar Diagnosis Kerusakan Mobil Toyota Avanza - Dashboard</title>
+   <title>Nadha Laundry - Dashboard</title>
    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
    <!-- General CSS Files -->
   <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/bootstrap/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
          <ul class="navbar-nav navbar-right">
 
            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-             <img alt="image" src="../ladun/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+             <img alt="image" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" class="rounded-circle mr-1">
              <div class="d-sm-none d-lg-inline-block">Hi, </div></a>
              <div class="dropdown-menu dropdown-menu-right">
 
@@ -47,15 +47,15 @@
            </li>
          </ul>
        </nav>
-       <div class="main-sidebar">
+       <div class="main-sidebar" id='divMenu'>
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
               <a href="#!" style='height:30px;'>
-              <img src='../ladun/login/images/Datsun-Logo.png' style="width: 150px;">
+              <img src='<?=STYLEBASE; ?>/dasbor/img/nadha_laundry.jpg' style="width: 100px;">
               </a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
-              <a href="#!">HS</a>
+              <a href="#!">NL</a>
             </div>
             <?php
             $this -> bind('dasbor/menuAdmin');
@@ -68,7 +68,7 @@
          <section class="section">
            <div class="section-header">
            
-             <h1 id='capUtama'> Selamat datang di Aplikasi Sistem Pakar Diagnosis Kerusakan Mobil</h1>
+             <h1 id='capUtama'> Nadha Laundry - Dasbor</h1>
             
            </div>
          <div id="divUtama">
