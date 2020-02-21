@@ -9,18 +9,22 @@ var loginForm = new Vue({
   },
   methods: {
     klikSaya: function() {
-      $.post(
-        urlLoginProses,
-        { username: this.userInput, password: this.passwordInput },
-        function(data) {
-          let obj = JSON.parse(data);
-          if (obj.jlh > 0) {
-            suksesLogin();
-          } else {
-            gagalLogin();
+      if (this.userInput === "" || this.passwordInput === "") {
+        isiField();
+      } else {
+        $.post(
+          urlLoginProses,
+          { username: this.userInput, password: this.passwordInput },
+          function(data) {
+            let obj = JSON.parse(data);
+            if (obj.jlh > 0) {
+              suksesLogin();
+            } else {
+              gagalLogin();
+            }
           }
-        }
-      );
+        );
+      }
     }
   }
 });
@@ -46,6 +50,22 @@ function gagalLogin() {
     timeout: 1000,
     pauseOnHover: false,
     onClosed: function() {
+      document.getElementById("txtUsername").value = "";
+      document.getElementById("txtPassword").value = "";
+      document.getElementById("txtUsername").focus();
+    }
+  });
+}
+
+function isiField()
+{
+  iziToast.warning({
+    title : "Isi Field!!",
+    message : "Masukkan username & Password",
+    position : "topCenter",
+    timeout: 2000,
+    pauseOnHover : false,
+    onClosed : function(){
       document.getElementById("txtUsername").value = "";
       document.getElementById("txtPassword").value = "";
       document.getElementById("txtUsername").focus();

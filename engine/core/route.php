@@ -106,5 +106,14 @@ class Route{
         return 'true';
       }
     }
+
+    public function cekUserLogin($ses){
+      if(!ISSET($_SESSION[$ses])){
+        header("Location:".HOMEBASE.'login');
+        die();
+      }else{
+
+      }
+    }
     
 }

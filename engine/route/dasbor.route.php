@@ -8,27 +8,15 @@ class Dasbor extends Route{
     
     }
 
-    // public function cekUser()
-    // {
-    //     if(!ISSET($_SESSION['userSes'])){
-    //         echo 'gak ada';
-    //         // $this -> goto(HOMEBASE.'login');
-    //         die();
-    //     }else{
-    //         echo 'gak ada';
-    //         // $this -> goto(HOMEBASE.$to);
-    //     }    
-    // }
-
     public function index()
-    {       
-       $cu = $this -> cekSesi('userSes');
-       if($cu == 'false'){
-        $this -> goto(HOMEBASE.'login');
-        die();
-       }else{
+    {     
+        $this -> cekUserLogin('userSes');
         $this -> bind('/dasbor/index');
-       }
+    }
+
+    public function beranda()
+    {
+        $this -> bind('/dasbor/beranda');   
     }
 
     public function logOut()

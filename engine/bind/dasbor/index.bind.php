@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <title>Sistem Pakar Diagnosis Kerusakan Mobil Toyota Avanza - Dashboard</title>
-
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
    <!-- General CSS Files -->
   <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/fontawesome/css/all.min.css">
@@ -78,11 +78,11 @@
       
      </div>
    </div>
- <footer class="main-footer">
+ <footer class="main-footer" id='divFooter'>
         
-           Copyright &copy; 2019 - Riyan Ramadhan Tambunan
+           Copyright &copy; {{tahun}} - {{author}}
          
-       </footer>
+</footer>
    <!-- General JS Scripts -->
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -108,6 +108,6 @@
 
    <!-- Page Specific JS File -->
    <script src="https://demo.getstisla.com/assets/js/page/index.js"></script>
-   <script src="dashboard.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/index.js"></script>
  </body>
  </html>
