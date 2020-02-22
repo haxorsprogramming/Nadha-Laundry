@@ -1,6 +1,7 @@
 const beranda = 'dasbor/beranda';
-const produk = 'dasbor/produk';
-const settingUser = 'dasbor/settingUser';
+const produk = 'produk';
+const pelanggan = 'pelanggan';
+const settingUser = 'settingUser';
 const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
@@ -22,6 +23,9 @@ var divMenu = new Vue({
     methods : {
         berandaAct : function(){
             renderMenu(beranda);
+        },
+        pelangganAtc : function(){
+            renderMenu(pelanggan);
         }
     }
 });

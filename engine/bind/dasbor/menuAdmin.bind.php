@@ -7,7 +7,7 @@
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Data Master</span></a>
               <ul class="dropdown-menu" style="">
                 <li><a class="nav-link" href="#!">Produk & Service</a></li>
-                <li><a class="nav-link" href="#!">Pelanggan</a></li>
+                <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
               </ul>
             </li>
     <li><a class="nav-link btnDataKerusakan" href="#!"><i class="fas fa-newspaper"></i> <span>Data Pengeluaran</span></a></li>

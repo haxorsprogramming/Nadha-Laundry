@@ -1,0 +1,1 @@
+$('#tblPelanggan').DataTable();
