@@ -24,7 +24,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-          <h3 id='capTotalGejala'>12</h3>
+          <h3 id='capTotalGejala'>-</h3>
             <h4>Pelanggan</h4>
           </div>
           <div class="card-body">
@@ -40,7 +40,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-          <h3 id='capTotalSolusi'>12</h3>
+          <h3 id='capTotalSolusi'>-</h3>
             <h4>Solusi</h4>
           </div>
           <div class="card-body">
@@ -115,7 +115,7 @@
                       </div>
                       <img class="mr-3 rounded-circle" width="50" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" alt="avatar">
                       <div class="media-body">
-                        <div class="badge badge-pill badge-danger mb-1 float-right">Silver</div>
+                        <div class="badge badge-pill badge-primary mb-1 float-right">Silver</div>
                         <h6 class="media-title"><a href="#">Hasnah Nur Ardita</a></h6>
                         <div class="text-small text-muted">109 Total Cuci <div class="bullet"></div> <span class="text-primary">108 Point</span></div>
                       </div>
