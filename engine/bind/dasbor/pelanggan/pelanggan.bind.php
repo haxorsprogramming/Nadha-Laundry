@@ -2,10 +2,10 @@
 
 ?>
 <div class='container'>
-<div style='margin-bottom:15px;'>
-<a href='#!' class='btn btn-lg btn-primary'>Tambah Pelangan</a>
+<div style='margin-bottom:15px;' id='divOperasi'>
+<a href='#!' class='btn btn-lg btn-primary' v-on:click='tambahPelanggan'>Tambah Pelangan</a>
 </div>
-<div class="row">
+<div class="row" id='divTabelPelanggan'>
 <table id='tblPelanggan' class='table'>
 <thead>
 <tr>
@@ -14,14 +14,14 @@
 </thead>
 <tbody>
 <?php
-foreach($data['pelanggan'] as $pelanggan) : 
+foreach($data['pelanggan'] as $pelanggan) :
 ?>
 <tr>
 <td><?=$pelanggan['nama_lengkap']; ?></td>
 <td>Sedang Laundry</td>
 <td>Point</td>
 <td>Grade</td>
-<td><a href='#!' class='btn btn-sm btn-warning'>Detail</a></td>
+<td><a href='#!' class='btn btn-sm btn-warning btnDetail' id='<?=$pelanggan['username'];?>'>Detail</a></td>
 </tr>
 <?php endforeach; ?>
 </tbody>

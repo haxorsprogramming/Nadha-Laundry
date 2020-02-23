@@ -20,6 +20,13 @@ var divFooter = new Vue({
   }
 });
 
+var divJudul = new Vue({
+  el :'#capUtama',
+  data : {
+    judulForm : 'Beranda'
+  }
+});
+
 //objek vue menu
 var divMenu = new Vue({
   el: '#divMenu',
@@ -27,9 +34,11 @@ var divMenu = new Vue({
   methods: {
     berandaAct: function() {
       renderMenu(beranda);
+      divJudul.judulForm = "Beranda";
     },
     pelangganAtc: function() {
       renderMenu(pelanggan);
+      divJudul.judulForm = "Data Pelanggan";
     }
   }
 });

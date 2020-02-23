@@ -30,9 +30,9 @@
          <form class="form-inline mr-auto">
            <ul class="navbar-nav mr-3">
              <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            
+
            </ul>
-          
+
          </form>
          <ul class="navbar-nav navbar-right">
 
@@ -68,21 +68,19 @@
        <div class="main-content">
          <section class="section">
            <div class="section-header">
-           
-             <h1 id='capUtama'> Nadha Laundry - Dasbor</h1>
-            
+             <h1 id='capUtama'> Nadha Laundry - {{judulForm}}</h1>
            </div>
          <div id="divUtama">
 
        </div>
      </section>
-      
+
      </div>
    </div>
  <footer class="main-footer" id='divFooter'>
-        
+
            Copyright &copy; {{tahun}} - {{author}}
-         
+
 </footer>
    <!-- General JS Scripts -->
 
@@ -94,7 +92,7 @@
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/stisla.js"></script>
 
    <!-- JS Libraies -->
- 
+
    <!-- <script src="https://demo.getstisla.com/asset/modules/jquery.simpleWeather.min.js"></script> -->
    <!-- <script src="https://demo.getstisla.com/asset/modules/Chart.min.js"></script> -->
    <!-- <script src="https://demo.getstisla.com/asset/modules/jquery.vmap.min.js"></script> -->
@@ -103,12 +101,12 @@
    <!-- <script src="https://demo.getstisla.com/asset/modules/jquery.chocolat.min.js"></script> -->
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/datatables.min.js"></script>
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/iziToast.min.js"></script>
-     
+
    <!-- Template JS File -->
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
 
    <!-- Page Specific JS File -->
-  
+
    <script src="<?=STYLEBASE; ?>/dasbor/index.js"></script>
  </body>
  </html>
