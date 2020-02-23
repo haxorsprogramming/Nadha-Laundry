@@ -55,22 +55,20 @@ function gagalLogin() {
   });
 }
 
-function isiField()
-{
+function isiField() {
   iziToast.warning({
-    title : "Isi Field!!",
-    message : "Masukkan username & Password",
-    position : "topCenter",
+    title: "Isi Field!!",
+    message: "Masukkan username & Password",
+    position: "topCenter",
     timeout: 2000,
-    pauseOnHover : false,
-    onClosed : function(){
+    pauseOnHover: false,
+    onClosed: function() {
       clearForm();
     }
   });
 }
 
-function clearForm()
-{
+function clearForm() {
   document.getElementById("txtUsername").value = "";
   document.getElementById("txtPassword").value = "";
   document.getElementById("txtUsername").focus();

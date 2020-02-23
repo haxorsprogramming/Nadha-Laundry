@@ -1,13 +1,17 @@
+//inisialisasi variabel lokal
 const beranda = 'dasbor/beranda';
 const produk = 'produk';
 const pelanggan = 'pelanggan';
 const settingUser = 'settingUser';
+const laporan = 'laporan';
 const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
 
+// fungsi pertama kali dijalankan
 renderMenu(beranda);
 
+//objek vue footer
 var divFooter = new Vue({
     el : '#divFooter',
     data : {
@@ -16,6 +20,7 @@ var divFooter = new Vue({
     }
 });
 
+//objek vue menu
 var divMenu = new Vue({
     el: '#divMenu',
     data : {
