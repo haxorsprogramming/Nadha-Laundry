@@ -13,29 +13,28 @@ renderMenu(beranda);
 
 //objek vue footer
 var divFooter = new Vue({
-    el : '#divFooter',
-    data : {
-        author : "NadhaMedia",
-        tahun : tahun
-    }
+  el: '#divFooter',
+  data: {
+    author: "NadhaMedia",
+    tahun: tahun
+  }
 });
 
 //objek vue menu
 var divMenu = new Vue({
-    el: '#divMenu',
-    data : {
+  el: '#divMenu',
+  data: {},
+  methods: {
+    berandaAct: function() {
+      renderMenu(beranda);
     },
-    methods : {
-        berandaAct : function(){
-            renderMenu(beranda);
-        },
-        pelangganAtc : function(){
-            renderMenu(pelanggan);
-        }
+    pelangganAtc: function() {
+      renderMenu(pelanggan);
     }
+  }
 });
 
-function renderMenu(halaman){
-    $('#divUtama').html("Memuat ...");
-    $('#divUtama').load(halaman);
+function renderMenu(halaman) {
+  $('#divUtama').html("Memuat ...");
+  $('#divUtama').load(halaman);
 }
