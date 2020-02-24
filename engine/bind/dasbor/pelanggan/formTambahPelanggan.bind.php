@@ -1,0 +1,43 @@
+<div class="container" id='divFormTambahPelanggan'>
+  <div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+    <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" v-model='username' id='txtUsername'>
+    </div>
+    <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" class="form-control" v-model='namaLengkap'>
+    </div>
+    <div class="form-group">
+          <label>Alamat</label>
+          <input type="text" class="form-control" v-model='alamat'>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+    <div class="form-group">
+          <label>Nomor Handphone</label>
+          <input type="text" class="form-control" v-model='nomorHandphone' id='txtNomorHandphone'>
+    </div>
+    <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" v-model='email' id='txtEmail'>
+    </div>
+    <div class="form-group">
+          <label>Level User</label>
+          <select class="form-control" name="" v-model='levelUser'>
+            <option>Basic</option>
+            <option>Silver</option>
+            <option>Gold</option>
+          </select>
+    </div>
+
+  </div>
+</div>
+<div class="form-group">
+  <label>{{username}}{{namaLengkap}}{{alamat}}{{nomorHandphone}}{{email}}{{levelUser}}</label>
+    <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='simpan'><i class='fas fa-save'></i> Simpan</a>
+</div>
+</div>
+
+<script src="<?=STYLEBASE; ?>/dasbor/formTambahPelanggan.js"></script>

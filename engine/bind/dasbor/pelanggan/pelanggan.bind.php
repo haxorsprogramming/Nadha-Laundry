@@ -3,7 +3,7 @@
 ?>
 <div class='container'>
 <div style='margin-bottom:15px;' id='divOperasi'>
-<a href='#!' class='btn btn-lg btn-primary' v-on:click='tambahPelanggan'>Tambah Pelangan</a>
+<a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'><i class="fas fa-plus-circle"></i> Tambah Pelangan</a>
 </div>
 <div class="row" id='divTabelPelanggan'>
 <table id='tblPelanggan' class='table'>

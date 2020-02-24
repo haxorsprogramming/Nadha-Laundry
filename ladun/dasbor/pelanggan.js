@@ -1,5 +1,3 @@
-const dasbor = 'beranda/dasbor';
-
 $('#tblPelanggan').DataTable();
 
 var divOperasi = new Vue({
@@ -7,6 +5,7 @@ var divOperasi = new Vue({
   methods : {
     tambahPelanggan : function(){
       divJudul.judulForm = "Tambah pelanggan";
+      renderMenu('pelanggan/formTambahPelanggan');
     }
   }
 });

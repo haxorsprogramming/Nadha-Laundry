@@ -1,6 +1,10 @@
 const urlLoginProses = "login/prosesLogin";
 const awalLogin = true;
 
+$(document).ready(function(){
+  document.getElementById("txtUsername").focus();
+});
+
 var loginForm = new Vue({
   el: "#login-app",
   data: {
