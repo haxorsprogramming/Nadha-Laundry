@@ -46,6 +46,10 @@ var divFormTambahPelanggan = new Vue({
       this.email = '';
       this.levelUser = '';
       document.getElementById('txtUsername').focus();
+    },
+    kembali : function(){
+      renderMenu(pelanggan);
+      divJudul.judulForm = "Data Pelanggan";
     }
   }
 });

@@ -23,13 +23,14 @@ foreach($data['pelanggan'] as $pelanggan) :
         <div class="media-body">
           <div class="media-title"><a href='#!'><?=$pelanggan['nama_lengkap']; ?><a/></div>
         <b><?=$pelanggan['username']; ?></b><br/>
+        <i><?=$pelanggan['email']; ?></i>
         </div>
  </li>
 </td>
 <td></td>
 <td><?=$pelanggan['point_real']; ?></td>
 <td><?=$pelanggan['level']; ?></td>
-<td><a href='#!' class='btn btn-sm btn-warning btnDetail' id='<?=$pelanggan['username'];?>'>Detail</a></td>
+<td><a href='#!' class='btn btn-sm btn-primary btn-icon icon-left btnDetail' id='<?=$pelanggan['username'];?>'><i class='fas fa-exclamation-circle'></i> Detail</a></td>
 </tr>
 <?php endforeach; ?>
 </tbody>

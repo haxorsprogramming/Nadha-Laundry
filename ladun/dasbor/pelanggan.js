@@ -1,4 +1,6 @@
-$('#tblPelanggan').DataTable();
+$(document).ready(function(){
+  $('#tblPelanggan').DataTable();
+});
 
 var divOperasi = new Vue({
   el : '#divOperasi',
@@ -19,5 +21,7 @@ var divTabelPelanggan = new Vue({
 
 $('#tblPelanggan').on('click','.btnDetail',function(){
   let username = $(this).attr('id');
-  window.alert(username);
+  divJudul.judulForm = "Detail Pelanggan";
+  $('#divUtama').html("Memuat ...");
+  $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
 });

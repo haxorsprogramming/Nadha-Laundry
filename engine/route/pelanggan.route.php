@@ -10,13 +10,14 @@ class Pelanggan extends Route{
     public function index()
     {
         $this -> cekUserLogin('userSes');
-        $this -> st -> query("SELECT * FROM tbl_pelanggan;");
+        $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY id DESC;");
         $data['pelanggan'] = $this -> st -> queryAll();
         $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
     public function formTambahPelanggan()
     {
+      $this -> cekUserLogin('userSes');
       $this -> bind('dasbor/pelanggan/formTambahPelanggan');
     }
 
@@ -48,8 +49,13 @@ class Pelanggan extends Route{
         $this -> st -> queryRun();
         $dataRes['status'] = 'sukses';
       }
-
       $this -> toJson($dataRes);
+    }
+
+    public function pelangganProfile()
+    {
+      $data['username'] = $this -> inp('username');
+      $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
     }
 
 }

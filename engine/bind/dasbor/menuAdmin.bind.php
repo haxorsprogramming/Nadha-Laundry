@@ -8,6 +8,8 @@
               <ul class="dropdown-menu" style="">
                 <li><a class="nav-link" href="#!">Produk & Service</a></li>
                 <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
+                <li><a class="nav-link" href="#!">Level User</a></li>
+                <li><a class="nav-link" href="#!">Parfum</a></li>
               </ul>
             </li>
     <li><a class="nav-link btnDataKerusakan" href="#!"><i class="fas fa-newspaper"></i> <span>Data Pengeluaran</span></a></li>

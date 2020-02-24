@@ -46,6 +46,8 @@
     <a href='#!' id='btnSimpan' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='simpan'><i class='fas fa-save'></i> Simpan</a>
     &nbsp;&nbsp;
     <a href='#!' id='btnClear' class="btn btn-lg btn-warning btn-icon icon-left" v-on:click='clearForm'><i class='fas fa-clipboard-check'></i> Clear form</a>
+&nbsp;&nbsp;
+    <a href='#!' id='btnKembali' class="btn btn-lg btn-success btn-icon icon-left" v-on:click='kembali'><i class='fas fa-reply'></i> Kembali</a>
 </div>
 </div>
 
