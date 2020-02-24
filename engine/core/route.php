@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Jakarta");
 * Thanks for support
 * Muhammad Ikhsan, ST. M.Kom (Pembina Haxors Programming Club)
 * Muhammad Furqan, S.Si, Sc, M.Comp (Ketua Prodi Ilmu Komputer UINSU)
-* 
+*
 * @package	Uinsu Web Framework
 * @author	Haxors Programming Club
 * @link	https://haxors.or.id
@@ -16,10 +16,10 @@ date_default_timezone_set("Asia/Jakarta");
 */
 
 class Route{
-    
+
     public function bind($blade, $data = [])
     {
-        require_once 'engine/bind/'.$blade.'.bind.php';    
+        require_once 'engine/bind/'.$blade.'.bind.php';
     }
 
     public function state($state)
@@ -35,8 +35,8 @@ class Route{
         $hasil = substr($acak,0,$length);
         echo $hasil;
         //var_dum("Data");
-    } 
-    
+    }
+
     public function rnint($length)
     {
       $bahan = '123456789012345678901234567890123456780';
@@ -44,15 +44,15 @@ class Route{
       $hasil = substr($acak, 0, $length);
       echo $hasil;
     }
-    
+
     //fungsi upload
     public function upload($path)
     {
         $data['path'] = $data -> path($path);
         if(move_uploaded_file()){
-        
+
         }else{
-        
+
         }
     }
     //ambil data post
@@ -82,13 +82,13 @@ class Route{
     {
       session_destroy();
     }
-  
+
     public function goto($page)
     {
       header("Location:".$page);
       exit();
     }
-  
+
     public function emck($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -107,6 +107,11 @@ class Route{
       }
     }
 
+    public function toJson($data)
+    {
+      echo json_encode($data);
+    }
+
     public function cekUserLogin($ses){
       if(!ISSET($_SESSION[$ses])){
         header("Location:".HOMEBASE.'login');
@@ -115,5 +120,5 @@ class Route{
 
       }
     }
-    
+
 }

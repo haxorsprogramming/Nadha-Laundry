@@ -35,8 +35,15 @@
   </div>
 </div>
 <div class="form-group">
-  <label>{{username}}{{namaLengkap}}{{alamat}}{{nomorHandphone}}{{email}}{{levelUser}}</label>
-    <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='simpan'><i class='fas fa-save'></i> Simpan</a>
+  <div style='font-size:12px;'>
+    <ul>
+      <li><i>Username tidak boleh mengandung spasi</i></li>
+      <li><i>Email &amp; disarankan valid, agar service notifikasi berjalan ke pelanggan</i></li>
+      <li><i>Level user dapat diubah kembali setelah user dibuat</i></li>
+    </ul>
+  </div>
+  <!-- <label>{{username}}{{namaLengkap}}{{alamat}}{{nomorHandphone}}{{email}}{{levelUser}}</label> -->
+    <a href='#!' id='btnSimpan' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='simpan'><i class='fas fa-save'></i> Simpan</a>
 </div>
 </div>
 

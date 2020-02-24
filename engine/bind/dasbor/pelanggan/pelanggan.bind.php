@@ -8,19 +8,21 @@
 <div class="row" id='divTabelPelanggan'>
 <table id='tblPelanggan' class='table'>
 <thead>
-<tr>
-<td>Pelanggan</td><td>Sedang Laundry</td><td>Point</td><td>Grade</td><td>Aksi</td>
-</tr>
+  <tr>
+  <th>Pelanggan</th><th>Sedang Laundry</th><th>Point</th><th>Level User</th><th>Aksi</th>
+  </tr>
 </thead>
 <tbody>
 <?php
 foreach($data['pelanggan'] as $pelanggan) :
 ?>
 <tr>
-<td><?=$pelanggan['nama_lengkap']; ?></td>
-<td>Sedang Laundry</td>
-<td>Point</td>
-<td>Grade</td>
+<td style='font-size:16px;'><?=$pelanggan['nama_lengkap']; ?><br/>
+<b><?=$pelanggan['username']; ?></b>
+</td>
+<td></td>
+<td></td>
+<td><?=$pelanggan['level']; ?></td>
 <td><a href='#!' class='btn btn-sm btn-warning btnDetail' id='<?=$pelanggan['username'];?>'>Detail</a></td>
 </tr>
 <?php endforeach; ?>
