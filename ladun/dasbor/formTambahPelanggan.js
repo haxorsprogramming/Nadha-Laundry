@@ -37,6 +37,15 @@ var divFormTambahPelanggan = new Vue({
           }
         });
       }
+    },
+    clearForm : function(){
+      this.username = '';
+      this.namaLengkap = '';
+      this.alamat = '';
+      this.nomorHandphone = '';
+      this.email = '';
+      this.levelUser = '';
+      document.getElementById('txtUsername').focus();
     }
   }
 });

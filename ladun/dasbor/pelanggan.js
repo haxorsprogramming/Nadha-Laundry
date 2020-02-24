@@ -17,7 +17,7 @@ var divTabelPelanggan = new Vue({
   }
 });
 
-$('.btnDetail').click(function(){
+$('#tblPelanggan').on('click','.btnDetail',function(){
   let username = $(this).attr('id');
-
+  window.alert(username);
 });

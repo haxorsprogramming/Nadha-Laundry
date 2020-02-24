@@ -17,11 +17,17 @@
 foreach($data['pelanggan'] as $pelanggan) :
 ?>
 <tr>
-<td style='font-size:16px;'><?=$pelanggan['nama_lengkap']; ?><br/>
-<b><?=$pelanggan['username']; ?></b>
+<td>
+ <li class="media">
+      <img class="mr-3 rounded-circle" width="50" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" alt="avatar">
+        <div class="media-body">
+          <div class="media-title"><a href='#!'><?=$pelanggan['nama_lengkap']; ?><a/></div>
+        <b><?=$pelanggan['username']; ?></b><br/>
+        </div>
+ </li>
 </td>
 <td></td>
-<td></td>
+<td><?=$pelanggan['point_real']; ?></td>
 <td><?=$pelanggan['level']; ?></td>
 <td><a href='#!' class='btn btn-sm btn-warning btnDetail' id='<?=$pelanggan['username'];?>'>Detail</a></td>
 </tr>

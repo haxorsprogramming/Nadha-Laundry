@@ -11,6 +11,7 @@
               </ul>
             </li>
     <li><a class="nav-link btnDataKerusakan" href="#!"><i class="fas fa-newspaper"></i> <span>Data Pengeluaran</span></a></li>
+    <li><a class="nav-link btnSettingLaundry" href="#!"><i class="fas fa-newspaper"></i> <span>Setting Laundry</span></a></li>
     <li><a class="nav-link btnSettingUser" href="#!"><i class="fas fa-newspaper"></i> <span>Manajemen User</span></a></li>
     <li><a class="nav-link" id='btnLogOut' href="<?=HOMEBASE;?>dasbor/logOut"><i class="fas fa-sign-out-alt"></i> <span>LogOut</span></a></li>
 </ul>
