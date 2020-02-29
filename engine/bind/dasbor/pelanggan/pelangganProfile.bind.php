@@ -41,11 +41,11 @@ $pelanggan = $this -> st -> querySingle();
                         </tr>
                         <tr>
                           <td>Tanggal Join</td>
-                          <td><?=$pelanggan['alamat']; ?></td>
+                          <td>tanggal_join</td>
                         </tr>
                         <tr>
                           <td>Terakhir Laundry</td>
-                          <td><?=$pelanggan['alamat']; ?></td>
+                          <td>terakhir_laundry</td>
                         </tr>
                       </table>
                     </div>

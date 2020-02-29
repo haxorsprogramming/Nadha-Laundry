@@ -39,6 +39,9 @@ var divMenu = new Vue({
     pelangganAtc: function() {
       renderMenu(pelanggan);
       divJudul.judulForm = "Data Pelanggan";
+    },
+    levelUserAtc : function() {
+      $('#divUtama').html("Memuat ...");
     }
   }
 });
