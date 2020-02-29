@@ -4,6 +4,7 @@ const produk = 'produk';
 const pelanggan = 'pelanggan';
 const settingUser = 'settingUser';
 const laporan = 'laporan';
+const levelUser = 'levelUser';
 const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
@@ -41,7 +42,8 @@ var divMenu = new Vue({
       divJudul.judulForm = "Data Pelanggan";
     },
     levelUserAtc : function() {
-      $('#divUtama').html("Memuat ...");
+      renderMenu(levelUser);
+      divJudul.judulForm = "Level User";
     }
   }
 });
