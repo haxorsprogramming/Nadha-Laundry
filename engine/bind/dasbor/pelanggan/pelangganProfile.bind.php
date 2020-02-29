@@ -6,7 +6,7 @@ $pelanggan = $this -> st -> querySingle();
 ?>
 <div class='row'>
 <div class="col-lg-6 col-md-6 col-12">
-  <div class="card profile-widget">
+  <div class="card profile-widget" id='divProfilePelanggan'>
                     <div class="profile-widget-header">
                       <img alt="image" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" class="rounded-circle profile-widget-picture">
                       <div class="profile-widget-items">
@@ -25,7 +25,10 @@ $pelanggan = $this -> st -> querySingle();
                       </div>
                     </div>
                     <div class="profile-widget-description">
-                      <div class="profile-widget-name"><?=$pelanggan['nama_lengkap']; ?> <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> <?=$data['username']; ?></div></div>
+                      <div class="profile-widget-name"><?=$pelanggan['nama_lengkap']; ?>
+                        <div class="text-muted d-inline font-weight-normal">
+                          <div class="slash"></div> <?=$data['username']; ?></div></div>
+                          <div id='frmEditProfilePelanggan'>
                       <table class="table table-bordered">
                         <tr>
                           <td>Alamat</td>
@@ -49,8 +52,11 @@ $pelanggan = $this -> st -> querySingle();
                         </tr>
                       </table>
                     </div>
+                    </div>
+                    <input style="display:none;" type="text" value="<?=$data['username']; ?>" id='txtUsernameHidden'>
                     <div class="card-footer text-center">
-                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-tools'></i> Edit profile pelanggan</a>
+                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='editProfileAtc'><i class='fas fa-tools'></i> Edit profile pelanggan</a>
                     </div>
                   </div>
 </div>
+<script src="<?=STYLEBASE; ?>/dasbor/profilePelanggan.js"></script>
