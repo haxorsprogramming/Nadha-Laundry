@@ -59,8 +59,8 @@ class Pelanggan extends Route{
     }
 
     public function formEditProfilePelanggan(){
-      // $data['username'] = $this -> inp('username');
-      $this -> bind('dasbor/pelanggan/formEditProfilePelanggan');
+      $data['username'] = $this -> inp('username');
+      $this -> bind('dasbor/pelanggan/formEditProfilePelanggan', $data);
     }
 
 }

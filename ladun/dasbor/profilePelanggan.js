@@ -7,8 +7,7 @@ var divProfilePelanggan = new Vue({
   },
   methods : {
     editProfileAtc : function(){
-      window.alert(this.usernameHidden);
-      $('#frmEditProfilePelanggan').load('pelanggan/formEditProfilePelanggan');
+      $('#frmEditProfilePelanggan').load('pelanggan/formEditProfilePelanggan',{'username':this.usernameHidden});
     }
   }
 });
