@@ -10,5 +10,17 @@ $pelanggan = $this -> st -> querySingle();
 </div>
 <div class="form-group">
       <label>Nama Pelanggan</label>
-      <input type="text" class="form-control" v-model='namaPelanggan' id='txtNama'>
+      <input type="text" class="form-control" v-model='namaPelanggan' value="<?=$pelanggan['nama_lengkap']; ?>" id='txtNama'>
+</div>
+<div class="form-group">
+      <label>Alamat</label>
+      <input type="text" class="form-control" v-model='alamat' value="<?=$pelanggan['alamat']; ?>" id='txtAlamat'>
+</div>
+<div class="form-group">
+      <label>Hp</label>
+      <input type="text" class="form-control" v-model='hp' value="<?=$pelanggan['hp']; ?>" id='txtHp'>
+</div>
+<div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" v-model='email' value="<?=$pelanggan['email']; ?>" id='txtEmail'>
 </div>
