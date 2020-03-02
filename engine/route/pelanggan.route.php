@@ -65,7 +65,25 @@ class Pelanggan extends Route{
 
     public function proEditProfilePelanggan()
     {
-      
+      $data['username'] = $this -> inp('username');
+      $data['namaLengkap'] = $this -> inp('namaLengkap');
+      $data['alamat'] = $this -> inp('alamat');
+      $data['nomorHandphone'] = $this -> inp('nomorHandphone');
+      $data['email'] = $this -> inp('email');
+      $data['levelUser'] = $this -> inp('levelUser');
+
+      $query = "UPDATE tbl_pelanggan SET nama_lengkap=:nama_lengkap, alamat=:alamat, hp=:hp, email=:email, level=:level WHERE username=:username;";
+      $this -> st -> query($query);
+      $this -> st -> querySet('username',$data['username']);
+      $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
+      $this -> st -> querySet('alamat',$data['alamat']);
+      $this -> st -> querySet('hp',$data['nomorHandphone']);
+      $this -> st -> querySet('email',$data['email']);
+      $this -> st -> querySet('level',$data['levelUser']);
+      $this -> st -> queryRun();
+      $dataRes['status'] = 'sukses';
+      $this -> toJson($dataRes);
+      // $this -> toJson($data);
     }
 
 }
