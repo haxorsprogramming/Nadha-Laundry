@@ -55,7 +55,7 @@ $pelanggan = $this -> st -> querySingle();
                     </div>
                     <input style="display:none;" type="text" value="<?=$data['username']; ?>" id='txtUsernameHidden'>
                     <div class="card-footer text-center">
-                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='editProfileAtc'><i class='fas fa-tools'></i> Edit profile pelanggan</a>
+                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='editProfileAtc' id='btnEditProfile'><i class='fas fa-tools'></i> Edit profile pelanggan</a>
                     </div>
                   </div>
 </div>

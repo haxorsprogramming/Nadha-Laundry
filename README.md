@@ -17,7 +17,17 @@ Fitur
 
 <br/><hr/>
 Tampilan Aplikasi
->> Login 
+>> Login
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/login.png?raw=true'>
+
+>> Beranda
+
+>> Kartu Cucian
+
+>> Laundry Room
+
+>> Manajemen Pelanggan
+
+
 
 Apabila anda ingin menggunakan aplikasi ini, dapat menghubungi alditha.forum@gmail.com

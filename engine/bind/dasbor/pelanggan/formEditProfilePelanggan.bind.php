@@ -5,25 +5,26 @@ $pelanggan = $this -> st -> querySingle();
 $this -> st -> query("SELECT * FROM tbl_level_user;");
 $levelUser = $this -> st -> queryAll();
 ?>
-<div class="form-group">
+<div>
+<div class="form-group" id='divFormUpdateProfilePelanggan'>
       <label>Username</label>
-      <input type="text" class="form-control form-disabled" value="<?=$pelanggan['username']; ?>" v-model='username' id='txtUsername'>
+      <input type="text" class="form-control" disabled value="<?=$pelanggan['username']; ?>" v-model='usernameUp' id='txtUsername'>
 </div>
 <div class="form-group">
       <label>Nama Pelanggan</label>
-      <input type="text" class="form-control" v-model='namaPelanggan' value="<?=$pelanggan['nama_lengkap']; ?>" id='txtNama'>
+      <input type="text" class="form-control" v-model='namaPelangganUp' value="<?=$pelanggan['nama_lengkap']; ?>" id='txtNama'>
 </div>
 <div class="form-group">
       <label>Alamat</label>
-      <input type="text" class="form-control" v-model='alamat' value="<?=$pelanggan['alamat']; ?>" id='txtAlamat'>
+      <input type="text" class="form-control" v-model='alamatUp' value="<?=$pelanggan['alamat']; ?>" id='txtAlamat'>
 </div>
 <div class="form-group">
       <label>Hp</label>
-      <input type="text" class="form-control" v-model='hp' value="<?=$pelanggan['hp']; ?>" id='txtHp'>
+      <input type="text" class="form-control" v-model='hpUp' value="<?=$pelanggan['hp']; ?>" id='txtHp'>
 </div>
 <div class="form-group">
       <label>Email</label>
-      <input type="text" class="form-control" v-model='email' value="<?=$pelanggan['email']; ?>" id='txtEmail'>
+      <input type="text" class="form-control" v-model='emailUp' value="<?=$pelanggan['email']; ?>" id='txtEmail'>
 </div>
 <div class="form-group">
       <label>Level User</label>
@@ -37,6 +38,8 @@ $levelUser = $this -> st -> queryAll();
        ?>
      </select>
 </div>
-<div class="form-group">
-<a href='#!' class="btn btn-lg btn-primary">Simpan</a>
+<div class="form-group" style="text-align:center;">
+<a href='#!' class="btn btn-lg btn-primary" v-on:click='divFormUpdateProfilePelanggan'>Simpan</a>
 </div>
+</div>
+<script src="<?=STYLEBASE; ?>/dasbor/formEditProfilePelanggan.js"></script>
