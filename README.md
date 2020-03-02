@@ -21,6 +21,7 @@ Tampilan Aplikasi
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/login.png?raw=true'>
 
 >> Beranda
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/beranda_old.png?raw=true'>
 
 >> Kartu Cucian
 
