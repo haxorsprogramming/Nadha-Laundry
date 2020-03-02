@@ -38,7 +38,7 @@ class Pelanggan extends Route{
       if($jlhUser > 0){
         $dataRes['status'] = 'error';
       }else{
-        $query = "INSERT INTO tbl_pelanggan VALUES (null,:username,:nama_lengkap,:alamat,:hp,:email,:level,0,0,'1');";
+        $query = "INSERT INTO tbl_pelanggan VALUES (null, :username, :nama_lengkap, :alamat, :hp, :email, :level, 0, 0, '1');";
         $this -> st -> query($query);
         $this -> st -> querySet('username',$usernameFilter);
         $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
@@ -61,6 +61,11 @@ class Pelanggan extends Route{
     public function formEditProfilePelanggan(){
       $data['username'] = $this -> inp('username');
       $this -> bind('dasbor/pelanggan/formEditProfilePelanggan', $data);
+    }
+
+    public function proEditProfilePelanggan()
+    {
+      
     }
 
 }
