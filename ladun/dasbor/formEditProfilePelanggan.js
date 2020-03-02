@@ -1,15 +1,17 @@
 var divFormUpdateProfilePelanggan = new Vue({
   el : '#divFormUpdateProfilePelanggan',
   data : {
-    usernameUp : "",
-    namaPelangganUp : "",
-    alamatUp : "",
-    hpUp : "",
-    emailUp : ""
+    username : document.getElementById('txtUsername').value,
+    namaLengkap : document.getElementById('txtNama').value,
+    alamat : document.getElementById('txtAlamat').value,
+    hp : document.getElementById('txtHp').value,
+    email : document.getElementById('txtEmail').value,
+    levelUser : document.getElementById('txtLevelUser').value
   },
   methods : {
-    divFormUpdateProfilePelanggan : function(){
-      window.alert("Halo");
+    prosesUpdateProfile : function(){
+      console.log(this.username+this.namaLengkap+this.alamat+this.hp+this.email);
+      
     }
   }
 });
