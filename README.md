@@ -16,4 +16,8 @@ Fitur
 <li> Manajemen laporan</li>
 
 <br/><hr/>
+Tampilan Aplikasi
+>> Login 
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/login.png?raw=true'>
+
 Apabila anda ingin menggunakan aplikasi ini, dapat menghubungi alditha.forum@gmail.com
