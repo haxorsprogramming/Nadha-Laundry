@@ -1,6 +1,6 @@
 //inisialisasi variabel lokal
 const beranda = 'dasbor/beranda';
-const produk = 'produk';
+const produkService = 'produkService';
 const pelanggan = 'pelanggan';
 const settingUser = 'settingUser';
 const laporan = 'laporan';
@@ -44,6 +44,11 @@ var divMenu = new Vue({
     levelUserAtc : function() {
       renderMenu(levelUser);
       divJudul.judulForm = "Level User";
+    },
+    produkServiceAtc : function()
+    {
+      renderMenu(produkService);
+      divJudul.judulForm = "Produk & Service";
     }
   }
 });

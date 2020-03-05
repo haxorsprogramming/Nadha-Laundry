@@ -6,7 +6,7 @@
     <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Data Master</span></a>
               <ul class="dropdown-menu" style="">
-                <li><a class="nav-link" href="#!">Produk & Service</a></li>
+                <li><a class="nav-link" href="#!" v-on:click='produkServiceAtc'>Produk & Service</a></li>
                 <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
                 <li><a class="nav-link" href="#!" v-on:click='levelUserAtc'>Level User</a></li>
                 <li><a class="nav-link" href="#!">Parfum</a></li>
