@@ -9,6 +9,7 @@ var divFormUpdateProfilePelanggan = new Vue({
       let hp = document.getElementById('txtHp').value;
       let email = document.getElementById('txtEmail').value;
       let levelUser = document.getElementById('txtLevelUser').value;
+      disabledForm();
       $.post('pelanggan/proEditProfilePelanggan', {
         'username': username,
         'namaLengkap': namaLengkap,
@@ -30,7 +31,7 @@ function suksesUpdate() {
     title: "Sukses ..",
     message: "Data pelanggan berhasil di diupdate, kembali ke profile pelanggan",
     position: "topCenter",
-    timeOut: 500,
+    timeOut: 300,
     pauseOnHover: false,
     onClosed: function() {
       divJudul.judulForm = "Detail Pelanggan";
@@ -38,4 +39,15 @@ function suksesUpdate() {
       $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
     }
   });
+}
+
+function disabledForm()
+{
+  $('#btnSimpan').addClass('disabled');
+  $('#btnSimpan').html('Updating ...');
+  document.getElementById('txtNama').setAttribute("disabled", "disabled");
+  document.getElementById('txtAlamat').setAttribute("disabled", "disabled");
+  document.getElementById('txtHp').setAttribute("disabled", "disabled");
+  document.getElementById('txtEmail').setAttribute("disabled", "disabled");
+  document.getElementById('txtLevelUser').setAttribute("disabled", "disabled");
 }
