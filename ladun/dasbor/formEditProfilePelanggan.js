@@ -9,12 +9,6 @@ var divFormUpdateProfilePelanggan = new Vue({
       let hp = document.getElementById('txtHp').value;
       let email = document.getElementById('txtEmail').value;
       let levelUser = document.getElementById('txtLevelUser').value;
-      // $data['username'] = $this -> inp('username');
-      // $data['namaLengkap'] = $this -> inp('namaLengkap');
-      // $data['alamat'] = $this -> inp('alamat');
-      // $data['nomorHandphone'] = $this -> inp('nomorHandphone');
-      // $data['email'] = $this -> inp('email');
-      // $data['levelUser'] = $this -> inp('levelUser');
       $.post('pelanggan/proEditProfilePelanggan', {
         'username': username,
         'namaLengkap': namaLengkap,
@@ -23,8 +17,25 @@ var divFormUpdateProfilePelanggan = new Vue({
         'email': email,
         'levelUser': levelUser
       }, function(data) {
+        suksesUpdate();
         console.log(data);
       });
     }
   }
 });
+
+function suksesUpdate() {
+  let username = document.getElementById('txtUsername').value;
+  iziToast.info({
+    title: "Sukses ..",
+    message: "Data pelanggan berhasil di diupdate, kembali ke profile pelanggan",
+    position: "topCenter",
+    timeOut: 500,
+    pauseOnHover: false,
+    onClosed: function() {
+      divJudul.judulForm = "Detail Pelanggan";
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+    }
+  });
+}

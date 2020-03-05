@@ -29,7 +29,7 @@ $levelUser = $this -> st -> queryAll();
 <div class="form-group">
       <label>Level User</label>
       <select class="form-control" id='txtLevelUser'>
-        <option value='<?=$lvl['kd_level']; ?>'><?=$pelanggan['level']; ?> (default)</option>
+        <option value='<?=$pelanggan['level']; ?>'><?=$pelanggan['level']; ?> (default)</option>
       <?php
       foreach ($levelUser as $lvl) {
         ?>
