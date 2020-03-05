@@ -14,7 +14,7 @@ var divFormUpdateProfilePelanggan = new Vue({
         'username': username,
         'namaLengkap': namaLengkap,
         'alamat': alamat,
-        'nomorHandphone':hp,
+        'nomorHandphone': hp,
         'email': email,
         'levelUser': levelUser
       }, function(data) {
@@ -36,13 +36,14 @@ function suksesUpdate() {
     onClosed: function() {
       divJudul.judulForm = "Detail Pelanggan";
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+      $('#divUtama').load('pelanggan/pelangganProfile', {
+        'username': username
+      });
     }
   });
 }
 
-function disabledForm()
-{
+function disabledForm() {
   $('#btnSimpan').addClass('disabled');
   $('#btnSimpan').html('Updating ...');
   document.getElementById('txtNama').setAttribute("disabled", "disabled");
