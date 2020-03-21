@@ -1,6 +1,29 @@
 <div class='container'>
 <div style='margin-bottom:15px;' id='divProdukService'>
-<a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'><i class="fas fa-plus-circle"></i> Tambah Item</a>
+<a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahProdukService'><i class="fas fa-plus-circle"></i> Tambah Item</a>
 </div>
+<div class="row" id='divTabelProduk'>
+<table id='tblPelanggan' class='table'>
+<thead>
+<tr>
+<td>Produk</td><td>Deks</td><td>Satuan - Harga</td><td>Total Transaksi</td><td>Aksi</td>
+</tr>
+</thead>
+<tbody>
+<?php
+foreach($data['produkService'] as $ps):
+?>
+<tr>
+<td><span style='font-size:15px;font-weight:bold;'><?=$ps['nama']; ?></span></td>
+<td><?=$ps['deks']; ?></td>
+<td><?=$ps['satuan']; ?> - Rp. <?=number_format($ps['harga']); ?></td>
+<td>0</td>
+<td><a href='#!' class='btn btn-sm btn-primary'>Detail</a></td>
+</tr>
 
+<?php endforeach; ?>
+</tbody>
+</table>
 </div>
+</div>
+<script src="<?=STYLEBASE; ?>/dasbor/produkService.js"></script>
