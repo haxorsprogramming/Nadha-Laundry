@@ -2,8 +2,8 @@
   <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 col-12">
   <div class="form-group">
-          <label>Kode Produk / Service</label>
-          <input type="text" class="form-control" v-model='kdProduk' id='txtKd'>
+          <label>Kode Produk / Service</label><br/>
+          <strong id='txtKode' style="font-size:18px;"><?=$data['kode']; ?></strong>
     </div>
     <div class="form-group">
             <label>Nama Produk / Service</label>
@@ -29,7 +29,10 @@
       </div>
   </div>
   <div>
-    <a href='#!' class="btn btn-lg btn-primary" v-on:click='simpanAksi'>{{judulbtn}}</a>
+    <a href='#!' class="btn btn-lg btn-primary" v-on:click='simpanAksi' id="btnSimpan"><i class='fas fa-save'></i> {{judulbtn}}</a>&nbsp;
+    <a href='#!' id='btnClear' class="btn btn-lg btn-warning btn-icon icon-left" v-on:click='clearForm'><i class='fas fa-clipboard-check'></i> Clear form</a>
+&nbsp;&nbsp;
+    <a href='#!' id='btnKembali' class="btn btn-lg btn-success btn-icon icon-left" v-on:click='kembali'><i class='fas fa-reply'></i> Kembali</a>
   </div>
 </div>
 <script src="<?=STYLEBASE; ?>/dasbor/formTambahProdukService.js"></script>
