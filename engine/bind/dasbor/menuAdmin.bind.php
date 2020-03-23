@@ -1,7 +1,7 @@
 <ul class="sidebar-menu" style='margin-top:20px;'>
     <!-- <li class="menu-header">Menu</li> -->
     <li><a class="nav-link btnDashboard" href="#!" v-on:click='berandaAct'><i class="fas fa-newspaper"></i> <span>Dashboard</span></a></li>
-    <li><a class="nav-link btnUjiDiagnosis" href="#!"><i class="fas fa-newspaper"></i> <span>Kartu Laundry</span></a></li>
+    <li><a class="nav-link btnKartuLaundry" href="#!" v-on:click='kartuLaundryAtc'><i class="fas fa-newspaper"></i> <span>Kartu Laundry</span></a></li>
     <li><a class="nav-link btnUjiDiagnosis" href="#!"><i class="fas fa-newspaper"></i> <span>Laundry Room</span></a></li>
     <li class="dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Data Master</span></a>

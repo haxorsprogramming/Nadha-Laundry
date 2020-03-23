@@ -40,7 +40,6 @@
              <img alt="image" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" class="rounded-circle mr-1">
              <div class="d-sm-none d-lg-inline-block">Hi, </div></a>
              <div class="dropdown-menu dropdown-menu-right">
-
                <a href="#!" id='btnLogOutTop' class="dropdown-item has-icon text-danger">
                  <i class="fas fa-sign-out-alt"></i> Logout
                </a>
@@ -71,9 +70,7 @@
              <h1 id='capUtama'> Nadha Laundry - {{judulForm}}</h1>
 
            </div>
-           <div class="progress" data-height="3" style="height: 3px;margin-bottom:10px;">
-             <div class="progress-bar" role="progressbar" data-width="0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-           </div>
+           
          <div id="divUtama">
 
        </div>

@@ -30,6 +30,6 @@ Tampilan Aplikasi
 >> Manajemen Pelanggan
 
 <br/><hr/>
-Anda dapat menggunakan aplikasi ini secara gratis, namun kami sangat mengharapkan bantuan anda untuk pengembangan aplikasi ini selanjutnya dengan mensupport kami di <a href='https://trakteer.id/alditha-nasution'>Trakter</a>, kami akan memberikan anda bantuan instalasi baik online(hosting) maupun offline(webserver local), serta update apabila aplikasi mengalami pembaharuan fitur.
+Anda dapat menggunakan aplikasi ini secara gratis secara online.
 
 Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi alditha.forum@gmail.com, atau WA (082272177022)

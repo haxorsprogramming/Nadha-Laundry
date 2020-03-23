@@ -29,7 +29,7 @@
       </div>
   </div>
   <div>
-    <a href='#!' class="btn btn-lg btn-primary" v-on:click='simpanAksi' id="btnSimpan"><i class='fas fa-save'></i> {{judulbtn}}</a>&nbsp;
+    <a href='#!' class="btn btn-lg btn-primary" v-on:click='simpanAksi' id="btnSimpan"><i class='fas fa-save'></i> {{judulbtn}}</a>&nbsp;&nbsp;
     <a href='#!' id='btnClear' class="btn btn-lg btn-warning btn-icon icon-left" v-on:click='clearForm'><i class='fas fa-clipboard-check'></i> Clear form</a>
 &nbsp;&nbsp;
     <a href='#!' id='btnKembali' class="btn btn-lg btn-success btn-icon icon-left" v-on:click='kembali'><i class='fas fa-reply'></i> Kembali</a>
