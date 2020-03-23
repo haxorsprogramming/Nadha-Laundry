@@ -15,4 +15,22 @@ class kartuLaundry extends Route{
       $this -> bind('dasbor/kartuLaundry/kartuLaundry', $data);
     }
 
+    public function formRegistrasiCucian()
+    {
+       $bHuruf = "QWERTYUIOPLKJHGFDSAZXCVBNM";
+       $bAngka = "1234567890";
+       $acakHuruf_1 = str_shuffle($bHuruf);
+       $acakHuruf_2 = str_shuffle($bHuruf);
+       $acakAngka = str_shuffle($bAngka);
+       $data['kodeRegistrasi'] = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
+       $data['waktuMasuk'] = date("Y-m-d H:i");
+      $this -> bind('dasbor/kartuLaundry/formRegistrasiCucian', $data);
+    }
+
+    public function prosesRegistrasiCucian()
+    {
+      $data['status'] = 'sukses';
+      $this -> toJson($data);
+    }
+
 }
