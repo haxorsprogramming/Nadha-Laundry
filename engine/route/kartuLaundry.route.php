@@ -29,7 +29,12 @@ class kartuLaundry extends Route{
 
     public function prosesRegistrasiCucian()
     {
-      $data['status'] = 'sukses';
+      $kode = $this -> inp('kodeRegistrasi');
+      $waktuMasuk = date("Y-m-d H:i:s");
+      $pelanggan = $this -> inp('pelanggan');
+      $tokenAwal = "";
+      
+      $data['status'] = $kode;
       $this -> toJson($data);
     }
 

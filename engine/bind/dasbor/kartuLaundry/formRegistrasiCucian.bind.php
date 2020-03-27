@@ -7,7 +7,7 @@ $pelanggan = $this -> st -> queryAll();
     <div class="col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
           <label>Kode Registrasi</label>
-          <h3><?=$data['kodeRegistrasi']; ?></h3>
+          <h3 id='txtKode'><?=$data['kodeRegistrasi']; ?></h3>
     </div>
     <div class="form-group">
           <label>Pelanggan</label>
