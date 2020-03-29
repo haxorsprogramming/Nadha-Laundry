@@ -32,9 +32,14 @@ class kartuLaundry extends Route{
       $kode = $this -> inp('kodeRegistrasi');
       $waktuMasuk = date("Y-m-d H:i:s");
       $pelanggan = $this -> inp('pelanggan');
-      $tokenAwal = "";
-      
-      $data['status'] = $kode;
+
+      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00', 'admin', 'hold');";
+      $this -> st -> query($query);
+      $this -> st -> querySet('kode_service', $kode);
+      $this -> st -> querySet('pelanggan', $pelanggan);
+      $this -> st -> querySet('waktu_mulai', $waktuMasuk);
+      $this -> st -> queryRun();
+      $data['status'] = 'sukses';
       $this -> toJson($data);
     }
 
