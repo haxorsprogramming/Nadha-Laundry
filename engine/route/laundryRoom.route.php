@@ -15,4 +15,19 @@ class laundryRoom extends Route{
     $this -> bind('dasbor/laundryRoom/laundryRoom', $data);
    }
 
+   public function detailCucian(){
+       $this -> cekUserLogin('userSes');
+       $this -> st -> query("SELECT * FROM tbl_service WHERE aktif='y';");
+       $data['listProduk'] = $this -> st -> queryAll();
+       $data['kd'] = $this -> inp('kd');
+       $this -> bind('dasbor/laundryRoom/detailCucian', $data);
+   }
+
+   public function getInfoProduk(){
+       $kdProduk = $this -> inp('kdProduk');
+       $this -> st -> query("SELECT * FROM tbl_service WHERE kd_service='$kdProduk';");
+       $dProduk = $this -> st -> querySingle();
+       $this -> toJson($dProduk);
+   }
+
 }

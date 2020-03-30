@@ -7,7 +7,7 @@ const laporan = 'laporan';
 const levelUser = 'levelUser';
 const kartuLaundry = 'kartuLaundry';
 const laundryRoom = 'laundryRoom';
-
+const detailCucian = 'laundryRoom/detailCucian';
 
 const d = new Date();
 const tahun = d.getFullYear();

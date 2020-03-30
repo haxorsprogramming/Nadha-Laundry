@@ -38,7 +38,7 @@
             Selesai : <b>--</b>
             </td>
             <td></td>
-            <td><button class="btn btn-sm btn-primary">Detail</button></td>
+            <td><button class="btn btn-sm btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

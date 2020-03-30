@@ -34,10 +34,11 @@
           <td><?="Rp. ".number_format($lr['total_harga']); ?></td>
           <td><?=$lr['status']; ?></td>
           <td>
-              <a href='#!' class="btn btn-sm btn-primary" v-on:click='detailsAtc("<?=$kdKartu; ?>")'>Details</a>
+              <a href='#!' class="btn btn-sm btn-info" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class='fas fa-exclamation-circle'></i> Details</a>&nbsp;&nbsp;
+              <a href='#!' class="btn btn-sm btn-primary" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class="fas fa-check-circle"></i> Selesai Cuci</a>
           </td>
         </tr>
-         <?php endforeach; ?>
+         <?php endforeach; ?>   
       </tbody>
   </table>
   <hr/>
