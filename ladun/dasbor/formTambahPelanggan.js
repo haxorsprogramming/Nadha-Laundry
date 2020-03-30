@@ -2,8 +2,6 @@ $(document).ready(function() {
   document.getElementById('txtUsername').focus();
 });
 
-// var dataSend = {'username':divFormTambahPelanggan.username}
-
 var divFormTambahPelanggan = new Vue({
   el: '#divFormTambahPelanggan',
   data: {

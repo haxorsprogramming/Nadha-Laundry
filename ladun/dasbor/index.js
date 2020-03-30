@@ -6,6 +6,8 @@ const settingUser = 'settingUser';
 const laporan = 'laporan';
 const levelUser = 'levelUser';
 const kartuLaundry = 'kartuLaundry';
+const laundryRoom = 'laundryRoom';
+
 
 const d = new Date();
 const tahun = d.getFullYear();
@@ -42,6 +44,10 @@ var divMenu = new Vue({
     kartuLaundryAtc : function(){
       renderMenu(kartuLaundry);
       divJudul.judulForm = "Kartu Laundry";
+    },
+    laundryRoomAtc : function(){
+      renderMenu(laundryRoom);
+      divJudul.judulForm = "Laundry Room";
     },
     pelangganAtc: function() {
       renderMenu(pelanggan);

@@ -21,7 +21,7 @@ $pelanggan = $this -> st -> queryAll();
            </select>
     </div>
     <div class="form-group">
-        <a href='#!' v-on:click='simpanRegistrasi' class='btn btn-lg btn-primary'>Daftarkan Cucian</a>
+        <a href='#!' v-on:click='simpanRegistrasi' id='btnDaftarkan' class='btn btn-lg btn-primary'>Daftarkan Cucian</a>
     </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-12">

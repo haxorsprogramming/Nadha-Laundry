@@ -1,5 +1,3 @@
-const kartuLaundry = 'kartuLaundry';
-
 $(document).ready(function() {
   $(".js-example-basic-single").select2();
 });
@@ -15,13 +13,12 @@ var divFormRegistrasiCucian = new Vue({
       if (pelanggan === "none") {
         pilihPelanggan();
       } else {
+        $('#btnDaftarkan').addClass('disabled');
         $.post(
           "kartuLaundry/prosesRegistrasiCucian",
           { pelanggan: pelanggan, kodeRegistrasi: kodeRegistrasi },
           function(data) {
-            let obj = JSON.parse(data);
-            renderMenu(kartuLaundry);
-            divJudul.judulForm = "Kartu Laundry";
+            sukses();
           }
         );
       }
@@ -38,6 +35,20 @@ function pilihPelanggan() {
     pauseOnHover: false,
     onClosed: function() {
       // $('#btnSimpan').removeClass('disabled');
+    }
+  });
+}
+
+function sukses() {
+  iziToast.info({
+    title: "Sukses",
+    message: "Registrasi cucian berhasil, silahkan tambahkan data cucian di Laundry Room!!",
+    position: "topCenter",
+    timeout: 1000,
+    pauseOnHover: false,
+    onClosed: function() {
+      renderMenu(kartuLaundry);
+      divJudul.judulForm = "Kartu Laundry";
     }
   });
 }

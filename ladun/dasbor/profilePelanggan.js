@@ -1,5 +1,3 @@
-// const usernameHidden = document.getElementById('txtUsernameHidden').value;
-
 var divProfilePelanggan = new Vue({
   el: '#divProfilePelanggan',
   data: {
