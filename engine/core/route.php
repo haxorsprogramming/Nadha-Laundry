@@ -33,7 +33,7 @@ class Route{
         $bahan = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
         $acak = str_shuffle($bahan);
         $hasil = substr($acak,0,$length);
-        echo $hasil;
+        return $hasil;
         //var_dum("Data");
     }
 
@@ -48,12 +48,12 @@ class Route{
     //fungsi upload
     public function upload($path)
     {
-        $data['path'] = $data -> path($path);
-        if(move_uploaded_file()){
+        // $data['path'] = $data -> path($path);
+        // if(move_uploaded_file()){
 
-        }else{
+        // }else{
 
-        }
+        // }
     }
     //ambil data post
     public function inp($id)

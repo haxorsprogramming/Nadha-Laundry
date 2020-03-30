@@ -10,7 +10,7 @@ $kd = $data['kd'];
         <h5>Info cucian</h5>
         <table class="table table-bordered">
             <tr>
-                <td>Kode Registrasi Cucian</td><td><?=$kd; ?></td>
+                <td>Kode Registrasi Cucian</td><td><span id='txtKdRegistrasi'><?=$kd; ?></span></td>
             </tr>
             <tr>
                 <td>Nama Pelanggan</td><td></td>
@@ -27,7 +27,7 @@ $kd = $data['kd'];
         </table>
         <hr/>
         <h5>List item cucian</h5>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-stripped" style="font-size: 15px;">
             <thead>
                 <tr>
                     <td>Items</td>
@@ -35,6 +35,11 @@ $kd = $data['kd'];
                     <td>Total</td> 
                 </tr>
             </thead>
+            <tbody>
+                <tr v-for='li in listItem'>
+                    <td>{{li.teks}}</td><td>{{li.qt}} Kg</td><td>Rp. {{li.total}}</td>
+                </tr>
+            </tbody>
         </table>
         </div>
         <div class="col-lg-6 col-md-6 col-12">
@@ -42,7 +47,6 @@ $kd = $data['kd'];
             <div class="form-group">
             <label>Produk / Service</label>
             <select class="js-example-basic-single form-control" id='txtProduk' onchange="setProduk()">
-            <option value="none" default>-- Pilih Service --</option>
            <?php
             foreach($data['listProduk'] as $prod):
            ?>
@@ -56,13 +60,12 @@ $kd = $data['kd'];
             </div>
             <div>
                 <ul>
-                    <li>Produk : {{namaService}}</li>
-                    <li>Satuan : {{satuan}}</li>
-                    <li>Harga (@) : Rp. {{hargaAt}}</li>
+                    <li>Produk : <b>{{namaService}}</b> - ({{satuan}})</li>
+                    <li>Harga (@) : Rp. {{hargaAtCap}}</li>
                     <li>Total : Rp. {{capTotal}}</li>
                 </ul>
             </div>
-            <a href='#!' class="btn btn-primary" v-on:click="">Tambah item</a>
+            <a href='#!' class="btn btn-primary" v-on:click="tambahItem">Tambah item</a>
         </div>
     </div>
 </div>

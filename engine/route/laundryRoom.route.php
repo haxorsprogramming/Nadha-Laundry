@@ -30,4 +30,21 @@ class laundryRoom extends Route{
        $this -> toJson($dProduk);
    }
 
+   public function prosesTambahItem()
+   {
+    // 'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt
+       $kdRegistrasi = $this -> inp('kdReg');
+       $kdService = $this -> inp('serviceKd');
+       $hargaAt = $this -> inp('hargaAt');
+       $qt = $this -> inp('qt');
+       $kdTemp = $this -> rnstr(10);
+       $total = $hargaAt * $qt;
+       $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
+       $this -> st -> query($queryToTemp);
+       $this -> st -> queryRun();
+       
+        $data['status'] = 'sukses';
+       $this -> toJson($data);
+   }
+
 }
