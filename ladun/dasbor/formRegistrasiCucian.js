@@ -1,7 +1,9 @@
+const kartuLaundry = 'kartuLaundry';
+
 $(document).ready(function() {
   $(".js-example-basic-single").select2();
 });
-
+ 
 var divFormRegistrasiCucian = new Vue({
   el: "#divFormRegistrasiCucian",
   data: {},
@@ -18,7 +20,8 @@ var divFormRegistrasiCucian = new Vue({
           { pelanggan: pelanggan, kodeRegistrasi: kodeRegistrasi },
           function(data) {
             let obj = JSON.parse(data);
-            window.alert(obj.status);
+            renderMenu(kartuLaundry);
+            divJudul.judulForm = "Kartu Laundry";
           }
         );
       }

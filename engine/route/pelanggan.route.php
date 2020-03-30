@@ -51,7 +51,7 @@ class Pelanggan extends Route{
       }
       $this -> toJson($dataRes);
     }
-
+ 
     public function pelangganProfile()
     {
       $data['username'] = $this -> inp('username');
