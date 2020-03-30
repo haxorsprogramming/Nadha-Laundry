@@ -3,11 +3,11 @@ $(document).ready(function() {
     var kdRegistrasi = document.getElementById('txtKdRegistrasi').innerHTML;
     divDetailCucian.kodeRegistrasi = kdRegistrasi;
     //ambil data item service
-    $.post('/laundryRoom/getItemService',{'kdRegistrasi':kdRegistrasi} ,function(data){
+    $.post('laundryRoom/getItemService',{'kdRegistrasi':kdRegistrasi} ,function(data){
         let obj = JSON.parse(data);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
-                      
+            divDetailCucian.listItem.push({teks : obj[index].namaCap, qt : obj[index].qt, total : obj[index].total});          
         }
     });
 
@@ -27,9 +27,7 @@ $(document).ready(function() {
         qt : "",
         total : "",
         capTotal : "",
-        listItem : [
-            {teks : 'Cuci bersih', qt : '3', total : 'Rp. 20.000'},
-        ]
+        listItem : []
     },
     methods: {
         tambahItem : function(){
@@ -39,10 +37,15 @@ $(document).ready(function() {
             let hargaAt = this.hargaAt;
 
             console.log({'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt});
-            $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
-                let obj = JSON.parse(data);
-                console.log(obj);
-            });
+            if(qt === "" || qt === "0"){
+                window.alert("Masukkan jumlah produk!!");
+            }else{
+
+            }
+            // $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
+            //     let obj = JSON.parse(data);
+            //     console.log(obj);
+            // });
         }
     }
   });

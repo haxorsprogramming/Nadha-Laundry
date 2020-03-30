@@ -42,9 +42,36 @@ class laundryRoom extends Route{
        $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
        $this -> st -> query($queryToTemp);
        $this -> st -> queryRun();
-       
-        $data['status'] = 'sukses';
+       $qUpdate = "UPDATE tbl_laundry_room SET status='cuci' WHERE kd_kartu='$kdRegistrasi';";
+       $this -> st -> query($qUpdate);
+       $this -> st -> queryRun();
+       $qUpdateReg = "UPDATE tbl_kartu_laundry SET status='cuci' WHERE kode_service='$kdRegistrasi';";
+       $this -> st -> query($qUpdateReg);
+       $this -> st -> queryRun();
+       $data['status'] = 'sukses';
        $this -> toJson($data);
+   }
+
+   public function getItemService()
+   {
+       $dbdata = array();
+       $kdRegistrasi = $this -> inp('kdRegistrasi');
+       $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
+       $dIts = $this -> st -> queryAll();
+       //update status cucian 
+     
+
+       foreach($dIts as $dis){
+        $kdItem = $dis['kd_item'];
+        $this -> st -> query("SELECT nama FROM tbl_service WHERE kd_service='$kdItem' LIMIT 0,1;");
+        $dNamaProd = $this -> st -> querySingle();
+        $arrTemp['kd_item'] = $dis['kd_item']; 
+        $arrTemp['qt'] = $dis['qt'];
+        $arrTemp['namaCap'] = $dNamaProd['nama'];
+        $arrTemp['total'] = $dis['total'];
+        $dbdata[] = $arrTemp;
+       } 
+       $this -> toJson($dbdata);
    }
 
 }

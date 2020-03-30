@@ -1,6 +1,7 @@
 <?php
 $kd = $data['kd'];
-
+$this -> st -> query("SELECT * FROM tbl_kartu_laundry ORDER BY id DESC;");
+$data['kartuLaundry'] = $this -> st -> queryAll();
 ?>
 <div class="container" id='divDetailCucian'>
     <div style='margin-bottom:15px;'>
@@ -8,31 +9,37 @@ $kd = $data['kd'];
     <div class="row">
         <div class="col-lg-6 col-md-6 col-12">
         <h5>Info cucian</h5>
-        <table class="table table-bordered">
+        <table class="">
             <tr>
-                <td>Kode Registrasi Cucian</td><td><span id='txtKdRegistrasi'><?=$kd; ?></span></td>
+                <td>Kode Registrasi Cucian</td><td>: <span id='txtKdRegistrasi' style="font-weight: bold;"><?=$kd; ?></span></td>
             </tr>
             <tr>
-                <td>Nama Pelanggan</td><td></td>
+                <td>Nama Pelanggan</td><td>: </td>
             </tr>
             <tr>
-                <td>Waktu Masuk</td><td></td>
+                <td>Waktu Masuk</td><td>: </td>
             </tr>
             <tr>
-                <td>Total Item</td></td>
+                <td>Total Item</td><td>: </td>
             </tr>
             <tr>
-                <td>Total Harga</td></td>
+                <td>Total Harga</td><td>: </td>
             </tr>
         </table>
-        <hr/>
+        <div style="padding-top:12px;">
+        <ul>
+            <li><small> Item per service hanya bisa ditambahkan, tidak bisa dihapus</small></li>
+            <li><small> Jika ingin menghapus item, harus membatalkan entry laundry dan membuat ulang melalui kartuu laundry</small></li>
+        </ul>
+        </div>
+               <hr/>
         <h5>List item cucian</h5>
         <table class="table table-bordered table-stripped" style="font-size: 15px;">
             <thead>
                 <tr>
-                    <td>Items</td>
-                    <td>Qt</td>
-                    <td>Total</td> 
+                    <th>Items</th>
+                    <th>Qt</th>
+                    <th>Total</th> 
                 </tr>
             </thead>
             <tbody>
