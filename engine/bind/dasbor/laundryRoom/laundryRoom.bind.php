@@ -5,13 +5,13 @@
   <table id='tblLaundryRoom' class='table'>
       <thead>
         <tr>
-          <td>Kode Registrasi</td>
-          <td>Pelanggan</td>
-          <td>Waktu Masuk</td>
-          <td>Total Item</td>
-          <td>Total Harga</td>
-          <td>Status</td>
-          <td>Aksi</td>
+        <th>Kode Registrasi</th>
+          <th>Pelanggan</th>
+          <th>Waktu Masuk</th>
+          <th>Total Item</th>
+          <th>Total Harga</th>
+          <th>Status</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -27,12 +27,15 @@
                 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
 
                 if($lr['status'] == 'cuci'){
-                  $capStat =  "<span class='badge badge-info'>Sedang cuci</span>";
+                  $capStat =  "Sedang cuci";
+                  $warnaTabel = '#2ecc71';
                 }else{
-                  $capStat =  "<span class='badge badge-warning'>Ready</span>";
+                  $capStat =  "Ready";
+                  $warnaTabel = '#f1c40f';
                 }
                 //cari total harga 
                 $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdKartu';");
+                $jlhItem = $this -> st -> numRow();
                 $qTotal = $this -> st -> queryAll();
                 $hargaAwal = 0;
                 foreach($qTotal as $qt){
@@ -44,9 +47,9 @@
           <td><a href='#!' v-on:click='detailsAtc("<?=$kdKartu; ?>")'><span style="font-size:18px;"><?=$lr['kd_kartu']; ?></span></a></td>
           <td><span style="font-size: 16px;font-weight:bold;"><?=$namaPelanggan; ?></span></td>
           <td><?=$waktuMasuk; ?></td>
-          <td><?=$lr['total_item']; ?></td>
+          <td><?=$jlhItem; ?></td>
           <td>Rp. <?=number_format($hargaAwal); ?></td>
-          <td><?=$capStat; ?></td>
+          <td style='background-color:<?=$warnaTabel; ?>;'><?=$capStat; ?></td>
           <td>
               <a href='#!' class="btn btn-sm btn-info" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class='fas fa-exclamation-circle'></i> Details</a>&nbsp;&nbsp;
               <a href='#!' class="btn btn-sm btn-primary" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class="fas fa-check-circle"></i> Selesai Cuci</a>

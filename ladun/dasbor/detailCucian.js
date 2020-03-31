@@ -35,17 +35,20 @@ $(document).ready(function() {
             let serviceKd = this.serviceKd;
             let qt = this.qt;
             let hargaAt = this.hargaAt;
-
-            console.log({'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt});
-            if(qt === "" || qt === "0"){
-                window.alert("Masukkan jumlah produk!!");
+            let kdProduk = document.getElementById('txtProduk').value;
+            // window.alert(kdProduk);
+            if(qt === "" || qt === "0" || kdPproduk === "none"){
+                isiYangBenar();
             }else{
-
+                $('#btnTambahItem').addClass('disabled');
+                $('#txtQt').attr('disabled','disabled');
+                $('#txtProduk').attr('disabled','disabled');
+                $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
+                    let obj = JSON.parse(data);
+                    suksesUpdate();
+                });
             }
-            $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
-                let obj = JSON.parse(data);
-                console.log(obj);
-            });
+          
         }
     }
   });
@@ -73,3 +76,42 @@ $(document).ready(function() {
     divDetailCucian.total = total;
     divDetailCucian.capTotal = capTotal;
   }
+
+  function suksesUpdate() {
+      let itemLama = document.getElementById('txtJumlahItem').innerHTML;
+      let intItemLama = parseInt(itemLama);
+      let itemBaru = intItemLama += 1;
+      //harga 
+      let hargaLama = document.getElementById('txtTotalInt').innerHTML;
+      let intHargaLama = parseInt(hargaLama);
+      let hargaBaru = intHargaLama + parseInt(divDetailCucian.total);
+
+    iziToast.info({
+      title: "Menambahkan item ..",
+      message: "Item akan ditambahkan ke list cucian ...",
+      position: "topCenter",
+      timeOut: 300,
+      pauseOnHover: false,
+      onClosed: function() {
+        divDetailCucian.listItem.push({teks : divDetailCucian.namaService, qt : divDetailCucian.qt, total : divDetailCucian.total});
+        $('#btnTambahItem').removeClass('disabled');
+        $('#txtQt').removeAttr('disabled');
+        $('#txtProduk').removeAttr('disabled');
+        document.getElementById('txtJumlahItem').innerHTML = itemBaru;
+        document.getElementById('txtTotalView').innerHTML = hargaBaru;   
+      }
+    });
+  }
+function isiYangBenar(){
+    iziToast.error({
+        title: "Isi field!!",
+        message: "Pilih produk & jumlah dengan benar ..",
+        position: "topCenter",
+        timeOut: false,
+        pauseOnHover: false,
+        onClosed: function() {
+          
+        }
+      });
+}
+  
