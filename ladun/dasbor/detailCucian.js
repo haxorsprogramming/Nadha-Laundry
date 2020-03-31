@@ -42,10 +42,10 @@ $(document).ready(function() {
             }else{
 
             }
-            // $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
-            //     let obj = JSON.parse(data);
-            //     console.log(obj);
-            // });
+            $.post('laundryRoom/prosesTambahItem',{'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt, 'hargaAt':hargaAt},function(data){
+                let obj = JSON.parse(data);
+                console.log(obj);
+            });
         }
     }
   });

@@ -34,7 +34,7 @@
             <td><?=$kartu['kode_service']; ?></td>
             <td><?= $namaPelanggan['nama_lengkap']; ?></td>
             <td><?=$capStat; ?></td>
-            <td>Masuk : <b><?= $kartu['waktu_mulai']; ?></b><br/>
+            <td>Masuk : <b><?= $kartu['waktu_masuk']; ?></b><br/>
             Selesai : <b>--</b>
             </td>
             <td></td>

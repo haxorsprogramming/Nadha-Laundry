@@ -25,14 +25,28 @@
                 $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan' LIMIT 0,1;");
                 $qNamaPelanggan = $this -> st -> querySingle();
                 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+
+                if($lr['status'] == 'cuci'){
+                  $capStat =  "<span class='badge badge-info'>Sedang cuci</span>";
+                }else{
+                  $capStat =  "<span class='badge badge-warning'>Ready</span>";
+                }
+                //cari total harga 
+                $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdKartu';");
+                $qTotal = $this -> st -> queryAll();
+                $hargaAwal = 0;
+                foreach($qTotal as $qt){
+                  $hargaSat = $qt['total'];
+                  $hargaAwal = $hargaAwal + $hargaSat;
+                }
           ?>
         <tr>
-          <td><a href='#!' v-on:click='detailsAtc("<?=$kdKartu; ?>")'><span style="font-size:22px;"><?=$lr['kd_kartu']; ?></span></a></td>
-          <td><?=$namaPelanggan; ?></td>
+          <td><a href='#!' v-on:click='detailsAtc("<?=$kdKartu; ?>")'><span style="font-size:18px;"><?=$lr['kd_kartu']; ?></span></a></td>
+          <td><span style="font-size: 16px;font-weight:bold;"><?=$namaPelanggan; ?></span></td>
           <td><?=$waktuMasuk; ?></td>
           <td><?=$lr['total_item']; ?></td>
-          <td><?="Rp. ".number_format($lr['total_harga']); ?></td>
-          <td><?=$lr['status']; ?></td>
+          <td>Rp. <?=number_format($hargaAwal); ?></td>
+          <td><?=$capStat; ?></td>
           <td>
               <a href='#!' class="btn btn-sm btn-info" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class='fas fa-exclamation-circle'></i> Details</a>&nbsp;&nbsp;
               <a href='#!' class="btn btn-sm btn-primary" v-on:click='detailsAtc("<?=$kdKartu; ?>")'><i class="fas fa-check-circle"></i> Selesai Cuci</a>
