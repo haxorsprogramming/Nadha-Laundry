@@ -6,19 +6,21 @@
   <div class="row" id='divLevelUser'>
     <table id='tblKartuLaundry' class='table'>
       <thead>
-        <tr>
-          <td>Kd Kartu</td>
-          <td>Pelanggan</td>
-          <td>Status</td>
-          <td>Masuk - Selesai</td>
-          <td>Total Harga</td>
-          <td>Aksi</td>
+      <tr>
+          <th>Kd Kartu</th>
+          <th>Pelanggan</th>
+          <th>Status</th>
+          <th>Waktu</th>
+          <th>Total Harga</th>
+          <th>Status Pembayaran</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php
         foreach ($data['kartuLaundry'] as $kartu) :
           $pelanggan = $kartu['pelanggan'];
+          $kodeService = $kartu['kode_service'];
           $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan';");
           $namaPelanggan =  $this -> st -> querySingle(); 
           $statusCuci = $kartu['status'];
@@ -26,18 +28,31 @@
             $capStat = '<span class="badge badge-info">Laundry Room</span>';
           }else if($statusCuci === 'hold'){
             $capStat = '<span class="badge badge-light">Hold</span>';
-          }else if($statusCuci === 'selesai'){
-            $capStat = 'Selesai';
+          }else if($statusCuci === 'finishlaundry'){
+            $capStat = 'Selesai Cuci';
+          }
+          //cari total harga 
+          $this -> st -> query("SELECT total_harga FROM tbl_laundry_room WHERE kd_kartu='$kodeService';");
+          $qHarga = $this -> st -> querySingle();
+          $totalHarga = $qHarga['total_harga'];
+          //cari status pembayaran 
+          $statPay = $kartu['pembayaran'];
+          if($statPay == 'pending'){
+            $capSt = "Belum bayar";
+          }else{
+            $capSt = "Sudah bayar";
           }
         ?>
           <tr>
-            <td><?=$kartu['kode_service']; ?></td>
+            <td><?=$kodeService; ?></td>
             <td><?= $namaPelanggan['nama_lengkap']; ?></td>
-            <td><?=$capStat; ?></td>
+            <td><?=$statusCuci; ?></td>
             <td>Masuk : <b><?= $kartu['waktu_masuk']; ?></b><br/>
-            Selesai : <b>--</b>
+            Selesai : <b><?=$kartu['waktu_selesai']; ?></b><br/>
+            Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
-            <td></td>
+            <td>Rp. <?=number_format($totalHarga ); ?></td>
+            <td><?=$capSt; ?></td>
             <td><button class="btn btn-sm btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
           </tr>
         <?php endforeach; ?>

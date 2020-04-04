@@ -28,8 +28,8 @@ foreach($qTotal as $qt){
     </div>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-12">
-        <div  style="border-radius:3px; border:solid grey 1px;padding:12px;">
-        <h5>Info cucian</h5>
+        <div class='card card-primary' style="border-radius:3px; padding:12px;">
+        <div class="card-header"><h5>Info cucian</h5></div>
         <table class="">
             <tr>
                 <td>Kode Registrasi Cucian</td><td>: <span id='txtKdRegistrasi' style="font-weight: bold;"><?=$kd; ?></span></td>
@@ -48,11 +48,8 @@ foreach($qTotal as $qt){
             </tr>
         </table>
         <div style="padding-top:12px;">
-        <ul>
-            <li><small> Item per service hanya bisa ditambahkan, tidak bisa dihapus</small></li>
-            <li><small> Jika ingin menghapus item, harus membatalkan entry laundry dan membuat ulang melalui kartu laundry</small></li>
-        </ul>
-        <a href='#!' class="btn btn-primary btn-icon icon-left"><i class='fas fa-receipt'></i> Bayar</a>
+        <a href='#!' class="btn btn-primary btn-icon icon-left" id='btnSetBayar' v-on:click='setBayar'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+        <a href='#!' class="btn btn-primary btn-icon icon-left" id='btnSetSelesai' v-on:click='setSelesaiAtc'><i class='fas fa-check-circle'></i> Set selesai</a>
         <div>
 
         </div>

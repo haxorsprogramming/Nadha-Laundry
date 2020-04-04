@@ -7,7 +7,8 @@ var divLaundryRoom = new Vue({
     data : {
         listKet : [
             { teks : 'Untuk menambahkan item cucian, dapat melalui menu detail, atau klik kode registrasi'},
-             {teks : 'Cucian yang sudah selesai tidak akan ditampilkan disini'}
+            { teks : 'Cucian yang sudah selesai tidak akan ditampilkan disini'},
+            { teks : 'Item per service hanya bisa ditambahkan, tidak bisa dihapus'}
         ]
     },
     methods: {

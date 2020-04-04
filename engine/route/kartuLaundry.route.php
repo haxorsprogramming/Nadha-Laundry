@@ -32,7 +32,7 @@ class kartuLaundry extends Route{
       $kode = $this -> inp('kodeRegistrasi');
       $waktuMasuk = date("Y-m-d H:i:s");
       $pelanggan = $this -> inp('pelanggan');
-      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00', 'admin', 'hold');";
+      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','admin', 'hold');";
       $this -> st -> query($query);
       $this -> st -> querySet('kode_service', $kode);
       $this -> st -> querySet('pelanggan', $pelanggan);
@@ -45,7 +45,7 @@ class kartuLaundry extends Route{
       $acakHuruf_2 = str_shuffle($bHuruf);
       $acakAngka = str_shuffle($bAngka);
       $kodeRoom = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
-      $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', '0', 'admin', 'ready');";
+      $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', 'admin', 'ready');";
       $this -> st -> query($queryToRoom);
       $this -> st -> queryRun();
       

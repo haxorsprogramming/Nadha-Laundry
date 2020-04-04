@@ -10,12 +10,13 @@ class laundryRoom extends Route{
    public function index()
    {
     $this -> cekUserLogin('userSes');
-    $this -> st -> query("SELECT * FROM tbl_laundry_room WHERE status!='finish' ORDER BY id DESC;");
+    $this -> st -> query("SELECT * FROM tbl_laundry_room WHERE status !='finish' ORDER BY id DESC;");
     $data['laundryRoom'] = $this -> st -> queryAll();
     $this -> bind('dasbor/laundryRoom/laundryRoom', $data);
    }
 
-   public function detailCucian(){
+   public function detailCucian()
+   {
        $this -> cekUserLogin('userSes');
        $this -> st -> query("SELECT * FROM tbl_service WHERE aktif='y';");
        $data['listProduk'] = $this -> st -> queryAll();
@@ -58,9 +59,6 @@ class laundryRoom extends Route{
        $kdRegistrasi = $this -> inp('kdRegistrasi');
        $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
        $dIts = $this -> st -> queryAll();
-       //update status cucian 
-     
-
        foreach($dIts as $dis){
         $kdItem = $dis['kd_item'];
         $this -> st -> query("SELECT nama FROM tbl_service WHERE kd_service='$kdItem' LIMIT 0,1;");
@@ -72,6 +70,32 @@ class laundryRoom extends Route{
         $dbdata[] = $arrTemp;
        } 
        $this -> toJson($dbdata);
+   }
+
+   public function setCucianSelesai()
+   {
+       $kdService = $this -> inp('kdService');
+       $waktuSelesai = date("Y-m-d H:i:s");
+       //update status cucian menjadi selesai 
+       $qUpdate = "UPDATE tbl_laundry_room SET status='finish' WHERE kd_kartu='$kdService';";
+       $this -> st -> query($qUpdate);
+       $this -> st -> queryRun();
+       $qUpdateKartu = "UPDATE tbl_kartu_laundry SET status='finishcuci', waktu_selesai='$waktuSelesai' WHERE kode_service='$kdService'";
+       $this -> st -> query($qUpdateKartu);
+       $this -> st -> queryRun();
+       //cari keseluruhan harga 
+       $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
+       $fHargaTotal = $this -> st -> queryAll();
+       $hargaAwal = 0;
+       foreach($fHargaTotal as $qHar){
+        $hargaTemp = $qHar['total'];
+        $hargaAwal = $hargaAwal + $hargaTemp;
+       }
+       //update ke cucian 
+       $qUpdateHargaCucian = "UPDATE tbl_laundry_room SET total_harga='$hargaAwal' WHERE kd_kartu='$kdService';";
+       $this -> st -> query($qUpdateHargaCucian);
+       $this -> st -> queryRun();
+       $this -> toJson($kdService);
    }
 
 }

@@ -37,7 +37,7 @@ $(document).ready(function() {
             let hargaAt = this.hargaAt;
             let kdProduk = document.getElementById('txtProduk').value;
             // window.alert(kdProduk);
-            if(qt === "" || qt === "0" || kdPproduk === "none"){
+            if(qt === "" || qt === "0" || kdProduk === "none"){
                 isiYangBenar();
             }else{
                 $('#btnTambahItem').addClass('disabled');
@@ -47,8 +47,26 @@ $(document).ready(function() {
                     let obj = JSON.parse(data);
                     suksesUpdate();
                 });
+            } 
+        },
+        setSelesaiAtc : function(){
+            let totalHarga = document.getElementById('txtTotalInt').innerHTML;
+            let intTotalharga = parseInt(totalHarga);
+            if(intTotalharga > 0){
+                setSelesai();
+            }else{
+                errProdukKosong();
             }
-          
+        },
+        setBayar : function()
+        {
+            let totalHarga = document.getElementById('txtTotalInt').innerHTML;
+            let intTotalharga = parseInt(totalHarga);
+            if(intTotalharga > 0){
+                setBayar();
+            }else{
+                errProdukKosong();
+            }
         }
     }
   });
@@ -103,15 +121,75 @@ $(document).ready(function() {
     });
   }
 function isiYangBenar(){
-    iziToast.error({
+    iziToast.warning({
         title: "Isi field!!",
         message: "Pilih produk & jumlah dengan benar ..",
         position: "topCenter",
-        timeOut: false,
+        timeOut : 1000,
+        closeOnClick : true,
         pauseOnHover: false,
         onClosed: function() {
           
         }
       });
 }
-  
+
+function setSelesai(){
+    iziToast.question({
+        timeout: false,
+        close: false,
+        overlay: true,
+        displayMode: 'once',
+        id: 'question',
+        zindex: 999,
+        title: 'Set selesai',
+        message: 'Set cucian ke status sudah selesai?',
+        position: 'center',
+        buttons: [
+            ['<a href="#!" class="btn btn-warning"><i class="fas fa-check"></i><b> Ya</b></a>', function (instance, toast) {
+                $('#btnSetSelesai').addClass('disabled');
+                $.post('laundryRoom/setCucianSelesai',{'kdService':divDetailCucian.kodeRegistrasi}, function(data){
+                    let obj = JSON.parse(data);
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    konfirmasiPesanSelesai();
+                });
+
+            }],
+            ['<a href="#!" class="btn btn-warning"><i class="fas fa-times"></i><b> Tidak</b></a>', function (instance, toast) {
+                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+            }],
+        ]
+    });
+}
+
+function setBayar()
+{
+    var kdReg = document.getElementById('txtKdRegistrasi').innerHTML;
+    $('#divUtama').html("Memuat ...");
+    $('#divUtama').load('pembayaran/formPembayaran', {'kdReg':kdReg});
+}
+
+function konfirmasiPesanSelesai(){
+    iziToast.info({
+        title: "Cucian selesai!!",
+        message: "Cucian telah di-set ke status selesai. Pastikan status cucian di kartu laundry juga selesai!!",
+        position: "topCenter",
+        timeOut: false,
+        pauseOnHover: false,
+        onClosed: function() {
+            renderMenu(laundryRoom);
+            divJudul.judulForm = "Laundry Room";
+        }
+      });
+}
+
+function errProdukKosong(){
+    iziToast.warning({
+        title: "Produk / Item kosong!!",
+        message: "Harap masukkan produk / item yang diingin dicuci !!",
+        position: "topCenter",
+        timeOut : 1000,
+        pauseOnHover: false,
+        onClosed: function() {}
+      });
+}

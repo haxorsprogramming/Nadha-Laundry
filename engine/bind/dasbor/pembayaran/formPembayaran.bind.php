@@ -1,0 +1,4 @@
+<?php
+$kd = $data['kdReg'];
+
+?>
