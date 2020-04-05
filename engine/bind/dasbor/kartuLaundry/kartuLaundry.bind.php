@@ -4,7 +4,7 @@
     <i class="fas fa-plus-circle"></i> {{capButton}}</a>
   </div>
   <div class="row" id='divLevelUser'>
-    <table id='tblKartuLaundry' class='table'>
+    <table id='tblKartuLaundry' class='table table-hover'>
       <thead>
       <tr>
           <th>Kd Kartu</th>
@@ -25,11 +25,20 @@
           $namaPelanggan =  $this -> st -> querySingle(); 
           $statusCuci = $kartu['status'];
           if($statusCuci === 'cuci'){
-            $capStat = '<span class="badge badge-info">Laundry Room</span>';
+            $capStat = 'Laundry Room';
+            $colSc = 'info';
+            $colBgSc = '#3abaf4';
+            $icon = 'fas fa-tshirt';
           }else if($statusCuci === 'hold'){
-            $capStat = '<span class="badge badge-light">Hold</span>';
-          }else if($statusCuci === 'finishlaundry'){
+            $capStat = 'Hold';
+            $colSc = 'secondary';
+            $icon = 'fas fa-upload';
+            $colBgSc = '#34395e';
+          }else if($statusCuci === 'finishcuci'){
             $capStat = 'Selesai Cuci';
+            $colSc = 'success';
+            $colBgSc = '#63ed7a';
+            $icon = 'fas fa-check-circle';
           }
           //cari total harga 
           $this -> st -> query("SELECT total_harga FROM tbl_laundry_room WHERE kd_kartu='$kodeService';");
@@ -39,21 +48,25 @@
           $statPay = $kartu['pembayaran'];
           if($statPay == 'pending'){
             $capSt = "Belum bayar";
+            $colSb = 'warning';
           }else{
             $capSt = "Sudah bayar";
+            $colSb = 'success';
           }
         ?>
           <tr>
             <td><?=$kodeService; ?></td>
             <td><?= $namaPelanggan['nama_lengkap']; ?></td>
-            <td><?=$statusCuci; ?></td>
+            <td style="background-color: <?=$colBgSc; ?>;">
+            <a href="#!" class="badge badge-<?=$colSc; ?>"><i class="<?=$icon; ?>"></i> <?=$capStat; ?></a>
+            </td>
             <td>Masuk : <b><?= $kartu['waktu_masuk']; ?></b><br/>
             Selesai : <b><?=$kartu['waktu_selesai']; ?></b><br/>
             Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
             <td>Rp. <?=number_format($totalHarga ); ?></td>
-            <td><?=$capSt; ?></td>
-            <td><button class="btn btn-sm btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
+            <td> <a href="#!" class="btn btn-<?=$colSb; ?> btn-icon icon-left"><i class="fas fa-receipt"></i> <?=$capSt; ?></a></td>
+            <td><button class="btn btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

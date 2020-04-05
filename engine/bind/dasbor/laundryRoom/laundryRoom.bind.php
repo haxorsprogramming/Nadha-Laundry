@@ -2,7 +2,7 @@
   <div style='margin-bottom:15px;'>
   </div>
   <div class="row">
-  <table id='tblLaundryRoom' class='table'>
+  <table id='tblLaundryRoom' class='table table-hover'>
       <thead>
         <tr>
         <th>Kode Registrasi</th>
