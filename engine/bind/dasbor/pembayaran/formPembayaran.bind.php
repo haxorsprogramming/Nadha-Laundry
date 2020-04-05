@@ -58,10 +58,10 @@ $diskonLevel = $qLevel['diskon_cuci'];
         <div class="card-body">
             <table class="table">
                 <tr>
-                    <td>Harga service</td><td>{{hargaAwal}}</td>
+                    <td>Harga service</td><td>Rp. {{hargaAwal}}</td>
                 </tr>
                 <tr>
-                    <td>Disc ({{diskonLevel}}%)</td><td>{{hargaFin1}}</td>
+                    <td>Disc ({{diskonLevel}}%)</td><td>Rp. {{hargaFin1}}</td>
                 </tr>
                 <tr>
                     <td>Kode Promo</td><td>
@@ -73,10 +73,20 @@ $diskonLevel = $qLevel['diskon_cuci'];
                       </div>
                     </td>
                 </tr>
+                <tr id='divTblPromo'>
+                    <td>
+                        Promo 
+                    </td>
+                    <td><span id='txtNamaPromo'>-</span></td>
+                </tr>
                 <tr>
-                    <td>Harga akhir</td><td>{{hargaAkhir}}</td>
+                    <td>Harga akhir</td><td>Rp. <span id='txtHargaFinal'>{{hargaAkhir}}</span></td>
                 </tr>         
             </table>
+            <div>
+                <a href='#!' class="btn btn-lg btn-primary" v-on:click='prosesPembayaran'><i class='fas fa-check-circle'></i> Proses pembayaran</a>&nbsp;&nbsp;
+                <a href='#!' class="btn btn-lg btn-warning"><i class='fas fa-reply'></i> Kembali</a>
+            </div>
         </div>
     </div>
     </div>

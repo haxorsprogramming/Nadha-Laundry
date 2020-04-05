@@ -1,4 +1,5 @@
 var hargaAwalPub = '';
+$('#divTblPromo').hide();
 
 var divUtama = new Vue({
     el : '#divFormPembayaran',
@@ -9,7 +10,8 @@ var divUtama = new Vue({
         diskonNum : '',
         hargaFin1 : '',
         hargaAkhir : '',
-        itemService : []
+        itemService : [],
+        namaPromo : ''
     },
     methods : {
         cekPromo : function() {
@@ -20,13 +22,22 @@ var divUtama = new Vue({
                 window.alert("Kode promo tidak ada");
                }else{
                 let disProm = parseInt(obj.diskon);
-                let hargaUpdate = this.hargaFin1;
-                let hargaFin2 = hargaUpdate - disProm;
-                window.alert(hargaUpdate);
-                this.hargaAkhir = hargaFin2;
+                let hargaUpdate = parseInt(document.getElementById('txtHargaFinal').innerHTML);
+                let hargaFin2 = disProm * hargaUpdate / 100;
+                let hargaFinalPenuh = hargaUpdate - hargaFin2;
+                let deks = obj.deks + " - " + obj.diskon + "%";
+                // console.log(obj);
+                $('#divTblPromo').show();
+                document.getElementById('txtNamaPromo').innerHTML = deks;
+                document.getElementById('txtHargaFinal').innerHTML = new Intl.NumberFormat('de-DE').format(hargaFinalPenuh);;
+                // window.alert(hargaFinalPenuh);
+                // this.hargaAkhir = hargaFin2;
                 
                }
            });
+        },
+        prosesPembayaran : function(){
+            window.alert("Haya");
         }
     }
 });
@@ -44,7 +55,8 @@ $.post('pembayaran/getInfoItem', {'kdService':kodeServiceBayar}, function(data){
 
     obj.forEach(pushTableItem);
     function pushTableItem(item, index){
-        divUtama.itemService.push({teks : obj[index].namaCap, qt : obj[index].qt, total : obj[index].total});
+        let tKeAngka = new Intl.NumberFormat('de-DE').format(obj[index].total);
+        divUtama.itemService.push({teks : obj[index].namaCap, qt : obj[index].qt, total : tKeAngka});
         let hargaTemp = obj[index].total;
         hargaAwal = hargaAwal + parseInt(hargaTemp);          
     }

@@ -7,7 +7,8 @@ $(document).ready(function() {
         let obj = JSON.parse(data);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
-            divDetailCucian.listItem.push({teks : obj[index].namaCap, qt : obj[index].qt, total : obj[index].total});          
+            let tKeAngka = new Intl.NumberFormat('de-DE').format(obj[index].total);
+            divDetailCucian.listItem.push({teks : obj[index].namaCap, qt : obj[index].qt, total : tKeAngka});          
         }
     });
 
