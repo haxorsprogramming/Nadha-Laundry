@@ -24,14 +24,16 @@ Tampilan Aplikasi
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/beranda_old.png?raw=true'>
 
 >> Kartu Cucian
-
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/kartu_laundry.png?raw=true'>
 >> Laundry Room
 
 >> Manajemen Pelanggan
 
+>> Manajemen Produk
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/master_produk.png?raw=true'>
 <br/><hr/>
 Jika anda memiliki usaha laundry dan tertarik dengan aplikasi ini, anda dapat menggunakannya secara online secara gratis. 
 
 Jika anda ingin menjalankan aplikasi ini secara offline, dapat menghubungi kontak dibawah untuk detail penggunaanya. 
 
-Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi alditha.forum@gmail.com, atau WA (082272177022)
+Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com, atau WA (082272177022)
