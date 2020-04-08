@@ -30,6 +30,8 @@ Tampilan Aplikasi
 >> Manajemen Pelanggan
 
 <br/><hr/>
-Anda dapat menggunakan aplikasi ini secara gratis secara online.
+Jika anda memiliki usaha laundry dan tertarik dengan aplikasi ini, anda dapat menggunakannya secara online secara gratis. 
+
+Jika anda ingin menjalankan aplikasi ini secara offline, dapat menghubungi kontak dibawah untuk detail penggunaanya. 
 
 Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi alditha.forum@gmail.com, atau WA (082272177022)
