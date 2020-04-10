@@ -41,9 +41,15 @@
             $icon = 'fas fa-check-circle';
           }
           //cari total harga 
-          $this -> st -> query("SELECT total_harga FROM tbl_laundry_room WHERE kd_kartu='$kodeService';");
-          $qHarga = $this -> st -> querySingle();
-          $totalHarga = $qHarga['total_harga'];
+          //cari total harga 
+          $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
+          $jlhItem = $this -> st -> numRow();
+          $qTotal = $this -> st -> queryAll();
+          $hargaAwal = 0;
+          foreach($qTotal as $qt){
+            $hargaSat = $qt['total'];
+            $hargaAwal = $hargaAwal + $hargaSat;
+          }
           //cari status pembayaran 
           $statPay = $kartu['pembayaran'];
           if($statPay == 'pending'){
@@ -64,7 +70,7 @@
             Selesai : <b><?=$kartu['waktu_selesai']; ?></b><br/>
             Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
-            <td>Rp. <?=number_format($totalHarga ); ?></td>
+            <td>Rp. <?=number_format($hargaAwal ); ?></td>
             <td> <a href="#!" class="btn btn-<?=$colSb; ?> btn-icon icon-left"><i class="fas fa-receipt"></i> <?=$capSt; ?></a></td>
             <td><button class="btn btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
           </tr>

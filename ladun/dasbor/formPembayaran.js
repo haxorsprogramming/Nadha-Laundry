@@ -29,15 +29,14 @@ var divUtama = new Vue({
                 // console.log(obj);
                 $('#divTblPromo').show();
                 document.getElementById('txtNamaPromo').innerHTML = deks;
-                document.getElementById('txtHargaFinal').innerHTML = new Intl.NumberFormat('de-DE').format(hargaFinalPenuh);;
-                // window.alert(hargaFinalPenuh);
-                // this.hargaAkhir = hargaFin2;
-                
+                document.getElementById('txtHargaFinal').innerHTML = hargaFinalPenuh;
+                document.getElementById('txtHargaFinalCap').innerHTML = new Intl.NumberFormat('de-DE').format(hargaFinalPenuh);
                }
            });
         },
         prosesPembayaran : function(){
-            window.alert("Haya");
+            let totalharga = parseInt(document.getElementById('txtHargaFinal').innerHTML);
+            console.log(totalharga);
         }
     }
 });
@@ -64,5 +63,7 @@ $.post('pembayaran/getInfoItem', {'kdService':kodeServiceBayar}, function(data){
     let hargaFin_1 = parseInt(diskonLevel) * parseInt(hargaAwal) / 100;
     divUtama.hargaFin1 = hargaFin_1;
     let hargaAkhir = parseInt(hargaAwal) - parseInt(hargaFin_1);
-    divUtama.hargaAkhir = hargaAkhir;
+    // divUtama.hargaAkhir = hargaAkhir;
+    document.getElementById('txtHargaFinal').innerHTML = hargaAkhir;
+    document.getElementById('txtHargaFinalCap').innerHTML = new Intl.NumberFormat('de-DE').format(hargaAkhir);
 });

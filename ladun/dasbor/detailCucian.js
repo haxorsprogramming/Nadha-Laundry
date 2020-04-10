@@ -61,7 +61,7 @@ $(document).ready(function() {
         },
         setBayar : function()
         {
-            let totalHarga = document.getElementById('txtTotalInt').innerHTML;
+            let totalHarga = document.getElementById('txtJumlahItem').innerHTML;
             let intTotalharga = parseInt(totalHarga);
             if(intTotalharga > 0){
                 setBayar();

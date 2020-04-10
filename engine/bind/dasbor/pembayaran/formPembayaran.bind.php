@@ -80,7 +80,7 @@ $diskonLevel = $qLevel['diskon_cuci'];
                     <td><span id='txtNamaPromo'>-</span></td>
                 </tr>
                 <tr>
-                    <td>Harga akhir</td><td>Rp. <span id='txtHargaFinal'>{{hargaAkhir}}</span></td>
+                    <td>Harga akhir</td><td>Rp. <span id='txtHargaFinal' style="display: none;"></span><span id='txtHargaFinalCap' style="font-size: 20px;"></span></td>
                 </tr>         
             </table>
             <div>

@@ -4,7 +4,7 @@
 By : NadhaMedia
 <br/>
 <b>Menggunakan HTML, Vue.Js, PHP, & Mysql</b>
-<br/><br/><hr/>
+<br/><br/>
 Fitur
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
@@ -25,13 +25,15 @@ Tampilan Aplikasi
 
 >> Kartu Cucian
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/kartu_laundry.png?raw=true'>
+
 >> Laundry Room
 
 >> Manajemen Pelanggan
 
 >> Manajemen Produk
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/master_produk.png?raw=true'>
-<br/><hr/>
+<br/>
+
 Jika anda memiliki usaha laundry dan tertarik dengan aplikasi ini, anda dapat menggunakannya secara online secara gratis. 
 
 Jika anda ingin menjalankan aplikasi ini secara offline, dapat menghubungi kontak dibawah untuk detail penggunaanya. 
