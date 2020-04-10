@@ -85,7 +85,7 @@ $kodeTransaksi = "INV/".$tahun."/".$bulan."/".$hari."/".substr($kd['kode_service
                 </tr>         
             </table>
             <div>
-                <a href='#!' class="btn btn-lg btn-primary" v-on:click='prosesPembayaran'><i class='fas fa-check-circle'></i> Proses pembayaran</a>&nbsp;&nbsp;
+                <a href='#!' class="btn btn-lg btn-primary" v-on:click='prosesPembayaran' id='btnProsesPembayaran'><i class='fas fa-check-circle'></i> Proses pembayaran</a>&nbsp;&nbsp;
                 <a href='#!' class="btn btn-lg btn-warning"><i class='fas fa-reply'></i> Kembali</a>
             </div>
         </div>

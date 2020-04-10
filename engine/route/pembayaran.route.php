@@ -100,9 +100,17 @@ class pembayaran extends Route{
         $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','admin');";
         $this -> st -> query($qSimpanPembayaran);
         $this -> st -> queryRun();
-        $data['total_awal'] = $hargaAfterFiskonPromo;
-        
+        //update status pembayaran di kartu laundry
+        $qUpdateStatus = "UPDATE tbl_kartu_laundry SET pembayaran='selesai' WHERE kode_service='$kdService';";
+        $this -> st -> query($qUpdateStatus);
+        $this -> st -> queryRun();
+        $data['status'] = 'sukses';
         $this -> toJson($data);
+    }
+
+    public function detailPembayaran()
+    {
+        $this -> bind('dasbor/pembayaran/detailPembayaran');
     }
 
 }
