@@ -17,6 +17,8 @@ class pembayaran extends Route{
         $kd = $this -> inp('kdReg');
         $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kd';");
         $data['kartuRegistrasi'] = $this -> st -> querySingle();
+        //buat nomor faktur 
+        
         $this -> bind('dasbor/pembayaran/formPembayaran', $data);
     }
 
@@ -63,7 +65,44 @@ class pembayaran extends Route{
         $tahun = floor($diff / (365*60*60*24));
         $bulan = floor(($diff - $tahun * 365*60*60*24) / (30*60*60*24));  
         $hari = floor(($diff - $tahun * 365*60*60*24 - $bulan*30*60*60*24)/ (60*60*24)); 
-          
+    }
+
+    public function prosesPembayaran()
+    {
+        $waktu = date("Y-m-d H:i:s");
+        $kdPromo = $this -> inp('kdPromo');
+        $kdTransaksi = $this -> inp('kdTransaksi');
+        $kdService = $this -> inp('kdService');
+        $diskonLevel = $this -> inp('diskonLevel');
+        //cari total cucian 
+        $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
+        $qTotal = $this -> st -> queryAll();
+        $total = 0;
+        foreach($qTotal as $qt){
+            $totalTemp = $qt['total'];
+            $total = $total + $totalTemp;
+        }
+        //cari diskon 
+        $hargaFixDiskon = $diskonLevel * $total / 100;
+        $hargaAfterDiskon = $total - $hargaFixDiskon;
+        //hitung diskon lewat promo 
+        $this -> st -> query("SELECT * FROM tbl_promo_code WHERE kd_promo='$kdPromo' AND aktif='y' LIMIT 0,1;");
+        $jp = $this -> st -> numRow();
+        if($jp < 1){
+            $diskonPromo = 0;
+        }else{
+            $qPromo = $this -> st -> querySingle();
+            $diskonPromo = $qPromo['disc'];
+        }
+        $hargaFixDiskonPromo = $diskonPromo * $hargaAfterDiskon / 100;
+        $hargaAfterFiskonPromo = $hargaAfterDiskon - $hargaFixDiskonPromo;
+        $diskonTotal = $hargaFixDiskon + $hargaFixDiskonPromo;
+        $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','admin');";
+        $this -> st -> query($qSimpanPembayaran);
+        $this -> st -> queryRun();
+        $data['total_awal'] = $hargaAfterFiskonPromo;
+        
+        $this -> toJson($data);
     }
 
 }

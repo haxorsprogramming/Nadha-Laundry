@@ -1,4 +1,6 @@
 var hargaAwalPub = '';
+var kodePromo = '';
+
 $('#divTblPromo').hide();
 
 var divUtama = new Vue({
@@ -16,10 +18,12 @@ var divUtama = new Vue({
     methods : {
         cekPromo : function() {
            let kdPromo = document.getElementById('txtKodePromo').value;
+           $('#txtGunakan').addClass('disabled');
            $.post('pembayaran/getPromoData',{'kdPromo':kdPromo},function(data){
                let obj = JSON.parse(data);
                if(obj.status === 'kode_invalid'){
                 window.alert("Kode promo tidak ada");
+                $('#txtGunakan').removeClass('disabled');
                }else{
                 let disProm = parseInt(obj.diskon);
                 let hargaUpdate = parseInt(document.getElementById('txtHargaFinal').innerHTML);
@@ -31,12 +35,20 @@ var divUtama = new Vue({
                 document.getElementById('txtNamaPromo').innerHTML = deks;
                 document.getElementById('txtHargaFinal').innerHTML = hargaFinalPenuh;
                 document.getElementById('txtHargaFinalCap').innerHTML = new Intl.NumberFormat('de-DE').format(hargaFinalPenuh);
+                kodePromo = kdPromo;
+                $('#txtGunakan').hide();
                }
            });
         },
         prosesPembayaran : function(){
-            let totalharga = parseInt(document.getElementById('txtHargaFinal').innerHTML);
-            console.log(totalharga);
+            let kodePromoSend = kodePromo;
+            let kdTransaksi = document.getElementById('txtKodeTransaksi').innerHTML;
+            let kdService = document.getElementById('txtKodeService').innerHTML;
+            let diskonLevel = document.getElementById('txtDiskonLevel').innerHTML;
+
+            $.post('pembayaran/prosesPembayaran',{'kdPromo':kodePromoSend, 'kdTransaksi':kdTransaksi, 'kdService':kdService, 'diskonLevel': diskonLevel}, function(data){
+                console.log(data);
+            });
         }
     }
 });

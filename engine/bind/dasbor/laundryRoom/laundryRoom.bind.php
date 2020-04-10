@@ -22,9 +22,10 @@
                 $qKodePelanggan =  $this -> st -> querySingle(); 
                 $pelanggan = $qKodePelanggan['pelanggan'];
                 $waktuMasuk = $qKodePelanggan['waktu_masuk'];
-                $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan' LIMIT 0,1;");
+                $this -> st -> query("SELECT nama_lengkap, level FROM tbl_pelanggan WHERE username='$pelanggan' LIMIT 0,1;");
                 $qNamaPelanggan = $this -> st -> querySingle();
                 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+                $levelUser = $qNamaPelanggan['level'];
 
                 if($lr['status'] == 'cuci'){
                   $capStat =  "Sedang cuci";
@@ -45,7 +46,9 @@
           ?>
         <tr>
           <td><a href='#!' v-on:click='detailsAtc("<?=$kdKartu; ?>")'><span style="font-size:18px;"><?=$lr['kd_kartu']; ?></span></a></td>
-          <td><span style="font-size: 16px;font-weight:bold;"><?=$namaPelanggan; ?></span></td>
+          <td><span style="font-size: 16px;font-weight:bold;"><?=$namaPelanggan; ?></span>
+          <br/><?=$levelUser; ?>
+          </td>
           <td><?=$waktuMasuk; ?></td>
           <td><?=$jlhItem; ?></td>
           <td>Rp. <?=number_format($hargaAwal); ?></td>

@@ -1,11 +1,7 @@
 <?php
 $kd = $data['kartuRegistrasi'];
 $pelanggan = $kd['pelanggan'];
-//cari info faktur 
-$this -> st -> query("SELECT id FROM tbl_pembayaran;");
-$jFak = $this -> st -> numRow();
-$noFakturOld = 3;
-$noFaktur = $noFakturOld + 1;
+
 //cari data pelanggan 
 $this -> st -> query("SELECT nama_lengkap, email, hp, level FROM tbl_pelanggan WHERE username='$pelanggan';");
 $dPel = $this -> st -> querySingle();
@@ -15,6 +11,11 @@ $level = $dPel['level'];
 $this -> st -> query("SELECT diskon_cuci FROM tbl_level_user WHERE kd_level='$level';");
 $qLevel = $this -> st -> querySingle();
 $diskonLevel = $qLevel['diskon_cuci'];
+//buat kode transaksi 
+$tahun = date("Y");
+$bulan = date("m");
+$hari = date("d");
+$kodeTransaksi = "INV/".$tahun."/".$bulan."/".$hari."/".substr($kd['kode_service'], 0, 4);
 ?>
 <div class="container" id='divFormPembayaran'>
   <div class="row">
@@ -27,13 +28,13 @@ $diskonLevel = $qLevel['diskon_cuci'];
                     <td>Kode Cucian</td><td>: <b><span id='txtKodeService'><?=$kd['kode_service']; ?></span><b/></td>
                 </tr>
                 <tr>
-                    <td>Faktur</td><td>: <?=$noFaktur; ?></td>
+                    <td>Kode Transaksi</td><td>: <span id='txtKodeTransaksi'><?=$kodeTransaksi; ?></span></td>
                 </tr>
                 <tr>
                     <td>Pelanggan</td><td>: <?=$namaPel; ?></td>
                 </tr>
                 <tr>
-                    <td>Level Pelanggan</td><td>: <?=$level; ?></td>
+                    <td>Level Pelanggan</td><td>: <span id='txtLevelPelanggan'><?=$level; ?></span></td>
                 </tr>
                 <tr>
                     <td>Diskon level</td><td>: <span id='txtDiskonLevel'><?=$diskonLevel; ?></span> %</td>
