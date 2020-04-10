@@ -110,7 +110,10 @@ class pembayaran extends Route{
 
     public function detailPembayaran()
     {
-        $this -> bind('dasbor/pembayaran/detailPembayaran');
+        $kdTransaksi = $this -> inp('kdTransaksi');
+        $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
+        $data['dataTransaksi'] = $this -> st -> querySingle();
+        $this -> bind('dasbor/pembayaran/detailPembayaran', $data);
     }
 
 }

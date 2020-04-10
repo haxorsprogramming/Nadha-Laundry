@@ -39,3 +39,5 @@ Jika anda memiliki usaha laundry dan tertarik dengan aplikasi ini, anda dapat me
 Jika anda ingin menjalankan aplikasi ini secara offline, dapat menghubungi kontak dibawah untuk detail penggunaanya. 
 
 Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com, atau WA (082272177022)
+
+Silahkan gabung ke grup WA khusus pelanggan produk" NadhaMedia, silahkan masuk melalui link berikut https://chat.whatsapp.com/Gmsg3g7gpr49J7NVfE31Mj
