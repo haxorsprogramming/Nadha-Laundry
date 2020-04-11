@@ -50,7 +50,7 @@ var divUtama = new Vue({
       let tunai = this.tunai;
 
       $('#btnProsesPembayaran').hide();
-      window.alert(tunai);
+      
       $.post("pembayaran/prosesPembayaran",{kdPromo:kodePromoSend, kdTransaksi:kdTransaksi, kdService:kdService, diskonLevel:diskonLevel, tunai:tunai},function(data){
           let obj = JSON.parse(data);
           if (obj.status === "sukses") {

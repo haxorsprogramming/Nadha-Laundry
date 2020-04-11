@@ -6,6 +6,8 @@ $diskon = $dt['diskon'];
 $subTotal = $dt['total_cuci'];
 $total = $dt['total_final'];
 $waktu = $dt['waktu'];
+$tunai = $dt['tunai'];
+$kembali = $tunai - $total;
 $waktuIndo = date('d M Y', strtotime($waktu));
 //cari daftar item cucian 
 $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
@@ -124,6 +126,16 @@ $qDaftarItem = $this -> st -> queryAll();
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Total</div>
                           <div class="invoice-detail-value invoice-detail-value-lg">Rp. <?=number_format($total); ?></div>
+                        </div>
+                        <hr class="mt-2 mb-2">
+                        <div class="invoice-detail-item">
+                          <div class="invoice-detail-name">Tunai</div>
+                          <div class="invoice-detail-value">Rp. <?=number_format($tunai); ?></div>
+                        </div>
+                        <hr class="mt-2 mb-2">
+                        <div class="invoice-detail-item">
+                          <div class="invoice-detail-name">Kembali</div>
+                          <div class="invoice-detail-value">Rp. <?=number_format($kembali); ?></div>
                         </div>
                       </div>
                     </div>

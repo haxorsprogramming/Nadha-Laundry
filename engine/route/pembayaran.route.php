@@ -74,6 +74,7 @@ class pembayaran extends Route{
         $kdTransaksi = $this -> inp('kdTransaksi');
         $kdService = $this -> inp('kdService');
         $diskonLevel = $this -> inp('diskonLevel');
+        $tunai = $this -> inp('tunai');
         //cari total cucian 
         $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
         $qTotal = $this -> st -> queryAll();
@@ -97,7 +98,7 @@ class pembayaran extends Route{
         $hargaFixDiskonPromo = $diskonPromo * $hargaAfterDiskon / 100;
         $hargaAfterFiskonPromo = $hargaAfterDiskon - $hargaFixDiskonPromo;
         $diskonTotal = $hargaFixDiskon + $hargaFixDiskonPromo;
-        $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','admin');";
+        $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','$tunai','admin');";
         $this -> st -> query($qSimpanPembayaran);
         $this -> st -> queryRun();
         //update status pembayaran di kartu laundry
