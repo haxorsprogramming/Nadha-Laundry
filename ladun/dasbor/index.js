@@ -8,6 +8,7 @@ const levelUser = 'levelUser';
 const kartuLaundry = 'kartuLaundry';
 const laundryRoom = 'laundryRoom';
 const detailCucian = 'laundryRoom/detailCucian';
+const dataTransaksi = 'dataTransaksi';
 
 const d = new Date();
 const tahun = d.getFullYear();
@@ -61,6 +62,11 @@ var divMenu = new Vue({
     {
       renderMenu(produkService);
       divJudul.judulForm = "Produk & Service";
+    },
+    dataTransaksiAtc : function()
+    {
+      renderMenu(dataTransaksi);
+      divJudul.judulForm = "Data Transaksi";
     }
   }
 });

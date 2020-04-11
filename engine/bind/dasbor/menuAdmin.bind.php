@@ -9,10 +9,10 @@
       <li><a class="nav-link" href="#!" v-on:click='produkServiceAtc'>Produk & Service</a></li>
       <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
       <li><a class="nav-link" href="#!" v-on:click='levelUserAtc'>Level User</a></li>
-      <li><a class="nav-link" href="#!">Parfum</a></li>
+      <li><a class="nav-link" href="#!">Pengeluaran Laundry</a></li>
     </ul>
   </li>
-  <li><a class="nav-link " href="#!"><i class="fas fa-newspaper"></i> <span>Data Pengeluaran</span></a></li>
+  <li><a class="nav-link " href="#!" v-on:click='dataTransaksiAtc'><i class="fas fa-newspaper"></i> <span>Data Transaksi</span></a></li>
   <li><a class="nav-link " href="#!"><i class="fas fa-newspaper"></i> <span>Setting Laundry</span></a></li>
   <li><a class="nav-link  " href="#!"><i class="fas fa-newspaper"></i> <span>Manajemen User</span></a></li>
   <li><a class="nav-link" id='btnLogOut' href="<?= HOMEBASE; ?>dasbor/logOut"><i class="fas fa-sign-out-alt"></i> <span>LogOut</span></a></li>

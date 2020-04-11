@@ -8,6 +8,8 @@ $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kd' L
 $qKartuLaundry = $this -> st -> querySingle();
 $pelanggan = $qKartuLaundry['pelanggan'];
 $waktuMasuk = $qKartuLaundry['waktu_masuk'];
+$pembayaran = $qKartuLaundry['pembayaran'];
+
 //cari nama pelanggan 
 $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan' LIMIT 0,1;");
 $qNamaPelanggan = $this -> st -> querySingle();
@@ -21,7 +23,11 @@ foreach($qTotal as $qt){
     $hargaSat = $qt['total'];
     $hargaAwal = $hargaAwal + $hargaSat;
 }
-
+if($pembayaran == 'selesai'){
+$capBtnbayar = "style='display:none;'";
+}else{
+$capBtnbayar = '';
+}
 ?>
 <div class="container" id='divDetailCucian'>
     <div style='margin-bottom:15px;'>
@@ -48,7 +54,7 @@ foreach($qTotal as $qt){
             </tr>
         </table>
         <div style="padding-top:12px;">
-        <a href='#!' class="btn btn-primary btn-icon icon-left" id='btnSetBayar' v-on:click='setBayar'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+        <a href='#!' class="btn btn-primary btn-icon icon-left" id='btnSetBayar' v-on:click='setBayar' <?=$capBtnbayar; ?>><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
         <a href='#!' class="btn btn-primary btn-icon icon-left" id='btnSetSelesai' v-on:click='setSelesaiAtc'><i class='fas fa-check-circle'></i> Set selesai</a>
         <div>
 
