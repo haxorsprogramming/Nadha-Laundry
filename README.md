@@ -2,10 +2,14 @@
 
 <h2>Aplikasi manajemen laundry</h2>
 By : NadhaMedia
-<br/>
-<b>Menggunakan HTML, Vue.Js, PHP, & Mysql</b>
 <br/><br/>
-Fitur
+<b>Teknologi yang digunakan</b>
+<li>Front End : HTML, Bootstrap</li>
+<li>Backend : Uinsu Web Framework</li>
+<li>Javascript : Vue JS, Native Javascript, & Jquery</li>
+<li>Bootstrap Theme By [Stisla] (https://demo.getstisla.com/index.html)</li>
+<br/><br/>
+<b>Fitur</b>
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
 <li> Level user</li>

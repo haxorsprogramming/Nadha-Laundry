@@ -9,14 +9,19 @@ var divDetailTransaksi = new Vue({
         provinsiLaundry : '-',
         kodePosLaundry : '-',
         namaPelanggan : '-',
+        emailPelanggan : '-',
+        alamatPelanggan : '-'
         
     }
 });
 
 var kodeService = document.getElementById('txtKodeService').innerHTML;
 
-$.post('utility/getInfoPelanggan', function(data){
+$.post('utility/getInfoPelanggan',{'kodeService':kodeService}, function(data){
     let obj = JSON.parse(data);
+    divDetailTransaksi.namaPelanggan = obj.namaPelanggan;
+    divDetailTransaksi.emailPelanggan = obj.emailPelanggan;
+    divDetailTransaksi.alamatPelanggan = obj.alamatPelanggan;
 });
 
 $.post('utility/getInfoLaundry', function(data){

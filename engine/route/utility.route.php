@@ -39,7 +39,17 @@ class utility extends Route{
 
     public function getInfoPelanggan()
     {
-        
+        $kodeService = $this -> inp('kodeService');
+        $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kodeService' LIMIT 0,1;");
+        $qKartuLaundry = $this -> st -> querySingle();
+        $pelanggan = $qKartuLaundry['pelanggan'];
+        //cari nama pelanggan 
+        $this -> st -> query("SELECT nama_lengkap, email, alamat FROM tbl_pelanggan WHERE username='$pelanggan';");
+        $qNamaPelanggan = $this -> st -> querySingle();
+        $data['namaPelanggan'] = $qNamaPelanggan['nama_lengkap'];
+        $data['emailPelanggan'] = $qNamaPelanggan['email'];
+        $data['alamatPelanggan'] = $qNamaPelanggan['alamat'];
+        $this -> toJson($data);
     }
 
 }
