@@ -105,7 +105,6 @@ function suksesBayar(kdTransaksi){
         pauseOnHover: false,
         onClosed: function() {
             $('#divUtama').html("Memuat ...");
-            divJudul.judulForm = "Detail Pembayaran "+kdTransaksi;
             $('#divUtama').load('dataTransaksi/detailTransaksi', {'kdTransaksi':kdTransaksi});
         }
       });

@@ -11,7 +11,7 @@ var divDataTransaksi = new Vue({
         detailTransaksiAtc : function(kdTransaksi){
             $('#divUtama').html('Memuat data transaksi...');
             $('#divUtama').load('dataTransaksi/detailTransaksi',{'kdTransaksi':kdTransaksi});
-            divJudul.judulForm = "Detail Pembayaran "+kdTransaksi;
+           
         }
     }
 });

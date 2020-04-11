@@ -18,7 +18,9 @@ class dataTransaksi extends Route{
     public function detailTransaksi()
     {
         $kdTransaksi = $this -> inp('kdTransaksi');
-        $this -> bind('dasbor/dataTransaksi/detailTransaksi');
+        $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi' LIMIT 0,1;");
+        $data['dataTransaksi'] = $this -> st -> querySingle();
+        $this -> bind('dasbor/dataTransaksi/detailTransaksi', $data);
     }
 
 }
