@@ -133,7 +133,7 @@ $qDaftarItem = $this -> st -> queryAll();
               <hr>
               <div class="text-md-right">
                 <div class="float-lg-left mb-lg-0 mb-3">
-                  <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-print"></i> Cetak</button>
+                  <a class="btn btn-primary btn-icon icon-left" href='dataTransaksi/cetak/<?=$kodeTransaksi; ?>' target="new"><i class="fas fa-print"></i> Cetak</a>
                   <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Kembali</button>
                 </div>
               </div>

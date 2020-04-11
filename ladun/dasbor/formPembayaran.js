@@ -1,6 +1,6 @@
 var hargaAwalPub = "";
 var kodePromo = "";
-
+$('#btnProsesPembayaran').addClass('disabled');
 $("#divTblPromo").hide();
 
 var divUtama = new Vue({
@@ -14,6 +14,8 @@ var divUtama = new Vue({
     hargaAkhir: "",
     itemService: [],
     namaPromo: "",
+    tunai : "0",
+    kembali : ""
   },
   methods: {
     cekPromo: function () {
@@ -45,24 +47,35 @@ var divUtama = new Vue({
       let kdTransaksi = document.getElementById("txtKodeTransaksi").innerHTML;
       let kdService = document.getElementById("txtKodeService").innerHTML;
       let diskonLevel = document.getElementById("txtDiskonLevel").innerHTML;
-      $('#btnProsesPembayaran').hide();
+      let tunai = this.tunai;
 
-      $.post("pembayaran/prosesPembayaran",{
-          kdPromo: kodePromoSend,
-          kdTransaksi: kdTransaksi,
-          kdService: kdService,
-          diskonLevel: diskonLevel,
-        },
-        function (data) {
+      $('#btnProsesPembayaran').hide();
+      window.alert(tunai);
+      $.post("pembayaran/prosesPembayaran",{kdPromo:kodePromoSend, kdTransaksi:kdTransaksi, kdService:kdService, diskonLevel:diskonLevel, tunai:tunai},function(data){
           let obj = JSON.parse(data);
           if (obj.status === "sukses") {
             suksesBayar(kdTransaksi);
           } else {
             window.alert("Gagal simpan");
           }
-        }
-      );
+        });
     },
+    setTunai : function(){
+      let tunai = parseInt(this.tunai);
+      let hargaNow = parseInt(document.getElementById('txtHargaFinal').innerHTML);
+      if(tunai < hargaNow){
+        errorSetHarga();
+        $('#btnProsesPembayaran').addClass('disabled');
+      }else{
+        let kembali = tunai - hargaNow;
+        this.kembali = kembali;
+        $('#btnProsesPembayaran').removeClass('disabled');
+      }
+     
+    },
+    testOut : function(){
+      window.alert("Halo");
+    }
   },
 });
 
@@ -108,4 +121,20 @@ function suksesBayar(kdTransaksi){
             $('#divUtama').load('dataTransaksi/detailTransaksi', {'kdTransaksi':kdTransaksi});
         }
       });
+}
+
+$('#btnKembali').click(function(){
+  divUtama.testOut();
+});
+
+function errorSetHarga()
+{
+  iziToast.error({
+    title: "Limit tunai!!",
+    message: "Uang pembayaran harus lebih atau sama dengan jumlah total harga...",
+    position: "topCenter",
+    timeOut : 1000,
+    pauseOnHover: false,
+    onClosed: function() {}
+  });
 }

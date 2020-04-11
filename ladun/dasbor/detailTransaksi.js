@@ -12,6 +12,11 @@ var divDetailTransaksi = new Vue({
         emailPelanggan : '-',
         alamatPelanggan : '-'
         
+    },
+    methods: {
+        cetakAtc : function(){
+            window.location.assign('dataTransaksi/cetak');
+        }
     }
 });
 

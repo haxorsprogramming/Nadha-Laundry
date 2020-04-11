@@ -7,7 +7,8 @@ By : NadhaMedia
 <li>Front End : HTML, Bootstrap</li>
 <li>Backend : Uinsu Web Framework</li>
 <li>Javascript : Vue JS, Native Javascript, & Jquery</li>
-<li>Bootstrap Theme By [Stisla] (https://demo.getstisla.com/index.html)</li>
+<li>Bootstrap Theme By [Stisla](https://demo.getstisla.com/index.html)</li>
+<li>Cloud Serverless : Firebase</li>
 <br/><br/>
 <b>Fitur</b>
 <li> Manajemen cucian</li>

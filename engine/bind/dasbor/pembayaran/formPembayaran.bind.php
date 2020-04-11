@@ -15,7 +15,7 @@ $diskonLevel = $qLevel['diskon_cuci'];
 $tahun = date("Y");
 $bulan = date("m");
 $hari = date("d");
-$kodeTransaksi = "INV/".$tahun."/".$bulan."/".$hari."/".substr($kd['kode_service'], 0, 4);
+$kodeTransaksi = "INV-".$tahun."-".$bulan."-".$hari."-".substr($kd['kode_service'], 0, 4);
 ?>
 <div class="container" id='divFormPembayaran'>
   <div class="row">
@@ -74,6 +74,16 @@ $kodeTransaksi = "INV/".$tahun."/".$bulan."/".$hari."/".substr($kd['kode_service
                       </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>Tunai</td><td>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" placeholder="Tunai" id='txtTunai' v-model='tunai'>
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button" id='txtSetTunai' v-on:click='setTunai'>Set</button>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
                 <tr id='divTblPromo'>
                     <td>
                         Promo 
@@ -82,11 +92,17 @@ $kodeTransaksi = "INV/".$tahun."/".$bulan."/".$hari."/".substr($kd['kode_service
                 </tr>
                 <tr>
                     <td>Harga akhir</td><td>Rp. <span id='txtHargaFinal' style="display: none;"></span><span id='txtHargaFinalCap' style="font-size: 20px;"></span></td>
+                </tr> 
+                <tr>
+                    <td>Tunai</td><td>Rp. {{ Number(tunai).toLocaleString() }}</td>
+                </tr>
+                <tr>
+                    <td>Kembali</td><td>Rp. {{ Number(kembali).toLocaleString() }}</td>
                 </tr>         
             </table>
             <div>
                 <a href='#!' class="btn btn-lg btn-primary" v-on:click='prosesPembayaran' id='btnProsesPembayaran'><i class='fas fa-check-circle'></i> Proses pembayaran</a>&nbsp;&nbsp;
-                <a href='#!' class="btn btn-lg btn-warning"><i class='fas fa-reply'></i> Kembali</a>
+                <a href='#!' class="btn btn-lg btn-warning" id='btnKembali'><i class='fas fa-reply'></i> Kembali</a>
             </div>
         </div>
     </div>

@@ -50,9 +50,10 @@ class Props{
            }
        }
       
-       if( !empty($url)){       
-         require_once 'engine/error/no_route.html';
-         die();
+       if( !empty($url)){
+        $this->params = array_values($url);       
+        //  require_once 'engine/error/no_route.html';
+        //  die();
        }
        call_user_func_array([$this -> route, $this -> method], $this -> params);
 
