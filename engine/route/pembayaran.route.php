@@ -105,8 +105,29 @@ class pembayaran extends Route{
         $qUpdateStatus = "UPDATE tbl_kartu_laundry SET pembayaran='selesai' WHERE kode_service='$kdService';";
         $this -> st -> query($qUpdateStatus);
         $this -> st -> queryRun();
+        //update point pengguna
+        //cari jumlah bonus point melalui level
+        $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
+        $qDataKartuLaundrySet = $this -> st -> querySingle();
+        $usernamePelanggan = $qDataKartuLaundrySet['pelanggan'];
+        $this -> st -> query("SELECT level FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
+        $qLevelPelanggan = $this -> st -> querySingle();
+        $levelPelanggan = $qLevelPelanggan['level'];
+        $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
+        $qBonusPointCuci = $this -> st -> querySingle();
+        $bonusPointCuci = $qBonusPointCuci['bonus_point_cuci'];
+        //ambil point pelanggan lama 
+        $this -> st -> query("SELECT poin_real FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
+        $qPoinReal = $this -> st -> querySingle();
+        $poinReal = $qPoinReal['poin_real'];
+        $poinBaru = $poinReal + $bonusPointCuci;
+        //update ke point pelanggan
+        $qUpdatePoint = "UPDATE tbl_pelanggan SET poin_real='$poinBaru' WHERE username='$usernamePelanggan';";
+        $this -> st -> query($qUpdatePoint);
+        $this -> st -> queryRun();
         $data['status'] = 'sukses';
         $this -> toJson($data);
+
     }
 
     public function detailPembayaran()
