@@ -1,4 +1,4 @@
-<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='200px'>
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='500px'>
 
 <h2>Aplikasi manajemen laundry</h2>
 By : NadhaMedia
