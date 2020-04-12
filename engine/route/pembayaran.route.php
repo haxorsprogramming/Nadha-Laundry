@@ -18,7 +18,6 @@ class pembayaran extends Route{
         $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kd';");
         $data['kartuRegistrasi'] = $this -> st -> querySingle();
         //buat nomor faktur 
-        
         $this -> bind('dasbor/pembayaran/formPembayaran', $data);
     }
 
