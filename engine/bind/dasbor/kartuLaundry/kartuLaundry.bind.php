@@ -54,10 +54,11 @@
           $statPay = $kartu['pembayaran'];
           if($statPay == 'pending'){
             $capSt = "Belum bayar";
-            $colSb = 'warning';
+            $colSb = '#e67e22';
+
           }else{
             $capSt = "Sudah bayar";
-            $colSb = 'success';
+            $colSb = '#2ecc71';
           }
         ?>
           <tr>
@@ -71,8 +72,8 @@
             Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
-            <td> <a href="#!" class="btn btn-<?=$colSb; ?> btn-icon icon-left"><i class="fas fa-receipt"></i> <?=$capSt; ?></a></td>
-            <td><button class="btn btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
+            <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-receipt"></i> <?=$capSt; ?></span></td>
+            <td><button class="btn btn-sm btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -82,9 +83,15 @@
   <div>
   Keterangan status kartu <br/>
   <ul>
-  <li><span class="badge badge-light">Hold</span> : Kartu laundry sudah dibuat, pelanggan belum membuat daftar cucian, cucian dapat ditambahkan di menu laundry room</li>
+  <li><span class="badge badge-secondary">Hold</span> : Kartu laundry sudah dibuat, pelanggan belum membuat daftar cucian, cucian dapat ditambahkan di menu laundry room</li>
   <li><span class="badge badge-info">Laundry Room</span> : Kartu laundry sudah memiliki antrian di laundry yang memiliki minimal 1 cucian, cucian dapat ditambahkan di menu laundry room</li>
   <li><span class="badge badge-success">Selesai</span> : Cucian telah selesai</li>
+  <li><span class="badge badge-primary">Diambil</span> : Cucian telah di ambil/diantarkan</li>
+  </ul>
+  <hr/>
+  Catatan tambahan <br/>
+  <ul>
+    <li>Untuk pembayaran, pengambilan, serta pembatalan cucian dapat dilakukan dengan mengklik "Detail" dari cucian</li>
   </ul>
   </div>
 </div>

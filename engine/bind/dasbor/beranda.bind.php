@@ -8,7 +8,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-          <h3 id='capTotalUji'>21</h3>
+      <h3 id='capTotalUji'>{{jlhCucian}}</h3>
             <h4>Cucian</h4>
           </div>
           <div class="card-body">
@@ -24,7 +24,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-          <h3 id='capTotalGejala'>134</h3>
+          <h3 id='capTotalGejala'>{{jlhPelanggan}}</h3>
             <h4>Pelanggan</h4>
           </div>
           <div class="card-body">
@@ -87,7 +87,7 @@
                   </div>
                   <div class="mb-4">
                     <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-                    <div class="font-weight-bold mb-1">Google</div>
+                    <div class="font-weight-bold mb-1">Cuci Bersih & Rapi</div>
                     <div class="progress" data-height="3" style="height: 3px;">
                       <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
                     </div>

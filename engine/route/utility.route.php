@@ -52,4 +52,17 @@ class utility extends Route{
         $this -> toJson($data);
     }
 
+    public function getInfoBeranda()
+    {
+        //cari jumlah pelanggan 
+        $this -> st -> query("SELECT id FROM tbl_pelanggan;");
+        $jlhPelanggan = $this -> st -> numRow();
+        $data['jlhPelanggan'] = $jlhPelanggan;
+        //cari jumlah cucian 
+        $this -> st -> query("SELECT id FROM tbl_laundry_room WHERE status='cuci';");
+        $jlhCucian = $this -> st -> numRow();
+        $data['jlhCucian'] = $jlhCucian;
+        $this -> toJson($data);
+    }
+
 }

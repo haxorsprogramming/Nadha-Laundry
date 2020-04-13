@@ -15,6 +15,15 @@
 <tbody>
 <?php
 foreach($data['pelanggan'] as $pelanggan) :
+  //cari status cuci pelanggan 
+  $username = $pelanggan['username'];
+  $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$username' AND status='cuci';");
+  $jlhStatusCuci = $this -> st -> numRow();
+  if($jlhStatusCuci < 1){
+    $statusCuci = "Tidak";
+  }else{
+    $statusCuci = "Ya";
+  }
 ?>
 <tr>
 <td>
@@ -27,8 +36,8 @@ foreach($data['pelanggan'] as $pelanggan) :
         </div>
  </li>
 </td>
-<td></td>
-<td><?=$pelanggan['point_real']; ?></td>
+<td><?=$statusCuci; ?></td>
+<td><?=$pelanggan['poin_real']; ?></td>
 <td><?=$pelanggan['level']; ?></td>
 <td><a href='#!' class='btn btn-sm btn-primary btn-icon icon-left btnDetail' id='<?=$pelanggan['username'];?>'><i class='fas fa-exclamation-circle'></i> Detail</a></td>
 </tr>

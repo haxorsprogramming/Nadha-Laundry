@@ -25,9 +25,11 @@ foreach($qTotal as $qt){
 }
 if($pembayaran == 'selesai'){
 $capBtnbayar = "style='display:none;'";
+$capTblTambahItem = "style='display:none;'";
 }else{
 $capBtnbayar = '';
-}
+$capTblTambahItem = "";
+}//cari status pembayaran 
 ?>
 <div class="container" id='divDetailCucian'>
     <div style='margin-bottom:15px;'>
@@ -79,7 +81,7 @@ $capBtnbayar = '';
             </tbody>
         </table>
         </div>
-        <div class="col-lg-6 col-md-6 col-12">
+        <div class="col-lg-6 col-md-6 col-12" <?=$capTblTambahItem; ?>>
             <h5>Tambah item cucian</h5>
             <div class="form-group">
             <label>Produk / Service</label>
