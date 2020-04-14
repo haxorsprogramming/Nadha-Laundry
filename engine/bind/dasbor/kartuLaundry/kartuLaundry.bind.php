@@ -73,7 +73,7 @@
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
             <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-receipt"></i> <?=$capSt; ?></span></td>
-            <td><button class="btn btn-sm btn-primary"><i class='fas fa-exclamation-circle'></i> Detail</button></td>
+            <td><a href='#!' class="btn btn-sm btn-primary"  v-on:click='detailAtc("<?=$kodeService; ?>")'><i class='fas fa-exclamation-circle'></i> Detail</a></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

@@ -53,4 +53,11 @@ class kartuLaundry extends Route{
       $this -> toJson($data);
     }
 
+    public function detailKartuLaundry($kdService)
+    {
+      $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
+      $data['detailKartu'] = $this -> st -> querySingle();
+      $this -> bind('dasbor/kartuLaundry/detailKartuLaundry', $data);
+    }
+
 }
