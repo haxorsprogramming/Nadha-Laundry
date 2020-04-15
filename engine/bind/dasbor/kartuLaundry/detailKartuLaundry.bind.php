@@ -47,7 +47,7 @@ if($statusCucian == 'hold'){
             </tr>
         </table>
         <div style="text-align: center;padding-top:12px;">
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left disabled"><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
         </div>
