@@ -76,15 +76,25 @@
             <td>
             <div class="dropdown d-inline">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Aksi
+                        <i class='fas fa-bars'></i> Aksi
                       </button>
                       <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> Action</a>
-                        <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> Another action</a>
-                        <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
+                        <a class="dropdown-item has-icon" href="#!" v-on:click='detailAtc("<?=$kodeService; ?>")'><i class="fas fa-ellipsis-h"></i> Detail</a>
+                        <a class="dropdown-item has-icon" href="#!"><i class="fas fa-archive"></i> Pick-Up</a>
+                        <a class="dropdown-item has-icon" href="#!"><i class="fas fa-receipt"></i> Bayar</a>
+                        <?php
+                        if($statusCuci === 'finishcuci'){
+                        ?><?php
+                        }else{
+                        ?>
+                        <a class="dropdown-item has-icon" href="#!" v-on:click=''><i class="fas fa-tshirt"></i> Ke laundry room</a>
+                        <?php
+                        }
+                        ?>
+                                               
                       </div>
                     </div>
-            <!-- <a href='#!' class="btn btn-sm btn-primary"  v-on:click='detailAtc("<?=$kodeService; ?>")'><i class='fas fa-exclamation-circle'></i> Detail</a> -->
+            <!-- <a href='#!' class="btn btn-sm btn-primary"  v-on:click=''><i class='fas fa-exclamation-circle'></i> Detail</a> -->
             </td>
           </tr>
         <?php endforeach; ?>

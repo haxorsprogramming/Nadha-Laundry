@@ -14,12 +14,13 @@ By : NadhaMedia
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
 <li> Level user</li>
+<li> Sistem promo & diskon</li>
 <li> Sistem point cucian</li>
-<li> Notifikasi status cucian ke pelanggan</li>
+<li> Notifikasi status cucian ke pelanggan (default : email)</li>
 <li> Manajemen pengeluaran laundry</li>
 <li> Manajemen pembukuan laundry</li>
 <li> Manajemen laporan</li>
-
+<li> Multilevel user</li>
 <br/><hr/>
 Tampilan Aplikasi
 >> Login
