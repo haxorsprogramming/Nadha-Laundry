@@ -60,4 +60,15 @@ class kartuLaundry extends Route{
       $this -> bind('dasbor/kartuLaundry/detailKartuLaundry', $data);
     }
 
+    public function pickUpCucian()
+    {
+      $kdService = $this -> inp('kdService');
+      $waktuPickUp = date("Y-m-d H:i:s");
+      $qUpdatePickUp = "UPDATE tbl_kartu_laundry SET waktu_diambil='$waktuPickUp' WHERE kode_service='$kdService';";
+      $this -> st -> query($qUpdatePickUp);
+      $this -> st -> queryRun();
+      $data['status'] = 'sukses';
+      $this -> toJson($data);
+    }
+
 }

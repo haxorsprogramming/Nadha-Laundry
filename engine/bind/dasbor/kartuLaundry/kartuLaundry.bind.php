@@ -13,7 +13,7 @@
           <th>Waktu</th>
           <th>Total Harga</th>
           <th>Status Pembayaran</th>
-          <th>Aksi</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -73,7 +73,19 @@
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
             <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-receipt"></i> <?=$capSt; ?></span></td>
-            <td><a href='#!' class="btn btn-sm btn-primary"  v-on:click='detailAtc("<?=$kodeService; ?>")'><i class='fas fa-exclamation-circle'></i> Detail</a></td>
+            <td>
+            <div class="dropdown d-inline">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Aksi
+                      </button>
+                      <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> Action</a>
+                        <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> Another action</a>
+                        <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
+                      </div>
+                    </div>
+            <!-- <a href='#!' class="btn btn-sm btn-primary"  v-on:click='detailAtc("<?=$kodeService; ?>")'><i class='fas fa-exclamation-circle'></i> Detail</a> -->
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

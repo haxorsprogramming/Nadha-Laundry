@@ -4,7 +4,7 @@ $kodeService = $detailKartu['kode_service'];
 $waktuRegistrasi = $detailKartu['waktu_masuk'];
 $username = $detailKartu['pelanggan'];
 $statusCucian = $detailKartu['status'];
-
+$pembayaran = $detailKartu['pembayaran'];
 //cari nama pelanggan 
 $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
 $qNamaPelanggan = $this -> st -> querySingle();
@@ -12,10 +12,23 @@ $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
 //status cucian 
 if($statusCucian == 'hold'){
     $capStatus = 'Hold (Menunggu antrian ke laundry room)';
+    $btnKeLaundryRoom = '';
 }elseif($statusCucian === 'cuci'){
     $capStatus = 'Cuci (Sedang di laundry room)';
+    $btnKeLaundryRoom = '';
 }else{
     $capStatus = 'Selesai (Selesai di cuci)';
+    $btnKeLaundryRoom = 'disabled';
+}
+//status pembayaran 
+if($pembayaran == 'selesai'){
+  $capPembayaran = 'disabled';
+  $statusPembayaran = 'Sudah';
+  $capSudahDiambil = '';
+}else{
+  $capPembayaran = '';
+  $statusPembayaran = 'Pending';
+  $capSudahDiambil = 'disabled';
 }
 ?>
 <div class="container" id='divDetailKartuLaundry'>
@@ -40,16 +53,17 @@ if($statusCucian == 'hold'){
                 <td><?=$capStatus; ?></td>
             </tr>
             <tr>
-                <td>Statu Pembayaran</td>
+                <td>Status Pembayaran</td>
+                <td><?=$statusPembayaran; ?></td>
             </tr>
             <tr>
                 <td>Sudah di ambil</td>
             </tr>
         </table>
         <div style="text-align: center;padding-top:12px;">
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left disabled"><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left"><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$capPembayaran; ?>" v-on:click='bayarAtc'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$capSudahDiambil; ?>" v-on:click='pickUpAtc("<?=$kodeService; ?>")'><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnKeLaundryRoom; ?>" v-on:click='keLaundryRoomAtc("<?=$kodeService; ?>")'><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
         </div>
         </div>
         </div>
@@ -180,3 +194,4 @@ if($statusCucian == 'hold'){
         </div>
     </div>
 </div>
+<script src="<?=STYLEBASE; ?>/dasbor/detailKartuLaundry.js"></script>
