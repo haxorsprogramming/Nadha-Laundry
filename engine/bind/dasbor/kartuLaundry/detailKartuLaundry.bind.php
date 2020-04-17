@@ -33,7 +33,6 @@ if($statusCucian == 'hold'){
   $btnBayar = 'disabled';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = '';
-
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'pending'){
   $capStatusCucian = 'Selesai (Cucian sudah selesai)';
   $statusPembayaran = 'Belum';
@@ -56,23 +55,8 @@ if($statusCucian == 'hold'){
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = 'disabled';
 }
- 
 
-// }elseif($statusCucian == 'finishcuci' && $waktuDiambil == '0000-00-00 00:00:00'){
-//   $capStatusCucian = 'Selesai (Cucian sudah selesasdsai)';
-//   $statusPembayaran = 'Sudah';
-//   $statusDiambil = 'Belum';
-//   $btnBayar = 'disabled';
-//   $btnSudahDiambil = '';
-//   $btnKeLaundryRoom = 'disabled';
-// }elseif($statusCucian == 'finishcuci'  && $jlhPick  == '1'){
-//   $capStatusCucian = 'Selesai & Diambil (Cucian sudah selesai dan sudah diambil oleh pelanggan)';
-//   $statusPembayaran = 'Sudah';
-//   $statusDiambil = 'Sudah';
-//   $btnBayar = 'disabled';
-//   $btnSudahDiambil = 'disabled';
-//   $btnKeLaundryRoom = 'disabled';
-// }
+
 ?>
 <div class="container" id='divDetailKartuLaundry'>
     <div style='margin-bottom:15px;'>
@@ -96,7 +80,7 @@ if($statusCucian == 'hold'){
                 <td><?=$capStatusCucian; ?></td>
             </tr>
             <tr>
-                <td>Status Pembayaran <?=$jlhPick; ?></td>
+                <td>Status Pembayaran</td>
                 <td><?=$statusPembayaran; ?></td>
             </tr>
             <tr>
@@ -105,7 +89,7 @@ if($statusCucian == 'hold'){
             </tr>
         </table>
         <div style="text-align: center;padding-top:12px;">
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnBayar; ?>" v-on:click='bayarAtc'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnBayar; ?>" v-on:click='bayarAtc("<?=$kodeService; ?>")'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnSudahDiambil; ?>" v-on:click='pickUpAtc("<?=$kodeService; ?>")' id='btnPickUp'><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnKeLaundryRoom; ?>" v-on:click='keLaundryRoomAtc("<?=$kodeService; ?>")'><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
         </div>
@@ -119,15 +103,29 @@ if($statusCucian == 'hold'){
         <div class="activities">
                 <?php 
                   foreach($dataTimeline as $dT): 
+                    $waktu = $dT['waktu'];
                     $caption = $dT['caption'];
+                    $kdEvent = $dT['kd_event'];
+                    //set icon 
+                    if($kdEvent == 'registrasi_cucian'){
+                      $iconTm = 'fas fa-clipboard-check';
+                    }elseif($kdEvent == 'mulai_cuci'){
+                      $iconTm = 'fas fa-tshirt';
+                    }elseif($kdEvent == 'pembayaran_selesai'){
+                      $iconTm = 'fas fa-receipt';
+                    }elseif($kdEvent == 'cucian_selesai'){
+                      $iconTm = 'fas fa-check-circle';
+                    }else{
+                      $iconTm = 'fas fa-shipping-fast';
+                    }
                 ?>
                   <div class="activity">
                     <div class="activity-icon bg-primary text-white shadow-primary">
-                      <i class="fas fa-plus-circle"></i>
+                      <i class="<?=$iconTm; ?>"></i>
                     </div>
                     <div class="activity-detail">
                       <div class="mb-2">
-                        <span class="text-job"><?=$waktuRegistrasi; ?></span>
+                        <span class="text-job"><?=$waktu; ?></span>
                         <span class="bullet"></span>
                         <a class="text-job" href="#!">Admin</a>
                       </div>

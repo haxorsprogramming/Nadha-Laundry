@@ -27,8 +27,8 @@
           <label>Level User</label>
           <select class="form-control" name="" v-model='levelUser'>
             <option>Basic</option>
-            <option>Silver</option>
             <option>Gold</option>
+            <option>Platinum</option>
           </select>
     </div>
 

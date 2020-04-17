@@ -12,7 +12,7 @@
           <th>Status</th>
           <th>Waktu</th>
           <th>Total Harga</th>
-          <th>Status Pembayaran</th>
+          <th>Status Pembayaran & Pick Up</th>
           <th></th>
         </tr>
       </thead>
@@ -24,6 +24,7 @@
           $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan';");
           $namaPelanggan =  $this -> st -> querySingle(); 
           $statusCuci = $kartu['status'];
+          $waktuDiambil = $kartu['waktu_diambil'];
           if($statusCuci === 'cuci'){
             $capStat = 'Laundry Room';
             $colSc = 'info';
@@ -58,10 +59,15 @@
           if($statPay == 'pending'){
             $capSt = "Belum bayar";
             $colSb = '#e67e22';
-
           }else{
             $capSt = "Sudah bayar";
             $colSb = '#2ecc71';
+          }
+
+          if($waktuDiambil == '0000-00-00 00:00:00'){
+            $capStDiambil = 'Belum diambil';
+          }else{
+            $capStDiambil = 'Sudah diambil';
           }
         ?>
           <tr>
@@ -75,7 +81,10 @@
             Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
-            <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-receipt"></i> <?=$capSt; ?></span></td>
+            <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-circle"></i> <?=$capSt; ?></span><br/>
+            <span style="color:#ecf0f1;"><i class="fas fa-circle"></i> <?=$capStDiambil; ?></span>
+          
+          </td>
             <td>
             <div class="dropdown d-inline">
                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

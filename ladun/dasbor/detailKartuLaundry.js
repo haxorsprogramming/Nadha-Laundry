@@ -4,20 +4,18 @@ var divDetailKartuLaundry = new Vue({
 
     },
     methods : {
-        bayarAtc : function(){
-            window.alert("halo");
+        bayarAtc : function(kdService){
+            $('#divUtama').html("Memuat ...");
+            divJudul.judulForm = "Pembayaran";
+            $('#divUtama').load('pembayaran/formPembayaran', {'kdReg':kdService});
         },
         keLaundryRoomAtc : function(kdService){
-            window.alert(kdService);
+            divJudul.judulForm = "Detail Cucian";
+            $('#divUtama').html("Memuat ...");
+            $('#divUtama').load('laundryRoom/detailCucian',{'kd':kdService});
         },
         pickUpAtc : function(kdService){
             setDiambil(kdService);
-            // $.post('kartuLaundry/pickUpCucian',{'kdService':kdService}, function(data){
-            //     let obj = JSON.parse(data);
-            //     divJudul.judulForm = "Detail Cucian";
-            // $('#divUtama').html("Memuat ...");
-            // $('#divUtama').load('laundryRoom/detailCucian',{'kd':kdService});
-            // });
         }
     }
 });
