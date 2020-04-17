@@ -22,7 +22,12 @@ By : NadhaMedia
 <li> Manajemen laporan</li>
 <li> Multilevel user</li>
 <br/><hr/>
-Tampilan Aplikasi
+<b>Developer Team</b>
+<li> Project Manager : Hasnah Nur Ardita</li>
+<li> Front End : Muhammad Rizky</li>
+<li> Backe End : Aditia Darma Nst</li>
+<br/><hr/>
+<b>Tampilan Aplikasi</b>
 >> Login
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/login.png?raw=true'>
 
