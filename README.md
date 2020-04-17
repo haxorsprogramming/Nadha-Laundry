@@ -9,7 +9,7 @@ By : NadhaMedia
 <li>Javascript : Vue JS, Native Javascript, & Jquery</li>
 <li>Bootstrap Theme By [Stisla](https://demo.getstisla.com/index.html)</li>
 <li>Cloud Serverless : Firebase</li>
-<br/><br/>
+<br/>
 <b>Fitur</b>
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
@@ -21,13 +21,14 @@ By : NadhaMedia
 <li> Manajemen pembukuan laundry</li>
 <li> Manajemen laporan</li>
 <li> Multilevel user</li>
-<br/><hr/>
+<br/>
 <b>Developer Team</b>
 <li> Project Manager : Hasnah Nur Ardita</li>
 <li> Front End : Muhammad Rizky</li>
-<li> Backe End : Aditia Darma Nst</li>
-<br/><hr/>
+<li> Back End : Aditia Darma Nst</li>
+<br/>
 <b>Tampilan Aplikasi</b>
+<br/>
 >> Login
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/screenshoot/login.png?raw=true'>
 
