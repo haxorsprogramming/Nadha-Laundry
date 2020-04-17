@@ -1,5 +1,5 @@
 <div class="container" id='divKartuLaundry'>
-  <div style='margin-bottom:15px;' id='divOperasi'>
+  <div style='margin-bottom:25px;' id='divOperasi'>
     <a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'>
     <i class="fas fa-plus-circle"></i> {{capButton}}</a>
   </div>
@@ -29,16 +29,19 @@
             $colSc = 'info';
             $colBgSc = '#3abaf4';
             $icon = 'fas fa-tshirt';
+            $sCapBayar = $kodeService;
           }else if($statusCuci === 'hold'){
             $capStat = 'Hold';
             $colSc = 'secondary';
             $icon = 'fas fa-upload';
             $colBgSc = '#34395e';
+            $sCapBayar = 'no';
           }else if($statusCuci === 'finishcuci'){
             $capStat = 'Selesai Cuci';
             $colSc = 'success';
             $colBgSc = '#63ed7a';
             $icon = 'fas fa-check-circle';
+            $sCapBayar = $kodeService;
           }
           //cari total harga 
           //cari total harga 
@@ -79,22 +82,26 @@
                         <i class='fas fa-bars'></i> Aksi
                       </button>
                       <div class="dropdown-menu" x-placement="bottom-start" style="border:1px solid grey;position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item has-icon" href="#!" v-on:click='detailAtc("<?=$kodeService; ?>")'><i class="fas fa-ellipsis-h"></i> Detail</a>
-                        <a class="dropdown-item has-icon" href="#!"><i class="fas fa-archive"></i> Pick-Up</a>
-                        <a class="dropdown-item has-icon" href="#!"><i class="fas fa-receipt"></i> Bayar</a>
+                        <a class="dropdown-item has-icon" href="#!" v-on:click='detailAtc("<?=$kodeService; ?>")'><i class="fas fa-info-circle"></i> Detail</a>
+                        <!-- des tombol pick up & bayar-->
+                        <?php
+                        if($statPay == 'pending'){
+                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click='bayarAtc($sCapBayar)'><i class='fas fa-receipt'></i> Bayar</a>";
+                        }else{
+                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click='pickUpAtc($kodeService)'><i class='fas fa-archive'></i> Pick-Up</a>";
+                        }
+                        ?>
+                        <!-- //des tombol ke laundry room -->
                         <?php
                         if($statusCuci === 'finishcuci'){
-                        ?><?php
+                          
                         }else{
-                        ?>
-                        <a class="dropdown-item has-icon" href="#!" v-on:click=''><i class="fas fa-tshirt"></i> Ke laundry room</a>
-                        <?php
+                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click=''><i class='fas fa-tshirt'></i> Ke laundry room</a>";
                         }
                         ?>
                                                
                       </div>
                     </div>
-            <!-- <a href='#!' class="btn btn-sm btn-primary"  v-on:click=''><i class='fas fa-exclamation-circle'></i> Detail</a> -->
             </td>
           </tr>
         <?php endforeach; ?>

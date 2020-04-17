@@ -16,6 +16,16 @@ var divKartuLaundry = new Vue({
       divJudul.judulForm = "Detail kartu laundry";
       $('#divUtama').html("Memuat ...");
       $('#divUtama').load('kartuLaundry/detailKartuLaundry/'+kdService);
+    },
+    pickUpAtc : function(kdService){
+      window.alert(kdService);
+    },
+    bayarAtc : function(kdService){
+      if(kdService === 'no'){
+        window.alert("Belum bisa melakukan pembayaran!!");
+      }else{
+
+      }
     }
   }
 });
