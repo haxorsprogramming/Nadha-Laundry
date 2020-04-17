@@ -6,40 +6,73 @@ $waktuDiambil = $detailKartu['waktu_diambil'];
 $username = $detailKartu['pelanggan'];
 $statusCucian = $detailKartu['status'];
 $pembayaran = $detailKartu['pembayaran'];
-
+$dataTimeline = $data['dataTimeline'];
+$adit = 'hula';
 //cari nama pelanggan 
 $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
 $qNamaPelanggan = $this -> st -> querySingle();
 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
-//status cucian 
+$this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kodeService' AND kd_event='pick_up';");
+$jlhPick = $this -> st -> numRow();
 if($statusCucian == 'hold'){
-    $capStatus = 'Hold (Menunggu antrian ke laundry room)';
-    $btnKeLaundryRoom = '';
-}elseif($statusCucian === 'cuci'){
-    $capStatus = 'Cuci (Sedang di laundry room)';
-    $btnKeLaundryRoom = '';
-}else{
-    $capStatus = 'Selesai (Selesai di cuci)';
-    $btnKeLaundryRoom = 'disabled';
-}
-//status pembayaran 
-if($pembayaran == 'selesai'){
-  $capPembayaran = 'disabled';
+  $capStatusCucian = 'Hold (Sedang dalam antrian ke laundry room)';
+  $btnBayar = 'disabled';
+  $btnSudahDiambil = 'disabled';
+  $btnKeLaundryRoom = '';
+}elseif($statusCucian == 'cuci' and $pembayaran == 'pending'){
+  $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
+  $statusPembayaran = 'Belum';
+  $statusDiambil = 'Belum';
+  $btnBayar = '';
+  $btnSudahDiambil = 'disabled';
+  $btnKeLaundryRoom = '';
+}elseif($statusCucian == 'cuci' and $pembayaran == 'selesai'){
+  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
   $statusPembayaran = 'Sudah';
-  $capSudahDiambil = '';
-}else{
-  $capPembayaran = '';
-  $statusPembayaran = 'Pending';
-  $capSudahDiambil = 'disabled';
+  $statusDiambil = 'Belum';
+  $btnBayar = 'disabled';
+  $btnSudahDiambil = 'disabled';
+  $btnKeLaundryRoom = '';
+
+}elseif($statusCucian == 'finishcuci' and $pembayaran == 'pending'){
+  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
+  $statusPembayaran = 'Belum';
+  $statusDiambil = 'Belum';
+  $btnBayar = '';
+  $btnSudahDiambil = 'disabled';
+  $btnKeLaundryRoom = 'disabled';
+}elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '0'){
+  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
+  $statusPembayaran = 'Sudah';
+  $statusDiambil = 'Belum';
+  $btnBayar = 'disabled';
+  $btnSudahDiambil = '';
+  $btnKeLaundryRoom = 'disabled';
+}elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '1'){
+  $capStatusCucian = 'Selesai & Diambil (Cucian sudah selesai dan diambil oleh pelanggan)';
+  $statusPembayaran = 'Sudah';
+  $statusDiambil = 'Sudah';
+  $btnBayar = 'disabled';
+  $btnSudahDiambil = 'disabled';
+  $btnKeLaundryRoom = 'disabled';
 }
-//diambil 
-if($waktuDiambil == '0000-00-00 00:00:00'){
-$statusDiambil = 'Belum';
-$capSudahDiambil = '';
-}else{
-$statusDiambil = 'Sudah';
-$capSudahDiambil = 'disabled';
-}
+ 
+
+// }elseif($statusCucian == 'finishcuci' && $waktuDiambil == '0000-00-00 00:00:00'){
+//   $capStatusCucian = 'Selesai (Cucian sudah selesasdsai)';
+//   $statusPembayaran = 'Sudah';
+//   $statusDiambil = 'Belum';
+//   $btnBayar = 'disabled';
+//   $btnSudahDiambil = '';
+//   $btnKeLaundryRoom = 'disabled';
+// }elseif($statusCucian == 'finishcuci'  && $jlhPick  == '1'){
+//   $capStatusCucian = 'Selesai & Diambil (Cucian sudah selesai dan sudah diambil oleh pelanggan)';
+//   $statusPembayaran = 'Sudah';
+//   $statusDiambil = 'Sudah';
+//   $btnBayar = 'disabled';
+//   $btnSudahDiambil = 'disabled';
+//   $btnKeLaundryRoom = 'disabled';
+// }
 ?>
 <div class="container" id='divDetailKartuLaundry'>
     <div style='margin-bottom:15px;'>
@@ -60,10 +93,10 @@ $capSudahDiambil = 'disabled';
             </tr>
             <tr>
                 <td>Status Cucian</td>
-                <td><?=$capStatus; ?></td>
+                <td><?=$capStatusCucian; ?></td>
             </tr>
             <tr>
-                <td>Status Pembayaran</td>
+                <td>Status Pembayaran <?=$jlhPick; ?></td>
                 <td><?=$statusPembayaran; ?></td>
             </tr>
             <tr>
@@ -72,8 +105,8 @@ $capSudahDiambil = 'disabled';
             </tr>
         </table>
         <div style="text-align: center;padding-top:12px;">
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$capPembayaran; ?>" v-on:click='bayarAtc'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
-            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$capSudahDiambil; ?>" v-on:click='pickUpAtc("<?=$kodeService; ?>")' id='btnPickUp'><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnBayar; ?>" v-on:click='bayarAtc'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
+            <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnSudahDiambil; ?>" v-on:click='pickUpAtc("<?=$kodeService; ?>")' id='btnPickUp'><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnKeLaundryRoom; ?>" v-on:click='keLaundryRoomAtc("<?=$kodeService; ?>")'><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
         </div>
         </div>
@@ -84,6 +117,10 @@ $capSudahDiambil = 'disabled';
         <div class="card-header"><h5>Timeline cucian</h5></div>
         <div class="card-body">
         <div class="activities">
+                <?php 
+                  foreach($dataTimeline as $dT): 
+                    $caption = $dT['caption'];
+                ?>
                   <div class="activity">
                     <div class="activity-icon bg-primary text-white shadow-primary">
                       <i class="fas fa-plus-circle"></i>
@@ -94,22 +131,10 @@ $capSudahDiambil = 'disabled';
                         <span class="bullet"></span>
                         <a class="text-job" href="#!">Admin</a>
                       </div>
-                      <p>Cucian dibuat</p>
+                      <p><?=$caption; ?></p>
                     </div>
                   </div>
-                  <div class="activity">
-                    <div class="activity-icon bg-primary text-white shadow-primary">
-                      <i class="fas fa-arrows-alt"></i>
-                    </div>
-                    <div class="activity-detail">
-                      <div class="mb-2">
-                        <span class="text-job"><?=$waktuRegistrasi; ?></span>
-                        <span class="bullet"></span>
-                        <a class="text-job" href="#">Admin</a>
-                      </div>
-                      <p>Cucian masuk ke laundry room.</p>
-                    </div>
-                  </div>
+                  <?php endforeach; ?>
                 </div>
         </div>
         </div>

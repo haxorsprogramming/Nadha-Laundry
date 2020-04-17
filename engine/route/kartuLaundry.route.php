@@ -61,6 +61,8 @@ class kartuLaundry extends Route{
     {
       $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
       $data['detailKartu'] = $this -> st -> querySingle();
+      $this -> st -> query("SELECT * FROM tbl_timeline WHERE kd_service='$kdService';");
+      $data['dataTimeline'] = $this -> st -> queryAll();
       $this -> bind('dasbor/kartuLaundry/detailKartuLaundry', $data);
     }
 
