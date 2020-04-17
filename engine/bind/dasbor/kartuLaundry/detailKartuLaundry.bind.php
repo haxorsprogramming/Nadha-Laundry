@@ -58,6 +58,7 @@ if($pembayaran == 'selesai'){
             </tr>
             <tr>
                 <td>Sudah di ambil</td>
+                <td>Sudah</td>
             </tr>
         </table>
         <div style="text-align: center;padding-top:12px;">
