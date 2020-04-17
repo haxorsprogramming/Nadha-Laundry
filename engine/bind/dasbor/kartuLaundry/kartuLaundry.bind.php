@@ -65,7 +65,7 @@
           }
         ?>
           <tr>
-            <td><?=$kodeService; ?></td>
+            <td><a href='#!' v-on:click='detailAtc("<?=$kodeService; ?>")'><?=$kodeService; ?><a/></td>
             <td><?= $namaPelanggan['nama_lengkap']; ?></td>
             <td style="background-color: <?=$colBgSc; ?>;">
             <a href="#!" class="badge badge-<?=$colSc; ?>"><i class="<?=$icon; ?>"></i> <?=$capStat; ?></a>
@@ -83,23 +83,12 @@
                       </button>
                       <div class="dropdown-menu" x-placement="bottom-start" style="border:1px solid grey;position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
                         <a class="dropdown-item has-icon" href="#!" v-on:click='detailAtc("<?=$kodeService; ?>")'><i class="fas fa-info-circle"></i> Detail</a>
-                        <!-- des tombol pick up & bayar-->
-                        <?php
-                        if($statPay == 'pending'){
-                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click='bayarAtc($sCapBayar)'><i class='fas fa-receipt'></i> Bayar</a>";
-                        }else{
-                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click='pickUpAtc($kodeService)'><i class='fas fa-archive'></i> Pick-Up</a>";
-                        }
-                        ?>
-                        <!-- //des tombol ke laundry room -->
                         <?php
                         if($statusCuci === 'finishcuci'){
-                          
                         }else{
-                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click=''><i class='fas fa-tshirt'></i> Ke laundry room</a>";
+                          echo "<a class='dropdown-item has-icon' href='#!' v-on:click='laundryRoomAtc(\"$kodeService\")'><i class='fas fa-tshirt'></i> Ke laundry room</a>";
                         }
                         ?>
-                                               
                       </div>
                     </div>
             </td>

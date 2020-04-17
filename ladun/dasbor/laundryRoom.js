@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#tblLaundryRoom').DataTable();
+    $('#tblLaundryRoom').DataTable({"ordering":false});
 });
 
 var divLaundryRoom = new Vue({

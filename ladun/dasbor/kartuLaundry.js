@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#tblKartuLaundry').DataTable();
+  $('#tblKartuLaundry').DataTable({"ordering":false});
 });
 
 var divKartuLaundry = new Vue({
@@ -17,15 +17,10 @@ var divKartuLaundry = new Vue({
       $('#divUtama').html("Memuat ...");
       $('#divUtama').load('kartuLaundry/detailKartuLaundry/'+kdService);
     },
-    pickUpAtc : function(kdService){
-      window.alert(kdService);
-    },
-    bayarAtc : function(kdService){
-      if(kdService === 'no'){
-        window.alert("Belum bisa melakukan pembayaran!!");
-      }else{
-
-      }
+    laundryRoomAtc : function(kdService){
+      divJudul.judulForm = "Detail Cucian"+kdService;
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('laundryRoom/detailCucian',{'kd':kdService});
     }
   }
 });

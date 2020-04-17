@@ -39,6 +39,7 @@ class laundryRoom extends Route{
        $hargaAt = $this -> inp('hargaAt');
        $qt = $this -> inp('qt');
        $kdTemp = $this -> rnstr(10);
+       $waktu = date("Y-m-d H:i:s");
        $total = $hargaAt * $qt;
        $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
        $this -> st -> query($queryToTemp);
@@ -49,6 +50,16 @@ class laundryRoom extends Route{
        $qUpdateReg = "UPDATE tbl_kartu_laundry SET status='cuci' WHERE kode_service='$kdRegistrasi';";
        $this -> st -> query($qUpdateReg);
        $this -> st -> queryRun();
+       //proses update timeline
+       $this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kdRegistrasi' AND kd_event='mulai_cuci';");
+       $jlhTimeLine = $this -> st -> numRow();
+       if($jlhTimeLine < 1){
+        $kdTimeline = $this -> rnstr(15);
+        $qUpdateTimelineAwal = "INSERT INTO tbl_timeline VALUES(null,'$kdTimeline','$kdRegistrasi','$waktu','admin','mulai_cuci','Cucian masuk laundry room');";
+        $this -> st -> query($qUpdateTimelineAwal);
+        $this -> st -> queryRun();
+       }else{ }
+       
        $data['status'] = 'sukses';
        $this -> toJson($data);
    }
@@ -94,6 +105,11 @@ class laundryRoom extends Route{
        //update ke cucian 
        $qUpdateHargaCucian = "UPDATE tbl_laundry_room SET total_harga='$hargaAwal' WHERE kd_kartu='$kdService';";
        $this -> st -> query($qUpdateHargaCucian);
+       $this -> st -> queryRun();
+       //update timeline 
+       $kdTimeline = $this -> rnstr(15);
+       $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline', '$kdService', '$waktuSelesai','admin','cucian_selesai','Cucian telah selesai');";
+       $this -> st -> query($qUpdateTimeline);
        $this -> st -> queryRun();
        $this -> toJson($kdService);
    }

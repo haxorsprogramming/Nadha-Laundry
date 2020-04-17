@@ -48,7 +48,11 @@ class kartuLaundry extends Route{
       $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', 'admin', 'ready');";
       $this -> st -> query($queryToRoom);
       $this -> st -> queryRun();
-      
+      //update timeline 
+      $kdTimeline = $this -> rnstr(15);
+      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kode','$waktuMasuk','admin','registrasi_cucian','Cucian di registrasi');";
+      $this -> st -> query($qUpdateTimeline);
+      $this -> st -> queryRun();
       $data['status'] = 'sukses';
       $this -> toJson($data);
     }
@@ -67,8 +71,19 @@ class kartuLaundry extends Route{
       $qUpdatePickUp = "UPDATE tbl_kartu_laundry SET waktu_diambil='$waktuPickUp' WHERE kode_service='$kdService';";
       $this -> st -> query($qUpdatePickUp);
       $this -> st -> queryRun();
+      //update timeline 
+      $kdTimeline = $this -> rnstr(15);
+      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktuPickUp','admin','pick_up','Cucian telah diambil');";
+      $this -> st -> query($qUpdateTimeline);
+      $this -> st -> queryRun();
       $data['status'] = 'sukses';
       $this -> toJson($data);
+    }
+
+    public function tesRandom()
+    {
+      $kode = $this -> rnstr(20);
+      echo $kode;
     }
 
 }

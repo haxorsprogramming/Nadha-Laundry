@@ -124,6 +124,11 @@ class pembayaran extends Route{
         $qUpdatePoint = "UPDATE tbl_pelanggan SET poin_real='$poinBaru' WHERE username='$usernamePelanggan';";
         $this -> st -> query($qUpdatePoint);
         $this -> st -> queryRun();
+        //update timeline 
+        $kdTimeline = $this -> rnstr(15);
+        $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktu','admin','pembayaran_selesai','Pembayaran telah dilakukan');";
+        $this -> st -> query($qUpdateTimeline);
+        $this -> st -> queryRun();
         $data['status'] = 'sukses';
         $this -> toJson($data);
 
