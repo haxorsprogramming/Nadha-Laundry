@@ -58,7 +58,6 @@ A : Tidak, hanya fitur default akan didapatkan, kecuali untuk fitur tambahan sep
 Q : Perbedaan antara basic member & platinum member apa?<br/>
 A : Untuk basic member, hanya fitur default yg didapatkan. Untuk platinum member, akan mendapatkan seluruh fitur dan aplikasi dapat di jalankan secara offline, tim kami akan membantu masalah setup jika anda menginginkan aplikasinya dijalankan offline. Platinum member juga akan dimasukkan ke dalam grup whatsapp NadhaMedia, dimana bisa sharing masalah fitur, kekurangan, atau hal lain yg berkaitan dengan produk ini. 
 
-
 Q : Berapa biaya berlangganan member platinum?<br/>
 A : Untuk biaya langganan, dikenakan biaya Rp. 20.000 perbulan.
 
