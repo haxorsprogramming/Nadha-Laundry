@@ -58,7 +58,7 @@ if($statusCucian == 'hold'){
 
 
 ?>
-<div class="container" id='divDetailKartuLaundry'>
+<div id='divDetailKartuLaundry'>
     <div style='margin-bottom:15px;'>
     </div>
     <div class="row">

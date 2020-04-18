@@ -2,7 +2,7 @@
 $this -> st -> query("SELECT username, nama_lengkap, email FROM tbl_pelanggan ORDER BY id DESC;");
 $pelanggan = $this -> st -> queryAll();
 ?>
-<div class="container" id='divFormRegistrasiCucian'>
+<div id='divFormRegistrasiCucian'>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">

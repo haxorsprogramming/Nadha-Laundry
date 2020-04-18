@@ -1,7 +1,11 @@
 <?php
 $rankPelanggan = $data['qRankPelanggan'];
+//buat range tanggal 
+$waktuNow = $this -> waktu();
+$rentangSeminggu = $this -> jarakTanggal('2020-04-11', '2020-04-19');
+$dibalik = array_reverse($rentangSeminggu);
 ?>
-<div class="container" id='divBeranda'>
+<div id='divBeranda'>
 <!-- Statistik Bar -->
 <div class='row'>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -59,7 +63,7 @@ $rankPelanggan = $data['qRankPelanggan'];
         </div>
         <div class="card-wrap">
           <div class="card-header">
-          <h3 id='capTotalUji'>51</h3>
+          <h3 id='capTotalUji'><?=$data['jlhTransaksiHarian']; ?></h3>
             <h4>Transaksi Harian</h4>
           </div>
           <div class="card-body">
@@ -73,36 +77,47 @@ $rankPelanggan = $data['qRankPelanggan'];
 <!-- Card layanan / service terlaris  -->
   <div class='row'>
   <div class="col-lg-6 col-md-6 col-12">
-              <div class="card">
+              <div class="card card-warning">
                 <div class="card-header">
-                  <h4>Layanan / Service Terlaris</h4>
+                  <h4>Rekap transksi laundry seminggu terakhir</h4>
                   <div class="card-header-action">
-                    <a href="#" class="btn btn-primary">Semua</a>
+                    <a href="#" class="btn btn-primary">Detail</a>
                   </div>
                 </div>
                 <div class="card-body">
-                  <div class="mb-4">
-                    <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-                    <div class="font-weight-bold mb-1">Cuci Kering</div>
-                    <div class="progress" data-height="3" style="height: 3px;">
-                      <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-                    <div class="font-weight-bold mb-1">Cuci Bersih & Rapi</div>
-                    <div class="progress" data-height="3" style="height: 3px;">
-                      <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                    </div>
-                  </div>
+                  <table class="table table-hover table-bordered">
+                      <tr>
+                        <th>Tanggal</th><th>Transaksi</th><th>Nominal</th>
+                      </tr>
+                      <?php
+                        for ($x = 0; $x < 7; $x++) {
+                          $tanggalToExplode = $dibalik[$x];
+                          $tglResultExplode = explode("/",$tanggalToExplode);
+                          $tanggalFNow = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglResultExplode[2];
+                          $tglDayTambahSatu = $tglResultExplode[2] + 1;
+                          $tanggalToExplodeFNext = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglDayTambahSatu;
+                          $tglStart = $tanggalFNow." 00:00:01";
+                          $tglAkhir = $tanggalToExplodeFNext." 00:00:00";
+                          $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE (waktu BETWEEN '$tglStart' AND '$tglAkhir');");
+                          $totalTransaksi = $this -> st -> numRow();
+                          //cari total transaksi 
+                          $qTotal = $this -> st -> queryAll();
+                          $total = 0;
+                          foreach($qTotal as $crTotal){
+                              $totalTemp = $crTotal['total_final'];
+                              $total = $total + $totalTemp;
+                          }
+                          $capTotal = number_format($total);
+                          echo "<tr><td>".$tanggalFNow."</td><td>".$totalTransaksi."</td><td> Rp. ".$capTotal."</td></tr>";
+                        }
+                      ?>
+                  </table>
                 </div>
               </div>
-
-
         </div>
         <!-- Pelanggan teraktif -->
         <div class="col-lg-6 col-md-6 col-12">
-        <div class="card">
+        <div class="card card-warning">
                 <div class="card-header">
                   <h4 class="d-inline">Ranking Pelanggan</h4>
                   <div class="card-header-action">
@@ -113,14 +128,19 @@ $rankPelanggan = $data['qRankPelanggan'];
                   <ul class="list-unstyled list-unstyled-border">
                     <?php 
                       foreach($rankPelanggan as $rp):
+                        $username = $rp['username'];
+                        $levelPelanggan = $rp['level'];
+                        //cari total cuci pelanggan 
+                        $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$username';");
+                        $jlhTransaksi = $this -> st -> numRow();
                     ?>
                     <li class="media">
                       
                       <img class="mr-3 rounded-circle" width="50" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" alt="avatar">
                       <div class="media-body">
-                        <div class="badge badge-pill badge-primary mb-1 float-right">Silver</div>
+                        <div class="badge badge-pill badge-primary mb-1 float-right"><?=$levelPelanggan; ?></div>
                         <h6 class="media-title"><a href="#!"><?=$rp['nama_lengkap']; ?></a></h6>
-                        <div class="text-small text-muted">109 Total Cuci <div class="bullet"></div> <span class="text-primary"><?=$rp['poin_real'] ;?> Poin</span></div>
+                        <div class="text-small text-muted"><?=$jlhTransaksi; ?> Total Cuci <div class="bullet"></div> <span class="text-primary"><?=$rp['poin_real'] ;?> Poin</span></div>
                       </div>
                     </li>
                       <?php endforeach; ?>

@@ -31,7 +31,7 @@ $capBtnbayar = '';
 $capTblTambahItem = "";
 }//cari status pembayaran 
 ?>
-<div class="container" id='divDetailCucian'>
+<div id='divDetailCucian'>
     <div style='margin-bottom:15px;'>
     </div>
     <div class="row">

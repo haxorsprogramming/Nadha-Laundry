@@ -1,4 +1,4 @@
-<div class="container" id='divLaundryRoom'>
+<div id='divLaundryRoom'>
   <div style='margin-bottom:15px;'>
   </div>
   <div class="row">

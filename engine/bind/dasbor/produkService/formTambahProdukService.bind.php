@@ -1,4 +1,4 @@
-<div class="container" id='divFormTambahProdukService'>
+<div id='divFormTambahProdukService'>
   <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 col-12">
   <div class="form-group">

@@ -20,7 +20,15 @@ class Dasbor extends Route{
         $data['qRankPelanggan'] = $this -> st -> queryAll();
         //cari jumlah transaksi harian 
         $waktu = $this -> waktu();
-        $data['waktu'] = $waktu;
+        $pecahTglWaktu = explode(" ", $waktu);
+        $bahanTanggal = explode("-", $pecahTglWaktu[0]);
+        $tanggalKedepan = $bahanTanggal[2] + 1;
+        $tglNext = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan;
+        $waktuStart = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$bahanTanggal[2]." 00:00:01";
+        $waktuAkhir = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan." 00:00:00";
+        $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE (waktu BETWEEN '$waktuStart' AND '$waktuAkhir');");
+        $data['jlhTransaksiHarian'] =  $this -> st -> numRow();
+        $data['waktu_akhir'] = $tanggalKedepan;
         $this -> bind('/dasbor/beranda', $data);   
     }
 

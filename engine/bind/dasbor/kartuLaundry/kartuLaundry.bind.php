@@ -1,9 +1,9 @@
-<div class="container" id='divKartuLaundry'>
+<div id='divKartuLaundry'>
   <div style='margin-bottom:25px;' id='divOperasi'>
     <a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'>
     <i class="fas fa-plus-circle"></i> {{capButton}}</a>
   </div>
-  <div class="row" id='divLevelUser'>
+  <div  id='divLevelUser'>
     <table id='tblKartuLaundry' class='table table-hover'>
       <thead>
       <tr>
