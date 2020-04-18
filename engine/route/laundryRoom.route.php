@@ -39,7 +39,7 @@ class laundryRoom extends Route{
        $hargaAt = $this -> inp('hargaAt');
        $qt = $this -> inp('qt');
        $kdTemp = $this -> rnstr(10);
-       $waktu = date("Y-m-d H:i:s");
+       $waktu = $this -> waktu();
        $total = $hargaAt * $qt;
        $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
        $this -> st -> query($queryToTemp);
@@ -86,7 +86,7 @@ class laundryRoom extends Route{
    public function setCucianSelesai()
    {
        $kdService = $this -> inp('kdService');
-       $waktuSelesai = date("Y-m-d H:i:s");
+       $waktuSelesai = $this -> waktu();
        //update status cucian menjadi selesai 
        $qUpdate = "UPDATE tbl_laundry_room SET status='finish' WHERE kd_kartu='$kdService';";
        $this -> st -> query($qUpdate);

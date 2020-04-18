@@ -1,3 +1,6 @@
+<?php
+$rankPelanggan = $data['qRankPelanggan'];
+?>
 <div class="container" id='divBeranda'>
 <!-- Statistik Bar -->
 <div class='row'>
@@ -101,26 +104,26 @@
         <div class="col-lg-6 col-md-6 col-12">
         <div class="card">
                 <div class="card-header">
-                  <h4 class="d-inline">Pelanggan Teraktif</h4>
+                  <h4 class="d-inline">Ranking Pelanggan</h4>
                   <div class="card-header-action">
                     <a href="#" class="btn btn-primary">Semua</a>
                   </div>
                 </div>
                 <div class="card-body">
                   <ul class="list-unstyled list-unstyled-border">
+                    <?php 
+                      foreach($rankPelanggan as $rp):
+                    ?>
                     <li class="media">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="cbx-1">
-                        <label class="custom-control-label" for="cbx-1"></label>
-                      </div>
+                      
                       <img class="mr-3 rounded-circle" width="50" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" alt="avatar">
                       <div class="media-body">
                         <div class="badge badge-pill badge-primary mb-1 float-right">Silver</div>
-                        <h6 class="media-title"><a href="#">Hasnah Nur Ardita</a></h6>
-                        <div class="text-small text-muted">109 Total Cuci <div class="bullet"></div> <span class="text-primary">108 Point</span></div>
+                        <h6 class="media-title"><a href="#!"><?=$rp['nama_lengkap']; ?></a></h6>
+                        <div class="text-small text-muted">109 Total Cuci <div class="bullet"></div> <span class="text-primary"><?=$rp['poin_real'] ;?> Poin</span></div>
                       </div>
                     </li>
-
+                      <?php endforeach; ?>
                   </ul>
                 </div>
               </div>

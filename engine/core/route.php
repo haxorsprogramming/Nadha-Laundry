@@ -117,8 +117,12 @@ class Route{
         header("Location:".HOMEBASE.'login');
         die();
       }else{
-
       }
+    }
+
+    public function waktu()
+    {
+      return date("Y-m-d H:i:s");
     }
 
 }

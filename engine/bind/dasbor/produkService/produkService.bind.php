@@ -12,12 +12,16 @@
 <tbody>
 <?php
 foreach($data['produkService'] as $ps):
+    $kdService = $ps['kd_service'];
+    //cari total transaksi per service 
+    $this -> st -> query("SELECT id FROM tbl_temp_item_cucian WHERE kd_item='$kdService';");
+    $jlhTransaksi = $this -> st -> numRow();
 ?>
 <tr>
 <td><span style='font-size:15px;font-weight:bold;'><?=$ps['nama']; ?></span></td>
 <td><?=$ps['deks']; ?></td>
 <td><?=$ps['satuan']; ?> - Rp. <?=number_format($ps['harga']); ?></td>
-<td>0</td>
+<td><?=$jlhTransaksi; ?></td>
 <td><a href='#!' class='btn btn-sm btn-primary'>Detail</a></td>
 </tr>
 

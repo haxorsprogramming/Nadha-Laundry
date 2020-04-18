@@ -30,7 +30,7 @@ class kartuLaundry extends Route{
     public function prosesRegistrasiCucian()
     {
       $kode = $this -> inp('kodeRegistrasi');
-      $waktuMasuk = date("Y-m-d H:i:s");
+      $waktuMasuk = $this -> waktu();
       $pelanggan = $this -> inp('pelanggan');
       $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','admin', 'hold');";
       $this -> st -> query($query);
@@ -69,7 +69,7 @@ class kartuLaundry extends Route{
     public function pickUpCucian()
     {
       $kdService = $this -> inp('kdService');
-      $waktuPickUp = date("Y-m-d H:i:s");
+      $waktuPickUp = $this -> waktu();
       $qUpdatePickUp = "UPDATE tbl_kartu_laundry SET waktu_diambil='$waktuPickUp' WHERE kode_service='$kdService';";
       $this -> st -> query($qUpdatePickUp);
       $this -> st -> queryRun();

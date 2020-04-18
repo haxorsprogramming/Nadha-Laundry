@@ -16,7 +16,12 @@ class Dasbor extends Route{
 
     public function beranda()
     {
-        $this -> bind('/dasbor/beranda');   
+        $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY poin_real DESC LIMIT 0, 5;");
+        $data['qRankPelanggan'] = $this -> st -> queryAll();
+        //cari jumlah transaksi harian 
+        $waktu = $this -> waktu();
+        $data['waktu'] = $waktu;
+        $this -> bind('/dasbor/beranda', $data);   
     }
 
     public function logOut()

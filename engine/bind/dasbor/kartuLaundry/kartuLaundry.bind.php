@@ -71,7 +71,7 @@
           }
         ?>
           <tr>
-            <td><a href='#!' v-on:click='detailAtc("<?=$kodeService; ?>")'><?=$kodeService; ?><a/></td>
+            <td><a href='#!' v-on:click='detailAtc("<?=$kodeService; ?>")' style="font-size: 18px;"><?=$kodeService; ?><a/></td>
             <td><?= $namaPelanggan['nama_lengkap']; ?></td>
             <td style="background-color: <?=$colBgSc; ?>;">
             <a href="#!" class="badge badge-<?=$colSc; ?>"><i class="<?=$icon; ?>"></i> <?=$capStat; ?></a>
@@ -118,7 +118,7 @@
   <hr/>
   Catatan tambahan <br/>
   <ul>
-    <li>Untuk pembayaran, pengambilan, serta pembatalan cucian dapat dilakukan dengan mengklik "Detail" dari cucian</li>
+    <li>Untuk pembayaran, pengambilan, serta pembatalan cucian dapat dilakukan dengan mengklik "Aksi" atau klik kode kartu dari cucian</li>
   </ul>
   </div>
 </div>

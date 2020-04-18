@@ -68,7 +68,7 @@ class pembayaran extends Route{
 
     public function prosesPembayaran()
     {
-        $waktu = date("Y-m-d H:i:s");
+        $waktu = $this -> waktu();
         $kdPromo = $this -> inp('kdPromo');
         $kdTransaksi = $this -> inp('kdTransaksi');
         $kdService = $this -> inp('kdService');

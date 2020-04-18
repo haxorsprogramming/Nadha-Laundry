@@ -27,7 +27,7 @@ if($statusCucian == 'hold'){
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = '';
 }elseif($statusCucian == 'cuci' and $pembayaran == 'selesai'){
-  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
+  $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
   $statusPembayaran = 'Sudah';
   $statusDiambil = 'Belum';
   $btnBayar = 'disabled';
