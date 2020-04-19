@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $.post('dataTransaksi/getDataTransaksi', function(data){
         let obj = JSON.parse(data);
-        console.log(obj);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
             divDataTransaksi.dataTransaksi.push({
@@ -30,14 +29,51 @@ var divDataTransaksi = new Vue({
         tampilkanAtc : function(){
             let tglAwal = document.getElementById('tglAwal').value;
             let tglAkhir = document.getElementById('tglAkhir').value;
-            $.post('dataTransaksi/getDataTransaksiRange', function(data){
-                
-            });
+            let jlhIsi = this.dataTransaksi.length;
+            if(tglAwal === '' || tglAkhir === ''){
+                isiTanggal();
+            }else{
+                var i; 
+                for(i = 0; i < jlhIsi; i++){
+                    this.dataTransaksi.splice(0,1);
+                }
+                resetTable(); 
+                $.post('dataTransaksi/getDataTransaksiRange',{'tglAwal':tglAwal, 'tglAkhir':tglAkhir}, function(data){
+                    let obj = JSON.parse(data);
+                    obj.forEach(pushTableItem);
+                    function pushTableItem(item, index){
+                        divDataTransaksi.dataTransaksi.push({
+                            invoice : obj[index].invoice,
+                            kodeService : obj[index].kodeService, 
+                            namaPelanggan : obj[index].namaPelanggan, 
+                            waktu : obj[index].waktu, 
+                            total : obj[index].total
+                        });          
+                    }
+                });
+                setTimeout(setDataTable, 100);
+            }
         }
     }
 });
-//inisialisasi data transaksi awal
+
     
 function setDataTable(){
     $('#tblDataTransaksi').DataTable();
+}
+
+function resetTable(){
+    $('#tblDataTransaksi').dataTable().fnClearTable();
+    $('#tblDataTransaksi').dataTable().fnDestroy();
+}
+
+function isiTanggal(){
+iziToast.warning({
+    title: "Isi tanggal..",
+    message: "Harap isi tanggal ... !!",
+    position: "topCenter",
+    timeOut: false,
+    pauseOnHover: false,
+    onClosed: function() {}
+  });
 }

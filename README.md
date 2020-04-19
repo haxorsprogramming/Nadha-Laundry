@@ -61,6 +61,8 @@ A : Untuk basic member, hanya fitur default yg didapatkan. Untuk platinum member
 Q : Berapa biaya berlangganan member platinum?<br/>
 A : Untuk biaya langganan, dikenakan biaya Rp. 20.000 perbulan.
 
+Q : Saya ingin membantu pengembangan aplikasi ini? Apakah bisa?<br/>
+A : Tentu, jika anda seorang developer & berminat membantu pengembangan aplikasi ini anda dapat bergabung ke tim kami.
 
 <hr/>
 

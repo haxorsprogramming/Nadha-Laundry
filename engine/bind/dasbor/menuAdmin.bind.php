@@ -9,7 +9,7 @@
       <li><a class="nav-link" href="#!" v-on:click='produkServiceAtc'>Produk & Service</a></li>
       <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
       <li><a class="nav-link" href="#!" v-on:click='levelUserAtc'>Level User</a></li>
-      <li><a class="nav-link" href="#!">Pengeluaran Laundry</a></li>
+      <li><a class="nav-link" href="#!" v-on:click='pengeluaranLaundryAtc'>Pengeluaran Laundry</a></li>
     </ul>
   </li>
   <li><a class="nav-link " href="#!" v-on:click='dataTransaksiAtc'><i class="fas fa-newspaper"></i> <span>Data Transaksi</span></a></li>
@@ -19,7 +19,7 @@
       <li><a class="nav-link" href="#!" v-on:click=''>Laporan Transaksi</a></li>
       <li><a class="nav-link" href="#!" v-on:click=''>Laporan Pendapatan</a></li>
       <li><a class="nav-link" href="#!" v-on:click=''>Statistik Laundry</a></li>
-      <li><a class="nav-link" href="#!">Pengeluaran Laundry</a></li>
+      
     </ul>
   </li>
   <li class="dropdown">
