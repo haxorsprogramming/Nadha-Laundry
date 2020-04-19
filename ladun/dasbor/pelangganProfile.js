@@ -1,3 +1,4 @@
+
 var divProfilePelanggan = new Vue({
   el: '#divProfilePelanggan',
   data: {
@@ -9,14 +10,16 @@ var divProfilePelanggan = new Vue({
       $('.btnEditProfilePelanggan').hide();
     },
     updateDetailDipilih : function(kdService){
-      window.alert(kdService);
       document.getElementById('txtKode').innerHTML = kdService;
     }
   }
 });
 
 
- $(".modal-1").fireModal({
-  body: $("#modal-login-part"),
-  title: ":("
- });
+$(document).ready(function(){
+  $("#demo01").animatedModal();
+});
+//  $(".modal-1").fireModal({
+//   body: $("#modal-login-part"),
+//   title: ":("
+//  });

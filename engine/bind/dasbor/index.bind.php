@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/wl.theme.default.min.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/datatables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/style.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/components.css">
@@ -106,9 +106,10 @@
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/datatables.min.js"></script>
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/iziToast.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-     <script src='https://unpkg.com/micromodal/dist/micromodal.min.js'></script>
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js'></script>
    <!-- Template JS File -->
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/modalJs/animatedModal.js"></script>
 
    <!-- Page Specific JS File -->
 

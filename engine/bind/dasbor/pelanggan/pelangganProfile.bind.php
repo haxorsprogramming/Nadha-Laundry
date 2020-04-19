@@ -66,7 +66,7 @@ if($terakhirLaundry == ''){
                     </div>
                     </div>
                     <div class="card-footer text-center">
-                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left btnEditProfilePelanggan" v-on:click='editProfileAtc("<?=$usernameParam; ?>")'><i class='fas fa-edit'></i> Edit profile pelanggan</a>
+                      <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='editProfileAtc("<?=$usernameParam; ?>")'><i class='fas fa-edit'></i> Edit profile pelanggan</a>
                     </div>
                   </div>
 </div>
@@ -75,7 +75,7 @@ if($terakhirLaundry == ''){
   <div class="card-header">
   <h4 class="d-inline">History cucian pelanggan {{kdService}}</h4>
       <div class="card-header-action">
-        <a href="#!" class="btn btn-primary">Lihat semua</a>
+      <a id="demo01" href="#animatedModal">DEMO01</a>
       </div>
   </div>
   <div class="card-body">
@@ -98,41 +98,19 @@ if($terakhirLaundry == ''){
   </div>
 </div>
 </div>
-
-<form class="modal-part" id="modal-login-part">
-          <p>This login form is taken from elements with <code id='txtKode'></code> id.</p>
-          <div class="form-group">
-            <label>Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-envelope"></i>
-                </div>
-              </div>
-              <input type="text" class="form-control" placeholder="Email" name="email">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-lock"></i>
-                </div>
-              </div>
-              <input type="password" class="form-control" placeholder="Password" name="password">
-            </div>
-          </div>
-          <div class="form-group mb-0">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-              <label class="custom-control-label" for="remember-me">Remember Me</label>
-            </div>
-          </div>
-        </form>
-
 </div>
 
+<!--DEMO01-->
+<div id="animatedModal">
+        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+        <div class="close-animatedModal"> 
+            CLOSE MODAL
+        </div>
+            
+        <div class="modal-content">
+                  <!--Your modal content goes here-->
+        </div>
+    </div>
 
 
 <script src="<?=STYLEBASE; ?>/dasbor/pelangganProfile.js"></script>
