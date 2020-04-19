@@ -54,7 +54,11 @@ class Pelanggan extends Route{
  
     public function pelangganProfile()
     {
-      $data['username'] = $this -> inp('username');
+      $username = $this -> inp('username');
+      $data['username'] = $username;
+      //history cucian 
+      $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE pelanggan='$username';");
+      $data['historyCucian'] = $this -> st -> queryAll();
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
     }
 

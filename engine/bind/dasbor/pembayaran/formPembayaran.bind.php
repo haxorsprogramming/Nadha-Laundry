@@ -17,7 +17,7 @@ $bulan = date("m");
 $hari = date("d");
 $kodeTransaksi = "INV-".$tahun."-".$bulan."-".$hari."-".substr($kd['kode_service'], 0, 4);
 ?>
-<div class="container" id='divFormPembayaran'>
+<div id='divFormPembayaran'>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-12">
     <div class='card card-primary' style="border-radius:3px; padding:12px;">

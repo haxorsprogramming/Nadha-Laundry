@@ -4,6 +4,12 @@ var divBeranda = new Vue({
         caption : 'Berikut ada data statistik anda',
         jlhPelanggan : '',
         jlhCucian : ''
+    },
+    methods : {
+        pelangganProfile : function(username){
+            $('#divUtama').html("Memuat ...");
+            $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+        }
     }
 });
 

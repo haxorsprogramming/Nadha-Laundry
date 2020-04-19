@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/wl.theme.default.min.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/datatables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-
+  
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/style.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/components.css">
@@ -106,6 +106,7 @@
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/datatables.min.js"></script>
      <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/iziToast.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+     <script src='https://unpkg.com/micromodal/dist/micromodal.min.js'></script>
    <!-- Template JS File -->
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
 

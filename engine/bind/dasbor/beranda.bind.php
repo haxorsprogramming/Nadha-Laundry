@@ -6,6 +6,7 @@ $rentangSeminggu = $this -> jarakTanggal('2020-04-11', '2020-04-19');
 $dibalik = array_reverse($rentangSeminggu);
 ?>
 <div id='divBeranda'>
+<div>
 <!-- Statistik Bar -->
 <div class='row'>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -81,7 +82,7 @@ $dibalik = array_reverse($rentangSeminggu);
                 <div class="card-header">
                   <h4>Rekap transksi laundry seminggu terakhir</h4>
                   <div class="card-header-action">
-                    <a href="#" class="btn btn-primary">Detail</a>
+                    <a href="#!" class="btn btn-primary">Detail</a>
                   </div>
                 </div>
                 <div class="card-body">
@@ -121,7 +122,7 @@ $dibalik = array_reverse($rentangSeminggu);
                 <div class="card-header">
                   <h4 class="d-inline">Ranking Pelanggan</h4>
                   <div class="card-header-action">
-                    <a href="#" class="btn btn-primary">Semua</a>
+                    <a href="#!" class="btn btn-primary">Semua</a>
                   </div>
                 </div>
                 <div class="card-body">
@@ -138,8 +139,8 @@ $dibalik = array_reverse($rentangSeminggu);
                       
                       <img class="mr-3 rounded-circle" width="50" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" alt="avatar">
                       <div class="media-body">
-                        <div class="badge badge-pill badge-primary mb-1 float-right"><?=$levelPelanggan; ?></div>
-                        <h6 class="media-title"><a href="#!"><?=$rp['nama_lengkap']; ?></a></h6>
+                        <div class="float-right"><?=$levelPelanggan; ?></div>
+                        <h6 class="media-title"><a href="#!" v-on:click="pelangganProfile('<?=$username;?>')"><?=$rp['nama_lengkap']; ?></a></h6>
                         <div class="text-small text-muted"><?=$jlhTransaksi; ?> Total Cuci <div class="bullet"></div> <span class="text-primary"><?=$rp['poin_real'] ;?> Poin</span></div>
                       </div>
                     </li>
@@ -148,5 +149,6 @@ $dibalik = array_reverse($rentangSeminggu);
                 </div>
               </div>
         </div>
+</div>
 </div>
 <script src="<?=STYLEBASE; ?>/dasbor/beranda.js"></script>

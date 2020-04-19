@@ -1,4 +1,4 @@
-<div class="container" id='divDataTransaksi'>
+<div id='divDataTransaksi'>
   <div style='margin-bottom:15px;'>
   </div>
   <div class="row">

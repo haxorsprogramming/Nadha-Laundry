@@ -6,9 +6,10 @@ $this -> st -> query("SELECT * FROM tbl_level_user;");
 $levelUser = $this -> st -> queryAll();
 ?>
 <div id='divFormUpdateProfilePelanggan'>
+      <span id='txtUsername' style="display: none;"><?=$pelanggan['username']; ?></span>
 <div class="form-group">
       <label>Username</label>
-      <input type="text" class="form-control" disabled value="<?=$pelanggan['username']; ?>"  id='txtUsername'>
+      <input type="text" class="form-control" disabled value="<?=$pelanggan['username']; ?>">
 </div>
 <div class="form-group">
       <label>Nama Pelanggan</label>
@@ -40,7 +41,8 @@ $levelUser = $this -> st -> queryAll();
      </select>
 </div>
 <div class="form-group" style="text-align:center;">
-<a href='#!' class="btn btn-lg btn-primary" v-on:click='prosesUpdateProfile' id='btnSimpan'>Simpan</a>
+<a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='prosesUpdateProfile' id='btnSimpan'><i class='fas fa-save'></i> Simpan</a>&nbsp;&nbsp;
+<a href='#!' class="btn btn-lg btn-primary btn-icon icon-left" v-on:click='kembali'><i class='fas fa-reply'></i> Kembali</a>
 </div>
 </div>
 <script src="<?=STYLEBASE; ?>/dasbor/formEditProfilePelanggan.js"></script>

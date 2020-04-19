@@ -15,7 +15,10 @@ var divOperasi = new Vue({
 var divTabelPelanggan = new Vue({
   el : '#divTabelPelanggan',
   methods : {
-
+    pelangganProfile : function(username){
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+  }
   }
 });
 

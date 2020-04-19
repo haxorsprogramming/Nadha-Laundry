@@ -16,7 +16,7 @@ class Dasbor extends Route{
 
     public function beranda()
     {
-        $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY poin_real DESC LIMIT 0, 5;");
+        $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY poin_real DESC LIMIT 0, 6;");
         $data['qRankPelanggan'] = $this -> st -> queryAll();
         //cari jumlah transaksi harian 
         $waktu = $this -> waktu();

@@ -3,42 +3,38 @@ var divFormUpdateProfilePelanggan = new Vue({
   data: {},
   methods: {
     prosesUpdateProfile: function() {
-      let username = document.getElementById('txtUsername').value;
+      let username = document.getElementById('txtUsername').innerHTML;
       let namaLengkap = document.getElementById('txtNama').value;
       let alamat = document.getElementById('txtAlamat').value;
       let hp = document.getElementById('txtHp').value;
       let email = document.getElementById('txtEmail').value;
       let levelUser = document.getElementById('txtLevelUser').value;
       disabledForm();
-      $.post('pelanggan/proEditProfilePelanggan', {
-        'username': username,
-        'namaLengkap': namaLengkap,
-        'alamat': alamat,
-        'nomorHandphone': hp,
-        'email': email,
-        'levelUser': levelUser
-      }, function(data) {
+      $.post('pelanggan/proEditProfilePelanggan', {'username': username,'namaLengkap': namaLengkap,'alamat': alamat,'nomorHandphone': hp,'email': email,'levelUser': levelUser}, function(data){
         suksesUpdate();
-        console.log(data);
       });
+    },
+    kembali : function(){
+      let username = document.getElementById('txtUsername').innerHTML;
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
     }
   }
 });
 
 function suksesUpdate() {
-  let username = document.getElementById('txtUsername').value;
+  
   iziToast.info({
-    title: "Sukses ..",
-    message: "Data pelanggan berhasil di diupdate, kembali ke profile pelanggan",
+    title: "Update profile ..",
+    message: "Sedang mengupdate data pelanggan, akan kembali ke profile setelah proses selesai",
     position: "topCenter",
     timeOut: 300,
     pauseOnHover: false,
     onClosed: function() {
+      let username = document.getElementById('txtUsername').innerHTML;
       divJudul.judulForm = "Detail Pelanggan";
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('pelanggan/pelangganProfile', {
-        'username': username
-      });
+      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
     }
   });
 }
