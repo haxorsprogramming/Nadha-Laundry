@@ -31,6 +31,7 @@ class Pelanggan extends Route{
       $data['levelUser'] = $this -> inp('levelUser');
       $usernameParam = $this -> inp('username');
       $usernameFilter = str_replace(' ', '',$usernameParam);
+      $waktu = $this -> waktu();
       //cek apakah username sudah terdaftar
       $this -> st -> query("SELECT id FROM tbl_pelanggan WHERE username='$usernameFilter';");
       $jlhUser = $this -> st -> numRow();
@@ -38,7 +39,7 @@ class Pelanggan extends Route{
       if($jlhUser > 0){
         $dataRes['status'] = 'error';
       }else{
-        $query = "INSERT INTO tbl_pelanggan VALUES (null, :username, :nama_lengkap, :alamat, :hp, :email, :level, 0, 0, '1');";
+        $query = "INSERT INTO tbl_pelanggan VALUES (null, :username, :nama_lengkap, :alamat, :hp, :email, :level, 0, 0, '1','$waktu');";
         $this -> st -> query($query);
         $this -> st -> querySet('username',$usernameFilter);
         $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
@@ -87,7 +88,11 @@ class Pelanggan extends Route{
       $this -> st -> queryRun();
       $dataRes['status'] = 'sukses';
       $this -> toJson($dataRes);
-      // $this -> toJson($data);
+    }
+
+    public function historyCucianPelanggan($username)
+    {
+      echo $username;
     }
 
 }

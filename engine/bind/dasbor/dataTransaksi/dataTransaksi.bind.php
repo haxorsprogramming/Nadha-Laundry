@@ -2,39 +2,34 @@
   <div style='margin-bottom:15px;'>
   </div>
   <div class="row">
+  <div>
+  <h5>Filter tanggal</h5>
+    <div class="form-inline" style="margin-bottom: 20px;">
+                      <input type="date" class="form-control" id='tglAwal'>&nbsp;sampai&nbsp;
+                      <input type="date" class="form-control" id='tglAkhir'>&nbsp;&nbsp;
+                      <a href='#!' class="btn btn-sm btn-primary" v-on:click='tampilkanAtc'>Tampilkan</a>
+                      </div>
+                    </div>
+  </div>
   <table id='tblDataTransaksi' class='table table-hover'>
       <thead>
         <tr>
           <th>Kode Invoice</th>
           <th>Pelanggan</th>
-          <th>Waktu</th>
+          <th>Waktu Transaksi</th>
           <th>Total Harga</th>
-          <th>Aksi</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-          <?php
-            foreach($data['dataTransaksi'] as $dt):
-                $kdTransaksi = $dt['kd_pembayaran'];
-                $kdService = $dt['kd_kartu'];
-                $waktu = $dt['waktu'];
-                $totalHarga = $dt['total_final'];
-                //cari nama pelanggan
-                $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
-                $qUsernamePelanggan = $this -> st -> querySingle();
-                $username = $qUsernamePelanggan['pelanggan'];
-                $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
-                $qNamaPelanggan = $this -> st -> querySingle();
-                $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
-          ?>
-        <tr>
-          <td><a href='#!' v-on:click='detailTransaksiAtc("<?=$kdTransaksi; ?>")'><?=$kdTransaksi; ?></a></td>
-          <td><?=$namaPelanggan; ?></td>
-          <td><?=$waktu; ?></td>
-          <td>Rp. <?=number_format($totalHarga); ?></td>
-          <td><a href='#!' class="btn btn-sm btn-icon icon-left btn-primary"><i class='fas fa-print'></i> Cetak</a></td>
+        <tr v-for='dt in dataTransaksi'>
+          <td><a href='#!' v-on:click='detailTransaksiAtc(dt.invoice)'>{{dt.invoice}}</a></td>
+          <td>{{dt.namaPelanggan}}</td>
+          <td>{{dt.waktu}}</td>
+          <td>Rp. {{ Number(dt.total).toLocaleString() }}</td>
+          <td><a :href="'dataTransaksi/cetak/'+dt.invoice" target="new" class="btn btn-sm btn-icon icon-left btn-primary"><i class='fas fa-print'></i> Cetak Invoice</a></td>
         </tr>
-<?php endforeach; ?>   
+        <!-- href='dataTransaksi/cetak/ -->
       </tbody>
   </table>
   </div>

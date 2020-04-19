@@ -1,4 +1,3 @@
-
 var divProfilePelanggan = new Vue({
   el: '#divProfilePelanggan',
   data: {
@@ -10,16 +9,14 @@ var divProfilePelanggan = new Vue({
       $('.btnEditProfilePelanggan').hide();
     },
     updateDetailDipilih : function(kdService){
-      document.getElementById('txtKode').innerHTML = kdService;
+      divJudul.judulForm = "Detail kartu laundry";
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('kartuLaundry/detailKartuLaundry/'+kdService);
+    },
+    historyCucianPelanggan : function(username){
+      divJudul.judulForm = "History cucian pelanggan";
+      $('#divUtama').html("Memuat ...");
+      $('#divUtama').load('pelanggan/historyCucianPelanggan/'+username);
     }
   }
 });
-
-
-$(document).ready(function(){
-  $("#demo01").animatedModal();
-});
-//  $(".modal-1").fireModal({
-//   body: $("#modal-login-part"),
-//   title: ":("
-//  });

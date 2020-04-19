@@ -5,6 +5,7 @@ $this -> st -> query("SELECT * FROM tbl_pelanggan WHERE username='$usernameParam
 $pelanggan = $this -> st -> querySingle();
 $poin = $pelanggan['poin_real'];
 $level = $pelanggan['level'];
+$waktuJoin = $pelanggan['waktu_join'];
 //total laundry 
 $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$usernameParam';");
 $jlhTransaksi = $this -> st -> numRow();
@@ -56,7 +57,7 @@ if($terakhirLaundry == ''){
                         </tr>
                         <tr>
                           <td>Tanggal Join</td>
-                          <td>tanggal_join</td>
+                          <td><?=$waktuJoin; ?></td>
                         </tr>
                         <tr>
                           <td>Terakhir Laundry</td>
@@ -73,9 +74,9 @@ if($terakhirLaundry == ''){
 <div class="col-lg-6 col-md-6 col-12">
 <div class="card card-warning">
   <div class="card-header">
-  <h4 class="d-inline">History cucian pelanggan {{kdService}}</h4>
+  <h4 class="d-inline">History cucian pelanggan</h4>
       <div class="card-header-action">
-      <a id="demo01" href="#animatedModal">DEMO01</a>
+      <a href='#!' class="btn btn-sm btn-primary" v-on:click='historyCucianPelanggan("<?=$usernameParam; ?>")'>Lihat semua</a>
       </div>
   </div>
   <div class="card-body">
@@ -90,7 +91,7 @@ if($terakhirLaundry == ''){
     ?>
     <tr>
       <td><?=$kodeService; ?></td><td><?=$waktu; ?></td><td></td>
-      <td><a href='#!' class="btn btn-sm btn-info modal-1 btn-icon icon-left modal-1" v-on:click='updateDetailDipilih("<?=$kodeService; ?>")'>
+      <td><a href='#!' class="btn btn-sm btn-info btn-icon icon-left" v-on:click='updateDetailDipilih("<?=$kodeService; ?>")'>
       <i class='fas fa-search'></i> Detail</a></td>
     </tr>
     <?php endforeach; ?>
@@ -99,18 +100,5 @@ if($terakhirLaundry == ''){
 </div>
 </div>
 </div>
-
-<!--DEMO01-->
-<div id="animatedModal">
-        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-        <div class="close-animatedModal"> 
-            CLOSE MODAL
-        </div>
-            
-        <div class="modal-content">
-                  <!--Your modal content goes here-->
-        </div>
-    </div>
-
 
 <script src="<?=STYLEBASE; ?>/dasbor/pelangganProfile.js"></script>
