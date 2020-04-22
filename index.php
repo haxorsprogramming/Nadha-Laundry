@@ -60,14 +60,9 @@ class exportAll{
 	*/
 	private $state = "";
 
-	function exPage()
+	function exPage($id)
 	{
-		$this -> ins ('setPage') -> data($page);
-		$this -> ins ('setProps') -> data($props);
-		$this -> ins ('setRoute') -> data($route);
-		$this -> ins ('setBind') -> data($bind);
-		$this -> ins ('setState') -> data($state);
-
+		return $id;
 	}
 
 }
