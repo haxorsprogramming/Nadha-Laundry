@@ -7,9 +7,11 @@ class dataTransaksi extends Route{
     $this -> st = new state;
     
     }
-
+  
     public function index()
-    {     
+    {  
+       $bWaktu = date('Y-m-d');
+       $data['waktu'] = $bWaktu;
        $this -> st -> query("SELECT * FROM tbl_pembayaran;");
        $data['dataTransaksi'] = $this -> st -> queryAll();
        $this -> bind('dasbor/dataTransaksi/dataTransaksi', $data);

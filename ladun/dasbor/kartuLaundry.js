@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#tblKartuLaundry').DataTable({"ordering":false});
+  $('#tblKartuLaundry').DataTable({"order": [[ 3, "desc" ]]});
 });
 
 var divKartuLaundry = new Vue({
