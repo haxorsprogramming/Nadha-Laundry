@@ -33,6 +33,15 @@ class pengeluaranLaundry extends Route{
         $qSimpan = "INSERT INTO tbl_pengeluaran VALUES(null, '$kd', '$nama', '$deks', '$tanggal', '$jumlah', 'admin');";
         $this -> st -> query($qSimpan);
         $this -> st -> queryRun();
+        //simpan data ke arus kas
+        $kdKas = $this -> rnstr(15);
+        $asal = 'pengeluaran_laundry';
+        $arus = 'keluar';
+        $waktuTemp = $this -> waktu();
+        $operator = 'admin';
+        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$asal', '$arus', '$jumlah', '$waktuTemp', '$operator');";
+        $this -> st -> query($qSimpanKeArusKas);
+        $this -> st -> queryRun();
         $data['status'] = 'sukses';
         $this -> toJson($data);
     }
