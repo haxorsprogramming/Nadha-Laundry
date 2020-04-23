@@ -74,6 +74,9 @@ iziToast.warning({
     position: "topCenter",
     timeOut: false,
     pauseOnHover: false,
-    onClosed: function() {}
+    onClosed: function() {
+        $('#divUtama').html("Memuat ...");
+        $('#divUtama').load('pengeluaranLaundry/pengeluaranLaundry');
+    }
   });
 }
