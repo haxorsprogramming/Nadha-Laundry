@@ -14,6 +14,14 @@ const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
 
+$(document).ready(function () {
+  $.fakeLoader({
+      timeToHide:3200,
+      bgColor: '#20c997',
+      spinner:"spinner1"
+  });
+});
+
 // fungsi pertama kali dijalankan
 renderMenu(beranda);
 

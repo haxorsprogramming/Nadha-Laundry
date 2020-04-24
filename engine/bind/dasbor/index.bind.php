@@ -18,9 +18,7 @@
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/datatables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
-  
-  
-  
+  <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/fakeLoader.min.css">
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/style.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/components.css">
@@ -29,6 +27,7 @@
  </head>
 
  <body style="font-family: 'Nunito Sans';">
+ <div class="fakeLoader"></div>
    <div id="app">
      <div class="main-wrapper">
        <div class="navbar-bg"  style='background-color:#0ab59e;'></div>
@@ -114,6 +113,7 @@
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
    <script src="<?=STYLEBASE; ?>/dasbor/modalJs/animatedModal.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+   <script src="<?=STYLEBASE; ?>/dasbor/fakeLoader.min.js"></script>
    <!-- Page Specific JS File -->
 
    <script src="<?=STYLEBASE; ?>/dasbor/index.js"></script>
