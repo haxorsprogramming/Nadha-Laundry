@@ -49,16 +49,29 @@ var divUtama = new Vue({
       let diskonLevel = document.getElementById("txtDiskonLevel").innerHTML;
       let tunai = this.tunai;
 
-      $('#btnProsesPembayaran').hide();
-      
-      $.post("pembayaran/prosesPembayaran",{kdPromo:kodePromoSend, kdTransaksi:kdTransaksi, kdService:kdService, diskonLevel:diskonLevel, tunai:tunai},function(data){
-          let obj = JSON.parse(data);
-          if (obj.status === "sukses") {
-            suksesBayar(kdTransaksi);
-          } else {
-            window.alert("Gagal simpan");
-          }
-        });
+      Swal.fire({
+        title: "Konfirmasi?",
+        text: "Proses pembayaran cucian?..",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya",
+        cancelButtonText: "Batal",
+      }).then((result) => {
+        if (result.value) {
+          $('#btnProsesPembayaran').hide();
+        $.post("pembayaran/prosesPembayaran",{kdPromo:kodePromoSend, kdTransaksi:kdTransaksi, kdService:kdService, diskonLevel:diskonLevel, tunai:tunai},function(data){
+            let obj = JSON.parse(data);
+            if (obj.status === "sukses") {
+              suksesBayar(kdTransaksi);
+            } else {
+              window.alert("Gagal simpan");
+            }
+          });
+        }
+      });
+        
     },
     setTunai : function(){
       let tunai = parseInt(this.tunai);

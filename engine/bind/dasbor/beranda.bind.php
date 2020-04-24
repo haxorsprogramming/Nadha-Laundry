@@ -1,8 +1,9 @@
 <?php
 $rankPelanggan = $data['qRankPelanggan'];
 //buat range tanggal 
-$waktuNow = $this -> waktu();
-$rentangSeminggu = $this -> jarakTanggal('2020-04-11', '2020-04-19');
+$waktuNow = date('Y-m-d');
+$mingguDepan = date('Y-m-d', strtotime($waktuNow. ' - 7 days'));
+$rentangSeminggu = $this -> jarakTanggal($mingguDepan, $waktuNow);
 $dibalik = array_reverse($rentangSeminggu);
 ?>
 <div id='divBeranda'>
@@ -17,7 +18,7 @@ $dibalik = array_reverse($rentangSeminggu);
         <div class="card-wrap">
           <div class="card-header">
       <h3 id='capTotalUji'>{{jlhCucian}}</h3>
-            <h4>Cucian</h4>
+            <h4>Cucian <?=$waktuNow; ?></h4>
           </div>
           <div class="card-body">
 

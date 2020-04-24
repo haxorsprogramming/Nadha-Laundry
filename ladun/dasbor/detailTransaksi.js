@@ -16,6 +16,11 @@ var divDetailTransaksi = new Vue({
     methods: {
         cetakAtc : function(){
             window.location.assign('dataTransaksi/cetak');
+        },
+        kembaliAtc : function(){
+            document.documentElement.scrollTop = 0;
+            renderMenu(dataTransaksi);
+            divJudul.judulForm = "Data Transaksi";
         }
     }
 });
@@ -31,7 +36,6 @@ $.post('utility/getInfoPelanggan',{'kodeService':kodeService}, function(data){
 
 $.post('utility/getInfoLaundry', function(data){
     let obj = JSON.parse(data);
-    console.log(obj);
     divDetailTransaksi.namaLaundry = obj.namaLaundry;
     divDetailTransaksi.alamatLaundry = obj.alamatLaundry
     divDetailTransaksi.kotaLaundry = obj.kotaLaundry;

@@ -59,7 +59,7 @@ var divDataTransaksi = new Vue({
 
     
 function setDataTable(){
-    $('#tblDataTransaksi').DataTable({"order": [[ 3, "desc" ]]});
+    $('#tblDataTransaksi').DataTable({"order": [[ 2, "desc" ]]});
 }
 
 function resetTable(){
