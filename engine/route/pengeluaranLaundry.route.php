@@ -39,7 +39,7 @@ class pengeluaranLaundry extends Route{
         $arus = 'keluar';
         $waktuTemp = $this -> waktu();
         $operator = 'admin';
-        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$asal', '$arus', '$jumlah', '$waktuTemp', '$operator');";
+        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$kd', '$asal', '$arus', '$jumlah', '$waktuTemp', '$operator');";
         $this -> st -> query($qSimpanKeArusKas);
         $this -> st -> queryRun();
         $data['status'] = 'sukses';
@@ -64,4 +64,20 @@ class pengeluaranLaundry extends Route{
         }
         $this -> toJson($dbdata);
     }
+
+    public function hapusDataPengeluaran()
+    {
+        $kdPengeluaran = $this -> inp('kdPengeluaran');
+        //hapus dari tabel pembayaran
+        $qHapusPembayaran = "DELETE FROM tbl_pengeluaran WHERE kd_pengeluaran='$kdPengeluaran';";
+        $this -> st -> query($qHapusPembayaran);
+        $this -> st -> queryRun();
+        //hapus dari tabel arus kas
+        $qHapusArusKas = "DELETE FROM tbl_arus_kas WHERE kd_tracking='$kdPengeluaran';";
+        $this -> st -> query($qHapusArusKas);
+        $this -> st -> queryRun();
+        $data['status'] = 'sukses';
+        $this -> toJson($data);
+    }
+
 }

@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/datatables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+  
+  
+  
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/style.css">
   <link rel="stylesheet" href="<?=STYLEBASE; ?>/dasbor/stisla/css/components.css">
@@ -110,7 +113,7 @@
    <!-- Template JS File -->
    <script src="<?=STYLEBASE; ?>/dasbor/stisla/js/scripts.js"></script>
    <script src="<?=STYLEBASE; ?>/dasbor/modalJs/animatedModal.js"></script>
-
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
    <!-- Page Specific JS File -->
 
    <script src="<?=STYLEBASE; ?>/dasbor/index.js"></script>

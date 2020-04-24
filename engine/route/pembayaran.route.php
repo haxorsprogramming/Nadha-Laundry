@@ -106,7 +106,7 @@ class pembayaran extends Route{
         $arus = 'masuk';
         $waktuTemp = $this -> waktu();
         $operator = 'admin';
-        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$asal', '$arus', '$hargaAfterFiskonPromo', '$waktuTemp', '$operator');";
+        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$kdTransaksi', '$asal', '$arus', '$hargaAfterFiskonPromo', '$waktuTemp', '$operator');";
         $this -> st -> query($qSimpanKeArusKas);
         $this -> st -> queryRun();
         //update status pembayaran di kartu laundry
@@ -124,7 +124,7 @@ class pembayaran extends Route{
         $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
         $qBonusPointCuci = $this -> st -> querySingle();
         $bonusPointCuci = $qBonusPointCuci['bonus_point_cuci'];
-        //ambil point pelanggan lama 
+        //ambil point lama pelanggan 
         $this -> st -> query("SELECT poin_real FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
         $qPoinReal = $this -> st -> querySingle();
         $poinReal = $qPoinReal['poin_real'];
