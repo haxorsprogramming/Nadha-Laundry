@@ -10,6 +10,8 @@ const laundryRoom = 'laundryRoom';
 const detailCucian = 'laundryRoom/detailCucian';
 const dataTransaksi = 'dataTransaksi';
 const pengeluaranLaundry = 'pengeluaranLaundry';
+const manajemenUser = 'manajemenUser';
+
 const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
@@ -80,6 +82,11 @@ var divMenu = new Vue({
     {
       renderMenu(pengeluaranLaundry);
       divJudul.judulForm = "Pengeluaran Laundry";
+    },
+    manajemenUserAtc : function()
+    {
+      renderMenu(manajemenUser);
+      divJudul.judulForm = "Manajemen User";
     }
   }
 });
