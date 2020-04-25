@@ -5,7 +5,8 @@ var divTabelPelanggan = new Vue({
     },
     methods : {
         tambahUserAtc : function (){
-            window.alert("halo");
+            divJudul.judulForm = "Tambah user baru";
+            $('#divUtama').load('manajemenUser/formTambahUser');
         },
         hapusAtc : function(username){
             konfirmasiHapus(username);

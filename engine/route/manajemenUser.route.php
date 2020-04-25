@@ -27,6 +27,11 @@ class manajemenUser extends Route{
        $this -> toJson($dbdata);
    }
 
+   public function formTambahUser()
+   {
+       $this -> bind('dasbor/manajemenUser/formTambahUser');
+   }
+
    public function hapusUser()
    {
        $username = $this -> inp('username');
@@ -35,6 +40,20 @@ class manajemenUser extends Route{
        $this -> st -> queryRun();
        $data['status'] = 'sukses';
        $this -> toJson($data);
+   }
+
+   public function prosesTambahUser()
+   {
+    // 'username':username, 'password':password, 'tipeUser':tipeUser
+        $username = $this -> inp('username');
+        $password = md5($this -> inp('password'));
+        $tipeUser = $this -> inp('tipeUser');
+        $waktu = $this -> waktu();
+        $qSimpanUser = "INSERT INTO tbl_user VALUES(null,'$username','$password','$waktu','$tipeUser','1');";
+        $this -> st -> query($qSimpanUser);
+        $this -> st -> queryRun();
+        $data['status'] = 'sukses';
+        $this -> toJson($data);
    }
 
 }
