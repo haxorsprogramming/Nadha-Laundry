@@ -14,11 +14,12 @@ class utility extends Route{
         // membuat halaman baru
         $pdf->AddPage();
         // setting jenis font yang akan digunakan
-        $pdf->SetFont('Arial','B',16);
+        $pdf->SetFont('Arial','B',14);
         // mencetak string 
-        $pdf->Cell(40,10,'Belajar Membuat Laporan PDF Dengan FPDF');
+        $pdf->Cell(30,10,'Belajar Membuat Laporan PDF Dengan FPDF');
         $pdf->Output();
     }
+    
 
     public function getInfoLaundry()
     {   
