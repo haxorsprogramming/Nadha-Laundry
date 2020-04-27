@@ -18,7 +18,7 @@ $dibalik = array_reverse($rentangSeminggu);
         <div class="card-wrap">
           <div class="card-header">
       <h3 id='capTotalUji'>{{jlhCucian}}</h3>
-            <h4>Cucian <?=$waktuNow; ?></h4>
+            <h4>Cucian</h4>
           </div>
           <div class="card-body">
 
