@@ -23,7 +23,7 @@ var divFormTambahUser = new Vue({
             }
         }
     }
-})
+});
 
 function prosesTambah(){
     $('#btnSimpan').addClass('disabled');
