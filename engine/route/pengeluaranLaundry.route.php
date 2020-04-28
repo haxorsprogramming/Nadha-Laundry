@@ -30,7 +30,8 @@ class pengeluaranLaundry extends Route{
         $deks = $this -> inp('deks');
         $jumlah = $this -> inp('jumlah');
         $tanggal = $this -> inp('tanggal');
-        $qSimpan = "INSERT INTO tbl_pengeluaran VALUES(null, '$kd', '$nama', '$deks', '$tanggal', '$jumlah', 'admin');";
+        $operator = $this -> getses('userSes');
+        $qSimpan = "INSERT INTO tbl_pengeluaran VALUES(null, '$kd', '$nama', '$deks', '$tanggal', '$jumlah', '$operator');";
         $this -> st -> query($qSimpan);
         $this -> st -> queryRun();
         //simpan data ke arus kas

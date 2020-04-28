@@ -32,7 +32,8 @@ class kartuLaundry extends Route{
       $kode = $this -> inp('kodeRegistrasi');
       $waktuMasuk = $this -> waktu();
       $pelanggan = $this -> inp('pelanggan');
-      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','admin', 'hold');";
+      $operator = $this -> getses('userSes');
+      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','$operator', 'hold');";
       $this -> st -> query($query);
       $this -> st -> querySet('kode_service', $kode);
       $this -> st -> querySet('pelanggan', $pelanggan);
@@ -45,12 +46,12 @@ class kartuLaundry extends Route{
       $acakHuruf_2 = str_shuffle($bHuruf);
       $acakAngka = str_shuffle($bAngka);
       $kodeRoom = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
-      $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', 'admin', 'ready');";
+      $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', '$operator', 'ready');";
       $this -> st -> query($queryToRoom);
       $this -> st -> queryRun();
       //update timeline 
       $kdTimeline = $this -> rnstr(15);
-      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kode','$waktuMasuk','admin','registrasi_cucian','Cucian di registrasi');";
+      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kode','$waktuMasuk','$operator','registrasi_cucian','Cucian di registrasi');";
       $this -> st -> query($qUpdateTimeline);
       $this -> st -> queryRun();
       $data['status'] = 'sukses';
@@ -70,12 +71,13 @@ class kartuLaundry extends Route{
     {
       $kdService = $this -> inp('kdService');
       $waktuPickUp = $this -> waktu();
+      $operator = $this -> getses('userSes');
       $qUpdatePickUp = "UPDATE tbl_kartu_laundry SET waktu_diambil='$waktuPickUp' WHERE kode_service='$kdService';";
       $this -> st -> query($qUpdatePickUp);
       $this -> st -> queryRun();
       //update timeline 
       $kdTimeline = $this -> rnstr(15);
-      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktuPickUp','admin','pick_up','Cucian telah diambil');";
+      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktuPickUp','$operator','pick_up','Cucian telah diambil');";
       $this -> st -> query($qUpdateTimeline);
       $this -> st -> queryRun();
       $data['status'] = 'sukses';

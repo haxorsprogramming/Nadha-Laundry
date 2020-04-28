@@ -41,6 +41,7 @@ class laundryRoom extends Route{
        $kdTemp = $this -> rnstr(10);
        $waktu = $this -> waktu();
        $total = $hargaAt * $qt;
+       $operator = $this -> getses('userSes');
        $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
        $this -> st -> query($queryToTemp);
        $this -> st -> queryRun();
@@ -55,7 +56,7 @@ class laundryRoom extends Route{
        $jlhTimeLine = $this -> st -> numRow();
        if($jlhTimeLine < 1){
         $kdTimeline = $this -> rnstr(15);
-        $qUpdateTimelineAwal = "INSERT INTO tbl_timeline VALUES(null,'$kdTimeline','$kdRegistrasi','$waktu','admin','mulai_cuci','Cucian masuk laundry room');";
+        $qUpdateTimelineAwal = "INSERT INTO tbl_timeline VALUES(null,'$kdTimeline','$kdRegistrasi','$waktu','$operator','mulai_cuci','Cucian masuk laundry room');";
         $this -> st -> query($qUpdateTimelineAwal);
         $this -> st -> queryRun();
        }else{ }
@@ -87,6 +88,7 @@ class laundryRoom extends Route{
    {
        $kdService = $this -> inp('kdService');
        $waktuSelesai = $this -> waktu();
+       $operator = $this -> getses('userSes');
        //update status cucian menjadi selesai 
        $qUpdate = "UPDATE tbl_laundry_room SET status='finish' WHERE kd_kartu='$kdService';";
        $this -> st -> query($qUpdate);
@@ -108,7 +110,7 @@ class laundryRoom extends Route{
        $this -> st -> queryRun();
        //update timeline 
        $kdTimeline = $this -> rnstr(15);
-       $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline', '$kdService', '$waktuSelesai','admin','cucian_selesai','Cucian telah selesai');";
+       $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline', '$kdService', '$waktuSelesai','$operator','cucian_selesai','Cucian telah selesai');";
        $this -> st -> query($qUpdateTimeline);
        $this -> st -> queryRun();
        $this -> toJson($kdService);
