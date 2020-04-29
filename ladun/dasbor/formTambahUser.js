@@ -43,11 +43,12 @@ function prosesTambah(){
 
 function errorIsi()
 {
-    Swal.fire(
-        'Error ..',
-        'Harap isi semua field !!!',
-        'error'
-      );
+    Swal.fire({
+        'title':'Error ..',
+        'text':'Harap isi semua field !!!',
+        'icon':'error',
+        'position':'top'
+    });
 }
 
 function suksesSimpan()
