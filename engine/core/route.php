@@ -1,19 +1,15 @@
 <?php
 session_start();
 date_default_timezone_set("Asia/Jakarta");
-/**
-* Uinsu Web Framework
-* Small, Fast, & Secure Web Framework
-* Based on PHP
-* Thanks for support
-* Muhammad Ikhsan, ST. M.Kom (Pembina Haxors Programming Club)
-* Muhammad Furqan, S.Si, Sc, M.Comp (Ketua Prodi Ilmu Komputer UINSU)
-*
-* @package	Uinsu Web Framework
-* @author	Haxors Programming Club
-* @link	https://haxors.or.id
-* @since	Version 3.5
-*/
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once 'lib/phpmailer/library/PHPMailer.php';
+require_once 'lib/phpmailer/library/Exception.php';
+require_once 'lib/phpmailer/library/OAuth.php';
+require_once 'lib/phpmailer/library/POP3.php';
+require_once 'lib/phpmailer/library/SMTP.php';
 
 class Route{
 
@@ -134,6 +130,39 @@ class Route{
         $current = strtotime( $step, $current );
       }
       return $dates;
+    }
+
+    public function kirimEmail($penerima,$judul,$isi)
+    {
+      $mail = new PHPMailer(true);  
+        // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'haxorsuinsu@gmail.com';                 // SMTP username
+            $mail->Password = 'python2019!';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('haxorsuinsu@gmail.com', 'Haxors Uinsu');
+            $mail->addAddress('alditha.forum@gmail.com', 'Aditia Darma Nst');     // Add a recipient
+            
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Status Cucian';
+            $mail->Body    = $isi;
+            $mail->AltBody = $isi;
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        }
     }
 
 }
