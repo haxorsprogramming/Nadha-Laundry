@@ -9,7 +9,7 @@ class pengaturanUmum extends Route{
 
     public function index()
     {
-        echo "<pre>route_pembayaran</pre>";
+        $this -> bind('dasbor/pengaturanUmum/pengaturanUmum');
     }
 
 }
