@@ -16,10 +16,12 @@ class pengaturanUmum extends Route{
 
     public function tesKirimPesan()
     {
-        $penerima = 'alditha.forum@gmail.com';
+        $penerima = 'dindananinda@gmail.com';
         $judul = 'Status Cucian';
-        $isi = 'Ini kirim email dari fungsi core route';
-        $this -> kirimEmail($penerima, $judul, $isi);
+        $isi = 'Halo dinda, cucian kamu telah selesai. Silahkan ambil di laundry ya .. :)';
+        $statusKirim = $this -> kirimEmail($penerima, $judul, $isi);
+
+        echo $statusKirim;
     }
 
 }
