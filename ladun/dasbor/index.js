@@ -12,6 +12,7 @@ const dataTransaksi = 'dataTransaksi';
 const pengeluaranLaundry = 'pengeluaranLaundry';
 const manajemenUser = 'manajemenUser';
 const arusKas = 'arusKas';
+const pengaturanUmum = 'pengaturanUmum';
 
 const d = new Date();
 const tahun = d.getFullYear();
@@ -93,6 +94,11 @@ var divMenu = new Vue({
     {
       renderMenu(arusKas);
       divJudul.judulForm = "Arus Kas";
+    },
+    pengaturanUmumAtc : function()
+    {
+      renderMenu(pengaturanUmum);
+      divJudul.judulForm = "Pengaturan Laundry";
     }
   }
 });
