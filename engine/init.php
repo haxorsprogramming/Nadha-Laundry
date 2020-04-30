@@ -10,3 +10,4 @@ require_once 'rule/base.php';
 require_once 'rule/database.php';
 require_once 'lib/fpdf/fpdf.php';
 require_once 'lib/dompdf/autoload.inc.php';
+
