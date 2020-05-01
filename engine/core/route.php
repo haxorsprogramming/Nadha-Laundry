@@ -132,6 +132,12 @@ class Route{
       return $dates;
     }
 
+    public function ambilHari($bulan)
+    {
+      $tahun = date('Y');
+      return cal_days_in_month(CAL_GREGORIAN,$bulan,2019);
+    }
+
     public function kirimEmail($penerima,$judul,$isi)
     {
         $mail = new PHPMailer(false);  

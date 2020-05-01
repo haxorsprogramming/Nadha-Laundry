@@ -17,10 +17,24 @@
                 <a href='#!' class="btn btn-sm btn-primary" v-on:click='tampilkanAtc'>Tampilkan</a>
             </div>
         </div>
-
     </div>
     <table id='tblLaporanTransaksi' class='table table-hover'>
-
+        <thead>
+            <tr>
+                <th id=''>Tanggal</th>
+                <th>Jumlah Transaksi</th>
+                <th>Nominal Transaksi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for='dl in dataList'>
+                <td>{{dl.tanggal}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
 </div>
 </div>
