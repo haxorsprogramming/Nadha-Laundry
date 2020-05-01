@@ -1,7 +1,5 @@
 <?php
 
-
-
 class pengaturanUmum extends Route{
 
    public function __construct()

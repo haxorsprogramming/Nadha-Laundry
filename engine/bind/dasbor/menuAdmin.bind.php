@@ -17,7 +17,7 @@
     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Laporan & Statistik</span></a>
     <ul class="dropdown-menu">
       <li><a class="nav-link" href="#!" v-on:click='arusKasAtc'>Arus Kas</a></li>
-      <li><a class="nav-link" href="#!" v-on:click=''>Laporan Transaksi</a></li>
+      <li><a class="nav-link" href="#!" v-on:click='laporanTransaksiAtc'>Laporan Transaksi</a></li>
       <li><a class="nav-link" href="#!" v-on:click=''>Laporan Pendapatan</a></li>
       <li><a class="nav-link" href="#!" v-on:click=''>Statistik Laundry</a></li>
       
