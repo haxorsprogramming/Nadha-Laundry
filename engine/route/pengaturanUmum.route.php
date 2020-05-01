@@ -14,6 +14,20 @@ class pengaturanUmum extends Route{
         $this -> bind('dasbor/pengaturanUmum/pengaturanUmum');
     }
 
+    public function getDataPengaturan()
+    {
+        $dbdata = array();
+        $this -> st -> query("SELECT * FROM tbl_setting_laundry;");
+        $data['dataPengaturan'] = $this -> st -> queryAll();
+        foreach($data['dataPengaturan'] as $dp){
+            $arrTemp['kdSetting'] = $dp['kd_setting'];
+            $arrTemp['caption'] = $dp['caption'];
+            $arrTemp['value'] = $dp['value'];
+            $dbdata[] = $arrTemp;
+        }
+        $this -> toJson($dbdata);
+    }
+
     public function tesKirimPesan()
     {
         $penerima = 'dindananinda@gmail.com';
