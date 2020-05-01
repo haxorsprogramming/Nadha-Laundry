@@ -5,7 +5,7 @@ var divPengaturanUmum = new Vue({
     },
     methods : {
         editAtc : function(kdSetting){
-            window.alert(kdSetting);
+            //fungsi ke route untuk edit pengaturan
         }
     }
 });
@@ -13,7 +13,7 @@ var divPengaturanUmum = new Vue({
 $.post('pengaturanUmum/getDataPengaturan', function(data){
     let obj = JSON.parse(data);
     obj.forEach(pushTableItem);
-
+    //render json object ke arrlist divPengaturanUmum.listPengeluaran
     function pushTableItem(item, index){
         divPengaturanUmum.listPengeluaran.push({kdSetting : obj[index].kdSetting, caption : obj[index].caption, value : obj[index].value});
     }
