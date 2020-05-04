@@ -78,4 +78,16 @@ class utility extends Route{
         $this -> toJson($data);
     }
 
+    public function getListBulan()
+    {
+        $dbdata = array();
+        $jlhBulan = 12;
+        $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        for ($x = 0; $x < $jlhBulan ; $x++) {
+            $arrTemp['bulan'] = $bulan[$x];
+            $dbdata[] = $arrTemp;
+        }
+        $this -> toJson($dbdata);
+    }
+
 }

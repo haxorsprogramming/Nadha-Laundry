@@ -3,7 +3,7 @@
     </div>
     <div class="row">
         <div>
-            <h5>Filter</h5>
+            <h5>Filter - <?=$data['bulanIndo']; ?> </h5>
             <div class="form-inline" style="margin-bottom: 20px;">
                 <select class="form-control">
                     <option>Bulan</option>
@@ -11,8 +11,12 @@
                 </select>
                 &nbsp;-&nbsp;
                 <select class="form-control">
-                    <option>Januari</option>
-                    <option>Februari</option>
+                    <option v-for='db in dataCapBulan'>{{db.bulan}}</option>
+                </select>&nbsp;&nbsp;
+                &nbsp;-&nbsp;
+                <select class="form-control">
+                    <option>2019</option>
+                    <option>2020</option>
                 </select>&nbsp;&nbsp;
                 <a href='#!' class="btn btn-sm btn-primary" v-on:click='tampilkanAtc'>Tampilkan</a>
             </div>
@@ -29,7 +33,7 @@
         </thead>
         <tbody>
             <tr v-for='dl in dataList'>
-                <td>{{dl.tanggal}}</td>
+                <td>{{dl.tanggal}} {{dl.bulanIndo}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

@@ -11,6 +11,7 @@ class laporanTransaksi extends Route{
     {
         $bulan = date('m');
         $data['bulanIni'] = $bulan;
+        $data['bulanIndo'] = $this -> bulanIndo($bulan);
         $data['jumlahHari'] = $this -> ambilHari($bulan);
         $this -> bind('dasbor/laporanTransaksi/laporanTransaksi', $data);
     }
@@ -19,9 +20,11 @@ class laporanTransaksi extends Route{
     {
         $dbdata = array();
         $bulan = date('m');
+        $bulanIndo = $this -> bulanIndo($bulan);
         $jlhDay = $this -> ambilHari($bulan);
         for ($x = 1; $x <= $jlhDay ; $x++) {
             $arrTemp['tanggal'] = $x;
+            $arrTemp['bulanIndo'] = $bulanIndo; 
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
