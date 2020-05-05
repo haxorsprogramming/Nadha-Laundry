@@ -14,7 +14,7 @@
                 <td>{{lp.kdSetting}}</td>
                 <td>{{lp.caption}}</td>
                 <td>{{lp.value}}</td>
-                <td><a href='#!' class="btn btn-sm btn-primary" v-on:click='editAtc(lp.kdSetting)'>Edit</a></td>
+                <td><a href='#!' class="btn btn-sm btn-primary" v-on:click='editAtc(lp.kdSetting)'><i class='far fa-edit'></i> Edit</a></td>
             </tr>
         </tbody>
     </table>

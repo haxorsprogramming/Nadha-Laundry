@@ -32,8 +32,13 @@ class pengaturanUmum extends Route{
         $judul = 'Status Cucian';
         $isi = 'Halo dinda, cucian kamu telah selesai. Silahkan ambil di laundry ya .. :)';
         $statusKirim = $this -> kirimEmail($penerima, $judul, $isi);
-
         echo $statusKirim;
+    }
+
+    public function formEditPengaturan($kdSetting)
+    {
+        $data['kdSetting']  = $kdSetting;
+        $this -> bind('dasbor/pengaturanUmum/formEditPengaturan', $data);
     }
 
 }

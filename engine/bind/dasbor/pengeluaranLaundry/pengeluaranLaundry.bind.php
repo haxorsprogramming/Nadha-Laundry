@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-</div>
+</div> 
 <script src="<?=STYLEBASE; ?>/dasbor/pengeluaranLaundry.js"></script> 

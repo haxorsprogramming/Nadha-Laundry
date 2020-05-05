@@ -6,6 +6,8 @@ var divPengaturanUmum = new Vue({
     methods : {
         editAtc : function(kdSetting){
             //fungsi ke route untuk edit pengaturan
+            $('#divUtama').load('pengaturanUmum/formEditPengaturan/'+kdSetting);
+            divJudul.judulForm = "Edit Pengaturan";
         }
     }
 });
