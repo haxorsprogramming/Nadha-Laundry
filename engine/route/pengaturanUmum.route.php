@@ -37,7 +37,8 @@ class pengaturanUmum extends Route{
 
     public function formEditPengaturan($kdSetting)
     {
-        $data['kdSetting']  = $kdSetting;
+        $this -> st -> query("SELECT * FROM tbl_setting_laundry WHERE kd_setting='$kdSetting';");
+        $data['dataSetting'] = $this -> st -> querySingle();
         $this -> bind('dasbor/pengaturanUmum/formEditPengaturan', $data);
     }
 
