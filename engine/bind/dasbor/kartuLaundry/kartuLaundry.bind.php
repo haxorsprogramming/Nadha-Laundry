@@ -66,8 +66,10 @@
 
           if($waktuDiambil == '0000-00-00 00:00:00'){
             $capStDiambil = 'Belum diambil';
+            $bgStatPi = '#3498db';
           }else{
             $capStDiambil = 'Sudah diambil';
+            $bgStatPi = '';
           }
         ?>
           <tr>
@@ -82,7 +84,7 @@
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
             <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-circle"></i> <?=$capSt; ?></span><br/>
-            <span style="color:#ecf0f1;"><i class="fas fa-circle"></i> <?=$capStDiambil; ?></span>
+            <span style="background-color:<?=$bgStatPi; ?>;"><i class="fas fa-circle"></i> <?=$capStDiambil; ?></span>
           
           </td>
             <td>

@@ -42,4 +42,17 @@ class pengaturanUmum extends Route{
         $this -> bind('dasbor/pengaturanUmum/formEditPengaturan', $data);
     }
 
+    public function prosesEditPengaturan()
+    {
+        // 'kdSetting' : this.kdSetting, 'caption': caption, 'value': value
+        $kdSetting = $this -> inp('kdSetting');
+        $caption = $this -> inp('caption');
+        $value = $this -> inp('value');
+        $qEdit = "UPDATE tbl_setting_laundry SET value='$value' WHERE kd_setting='$kdSetting';";
+        $this -> st -> query($qEdit);
+        $this -> st -> queryRun();
+        $data['status'] = 'sukses';
+        $this -> toJson($data);
+    }
+
 }

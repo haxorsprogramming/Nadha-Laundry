@@ -6,18 +6,18 @@ $dataSetting = $data['dataSetting'];
         <table class="table">
             <tr>
                 <td>Kd Setting</td>
-                <td><?=$dataSetting['kd_setting']; ?></td>
+                <td><span id='txtKdSetting'><?=$dataSetting['kd_setting']; ?></span></td>
             </tr>
             <tr>
                 <td>Caption</td>
-                <td><?=$dataSetting['caption']; ?></td>
+                <td><span id='txtCaption'><?=$dataSetting['caption']; ?></span></td>
             </tr>
             <tr>
                 <td>Nilai</td>
-                <td><input type='text' class='form-control' value="<?=$dataSetting['value']; ?>"></td>
+                <td><input type='text' id='txtValue' class='form-control' value="<?=$dataSetting['value']; ?>"></td>
             </tr>
         </table>
-        <a href='#!' class="btn btn-primary btn-icon icon-left"><i class='fas fa-save'></i> Simpan</a>
+        <a href='#!' class="btn btn-primary btn-icon icon-left" v-on:click='simpanAtc'><i class='fas fa-save'></i> Simpan</a>
     </div>
 </div>
 <script src="<?=STYLEBASE; ?>/dasbor/formEditPengaturan.js"></script>
