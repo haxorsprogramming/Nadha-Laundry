@@ -18,7 +18,7 @@
                     <option>2019</option>
                     <option>2020</option>
                 </select>&nbsp;&nbsp;
-                <a href='#!' class="btn btn-sm btn-primary" v-on:click='tampilkanAtc'>Tampilkan</a>
+                <a href='#!' class="btn btn-sm btn-primary btn-icon icon-left" v-on:click='tampilkanAtc'><i class='fas fa-search'></i> Tampilkan</a>
             </div>
         </div>
     </div>
@@ -34,9 +34,9 @@
         <tbody>
             <tr v-for='dl in dataList'>
                 <td>{{dl.tanggal}} {{dl.bulanIndo}}</td>
-                <td>{{dl.totalTransaksi}}</td>
                 <td></td>
-                <td></td>
+                <td>aa</td>
+                <td>aa</td>
             </tr>
         </tbody>
     </table>

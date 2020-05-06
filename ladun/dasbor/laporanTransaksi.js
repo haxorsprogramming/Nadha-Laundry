@@ -16,7 +16,7 @@ $.post('laporanTransaksi/getDefaultReport', function(data){
     obj.forEach(pushTableItem);
 
     function pushTableItem(item, index){
-        divLaporanTransaksi.dataList.push({tanggal: obj[index].tanggal, bulanIndo : obj[index].bulanIndo, totalTransaksi : obj[index].bulanIndo});
+        divLaporanTransaksi.dataList.push({tanggal: obj[index].tanggal, bulanIndo : obj[index].bulanIndo, koktakbisa : obj[index].bulanIndo});
     }
     setTimeout(renderTable, 100);
 });
