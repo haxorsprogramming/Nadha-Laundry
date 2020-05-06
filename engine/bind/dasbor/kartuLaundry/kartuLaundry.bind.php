@@ -58,18 +58,18 @@
           $statPay = $kartu['pembayaran'];
           if($statPay == 'pending'){
             $capSt = "Belum bayar";
-            $colSb = '#e67e22';
+            $colSb = 'warning';
           }else{
             $capSt = "Sudah bayar";
-            $colSb = '#2ecc71';
+            $colSb = 'success';
           }
 
           if($waktuDiambil == '0000-00-00 00:00:00'){
             $capStDiambil = 'Belum diambil';
-            $bgStatPi = '#3498db';
+            $bgStatPi = 'warning';
           }else{
             $capStDiambil = 'Sudah diambil';
-            $bgStatPi = '';
+            $bgStatPi = 'success';
           }
         ?>
           <tr>
@@ -83,8 +83,8 @@
             Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
-            <td style="background-color: <?=$colSb;?>;"> <span style="color:#ecf0f1;"><i class="fas fa-circle"></i> <?=$capSt; ?></span><br/>
-            <span style="background-color:<?=$bgStatPi; ?>;"><i class="fas fa-circle"></i> <?=$capStDiambil; ?></span>
+            <td> <span class="badge badge-<?=$colSb; ?>"><i class="fas fa-circle"></i> <?=$capSt; ?></span><br/><br/>
+            <span class="badge badge-<?=$bgStatPi; ?>"><i class="fas fa-circle"></i> <?=$capStDiambil; ?></span>
           
           </td>
             <td>
