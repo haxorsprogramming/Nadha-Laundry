@@ -20,14 +20,19 @@ class laporanTransaksi extends Route{
     {
         $dbdata = array();
         $bulan = date('m');
+        $tahun = date('Y');
         $bulanIndo = $this -> bulanIndo($bulan);
         $jlhDay = $this -> ambilHari($bulan);
         for ($x = 1; $x <= $jlhDay ; $x++) {
             $arrTemp['tanggal'] = $x;
             $arrTemp['bulanIndo'] = $bulanIndo; 
+            $tglAwalKomplit = $tahun."-".$bulan."-".$x." 00:00:00";
+            $tglAkhirKomplit = $tahun."-".$bulan."-".$x." 23:59:59";
+            $this -> st -> query("SELECT id FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit');");
+            $arrTemp['jlhRecord'] = $this -> st -> numRow();
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
     }
 
-}  
+}   

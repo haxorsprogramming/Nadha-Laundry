@@ -25,7 +25,7 @@
     <table id='tblLaporanTransaksi' class='table table-hover'>
         <thead>
             <tr>
-                <th id=''>Tanggal</th>
+                <th>Tanggal</th>
                 <th>Jumlah Transaksi</th>
                 <th>Nominal Transaksi</th>
                 <th></th>
@@ -34,7 +34,7 @@
         <tbody>
             <tr v-for='dl in dataList'>
                 <td>{{dl.tanggal}} {{dl.bulanIndo}}</td>
-                <td></td>
+                <td>{{dl.totalTransaksi}}</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -42,4 +42,4 @@
     </table>
 </div>
 </div>
-<script src="<?= STYLEBASE; ?>/dasbor/laporanTransaksi.js"></script>
+<script src="<?= STYLEBASE; ?>/dasbor/laporanTransaksi.js"></script> 
