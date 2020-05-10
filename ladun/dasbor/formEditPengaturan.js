@@ -1,7 +1,7 @@
 $(document).ready(function(){
     document.getElementById('txtValue').focus();
 });
-
+//yunia riska dewi
 var divFormEditPengaturan = new Vue({
     el : '#divFormEditPengaturan',
     data : {
