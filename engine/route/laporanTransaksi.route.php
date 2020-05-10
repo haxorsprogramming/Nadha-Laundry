@@ -42,4 +42,12 @@ class laporanTransaksi extends Route{
         $this -> toJson($dbdata);
     }
 
+    public function getBulanReport()
+    {
+        $bulan = $this -> inp('bulan');
+        $bulanInt = $this -> bulanToInt($bulan);
+        $data['status'] = $bulanInt;
+        $this -> toJson($data);
+    }
+
 }   

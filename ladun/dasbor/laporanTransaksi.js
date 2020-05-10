@@ -10,6 +10,7 @@ var divLaporanTransaksi = new Vue({
         dataCapBulan : [],
         tipeWaktu : 'bulan',
         bulanDipilih : '',
+        tahunDipilih : tahunSekarang,
         tahunSekarang : tahunSekarang
     },
     methods : {
@@ -18,6 +19,7 @@ var divLaporanTransaksi = new Vue({
                 cariTransaksiBulan();
             }else{
                 cariTransaksiTahun();
+            }
         }
     }
 }); 
@@ -58,4 +60,20 @@ function setTipeWaktu()
         document.getElementById('txtBulan').style.display = "none";
         document.getElementById('txtTahun').style.display = "block";
     }
+}
+
+function cariTransaksiBulan()
+{
+    let bulan = document.getElementById('txtBulan').value;
+    var bulanCaps = bulan.toLowerCase();
+    $.post('laporanTransaksi/getBulanReport', {'bulan':bulanCaps}, function(data){
+        let obj = JSON.parse(data);
+        console.log(obj);
+    });
+}
+
+function  cariTransaksiTahun()
+{
+    let tahun = document.getElementById('txtTahun').value;
+    window.alert(tahun);
 }

@@ -180,6 +180,36 @@ class Route{
       }
     }
 
+    public function bulanToInt($bulan)
+    {
+      switch ($bulan){
+        case 'januari': 
+          return '01';
+        case 'februari': 
+          return '02';
+        case 'maret': 
+          return '03';
+        case 'april': 
+          return '04';
+        case 'mei': 
+          return '05';
+        case 'juni': 
+          return '06';
+        case 'juli': 
+          return '07';
+        case 'agustus': 
+          return '08';
+        case 'september': 
+          return '01';
+        case 'oktober': 
+          return '10';
+        case 'november': 
+          return '11';
+        case 'desember': 
+          return '12';
+      }
+    }
+
     public function kirimEmail($penerima,$judul,$isi)
     {
         $mail = new PHPMailer(false);  
