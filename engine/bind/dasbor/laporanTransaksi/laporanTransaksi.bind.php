@@ -3,18 +3,18 @@
     </div>
     <div class="row">
         <div>
-            <h5>Filter - <?=$data['bulanIndo']; ?> </h5>
+            <h5>Filter  {{tipeWaktu}} - <?=$data['bulanIndo']; ?> {{tahunSekarang}}</h5>
             <div class="form-inline" style="margin-bottom: 20px;">
-                <select class="form-control">
-                    <option>Bulan</option>
-                    <option>Tahun</option>
+                <select class="form-control" id='txtTipeWaktu' onchange="setTipeWaktu()">
+                    <option value="bulan">Bulan</option>
+                    <option value="tahun">Tahun</option>
                 </select>
-                &nbsp;-&nbsp;
-                <select class="form-control">
-                    <option v-for='db in dataCapBulan'>{{db.bulan}}</option>
+                &nbsp;&nbsp;&nbsp;
+                <select class="form-control" id='txtBulan'>
+                    <option v-for='db in dataCapBulan' :value='db.bulan'>{{db.bulan}}</option>
                 </select>&nbsp;&nbsp;
-                &nbsp;-&nbsp;
-                <select class="form-control">
+                
+                <select class="form-control" id='txtTahun'>
                     <option>2019</option>
                     <option>2020</option>
                 </select>&nbsp;&nbsp;
@@ -35,11 +35,11 @@
             <tr v-for='dl in dataList'>
                 <td>{{dl.tanggal}} {{dl.bulanIndo}}</td>
                 <td>{{dl.jlhTransaksi}}</td>
-                <td></td>
-                <td><a href='#!' class="btn btn-primary btn-icon icon-left">Detail</a></td>
+                <td>Rp. {{ Number(dl.nilaiTransaksi).toLocaleString() }}</td>
+                <td><a href='#!' class="btn btn-primary btn-icon icon-left"><i class='fas fa-search-plus'></i> Detail</a></td>
             </tr>
         </tbody>
     </table>
 </div>
 </div>
-<script src="<?= STYLEBASE; ?>/dasbor/laporanTransaksi.js"></script> 
+<script src="<?= STYLEBASE; ?>/dasbor/laporanTransaksi.js"></script>  

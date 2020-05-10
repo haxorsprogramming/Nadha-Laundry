@@ -1,12 +1,23 @@
+var waktu = new Date();
+var tahunSekarang = waktu.getFullYear();
+
+document.getElementById('txtTahun').style.display = "none";
+
 var divLaporanTransaksi = new Vue({
     el : '#divLaporanTransaksi',
     data : {
         dataList : [],
-        dataCapBulan : []
+        dataCapBulan : [],
+        tipeWaktu : 'bulan',
+        bulanDipilih : '',
+        tahunSekarang : tahunSekarang
     },
     methods : {
         tampilkanAtc : function(){
-
+            if(this.tipeWaktu === 'bulan'){
+                cariTransaksiBulan();
+            }else{
+                cariTransaksiTahun();
         }
     }
 }); 
@@ -16,7 +27,7 @@ $.post('laporanTransaksi/getDefaultReport', function(data){
     obj.forEach(pushTableItem);
 
     function pushTableItem(item, index){
-        divLaporanTransaksi.dataList.push({tanggal: obj[index].tanggal, bulanIndo : obj[index].bulanIndo, jlhTransaksi : obj[index].jlhRecord});
+        divLaporanTransaksi.dataList.push({tanggal: obj[index].tanggal, bulanIndo : obj[index].bulanIndo, jlhTransaksi : obj[index].jlhRecord, nilaiTransaksi : obj[index].nilaiTransaksi});
     }
     setTimeout(renderTable, 100);
 });
@@ -32,6 +43,19 @@ $.post('utility/getListBulan', function(data){
 
 function renderTable()
 {
-    $('#tblLaporanTransaksi').DataTable({"order": [[ 2, "desc" ]]});
+    $('#tblLaporanTransaksi').DataTable({"ordering": false});
 }
- 
+
+function setTipeWaktu()
+{
+    let tipeWaktu = document.getElementById('txtTipeWaktu').value;
+    if(tipeWaktu === 'bulan'){
+        divLaporanTransaksi.tipeWaktu = 'bulan';
+        document.getElementById('txtTahun').style.display = "none";
+        document.getElementById('txtBulan').style.display = "block";
+    }else{
+        divLaporanTransaksi.tipeWaktu = 'tahun';
+        document.getElementById('txtBulan').style.display = "none";
+        document.getElementById('txtTahun').style.display = "block";
+    }
+}

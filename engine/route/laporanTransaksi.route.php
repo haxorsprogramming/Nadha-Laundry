@@ -28,9 +28,15 @@ class laporanTransaksi extends Route{
             $arrTemp['bulanIndo'] = $bulanIndo; 
             $tglAwalKomplit = $tahun."-".$bulan."-".$x." 00:00:00";
             $tglAkhirKomplit = $tahun."-".$bulan."-".$x." 23:59:59";
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit');");
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
             $arrTemp['jlhRecord'] = $this -> st -> numRow();
             $qTransaksi = $this -> st -> queryAll();
+            $totalTempTransaksi = 0;
+            foreach($qTransaksi as $qT){
+                $nilaiTransaksi = $qT['jumlah'];
+                $totalTempTransaksi = $totalTempTransaksi + $nilaiTransaksi;
+            }
+            $arrTemp['nilaiTransaksi'] = $totalTempTransaksi;
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
