@@ -34,9 +34,9 @@
         <tbody>
             <tr v-for='dl in dataList'>
                 <td>{{dl.tanggal}} {{dl.bulanIndo}}</td>
+                <td>{{dl.jlhTransaksi}}</td>
                 <td></td>
-                <td>aa</td>
-                <td>aa</td>
+                <td><a href='#!' class="btn btn-primary btn-icon icon-left">Detail</a></td>
             </tr>
         </tbody>
     </table>
