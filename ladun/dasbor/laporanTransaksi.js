@@ -10,7 +10,7 @@ var divLaporanTransaksi = new Vue({
         }
     }
 }); 
-
+//episode ke 8
 $.post('laporanTransaksi/getDefaultReport', function(data){
     let obj = JSON.parse(data);
     obj.forEach(pushTableItem);
