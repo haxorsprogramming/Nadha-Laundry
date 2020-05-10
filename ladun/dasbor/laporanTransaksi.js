@@ -48,6 +48,12 @@ function renderTable()
     $('#tblLaporanTransaksi').DataTable({"ordering": false});
 }
 
+function resetTable(){
+    $('#tblLaporanTransaksi').dataTable().fnClearTable();
+    $('#tblLaporanTransaksi').dataTable().fnDestroy();
+}
+
+
 function setTipeWaktu()
 {
     let tipeWaktu = document.getElementById('txtTipeWaktu').value;
@@ -68,7 +74,13 @@ function cariTransaksiBulan()
     var bulanCaps = bulan.toLowerCase();
     $.post('laporanTransaksi/getBulanReport', {'bulan':bulanCaps}, function(data){
         let obj = JSON.parse(data);
-        console.log(obj);
+        resetTable();
+        obj.forEach(pushTableItem);
+        function pushTableItem(item, index){
+            divLaporanTransaksi.dataList.push({tanggal: obj[index].tanggal, bulanIndo : obj[index].bulanIndo, jlhTransaksi : obj[index].jlhRecord, nilaiTransaksi : obj[index].nilaiTransaksi});
+        }
+        setTimeout(renderTable, 100);
+
     });
 }
 
