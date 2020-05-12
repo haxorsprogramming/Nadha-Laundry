@@ -1,5 +1,5 @@
 <?php
-
+//arus kas route
 class arusKas extends Route{
 
     public function __construct()
