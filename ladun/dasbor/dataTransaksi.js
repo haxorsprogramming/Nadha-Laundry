@@ -2,6 +2,7 @@ $(document).ready(function(){
     $.post('dataTransaksi/getDataTransaksi', function(data){
         let obj = JSON.parse(data);
         obj.forEach(pushTableItem);
+        //push data get utama ke halaman
         function pushTableItem(item, index){
             divDataTransaksi.dataTransaksi.push({
                 invoice : obj[index].invoice,
@@ -27,6 +28,7 @@ var divDataTransaksi = new Vue({
             $('#divUtama').load('dataTransaksi/detailTransaksi',{'kdTransaksi':kdTransaksi});   
         },
         tampilkanAtc : function(){
+            //ambil waktu spesifik
             let tglAwal = document.getElementById('tglAwal').value;
             let tglAkhir = document.getElementById('tglAkhir').value;
             let jlhIsi = this.dataTransaksi.length;

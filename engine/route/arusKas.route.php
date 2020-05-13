@@ -6,7 +6,7 @@ class arusKas extends Route{
     {
     $this -> st = new state;
     }
-
+    //route utama
     public function index()
     {
         $this -> st -> query("SELECT * FROM tbl_arus_kas;");
