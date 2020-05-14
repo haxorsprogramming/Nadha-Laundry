@@ -1,4 +1,4 @@
-<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='500px'>
+<img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='300px'>
 
 <h2>Aplikasi manajemen laundry</h2>
 By : NadhaMedia
@@ -72,4 +72,4 @@ By : NadhaMedia
 
 <br/>
 
-Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com, atau WA (082272177022)
+Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com.

@@ -122,27 +122,25 @@ function suksesUpdate() {
   let hargaLama = document.getElementById("txtTotalInt").innerHTML;
   let intHargaLama = parseInt(hargaLama);
   let hargaBaru = intHargaLama + parseInt(divDetailCucian.total);
-
-  iziToast.info({
-    title: "Menambahkan item ..",
-    message: "Item akan ditambahkan ke list cucian ...",
-    position: "topCenter",
-    timeOut: 300,
-    pauseOnHover: false,
-    onClosed: function () {
-      divDetailCucian.listItem.push({
-        teks: divDetailCucian.namaService,
-        qt: divDetailCucian.qt,
-        total: divDetailCucian.total,
-      });
-      $("#btnTambahItem").removeClass("disabled");
-      $("#txtQt").removeAttr("disabled");
-      $("#txtProduk").removeAttr("disabled");
-      document.getElementById("txtJumlahItem").innerHTML = itemBaru;
-      document.getElementById("txtTotalView").innerHTML = hargaBaru;
-    },
+  //izi toast start
+  Swal.fire({
+    icon: 'success',
+    title: 'Item ditambahkan',
+    text: 'Item sukses ditambahkan...'
   });
+  divDetailCucian.listItem.push({
+    teks: divDetailCucian.namaService,
+    qt: divDetailCucian.qt,
+    total: divDetailCucian.total,
+  });
+  $("#btnTambahItem").removeClass("disabled");
+  $("#txtQt").removeAttr("disabled");
+  $("#txtProduk").removeAttr("disabled");
+  document.getElementById("txtJumlahItem").innerHTML = itemBaru;
+  document.getElementById("txtTotalView").innerHTML = hargaBaru;
+  //izi toas end
 }
+ 
 function isiYangBenar() {
   iziToast.warning({
     title: "Isi field!!",
