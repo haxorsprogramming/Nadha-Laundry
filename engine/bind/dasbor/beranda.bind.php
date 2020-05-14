@@ -92,6 +92,7 @@ $dibalik = array_reverse($rentangSeminggu);
                         <th>Tanggal</th><th>Transaksi</th><th>Nominal</th>
                       </tr>
                       <?php
+                      //perulangan - kapan lah ini bisa di masukkan ke dalam model
                         for ($x = 0; $x < 7; $x++) {
                           $tanggalToExplode = $dibalik[$x];
                           $tglResultExplode = explode("/",$tanggalToExplode);

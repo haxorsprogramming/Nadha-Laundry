@@ -1,3 +1,5 @@
+<!-- tambah verifikasi cek ke session terlebih dahulu -->
+
 <div id='divKartuLaundry'>
   <div style='margin-bottom:25px;' id='divOperasi'>
     <a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'>
