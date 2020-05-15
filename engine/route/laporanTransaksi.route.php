@@ -2,10 +2,10 @@
 
 class laporanTransaksi extends Route{
 
-   public function __construct()
-   {
-        $this -> st = new state;
-   }
+    public function __construct()
+    {
+            $this -> st = new state;
+    }
 
     public function index()
     {
@@ -41,7 +41,7 @@ class laporanTransaksi extends Route{
         }
         $this -> toJson($dbdata);
     }
-
+    //buat laporan dari bulan
     public function getBulanReport()
     {
         $dbdata = array();
@@ -67,6 +67,11 @@ class laporanTransaksi extends Route{
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
+    }
+    //buat laporan tahun
+    public function getTahunReport()
+    {
+        $data['status'] = $this -> 
     }
 
 }   
