@@ -87,5 +87,7 @@ function cariTransaksiBulan()
 function  cariTransaksiTahun()
 {
     let tahun = document.getElementById('txtTahun').value;
-    window.alert(tahun);
+    $.post('laporanTransaksi/getTahunReport',{'tahun' : tahun}, function(data){
+        let obj = JSON.parse(data);
+    });
 }
