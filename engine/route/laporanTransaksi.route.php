@@ -71,7 +71,7 @@ class laporanTransaksi extends Route{
     //buat laporan tahun
     public function getTahunReport()
     {
-        $data['status'] = $this -> 
+        // $data['status'] = $this -> 
     }
 
 }   
