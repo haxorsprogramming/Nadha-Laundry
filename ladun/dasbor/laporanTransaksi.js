@@ -1,5 +1,8 @@
 var divLaporanTransaksi = new Vue({
-
+    el : '#divLaporanTransaksi',
+    data : {
+        typeWaktu : 'tahun'
+    }
 });
 
 
