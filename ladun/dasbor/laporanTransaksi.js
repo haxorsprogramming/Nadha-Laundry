@@ -100,13 +100,14 @@ function getDataTanggal()
     $('#tblLaporanTransaksi').hide();
     $.post('laporanTransaksi/getTanggalReport',{'tahun':tahun, 'bulan':bulan, 'tanggal':tanggal}, function(data){
         let obj = JSON.parse(data);
-        console.log(obj);
+        // console.log(obj);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
             divLaporanTransaksi.dataHarian.push({
                 waktu : obj[index].waktu,
                 jumlahTransaksi : '11',
-                arus : obj[index].arus
+                arus : obj[index].arus,
+                jumlah : obj[index].jumlah
             });
         }
         setTimeout(setTabelHarian, 100);

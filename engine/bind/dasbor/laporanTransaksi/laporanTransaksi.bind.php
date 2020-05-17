@@ -40,8 +40,10 @@
                 <td>{{dh.waktu}}</td>
                 <td>AA</td>
                 <td>{{dh.arus}}</td>
-                <td>AA</td>
-                <td>AA</td>
+                <td>Rp. {{ Number(dh.jumlah).toLocaleString() }}</td>
+                <td>
+                    <a href='#!' class="btn btn-sm btn-icon btn-primary"><i class='fas fa-print'></i> Cetak Transaksi</a>
+                </td>
             </tr>
         </tbody>
     </table>

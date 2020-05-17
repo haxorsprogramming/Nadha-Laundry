@@ -115,6 +115,7 @@ class laporanTransaksi extends Route{
         foreach($qTransaksi as $qt){
             $arrTemp['waktu'] = $qt['waktu'];
             $arrTemp['arus'] = $qt['arus'];
+            $arrTemp['jumlah'] = $qt['jumlah'];
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
