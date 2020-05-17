@@ -2,24 +2,27 @@ var divLaporanTransaksi = new Vue({
     el : '#divLaporanTransaksi',
     data : {
         typeWaktu : 'tahun',
-        dataRilisTahun : []
+        dataRilisTahun : [],
+        tahunGrap : '',
+        bulanGrap : '',
+        tahunGrap : ''
     },
     methods : {
         tahunDetails : function(tahun){
-            divJudul.judulForm = "Laporan Transaksi (Tahun "+tahun+")";
+            if(this.typeWaktu === 'tahun'){
+                this.typeWaktu = 'bulan';
+                this.tahunGrap = tahun;
+                divJudul.judulForm = "Laporan Transaksi (Tahun "+tahun+")";
             document.getElementById('capSesiWaktu').innerHTML = "Bulan";
             let jlhIsi = this.dataRilisTahun.length;
-                
             var i; 
             for(i = 0; i < jlhIsi; i++){
                 this.dataRilisTahun.splice(0,1);
             }
             resetTable();
-
             $.post('laporanTransaksi/getTahunReport', {'tahun':tahun}, function(data){
                 let obj = JSON.parse(data);
-                console.log(obj);
-              
+                // console.log(obj);
                 obj.forEach(pushTableItem);
                 function pushTableItem(item, index){
                     divLaporanTransaksi.dataRilisTahun.push({
@@ -30,42 +33,54 @@ var divLaporanTransaksi = new Vue({
                         nilaiTransaksiKeluar : obj[index].nilaiTransaksiKeluar,
                     });
                 }
-
                 setTimeout(setDataTableNoSort, 100);
             });
+            }else{
+                document.getElementById('capSesiWaktu').innerHTML = "Tanggal";
+                divJudul.judulForm = "Laporan Transaksi (Tahun "+this.tahunGrap+", Bulan "+tahun+")";
+                getDataBulan();
+            }
         }
     }
 });
 
-$.post('laporanTransaksi/getRelaseTahun', function(data){
-    let obj = JSON.parse(data);
-    obj.forEach(pushTableItem);
-    function pushTableItem(item, index){
-        divLaporanTransaksi.dataRilisTahun.push({
-            tahun : obj[index].tahun,
-            jlhTransaksi : obj[index].jlhTransaksi,
-            nilaiTransaksi : obj[index].nilaiTransaksi,
-            jlhTransaksiKeluar : obj[index].jlhTransaksiKeluar,
-            nilaiTransaksiKeluar : obj[index].nilaiTransaksiKeluar
-        });          
-    }
-});
-
-function setDataTable(){
-    $('#tblLaporanTransaksi').DataTable();
+function getDataTahun(){
+    $.post('laporanTransaksi/getRelaseTahun', function(data){
+        let obj = JSON.parse(data);
+        obj.forEach(pushTableItem);
+        function pushTableItem(item, index){
+            divLaporanTransaksi.dataRilisTahun.push({
+                tahun : obj[index].tahun,
+                jlhTransaksi : obj[index].jlhTransaksi,
+                nilaiTransaksi : obj[index].nilaiTransaksi,
+                jlhTransaksiKeluar : obj[index].jlhTransaksiKeluar,
+                nilaiTransaksiKeluar : obj[index].nilaiTransaksiKeluar
+            });          
+        }
+    });    
 }
 
+function getDataTahunSub()
+{
+    
+}
+
+function setDataTable()
+{
+    $('#tblLaporanTransaksi').DataTable();
+}
 
 function setDataTableNoSort()
 {
     $('#tblLaporanTransaksi').DataTable({"ordering": false});
 }
 
-
-function resetTable(){
+function resetTable()
+{
     $('#tblLaporanTransaksi').dataTable().fnClearTable();
     $('#tblLaporanTransaksi').dataTable().fnDestroy();
 }
 
-
+//inisialisasi seluruh alur program
+getDataTahun();
 setTimeout(setDataTable, 100);
