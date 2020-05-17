@@ -1,10 +1,4 @@
 <div id='divLaporanTransaksi'>
-    <div style='margin-bottom:15px;'>
-    </div>
-    <div class="row">
-        <div></div>
-        
-    </div>
     <table id='tblLaporanTransaksi' class='table table-hover'>
         <thead>
             <tr>
@@ -18,7 +12,7 @@
         </thead>
         <tbody>
             <tr v-for='dl in dataRilisTahun'>
-                <td><a href='#!' v-on:click='tahunDetails(dl.tahun)'>{{dl.tahun}}<a/></td>
+                <td><a href='#!' v-on:click='tahunDetails(dl.tahun)'>{{dl.tahun}} {{bulanGrap}} {{tahunGrap}}<a/></td>
                 <td>{{dl.jlhTransaksi}}</td>
                 <td>{{dl.jlhTransaksiKeluar}}</td>
                 <td>Rp. {{ Number(dl.nilaiTransaksi).toLocaleString() }}</td>
@@ -29,6 +23,30 @@
             </tr>
         </tbody>
     </table>
+    <br/>
+    <div class="row">
+    <table id='tblDetailTanggal' class="table table-hover">
+        <thead>
+        <tr>
+            <th>Waktu</th>
+            <th>Kd Transaksi</th>
+            <th>Jenis</th>
+            <th>Nominal</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr v-for='dh in dataHarian'>
+                <td>{{dh.waktu}}</td>
+                <td>AA</td>
+                <td>{{dh.arus}}</td>
+                <td>AA</td>
+                <td>AA</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
 </div>
 </div>
 <script src="<?= STYLEBASE; ?>/dasbor/laporanTransaksi.js"></script>  

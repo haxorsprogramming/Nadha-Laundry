@@ -15,10 +15,9 @@ class laporanTransaksi extends Route{
         $data['jumlahHari'] = $this -> ambilHari($bulan);
         $this -> bind('dasbor/laporanTransaksi/laporanTransaksi', $data);
     }
-    
+    //ambil tahun relase awal
     public function getRelaseTahun()
     {
-        //ambil tahun relase awal
         $dbdata = array(); 
         $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='tahun_release';");
         $qTahunRelase = $this -> st -> querySingle();
@@ -57,32 +56,6 @@ class laporanTransaksi extends Route{
        
         $this -> toJson($dbdata);
     }
-
-    public function getDefaultReport()
-    {
-        $dbdata = array();
-        $bulan = date('m');
-        $tahun = date('Y');
-        $bulanIndo = $this -> bulanIndo($bulan);
-        $jlhDay = $this -> ambilHari($bulan);
-        for ($x = 1; $x <= $jlhDay ; $x++) {
-            $arrTemp['tanggal'] = $x;
-            $arrTemp['bulanIndo'] = $bulanIndo; 
-            $tglAwalKomplit = $tahun."-".$bulan."-".$x." 00:00:00";
-            $tglAkhirKomplit = $tahun."-".$bulan."-".$x." 23:59:59";
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
-            $arrTemp['jlhRecord'] = $this -> st -> numRow();
-            $qTransaksi = $this -> st -> queryAll();
-            $totalTempTransaksi = 0;
-            foreach($qTransaksi as $qT){
-                $nilaiTransaksi = $qT['jumlah'];
-                $totalTempTransaksi = $totalTempTransaksi + $nilaiTransaksi;
-            }
-            $arrTemp['nilaiTransaksi'] = $totalTempTransaksi;
-            $dbdata[] = $arrTemp;
-        }
-        $this -> toJson($dbdata);
-    }
     //buat laporan dari bulan
     public function getBulanReport()
     {
@@ -105,9 +78,45 @@ class laporanTransaksi extends Route{
                 $nilaiTransaksi = $nilaiTransaksi + $tempTransaksi;
             }
             $arrTemp['nilaiTransaksi'] = $nilaiTransaksi;
+            //rekap transaksi keluar 
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='keluar';");
+            $arrTemp['totalTransaksiKeluar'] = $this -> st -> numRow();
+            $qTransaksiKeluar = $this -> st -> queryAll();
+            $nilaiTransaksiKeluar = 0;
+            foreach($qTransaksiKeluar as $qtk){
+                $tempTransaksi = $qtk['jumlah'];
+                $nilaiTransaksiKeluar = $nilaiTransaksiKeluar + $tempTransaksi;
+            }
+            $arrTemp['nilaiTransaksiKeluar'] = $nilaiTransaksiKeluar;
+
             $dbdata[] = $arrTemp;
         }
-
+        $this -> toJson($dbdata);
+    }
+    //buat laporan tanggal 
+    public function getTanggalReport()
+    {
+        $dbdata = array();
+        $tahun = $this -> inp('tahun');
+        $bulan = $this -> inp('bulan');
+        $tanggal = $this -> inp('tanggal');
+        //konversi bulan indo ke int
+        $blnSmallCaps = strtolower($bulan);
+        $blnInt = $this -> bulanToInt($blnSmallCaps);
+        //konversi tanggal beda digit
+        $tanggalBenar = $this -> getTanggalBedaDigit($tanggal);
+        $tanggalFix = $tahun."-".$blnInt."-".$tanggalBenar;
+        $tglAwalKomplit = $tanggalFix." 00:00:00";
+        $tglAkhirKomplit = $tanggalFix." 23:59:59";
+        //rekap transaksi
+        $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit');");
+        $data['jumlah'] = $this -> st -> numRow();
+        $qTransaksi = $this -> st -> queryAll();
+        foreach($qTransaksi as $qt){
+            $arrTemp['waktu'] = $qt['waktu'];
+            $arrTemp['arus'] = $qt['arus'];
+            $dbdata[] = $arrTemp;
+        }
         $this -> toJson($dbdata);
     }
     //buat laporan tahun
@@ -121,7 +130,6 @@ class laporanTransaksi extends Route{
         for($x = 0; $x < $jlhBulan; $x++){
             $arrTemp['bulan'] = $this -> bulanIndo($arrBulan[$x]);
             $bulanNow = $arrBulan[$x];
-           
             $jlhDay = $this -> ambilHari($bulanNow);
             // $arrTemp['jlhTransaksi'] = $jlhDay;
             $tglAkhir = $jlhDay;
@@ -147,12 +155,8 @@ class laporanTransaksi extends Route{
                 $totalNilaiTransaksiKeluar = $totalNilaiTransaksiKeluar + $nilaiTransaksi;
             }
             $arrTemp['nilaiTransaksiKeluar'] = $totalNilaiTransaksiKeluar;
-
             $dbdata[] = $arrTemp;
         }
-
-        // $data['status'] = $arrBulan[2];
-
         $this -> toJson($dbdata);
     }
 

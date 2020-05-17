@@ -3,6 +3,7 @@ var divLaporanTransaksi = new Vue({
     data : {
         typeWaktu : 'tahun',
         dataRilisTahun : [],
+        dataHarian : [],
         tahunGrap : '',
         bulanGrap : '',
         tanggalGrap : ''
@@ -16,12 +17,20 @@ var divLaporanTransaksi = new Vue({
                 document.getElementById('capSesiWaktu').innerHTML = "Bulan";
                 clearDataTable();
                 getDataTahunSub(tahun);
-            }else{
-                document.getElementById('capSesiWaktu').innerHTML = "Tanggal";
+            }else if(this.typeWaktu === 'bulan'){
+                this.typeWaktu = 'tanggal';
                 this.bulanGrap = tahun;
+                document.getElementById('capSesiWaktu').innerHTML = "Tanggal";
                 divJudul.judulForm = "Laporan Transaksi (Tahun "+this.tahunGrap+", Bulan "+this.bulanGrap+")";
                 clearDataTable();
                 getDataBulan();
+            }else{
+                this.typeWaktu = 'tanggal';
+                this.tanggalGrap = tahun;
+                document.getElementById('capSesiWaktu').innerHTML = "Waktu";
+                divJudul.judulForm = "Laporan Transaksi (Tahun "+this.tahunGrap+", Bulan "+this.bulanGrap+", Tanggal "+this.tanggalGrap+")";
+                clearDataTable();
+                getDataTanggal();
             }
         }
     }
@@ -47,7 +56,6 @@ function getDataTahunSub(tahun)
 {
     $.post('laporanTransaksi/getTahunReport', {'tahun':tahun}, function(data){
         let obj = JSON.parse(data);
-        // console.log(obj);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
             divLaporanTransaksi.dataRilisTahun.push({
@@ -69,19 +77,41 @@ function getDataBulan()
     // window.alert(tahun+" "+bulan);
     $.post('laporanTransaksi/getBulanReport',{'tahun' : tahun, 'bulan': bulan}, function(data){
         let obj = JSON.parse(data);
-        // console.log(obj);
         obj.forEach(pushTableItem);
         function pushTableItem(item, index){
             divLaporanTransaksi.dataRilisTahun.push({
                 tahun : obj[index].tanggal,
                 jlhTransaksi : obj[index].totalTransaksi,
                 nilaiTransaksi : obj[index].nilaiTransaksi,
-                jlhTransaksiKeluar : obj[index].tanggal,
-                nilaiTransaksiKeluar : obj[index].tanggal,
+                jlhTransaksiKeluar : obj[index].totalTransaksiKeluar,
+                nilaiTransaksiKeluar : obj[index].nilaiTransaksiKeluar,
             });
         }
         setTimeout(setDataTableNoSort, 100);
     });
+}
+
+function getDataTanggal()
+{
+    let tahun = divLaporanTransaksi.tahunGrap;
+    let bulan = divLaporanTransaksi.bulanGrap;
+    let tanggal = divLaporanTransaksi.tanggalGrap;
+    $('#tblDetailTanggal').show();
+    $('#tblLaporanTransaksi').hide();
+    $.post('laporanTransaksi/getTanggalReport',{'tahun':tahun, 'bulan':bulan, 'tanggal':tanggal}, function(data){
+        let obj = JSON.parse(data);
+        console.log(obj);
+        obj.forEach(pushTableItem);
+        function pushTableItem(item, index){
+            divLaporanTransaksi.dataHarian.push({
+                waktu : obj[index].waktu,
+                jumlahTransaksi : '11',
+                arus : obj[index].arus
+            });
+        }
+        setTimeout(setTabelHarian, 100);
+    });
+
 }
 
 function clearDataTable()
@@ -110,6 +140,12 @@ function resetTable()
     $('#tblLaporanTransaksi').dataTable().fnDestroy();
 }
 
+function setTabelHarian()
+{
+    $('#tblDetailTanggal').DataTable();
+}
+
 //inisialisasi seluruh alur program
+$('#tblDetailTanggal').hide();
 getDataTahun();
 setTimeout(setDataTable, 100);
