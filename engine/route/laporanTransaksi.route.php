@@ -24,12 +24,37 @@ class laporanTransaksi extends Route{
         $qTahunRelase = $this -> st -> querySingle();
         $tahunRelase = $qTahunRelase['value'];
         $frekuensiTahun = 10;
-        $dataArrayTahun = array();
         for($i = 0; $i <= 10; $i++){
-            $arrTemp['tahun'] = $tahunRelase + $i;
+            $tahunAwal = $tahunRelase + $i;
+            $tahunAkhir = $tahunAwal + 1;
+            $arrTemp['tahun'] = $tahunAwal;
             //cari total transaksi berdasarkan tahun 
+            $tahunAwalKomplit = $tahunAwal."-01-01 00:00:00";
+            $tahunAkhirKomplit = $tahunAwal."-12-31 23:59:59";
+            //data transaksi masuk
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tahunAwalKomplit' AND '$tahunAkhirKomplit') AND arus='masuk';");
+            $arrTemp['jlhTransaksi'] = $this -> st -> numRow();
+            $qReleaseTahun = $this -> st -> queryAll();
+            $totalTransaksi = 0;
+            foreach($qReleaseTahun as $qt){
+                $nilaiTransaksi = $qt['jumlah'];
+                $totalTransaksi = $totalTransaksi + $nilaiTransaksi;
+            }
+            $arrTemp['nilaiTransaksi'] = $totalTransaksi;
+            //data transaksi keluar 
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tahunAwalKomplit' AND '$tahunAkhirKomplit') AND arus='keluar';");
+            $arrTemp['jlhTransaksiKeluar'] = $this -> st -> numRow();
+            $qReleaseTahunKeluar = $this -> st -> queryAll();
+            $totalTransaksiKeluar = 0;
+            foreach($qReleaseTahunKeluar as $qtk){
+                $nilaiTransaksi = $qtk['jumlah'];
+                $totalTransaksiKeluar = $totalTransaksiKeluar + $totalTransaksi;
+            }
+            $arrTemp['nilaiTransaksiKeluar'] = $totalTransaksiKeluar;
+
+            $dbdata[] = $arrTemp;
         }
-        // $dataArrayTahun[] = $arrTemp;
+       
         $this -> toJson($dbdata);
     }
 
@@ -88,7 +113,19 @@ class laporanTransaksi extends Route{
     //buat laporan tahun
     public function getTahunReport()
     {
-        // $data['status'] = $this -> 
+        $dbdata = array();
+        $tahun = $this -> inp('tahun');
+        $arrBulan = $this ->  getListBulanInt();
+        $jlhBulan = 12;
+        
+        for($x = 0; $x < $jlhBulan; $x++){
+            $arrTemp['bulan'] = $this -> bulanIndo($arrBulan[$x]);
+            $dbdata[] = $arrTemp;
+        }
+
+        // $data['status'] = $arrBulan[2];
+
+        $this -> toJson($dbdata);
     }
 
 }   

@@ -138,6 +138,12 @@ class Route{
       return cal_days_in_month(CAL_GREGORIAN,$bulan,2019);
     }
 
+    public function getListBulanInt()
+    {
+      $dataList = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+      return $dataList;
+    }
+
     public function bulanIndo($bulan)
     {
       switch ($bulan){
