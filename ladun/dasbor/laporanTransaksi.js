@@ -5,6 +5,10 @@ var divLaporanTransaksi = new Vue({
     }
 });
 
+$.post('laporanTransaksi/getRelaseTahun', function(data){
+    let obj = JSON.parse(data);
+    console.log(obj);
+});
 
 function setDataTable(){
     $('#tblLaporanTransaksi').DataTable();

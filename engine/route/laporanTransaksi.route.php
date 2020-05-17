@@ -18,7 +18,19 @@ class laporanTransaksi extends Route{
     
     public function getRelaseTahun()
     {
-        
+        //ambil tahun relase awal
+        $dbdata = array(); 
+        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='tahun_release';");
+        $qTahunRelase = $this -> st -> querySingle();
+        $tahunRelase = $qTahunRelase['value'];
+        $frekuensiTahun = 10;
+        $dataArrayTahun = array();
+        for($i = 0; $i <= 10; $i++){
+            $arrTemp['tahun'] = $tahunRelase + $i;
+            //cari total transaksi berdasarkan tahun 
+        }
+        // $dataArrayTahun[] = $arrTemp;
+        $this -> toJson($dbdata);
     }
 
     public function getDefaultReport()
