@@ -20,12 +20,14 @@ const d = new Date();
 const tahun = d.getFullYear();
 var halaman;
 
+$.fakeLoader({
+  timeToHide:3200,
+  bgColor: '#20c997',
+  spinner:"spinner1"
+});
+
 $(document).ready(function () {
-  $.fakeLoader({
-      timeToHide:3200,
-      bgColor: '#20c997',
-      spinner:"spinner1"
-  });
+$('#divProgress').hide();  
 });
 
 // fungsi pertama kali dijalankan
@@ -104,13 +106,40 @@ var divMenu = new Vue({
     },
     laporanTransaksiAtc : function()
     {
-      renderMenu(laporanTransaksi);
+      playLoaderEksis();
+      sleep(100);
+      setTimeout(renderMenu(laporanTransaksi), 100);
       divJudul.judulForm = "Laporan Transaksi";
     }
   }
 });
 
+var counterLoad = 0;
+
+
+function playLoaderEksis(){
+  $('#divProgress').show();
+  var fungsiLoad = setInterval(counterLoader, 100);
+}
+
+function counterLoader()
+{
+  $('#loaderEksis').attr('style','width:'+counterLoad+'%');
+  counterLoad+=15;
+  if(counterLoad > 100){
+    stopTimer();
+  }else{
+
+  }
+}
+
+function stopTimer()
+{
+  clearInterval(playLoaderEksis.fungsiLoad);
+  $('#divProgress').hide();
+}
+
 function renderMenu(halaman) {
-  $('#divUtama').html("Memuat ...");
+  // $('#divUtama').html("Memuat ...");
   $('#divUtama').load(halaman);
 }
