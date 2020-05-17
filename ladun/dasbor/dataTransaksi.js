@@ -60,11 +60,6 @@ var divDataTransaksi = new Vue({
 });
 
 
-function setDataTableNoSort()
-{
-    
-}
-
 function setDataTable(){
     $('#tblDataTransaksi').DataTable({"order": [[ 2, "desc" ]]});
 }

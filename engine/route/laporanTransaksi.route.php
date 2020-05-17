@@ -120,6 +120,34 @@ class laporanTransaksi extends Route{
         
         for($x = 0; $x < $jlhBulan; $x++){
             $arrTemp['bulan'] = $this -> bulanIndo($arrBulan[$x]);
+            $bulanNow = $arrBulan[$x];
+           
+            $jlhDay = $this -> ambilHari($bulanNow);
+            // $arrTemp['jlhTransaksi'] = $jlhDay;
+            $tglAkhir = $jlhDay;
+            $tglAwalKomplit = $tahun."-".$bulanNow."-01 00:00:00";
+            $tglAkhirKomplit = $tahun."-".$bulanNow."-".$tglAkhir." 23:59:59";
+            //rekap transaksi masuk
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
+            $arrTemp['jlhTransaksi'] = $this -> st -> numRow();
+            $qTransaksi = $this -> st -> queryAll();
+            $totalNilaiTransaksi = 0;
+            foreach($qTransaksi as $qt){
+                $nilaiTransaksi = $qt['jumlah'];
+                $totalNilaiTransaksi = $totalNilaiTransaksi + $nilaiTransaksi;
+            }
+            $arrTemp['nilaiTransaksi'] = $totalNilaiTransaksi;
+            //rekap transaksi keluar 
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='keluar';");
+            $arrTemp['jlhTransaksiKeluar'] = $this -> st -> numRow();
+            $qTransaksiKeluar = $this -> st -> queryAll();
+            $totalNilaiTransaksiKeluar = 0;
+            foreach($qTransaksiKeluar as $qtk){
+                $nilaiTransaksi = $qt['jumlah'];
+                $totalNilaiTransaksiKeluar = $totalNilaiTransaksiKeluar + $nilaiTransaksi;
+            }
+            $arrTemp['nilaiTransaksiKeluar'] = $totalNilaiTransaksiKeluar;
+
             $dbdata[] = $arrTemp;
         }
 

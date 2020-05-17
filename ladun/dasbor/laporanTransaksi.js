@@ -24,10 +24,10 @@ var divLaporanTransaksi = new Vue({
                 function pushTableItem(item, index){
                     divLaporanTransaksi.dataRilisTahun.push({
                         tahun : obj[index].bulan,
-                        jlhTransaksi : "0",
-                        nilaiTransaksi : "0",
-                        jlhTransaksiKeluar : "0",
-                        nilaiTransaksiKeluar : "0",
+                        jlhTransaksi : obj[index].jlhTransaksi,
+                        nilaiTransaksi : obj[index].nilaiTransaksi,
+                        jlhTransaksiKeluar : obj[index].jlhTransaksiKeluar,
+                        nilaiTransaksiKeluar : obj[index].nilaiTransaksiKeluar,
                     });
                 }
 
@@ -58,7 +58,7 @@ function setDataTable(){
 
 function setDataTableNoSort()
 {
-    $('#tblLaporanTransaksi').DataTable({"order": [[ 2, "desc" ]]});
+    $('#tblLaporanTransaksi').DataTable({"ordering": false});
 }
 
 
