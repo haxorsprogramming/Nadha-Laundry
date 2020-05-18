@@ -6,7 +6,8 @@ var divLaporanTransaksi = new Vue({
         dataHarian : [],
         tahunGrap : '',
         bulanGrap : '',
-        tanggalGrap : ''
+        tanggalGrap : '',
+        tahunCapGrap : ''
     },
     methods : {
         tahunDetails : function(tahun){
@@ -14,6 +15,8 @@ var divLaporanTransaksi = new Vue({
                 this.typeWaktu = 'bulan';
                 this.tahunGrap = tahun;
                 divJudul.judulForm = "Laporan Transaksi (Tahun "+tahun+")";
+                // document.getElementById('txtTahunHide').innerHTML = "/"+tahun;
+                this.tahunCapGrap =  "/"+tahun;
                 document.getElementById('capSesiWaktu').innerHTML = "Bulan";
                 clearDataTable();
                 getDataTahunSub(tahun);
