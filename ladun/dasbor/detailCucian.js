@@ -172,6 +172,8 @@ function setSelesai() {
         function (data) {
           let obj = JSON.parse(data);
           konfirmasiPesanSelesai();
+          renderMenu(laundryRoom);
+          divJudul.judulForm = "Laundry Room";
         }
       );
     }
@@ -186,17 +188,10 @@ function setBayar() {
 }
 
 function konfirmasiPesanSelesai() {
-  iziToast.info({
-    title: "Cucian selesai!!",
-    message:
-      "Cucian telah di-set ke status selesai. Pastikan status cucian di kartu laundry juga selesai!!",
-    position: "topCenter",
-    timeOut: false,
-    pauseOnHover: false,
-    onClosed: function () {
-      renderMenu(laundryRoom);
-      divJudul.judulForm = "Laundry Room";
-    },
+  Swal.fire({
+    icon: 'success',
+    title: 'Selesai..',
+    text: 'Cucian telah di set-Selesai'
   });
 }
 

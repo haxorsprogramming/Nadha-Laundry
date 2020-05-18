@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -68,7 +67,17 @@
                         <a href="#!">NL</a>
                     </div>
                     <?php
-                      $this -> bind('dasbor/menuAdmin');
+                    $user =  $this -> getses('userSes');
+                    //cari level user 
+                    $this -> st -> query("SELECT tipe_user FROM tbl_user WHERE username='$user';");
+                    $qUser = $this -> st -> querySingle();
+                    $lvlUser = $qUser['tipe_user'];
+
+                    if($lvlUser == 'admin'){
+                        $this -> bind('dasbor/menuAdmin');
+                    }else{
+                        $this -> bind('dasbor/menuOperator');
+                    }
                     ?>
                 </aside>
             </div>
