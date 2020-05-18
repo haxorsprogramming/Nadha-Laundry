@@ -18,7 +18,7 @@
                 <td>Rp. {{ Number(dl.nilaiTransaksi).toLocaleString() }}</td>
                 <td>Rp. {{ Number(dl.nilaiTransaksiKeluar).toLocaleString() }}</td>
                 <td><a href='#!' class="btn btn-primary btn-sm btn-icon icon-left" v-on:click='tahunDetails(dl.tahun)'><i class='fas fa-search-plus'></i> Detail</a></td>
-                <td><a href='<?=HOMEBASE; ?>utility/cetakLaporan' target='new' class="btn btn-primary btn-sm btn-icon icon-left"><i class='fas fa-print'></i> Cetak Laporan</a></td>
+                <td><a :href="'<?=HOMEBASE; ?>utility/cetakLaporan/'+dl.tahun" target='new' class="btn btn-primary btn-sm btn-icon icon-left"><i class='fas fa-print'></i> Cetak Laporan</a></td>
             </td>
             </tr>
         </tbody>

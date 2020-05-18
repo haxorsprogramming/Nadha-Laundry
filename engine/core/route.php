@@ -11,6 +11,7 @@ require_once 'lib/phpmailer/library/OAuth.php';
 require_once 'lib/phpmailer/library/POP3.php';
 require_once 'lib/phpmailer/library/SMTP.php';
 
+
 class Route{
 
     public function bind($blade, $data = [])

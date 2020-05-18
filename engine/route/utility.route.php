@@ -1,30 +1,60 @@
 <?php
 
+require_once 'lib/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
+
 class utility extends Route{
 
     public function __construct()
     {
     $this -> st = new state;
-    
     }
 
-    public function cetakLaporan()
+    public function cetakLaporan($tahun)
     {
-        $pdf = new FPDF('P','mm','A4');
-        // membuat halaman baru
-        $pdf->AddPage();
-        // setting jenis font yang akan digunakan
-        $pdf->SetFont('Arial','B',14);
-        // mencetak string 
-        $pdf->Image('http://nadha.id/assets/images/product/nadha_laundry_new.png',10,10,-500);
-        $pdf->Cell(190,20,'Laporan Tahunan Laundry',0,1,'L');
-        $pdf->SetFont('Arial','B',12);
-        $pdf->Cell(20,6,'Bulan',1,0);
-        $pdf->Cell(35,6,'Total Transaksi',1,0);
-        $pdf->Cell(35,6,'Nilai Transaksi',1,0);
-        $pdf->Output();
+        //inisialisasi awal dompdf
+        $dompdf = new Dompdf();
+        $jumlahBulan = 12;
+        //inisialisasi variabel awal -> nama laundry
+        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
+        $qNamaLaundry = $this -> st -> querySingle();
+        $namaLaundry = $qNamaLaundry['value'];
+        //buat template html
+        $html = '<div><h2>Laporan Tahunan Laundry</h2>';
+        $html .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Tahun Laporan : '.$tahun;
+        $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;">
+        <tr><th>Bulan</th><th>Total Transaksi</th><th>Nominal Transaksi</th><th>Alamat</th></tr>';
+        $arrBulanInt = $this -> getListBulanInt();
+        for($i = 0; $i < $jumlahBulan; $i++){
+            $blnInt = $arrBulanInt[$i];
+            //cari nama bulan berdasarkan array
+            $bulanCapIndo = $this -> bulanIndo($blnInt);
+            $jlhDay = $this -> ambilHari($blnInt);
+            $tglAkhir = $jlhDay;
+            $tglAwalKomplit = $tahun."-".$blnInt."-01 00:00:00";
+            $tglAkhirKomplit = $tahun."-".$blnInt."-".$tglAkhir." 23:59:59";
+            //rekap transaksi masuk
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
+            $totalTransaksiBulan = $this -> st -> numRow();
+            $html .= '<tr>
+            <td style="padding-left:5px;">'.$bulanCapIndo.'</td>
+            <td>'.$totalTransaksiBulan.'</td>
+            <td></td>
+            <td></td>
+            </tr>';
+        }
+        $html .= '</table>';
+        $html .= 'Total transaksi tahun ini ';
+        $html .="</div>";
+        $dompdf->loadHtml($html);
+        // Setting ukuran dan orientasi kertas
+        $dompdf->setPaper('A4', 'potrait');
+        // Rendering dari HTML Ke PDF
+        $dompdf->render();
+        // Melakukan output file Pdf
+        $dompdf->stream('laporan_tahun.pdf', array("Attachment" => false));
     }
-    
+
 
     public function getInfoLaundry()
     {   
