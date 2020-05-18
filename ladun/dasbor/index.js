@@ -106,38 +106,11 @@ var divMenu = new Vue({
     },
     laporanTransaksiAtc : function()
     {
-      playLoaderEksis();
-      sleep(100);
-      setTimeout(renderMenu(laporanTransaksi), 100);
+      renderMenu(laporanTransaksi);
       divJudul.judulForm = "Laporan Transaksi";
     }
   }
 });
-
-var counterLoad = 0;
-
-
-function playLoaderEksis(){
-  $('#divProgress').show();
-  var fungsiLoad = setInterval(counterLoader, 100);
-}
-
-function counterLoader()
-{
-  $('#loaderEksis').attr('style','width:'+counterLoad+'%');
-  counterLoad+=15;
-  if(counterLoad > 100){
-    stopTimer();
-  }else{
-
-  }
-}
-
-function stopTimer()
-{
-  clearInterval(playLoaderEksis.fungsiLoad);
-  $('#divProgress').hide();
-}
 
 function renderMenu(halaman) {
   // $('#divUtama').html("Memuat ...");

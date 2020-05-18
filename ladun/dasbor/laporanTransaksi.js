@@ -105,9 +105,9 @@ function getDataTanggal()
         function pushTableItem(item, index){
             divLaporanTransaksi.dataHarian.push({
                 waktu : obj[index].waktu,
-                jumlahTransaksi : '11',
                 arus : obj[index].arus,
-                jumlah : obj[index].jumlah
+                jumlah : obj[index].jumlah,
+                kdTransaksi : obj[index].kdTransaksi
             });
         }
         setTimeout(setTabelHarian, 100);

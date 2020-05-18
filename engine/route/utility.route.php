@@ -8,7 +8,7 @@ class utility extends Route{
     
     }
 
-    public function tesPdf()
+    public function cetakLaporan()
     {
         $pdf = new FPDF('P','mm','A4');
         // membuat halaman baru
@@ -16,7 +16,12 @@ class utility extends Route{
         // setting jenis font yang akan digunakan
         $pdf->SetFont('Arial','B',14);
         // mencetak string 
-        $pdf->Cell(30,10,'Belajar Membuat Laporan PDF Dengan FPDF');
+        $pdf->Image('http://nadha.id/assets/images/product/nadha_laundry_new.png',10,10,-500);
+        $pdf->Cell(190,20,'Laporan Tahunan Laundry',0,1,'L');
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(20,6,'Bulan',1,0);
+        $pdf->Cell(35,6,'Total Transaksi',1,0);
+        $pdf->Cell(35,6,'Nilai Transaksi',1,0);
         $pdf->Output();
     }
     

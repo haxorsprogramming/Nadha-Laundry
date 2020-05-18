@@ -116,6 +116,7 @@ class laporanTransaksi extends Route{
             $arrTemp['waktu'] = $qt['waktu'];
             $arrTemp['arus'] = $qt['arus'];
             $arrTemp['jumlah'] = $qt['jumlah'];
+            $arrTemp['kdTransaksi'] = $qt['kd_tracking'];
             $dbdata[] = $arrTemp;
         }
         $this -> toJson($dbdata);
