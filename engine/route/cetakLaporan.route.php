@@ -102,7 +102,90 @@ class cetakLaporan extends Route{
 
     public function bulan($bulan,$tahun)
     {
-        echo $bulan.$tahun;
+        $dompdf = new Dompdf();
+        //inisialisasi variabel awal -> nama laundry
+        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
+        $qNamaLaundry = $this -> st -> querySingle();
+        $namaLaundry = $qNamaLaundry['value'];
+        //ubah nama bulan ke lowercase
+        $bulanLowCase = strtolower($bulan);
+        //ubah bulan ke int
+        $bulanInt = $this -> bulanToInt($bulanLowCase);
+
+        //cari jumlah hari dalam bulan 
+        $jlhDay = $this -> ambilHari($bulanInt);
+        $dim = '-';
+        $html = '<div><h2>Laporan Bulanan Laundry</h2>';
+        $html .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Bulan Laporan : '.$bulan.' '.$tahun;
+        $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:13px;">
+        <tr><th>Tanggal</th><th>Total Transaksi Masuk</th><th>Total Transaksi Keluar</th><th>Nominal Transaksi Masuk</th><th>Nominal Transaksi Keluar</th>
+        <th>Total Profit</th>
+        </tr>';
+        $totalTransaksiTanggal = 0;
+        $totalTransaksiTanggalKeluar = 0;
+        $nominalTransaksiTanggal = 0;
+        $nominalTransaksiTanggalKeluar = 0;
+       
+        //rekap transaksi masuk
+        for($i = 1; $i <= $jlhDay; $i++){
+            //mulai ribetnya coy
+            $tglNow = $this -> getTanggalBedaDigit($i);
+            $tglAwalKomplit = $tahun."-".$bulanInt."-".$tglNow." 00:00:00";
+            $tglAkhirKomplit = $tahun."-".$bulanInt."-".$tglNow." 23:59:59";
+            $profit = 0;
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
+            $jlhTransaksi = $this -> st -> numRow();
+            $qTransaksi = $this -> st -> queryAll();
+            $nominalTransaksi = 0;
+            foreach($qTransaksi as $qt){
+                $tempTransaksi = $qt['jumlah'];
+                $nominalTransaksi = $nominalTransaksi + $tempTransaksi;
+            }
+            $capNominalTransaksi = number_format($nominalTransaksi);
+            $totalTransaksiTanggal = $totalTransaksiTanggal + $jlhTransaksi;
+            $nominalTransaksiTanggal = $nominalTransaksiTanggal + $nominalTransaksi;
+            $capNominalTransaksiTanggal = number_format($nominalTransaksiTanggal);
+            //rekap transaksi keluar
+            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='keluar';");
+            $jlhTransaksiKeluar = $this -> st -> numRow();
+            $qTransaksiKeluar = $this -> st -> queryAll();
+            $nominalTransaksiKeluar = 0;
+            foreach($qTransaksiKeluar as $qtk){
+                $tempTransaksi = $qtk['jumlah'];
+                $nominalTransaksiKeluar = $nominalTransaksiKeluar + $tempTransaksi;
+            }
+            $capNominalTransaksiKeluar = number_format($nominalTransaksiKeluar);
+            $totalTransaksiTanggalKeluar = $totalTransaksiTanggalKeluar + $jlhTransaksiKeluar;
+            $nominalTransaksiTanggalKeluar = $nominalTransaksiTanggalKeluar + $nominalTransaksiKeluar;
+            $capNominalTransaksiTanggalKeluar = number_format($nominalTransaksiTanggalKeluar);
+
+            $profit = $nominalTransaksi - $nominalTransaksiKeluar;
+            $capProfit = number_format($profit);
+
+            $html .= '<tr>
+            <td style="padding-left:5px;">'.$tglNow.'</td>
+            <td style="padding-left:5px;">'.$jlhTransaksi .'</td>
+            <td style="padding-left:5px;">'.$jlhTransaksiKeluar.'</td>
+            <td style="padding-left:5px;">Rp. '.$capNominalTransaksi.'</td>
+            <td style="padding-left:5px;">Rp. '.$capNominalTransaksiKeluar.'</td>
+            <td style="padding-left:5px;">Rp. '.$capProfit.'</td>
+            </tr>';
+        }
+        $html .='</table>';
+        $html .= '<p>Total transaksi masuk bulan ini = '.$totalTransaksiTanggal.' transaksi<br/>';
+        $html .= 'Total transaksi keluar bulan ini = '.$totalTransaksiTanggalKeluar.' transaksi<br/>';
+        $html .= 'Nominal transaksi masuk bulan ini = <b>Rp. '.$capNominalTransaksiTanggal.'</b><br/>';
+        $html .= 'Nominal transaksi keluar bulan ini = <b>Rp. '.$capNominalTransaksiTanggalKeluar.'</b><br/>';
+        $html .= '</p><p><i>Note : Perhitungan profit tidak dihitungkan dengan modal awal laundry, hasil yg anda lihat pada arus kas mungkin berbeda dengan profit,
+        perhitungan profit laporan diatas hanya berdasarkan perbandingan antara transaksi masuk dan keluar setiap bulan<i/></p>';
+        $html .="</div>";
+        $dompdf->loadHtml($html);
+        // Setting ukuran dan orientasi kertas
+        $dompdf->setPaper('A4', 'portait');
+        // Rendering dari HTML Ke PDF
+        $dompdf->render();
+        // Melakukan output file Pdf
+        $dompdf->stream('laporan_bulanan.pdf', array("Attachment" => false));
     }
 
 

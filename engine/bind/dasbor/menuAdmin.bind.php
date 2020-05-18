@@ -28,7 +28,7 @@
     <ul class="dropdown-menu">
       <li><a class="nav-link" href="#!" v-on:click='pengaturanUmumAtc'>Pengaturan Umum</a></li>
       <li><a class="nav-link" href="#!" v-on:click='manajemenUserAtc'>Manajemen User</a></li>
-
+      <li><a class="nav-link" href="#!">Backup & Restore Data</a></li>
     </ul>
   </li>
   <li><a class="nav-link" id='btnLogOut' href="<?= HOMEBASE; ?>dasbor/logOut"><i class="fas fa-sign-out-alt"></i> <span>LogOut</span></a></li>
