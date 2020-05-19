@@ -113,11 +113,5 @@ $namaBawah = $bahanExplodeNama[0];
       </tr>
     </table>
     - - - - - - - - - - - - - - - - - - - - - - - - -<br/>
-<div style="">
-    Terima kasih <?=$namaBawah; ?>, <br/>
-    anda mendapatkan 1 point dari transaksi ini<br/>
-    Total point anda 5</div>
-    - - - - - - - - - - - - - - - - - - - - - - - - -<br/>
 
-    </div>
  </html>
