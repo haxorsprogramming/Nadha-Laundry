@@ -76,7 +76,7 @@ $capTblTambahItem = "";
             </thead>
             <tbody>
                 <tr v-for='li in listItem'>
-                    <td>{{li.teks}}</td><td>{{li.qt}} Kg</td><td>Rp. {{li.total}}</td>
+                    <td>{{li.teks}}</td><td>{{li.qt}} Kg</td><td>Rp. {{ Number(li.total).toLocaleString() }}</td>
                 </tr>
             </tbody>
         </table>

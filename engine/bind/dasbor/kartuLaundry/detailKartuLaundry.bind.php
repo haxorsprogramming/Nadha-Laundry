@@ -19,6 +19,7 @@ if($statusCucian == 'hold'){
   $btnBayar = 'disabled';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = '';
+  $statRollback = 'inline';
 }elseif($statusCucian == 'cuci' and $pembayaran == 'pending'){
   $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
   $statusPembayaran = 'Belum';
@@ -26,6 +27,7 @@ if($statusCucian == 'hold'){
   $btnBayar = '';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = '';
+  $statRollback = 'inline';
 }elseif($statusCucian == 'cuci' and $pembayaran == 'selesai'){
   $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
   $statusPembayaran = 'Sudah';
@@ -33,6 +35,7 @@ if($statusCucian == 'hold'){
   $btnBayar = 'disabled';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = '';
+  $statRollback = 'none';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'pending'){
   $capStatusCucian = 'Selesai (Cucian sudah selesai)';
   $statusPembayaran = 'Belum';
@@ -40,6 +43,7 @@ if($statusCucian == 'hold'){
   $btnBayar = '';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = 'disabled';
+  $statRollback = 'inline';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '0'){
   $capStatusCucian = 'Selesai (Cucian sudah selesai)';
   $statusPembayaran = 'Sudah';
@@ -47,6 +51,7 @@ if($statusCucian == 'hold'){
   $btnBayar = 'disabled';
   $btnSudahDiambil = '';
   $btnKeLaundryRoom = 'disabled';
+  $statRollback = 'none';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '1'){
   $capStatusCucian = 'Selesai & Diambil (Cucian sudah selesai dan diambil oleh pelanggan)';
   $statusPembayaran = 'Sudah';
@@ -54,8 +59,8 @@ if($statusCucian == 'hold'){
   $btnBayar = 'disabled';
   $btnSudahDiambil = 'disabled';
   $btnKeLaundryRoom = 'disabled';
+  $statRollback = 'none';
 }
-
 
 ?>
 <div id='divDetailKartuLaundry'>
@@ -92,6 +97,9 @@ if($statusCucian == 'hold'){
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnBayar; ?>" v-on:click='bayarAtc("<?=$kodeService; ?>")'><i class='fas fa-receipt'></i> Bayar</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnSudahDiambil; ?>" v-on:click='pickUpAtc("<?=$kodeService; ?>")' id='btnPickUp'><i class='fas fa-check-circle'></i> Set sudah di ambil</a>&nbsp;&nbsp;
             <a href='#!' class="btn btn-lg btn-primary btn-icon icon-left <?=$btnKeLaundryRoom; ?>" v-on:click='keLaundryRoomAtc("<?=$kodeService; ?>")'><i class='fas fa-tshirt'></i> Ke laundry room</a>&nbsp;&nbsp;
+            <div style='margin-top:12px;'>
+            <a href='#!' v-on:click='rollbackAtc("<?=$kodeService; ?>")' style='display:<?=$statRollback; ?>;' class="btn btn-lg btn-warning btn-icon icon-left"><i class='fas fa-trash-alt'></i> Batalkan Cucian</a>
+          </div>
         </div>
         </div>
         </div>

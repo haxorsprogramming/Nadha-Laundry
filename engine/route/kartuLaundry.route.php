@@ -84,10 +84,28 @@ class kartuLaundry extends Route{
       $this -> toJson($data);
     }
 
-    public function tesRandom()
+    public function batalkanCucian()
     {
-      $kode = $this -> rnstr(20);
-      echo $kode;
+      $kdService = $this -> inp('kdService');
+ 
+      //hapus di kartu laundry
+      $qDeleteKartuLaundry = "DELETE FROM tbl_kartu_laundry WHERE kode_service='$kdService';";
+      $this -> st -> query($qDeleteKartuLaundry);
+      $this -> st -> queryRun();
+      //hapus di laundry room 
+      $qDeleteLaundryRoom = "DELETE FROM tbl_laundry_room WHERE kd_kartu='$kdService';";
+      $this -> st -> query($qDeleteLaundryRoom);
+      $this -> st -> queryRun();
+      //hapus di temp item cucian 
+      $qDeleteTempCucian = "DELETE FROM tbl_temp_item_cucian WHERE kd_room='$kdService';";
+      $this -> st -> query($qDeleteTempCucian);
+      $this -> st -> queryRun();
+      //hapus di timeline 
+      $qDeleteTimeline = "DELETE FROM tbl_timeline WHERE kd_service=$kdService'';";
+      $this -> st -> query($qDeleteTimeline);
+      $this -> st -> queryRun();
+      $data['status'] = 'sukses';
+      $this -> toJson($data);
     }
 
 }

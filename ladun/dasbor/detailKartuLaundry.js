@@ -16,6 +16,10 @@ var divDetailKartuLaundry = new Vue({
         },
         pickUpAtc : function(kdService){
             setDiambil(kdService);
+        },
+        rollbackAtc : function(kdService)
+        {
+            batalkanCucian(kdService);
         }
     }
 });
@@ -45,6 +49,38 @@ function setDiambil(kdService){
             }],
         ]
     });
+}
+
+function batalkanCucian(kdService)
+{
+    Swal.fire({
+        title: "Batalkan?",
+        text: "Batalkan cucian?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya",
+        cancelButtonText: "Tidak",
+      }).then((result) => {
+        if (result.value) {
+            $.post('kartuLaundry/batalkanCucian', {'kdService':kdService}, function(data){
+                let obj = JSON.parse(data);
+                status = obj.status;
+                if(status === 'sukses'){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Cucian berhasil dihapus dari kartu laundry..'
+                      });
+                      renderMenu(kartuLaundry);
+                      divJudul.judulForm = "Kartu Laundry";
+                }else{
+
+                }
+            });
+        }
+      });
 }
 
 function konfirmasiPickUpCucian(kdService)
