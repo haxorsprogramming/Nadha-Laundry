@@ -1,5 +1,9 @@
 <?php
 
+require_once 'lib/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
+
+
 class dataTransaksi extends Route{
 
     public function __construct()
@@ -35,8 +39,83 @@ class dataTransaksi extends Route{
                 echo "<code>Kode invoice tidak valid!!!</code>";
                 die();
             }else{
-                $data['qPembayaran'] = $this -> st -> querySingle();
-                $this -> bind('dasbor/dataTransaksi/cetak', $data);
+                $qTransaksi = $this -> st -> querySingle();
+                $kdKartu = $qTransaksi['kd_kartu'];
+                $waktuTransaksi = $qTransaksi['waktu'];
+                $operator = $qTransaksi['operator'];
+                //data footer 
+                $totalFinal = $qTransaksi['total_final'];
+                $totalCuci = $qTransaksi['total_cuci'];
+                $diskon = $qTransaksi['diskon'];
+                $tunai = $qTransaksi['tunai'];
+                $kembali = $tunai - $totalFinal;
+                //query ambil list item 
+                $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdKartu';");
+                $qListItem = $this -> st -> queryAll();
+                $dompdf = new Dompdf();
+                //inisialisasi variabel awal -> nama laundry
+                $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
+                $qNamaLaundry = $this -> st -> querySingle();
+                $namaLaundry = $qNamaLaundry['value'];
+                //nama pelanggan 
+                $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdKartu';");
+                $qKartuLaundry = $this -> st -> querySingle();
+                $pelanggan = $qKartuLaundry['pelanggan'];
+                $this -> st -> query("SELECT nama_lengkap,level FROM tbl_pelanggan WHERE username='$pelanggan';");
+                $qNamaPelanggan = $this -> st -> querySingle();
+                $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+                $levelPelanggan = $qNamaPelanggan['level'];
+                //cari bonus point cuci 
+                $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
+                $qBonusPoint = $this -> st -> querySingle();
+                $bonusPoint = $qBonusPoint['bonus_point_cuci'];
+                //explode nama awal 
+                $bahanExplodeNama = explode(" ", $namaPelanggan);
+                $namaBawah = $bahanExplodeNama[0];
+                //header 
+                $html = '<div><h2 style="font-size:0.9em;">'.$namaLaundry.'</h2>';
+                $html .= '<p style="font-size:0.7em;">No Transaksi : '.$kdTransaksi.'<br/>';
+                $html .= 'Pelanggan : '.$namaPelanggan.'<br/>';
+                $html .= 'Operator : '.$operator.'<br/>';
+                $html .= 'Waktu : '.$waktuTransaksi;
+                $html .= '<p style="text-align:center;font-size:0.7em;">Items & Service</p>';
+                //table
+                $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:10px;">';
+                $html .= '<tr><td>Items</td><td>Harga @</td><td>Qt</td><td>Total</td></tr>';
+                foreach($qListItem as $ql){
+                    $kdItem = $ql['kd_item'];
+                    //cari nama item dan satuan 
+                    $this -> st -> query("SELECT nama, satuan FROM tbl_service WHERE kd_service='$kdItem';");
+                    $qItem = $this -> st -> querySingle();
+                    $namaItem = $qItem['nama'];
+                    $hargaAt = $ql['harga_at'];
+                    $quantity = $ql['qt'];
+                    $satuan = $qItem['satuan'];
+                    $total = $ql['total'];
+                    $html .= '<tr><td>'.$namaItem.'</td>
+                    <td>Rp. '.number_format($hargaAt).'</td>
+                    <td>'.$quantity.' '.$satuan.'</td>
+                    <td>Rp. '.number_format($total).'</td></tr>';
+                }
+                $html .= '</table>';
+                //result
+                $html .= '<table border="0" style="font-size:10px;">';
+                $html .= '<tr><td>Sub Total</td><td style="padding-left:20px;">Rp. '.number_format($totalCuci).'</td></tr>';
+                $html .= '<tr><td>Diskon</td><td style="padding-left:20px;">Rp. '.number_format($diskon).'</td></tr>';
+                $html .= '<tr><td>Total</td><td style="padding-left:20px;"><b>Rp. '.number_format($totalFinal).'</b></td></tr>';
+                $html .= '<tr><td>Tunai</td><td style="padding-left:20px;">Rp. '.number_format($tunai).'</td></tr>';
+                $html .= '<tr><td>Kembali</td><td style="padding-left:20px;">Rp. '.number_format($kembali).'</td></tr>';
+                $html .= '</table>';
+                $html .= '<p style="font-size:0.5em;">Terima kasih '.$namaBawah.', <br/>
+                anda mendapatkan '.$bonusPoint.' point dari transaksi ini';
+                $html .= '</div>';
+                $dompdf->loadHtml($html);
+                // Setting ukuran dan orientasi kertas
+                $dompdf->setPaper('A6', 'portait');
+                // Rendering dari HTML Ke PDF
+                $dompdf->render();
+                // Melakukan output file Pdf
+                $dompdf->stream('invoice.pdf', array("Attachment" => false));
             }
         }else{
             echo "<code>Route tidak valid!!</code>";

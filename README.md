@@ -72,4 +72,4 @@ By : NadhaMedia
 
 <br/>
 
-Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com.
+Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com. Gratis kok ... ^_^

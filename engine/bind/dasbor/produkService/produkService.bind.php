@@ -22,7 +22,7 @@ foreach($data['produkService'] as $ps):
 <td><?=$ps['deks']; ?></td>
 <td><?=$ps['satuan']; ?> - Rp. <?=number_format($ps['harga']); ?></td>
 <td><?=$jlhTransaksi; ?></td>
-<td><a href='#!' class='btn btn-sm btn-primary'>Detail</a></td>
+<td><a href='#!' class='btn btn-sm btn-primary icon-left'><i class='fas fa-search-plus'></i> Detail</a></td>
 </tr>
 
 <?php endforeach; ?>

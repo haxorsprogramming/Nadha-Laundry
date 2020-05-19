@@ -25,7 +25,7 @@ $namaBawah = $bahanExplodeNama[0];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+  <head> 
     <meta charset="utf-8">
     <title>Cetak Struk</title>
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
