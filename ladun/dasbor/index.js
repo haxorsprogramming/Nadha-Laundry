@@ -74,6 +74,9 @@ var divMenu = new Vue({
       renderMenu(levelUser);
       divJudul.judulForm = "Level User";
     },
+    promoAtc : function(){
+
+    },
     produkServiceAtc : function()
     {
       renderMenu(produkService);

@@ -8,6 +8,7 @@
     <ul class="dropdown-menu">
       <li><a class="nav-link" href="#!" v-on:click='produkServiceAtc'>Produk & Service</a></li>
       <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
+      <li><a class="nav-link" href='#!' v-on:click='promoAtc'>Promo</a></li>
       <li><a class="nav-link" href="#!" v-on:click='pengeluaranLaundryAtc'>Pengeluaran Laundry</a></li>
     </ul>
   </li>

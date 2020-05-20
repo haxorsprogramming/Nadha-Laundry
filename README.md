@@ -72,4 +72,4 @@ By : NadhaMedia
 
 <br/>
 
-Apabila anda tertarik menggunakan aplikasi ini, dapat menghubungi kami melalui email alditha.forum@gmail.com. Gratis kok ... ^_^
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, tetapi kami mengharapkan bantuan donasi untuk pengembangan club ini melalui saweria di link  <a href='https://saweria.co/donate/haxorsprogramming'>saweria</a>, donasi dapat dilakukan melalui OVO, Gopay, Dana, Link aja. Berapapun donasi akan kami terima untuk membantu pengembangan club ini. 

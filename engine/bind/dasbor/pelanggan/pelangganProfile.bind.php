@@ -76,7 +76,7 @@ if($terakhirLaundry == ''){
   <div class="card-header">
   <h4 class="d-inline">History cucian pelanggan</h4>
       <div class="card-header-action">
-      <a href='#!' class="btn btn-sm btn-primary" v-on:click='historyCucianPelanggan("<?=$usernameParam; ?>")'>Lihat semua</a>
+      <!-- <a href='#!' class="btn btn-sm btn-primary" v-on:click='historyCucianPelanggan("<?=$usernameParam; ?>")'>Lihat semua</a> -->
       </div>
   </div>
   <div class="card-body">
