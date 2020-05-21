@@ -26,6 +26,12 @@ class promo extends Route{
         }
         $this -> toJson($dbdata);
     }
+
+    public function prosesTambahPromo()
+    {
+        $data['status'] = 'insomnia';
+        $this -> toJson($data);
+    }
   
 
 }
