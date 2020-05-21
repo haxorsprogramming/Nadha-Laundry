@@ -64,9 +64,17 @@ By : NadhaMedia
 
 <img src='https://github.com/haxorsprogramming/All-Project/blob/master/nadha_produk/ss/pembayaran.png?raw=true'>
 
->>Struk
+>> Struk
 
 <img src='https://github.com/haxorsprogramming/All-Project/blob/master/nadha_produk/ss/print_struk.png?raw=true'>
+
+>> Laporan Tahunan
+
+<img src='https://github.com/haxorsprogramming/All-Project/blob/master/nadha_produk/ss/laporan_tahunan.png?raw=true'>
+
+>> Laporan Bulanan 
+
+<img src='https://github.com/haxorsprogramming/All-Project/blob/master/nadha_produk/ss/laporan_bulanan.png?raw=true'>
 
 <br/>
 
