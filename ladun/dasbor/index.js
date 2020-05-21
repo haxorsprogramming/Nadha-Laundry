@@ -6,6 +6,7 @@ const pelanggan = 'pelanggan';
 const settingUser = 'settingUser';
 const laporan = 'laporan';
 const levelUser = 'levelUser';
+const promo = 'promo';
 const kartuLaundry = 'kartuLaundry';
 const laundryRoom = 'laundryRoom';
 const detailCucian = 'laundryRoom/detailCucian';
@@ -75,7 +76,8 @@ var divMenu = new Vue({
       divJudul.judulForm = "Level User";
     },
     promoAtc : function(){
-
+      renderMenu(promo);
+      divJudul.judulForm = "Kode promo";
     },
     produkServiceAtc : function()
     {

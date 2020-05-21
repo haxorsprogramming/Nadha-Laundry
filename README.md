@@ -13,10 +13,8 @@ By : NadhaMedia
 <b>Fitur</b>
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
-<li> Level user</li>
-<li> Sistem promo & diskon</li>
-<li> Sistem point cucian</li>
-<li> Notifikasi status cucian ke pelanggan (default : email)</li>
+<li> Sistem promo, level user, point, & diskon</li>
+<li> Notifikasi status cucian ke pelanggan (default : email, sms, whatsapp enableb by activated)</li>
 <li> Manajemen pengeluaran laundry</li>
 <li> Manajemen pembukuan laundry</li>
 <li> Manajemen laporan</li>
@@ -72,4 +70,4 @@ By : NadhaMedia
 
 <br/>
 
-Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan. Kami mengharapkan bantuan donasi untuk pengembangan club ini melalui saweria di link  <a href='https://saweria.co/donate/haxorsprogramming'>saweria</a>, donasi dapat dilakukan melalui OVO, Gopay, Dana, Link aja. Berapapun donasi akan kami terima untuk membantu pengembangan club ini. Silahkan kontak kami ya .. ^_^
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022 untuk mendapatkan databasenya, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan. Kami mengharapkan bantuan donasi untuk pengembangan club ini melalui saweria di link  <a href='https://saweria.co/donate/haxorsprogramming'>saweria</a>, donasi dapat dilakukan melalui OVO, Gopay, Dana, Link aja. Berapapun donasi akan kami terima untuk membantu pengembangan club ini. Silahkan kontak kami ya .. ^_^
