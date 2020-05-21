@@ -29,7 +29,23 @@ class promo extends Route{
 
     public function prosesTambahPromo()
     {
-        $data['status'] = 'insomnia';
+        // 'kdPromo':kdPromo, 'deks':deks, 'diskon':diskon
+        $kdPromo = $this -> inp('kdPromo');
+        $deks = $this -> inp('deks');
+        $diskon = $this -> inp('diskon');
+        //cek apakah kd promo sudah ada 
+        $this -> st -> query("SELECT id FROM tbl_promo_code WHERE kd_promo='$kdPromo';");
+        $jlhKode = $this -> st -> numRow();
+        if($jlhKode == 1){
+            $data['status'] = 'exist';
+        }else{
+            //proses simpan ke database
+            $querySimpan = "INSERT INTO tbl_promo_code VALUES(null, '$kdPromo', '$deks','$diskon','2020-05-22','2020-05-22','100','y');";
+            $this -> st -> query($querySimpan);
+            $this -> st -> queryRun();
+            $data['status'] = 'success';
+        }
+        
         $this -> toJson($data);
     }
   
