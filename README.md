@@ -78,6 +78,9 @@ By : NadhaMedia
 
 <br/>
 
+Sebelum menggunakan : <br/>
+<li>Setting alamat(url), database, dll di 'engine/rule/base' dan 'engine/rule/database' </li>
+
 Demo : https://demo.haxors.or.id/Nadha-Laundry
 
 access administrator<br/>
