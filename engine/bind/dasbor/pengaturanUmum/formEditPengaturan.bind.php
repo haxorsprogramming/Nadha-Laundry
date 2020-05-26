@@ -14,7 +14,7 @@ $dataSetting = $data['dataSetting'];
             </tr>
             <tr>
                 <td>Nilai</td>
-                <td><input type='number' id='txtValue' class='form-control' value="<?=$dataSetting['value']; ?>"></td>
+                <td><input type='text' id='txtValue' class='form-control' value="<?=$dataSetting['value']; ?>"></td>
             </tr>
         </table>
         <a href='#!' class="btn btn-primary btn-icon icon-left" v-on:click='simpanAtc'><i class='fas fa-save'></i> Simpan</a>

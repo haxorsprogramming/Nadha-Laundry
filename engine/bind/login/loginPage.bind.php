@@ -56,6 +56,7 @@
               </div>
             </div>
           </div>
+          <div id='divWorker'></div>
         </div>
       </div>
       <!-- content-wrapper ends -->
@@ -65,6 +66,7 @@
   <!-- container-scroller -->
   <!-- base:js -->
   <script src="<?=STYLEBASE; ?>/login/js/login.js"></script>
+  <script src="<?=STYLEBASE; ?>/login/js/page/auth-workers.js"></script>
   <script src="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.js"></script>
   <script src="https://demo.getstisla.com/assets/modules/izitoast/js/iziToast.min.js"></script>
   <!-- endinject -->
