@@ -80,6 +80,7 @@ By : NadhaMedia
 
 Sebelum menggunakan : <br/>
 <li>Setting alamat(url), database, dll di 'engine/rule/base' dan 'engine/rule/database' </li>
+<br/>
 
 Demo : https://demo.haxors.or.id/Nadha-Laundry
 
@@ -87,6 +88,6 @@ access administrator<br/>
 username : admin<br/>
 password : admin<br/>
 
-Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan. 
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan, dan aktivasi beberapa fitur yang belum diaktifkan. 
 
 Bantu support kami untuk pengembangan club melalui link saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^
