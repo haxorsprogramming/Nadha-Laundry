@@ -12,8 +12,7 @@ var divBeranda = new Vue({
             $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
         },
         getInfoStatBar : function() {
-            //cari informasi statistik bar 
-           
+            
         }
     }
 });

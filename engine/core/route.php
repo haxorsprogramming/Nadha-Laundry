@@ -224,7 +224,7 @@ class Route{
       }
     }
 
-    public function kirimEmail($penerima,$judul,$isi)
+    public function kirimEmail($nama,$penerima,$judul,$isi,$emailHost,$passwordHost)
     {
         $mail = new PHPMailer(false);  
         // Passing `true` enables exceptions
@@ -234,13 +234,13 @@ class Route{
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'haxorsuinsu@gmail.com';                 // SMTP username
-            $mail->Password = 'python2019!';                           // SMTP password
+            $mail->Username = $emailHost;                 // SMTP username
+            $mail->Password = $passwordHost;                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
             //Recipients
-            $mail->setFrom('haxorsuinsu@gmail.com', 'Haxors Uinsu');
-            $mail->addAddress($penerima, 'Aditia Darma Nst');     // Add a recipient
+            $mail->setFrom($emailHost, 'Haxors Uinsu');
+            $mail->addAddress($penerima, $nama);     // Add a recipient
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $judul;

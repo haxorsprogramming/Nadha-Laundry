@@ -114,6 +114,29 @@ class laundryRoom extends Route{
        $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline', '$kdService', '$waktuSelesai','$operator','cucian_selesai','Cucian telah selesai');";
        $this -> st -> query($qUpdateTimeline);
        $this -> st -> queryRun();
+        // kirim email ke pelanggan 
+        $judul = "Status Cucian";
+        // cari email host
+       $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='email_host';");
+       $qEmail = $this -> st -> querySingle();
+       $email = $qEmail['value'];
+       //password email host 
+       $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='email_host_password';");
+       $qPassword = $this -> st -> querySingle();
+       $password = $qPassword['value'];
+       $emailHost = $email;
+       $passwordHost = $password;
+       //cari email pelanggan 
+       $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='kdService';");
+       $qUsernamePelanggan = $this -> st -> querySingle();
+       $username = $qUsernamePelanggan['pelanggan'];
+       $this -> st -> query("SELECT nama_lengkap, email FROM tbl_pelanggan WHERE username='$username';");
+       $qPelanggan = $this -> st -> querySingle();
+       $emailPelanggan = $qPelanggan['email'];
+       $namaPelanggan = $qPelanggan['nama_lengkapp'];
+       $isi = "Halo ".$namaPelanggan.", cucian kamu dengan Kode ".$kdService." sudah selesai dicuci, silahkan ambil di laundry kita ya";
+       //public function kirimEmail($nama,$penerima,$judul,$isi,$emailHost,$passwordHost)
+       $this -> kirimEmail($namaPelanggan,$emailPelanggan,$judul,$isi,$emailHost,$passwordHost);
        $this -> toJson($kdService);
    }
 
