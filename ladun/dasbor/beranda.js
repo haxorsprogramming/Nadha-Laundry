@@ -3,19 +3,24 @@ var divBeranda = new Vue({
     data : {
         caption : 'Berikut ada data statistik anda',
         jlhPelanggan : '',
-        jlhCucian : ''
+        jlhCucian : '',
+        route : 'utility/getInfoBeranda'
     },
     methods : {
         pelangganProfile : function(username){
             $('#divUtama').html("Memuat ...");
             $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+        },
+        getInfoStatBar : function() {
+            //cari informasi statistik bar 
+           
         }
     }
 });
 
-//cari informasi statistik bar 
 $.post('utility/getInfoBeranda', function(data){
     let obj = JSON.parse(data);
+    // console.log(obj);
     divBeranda.jlhPelanggan = obj.jlhPelanggan;
     divBeranda.jlhCucian = obj.jlhCucian;
 });

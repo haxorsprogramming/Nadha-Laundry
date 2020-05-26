@@ -14,7 +14,7 @@ By : NadhaMedia
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
 <li> Sistem promo, level user, point, & diskon</li>
-<li> Notifikasi status cucian ke pelanggan (default : email, sms, whatsapp enableb by activated)</li>
+<li> Notifikasi status cucian ke pelanggan (default : email, sms, whatsapp enable by activated)</li>
 <li> Manajemen pengeluaran laundry</li>
 <li> Manajemen pembukuan laundry</li>
 <li> Manajemen laporan</li>
