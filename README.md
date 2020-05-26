@@ -80,9 +80,9 @@ By : NadhaMedia
 
 Demo : https://demo.haxors.or.id/Nadha-Laundry
 
-access administrator
-username : admin
-password : admin
+access administrator<br/>
+username : admin<br/>
+password : admin<br/>
 
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan. 
 
