@@ -113,6 +113,10 @@ var divMenu = new Vue({
     {
       renderMenu(laporanTransaksi);
       divJudul.judulForm = "Laporan Transaksi";
+    },
+    backupRestoreAtc : function()
+    {
+      window.alert("Silahkan kontak tim haxorsprogramming untuk mengaktifkan fitur ini");
     }
   }
 });

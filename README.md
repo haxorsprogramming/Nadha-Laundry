@@ -17,7 +17,7 @@ By : NadhaMedia
 <li> Notifikasi status cucian ke pelanggan (default : email, sms, whatsapp enable by activated)</li>
 <li> Manajemen pengeluaran laundry</li>
 <li> Manajemen pembukuan laundry</li>
-<li> Manajemen laporan</li>
+<li> Backup & Restore data ke cloud</li>
 <li> Multilevel user</li>
 <br/>
 <b>Developer Team</b>
