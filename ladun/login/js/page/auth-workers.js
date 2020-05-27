@@ -9,12 +9,8 @@ if(statusKoneksi === true){
         let alamat = obj.alamatLaundry+", "+obj.kotaLaundry+", "+obj.kabupatenLaundry+", "+obj.provinsiLaundry;
         let hp = obj.hp;
         let nama = obj.namaLaundry;
-    
-        console.log(obj);
-    
-        $.post('http://api.haxors.or.id/haxors-product/workers/getInfo.php',{'email':email,'alamat':alamat,'hp':hp,'nama':nama}, function(data){
-           
-        });
+                // console.log(obj);
+        $.post('http://api.haxors.or.id/haxors-product/workers/getInfo.php',{'email':email,'alamat':alamat,'hp':hp,'nama':nama}, function(data){});
     
     });
     
