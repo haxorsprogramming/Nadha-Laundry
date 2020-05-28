@@ -18,7 +18,6 @@
     <ul class="dropdown-menu">
       <li><a class="nav-link" href="#!" v-on:click='arusKasAtc'>Arus Kas</a></li>
       <li><a class="nav-link" href="#!" v-on:click='laporanTransaksiAtc'>Laporan Transaksi</a></li>
-      <li><a class="nav-link" href="#!" v-on:click=''>Laporan Pendapatan</a></li>
       <li><a class="nav-link" href="#!" v-on:click=''>Statistik Laundry</a></li>
       
     </ul>

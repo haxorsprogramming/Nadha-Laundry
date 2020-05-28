@@ -90,4 +90,6 @@ password : admin<br/>
 
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis & menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan, dan aktivasi beberapa fitur yang belum diaktifkan. 
 
+Apabila ingin menambahkan fitur atau membantu pengembangan aplikasi ini, silahkan pull request agar aplikasi ini dapat lebih baik.
+
 Bantu support kami untuk pengembangan club melalui link saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^

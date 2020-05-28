@@ -1,16 +1,7 @@
 <div id='divDataTransaksi'>
     <div style='margin-bottom:15px;'>
     </div>
-    <div class="row">
-        <div>
-            <h5>Filter tanggal</h5>
-            <div class="form-inline" style="margin-bottom: 20px;">
-                <input type="date" class="form-control" id='tglAwal'>&nbsp;sampai&nbsp;
-                <input type="date" class="form-control" id='tglAkhir'>&nbsp;&nbsp;
-                <a href='#!' class="btn btn-sm btn-primary">Tampilkan</a>
-            </div>
-        </div>
-    </div>
+   
     <table id='tblArusKas' class='table table-hover'>
         <thead>
             <tr>
