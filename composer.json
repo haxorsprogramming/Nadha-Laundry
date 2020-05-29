@@ -1,20 +1,12 @@
 {
-    "name": "haxorsprogramming/uinsu-web-framework",
-    "description": "Small, fast, secure web framework - Universitas Islam Negeri Sumatera Utara, Fakultas Sains dan Teknologi",
+    "name": "haxors/nadhalaundry",
+    "description": "Aplikasi manajemen laundry",
     "type": "project",
-    "license": "MIT",
-    "require": {
-        "php": "^5.6.37 || ^7.0"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist"       
-    },
-    "repositories": [
+    "authors": [
         {
-            "type": "path",
-            "url": "https://github.com/haxorsprogramming/Uinsu-Web-Framework"
+            "name": "Haxorsprogramming",
+            "email": "haxorsuinsu@gmail.com"
         }
     ],
-     "minimum-stability": "dev"
+    "require": {}
 }
