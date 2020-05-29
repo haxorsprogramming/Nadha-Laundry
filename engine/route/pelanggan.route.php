@@ -57,7 +57,6 @@ class Pelanggan extends Route{
     {
       $username = $this -> inp('username');
       $data['username'] = $username;
-      //history cucian 
       $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE pelanggan='$username';");
       $data['historyCucian'] = $this -> st -> queryAll();
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
@@ -76,7 +75,7 @@ class Pelanggan extends Route{
       $data['nomorHandphone'] = $this -> inp('nomorHandphone');
       $data['email'] = $this -> inp('email');
       $data['levelUser'] = $this -> inp('levelUser');
-
+      //update profile pelanggan ke database
       $query = "UPDATE tbl_pelanggan SET nama_lengkap=:nama_lengkap, alamat=:alamat, hp=:hp, email=:email, level=:level WHERE username=:username;";
       $this -> st -> query($query);
       $this -> st -> querySet('username',$data['username']);

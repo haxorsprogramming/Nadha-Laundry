@@ -44,7 +44,6 @@ class manajemenUser extends Route{
 
    public function prosesTambahUser()
    {
-    // 'username':username, 'password':password, 'tipeUser':tipeUser
         $username = $this -> inp('username');
         $password = md5($this -> inp('password'));
         $tipeUser = $this -> inp('tipeUser');

@@ -26,15 +26,6 @@ class pengaturanUmum extends Route{
         $this -> toJson($dbdata);
     }
 
-    public function tesKirimPesan()
-    {
-        $penerima = 'dindananinda@gmail.com';
-        $judul = 'Status Cucian';
-        $isi = 'Halo dinda, cucian kamu telah selesai. Silahkan ambil di laundry ya .. :)';
-        $statusKirim = $this -> kirimEmail($penerima, $judul, $isi);
-        echo $statusKirim;
-    }
-
     public function formEditPengaturan($kdSetting)
     {
         $this -> st -> query("SELECT * FROM tbl_setting_laundry WHERE kd_setting='$kdSetting';");
@@ -44,7 +35,6 @@ class pengaturanUmum extends Route{
 
     public function prosesEditPengaturan()
     {
-        // 'kdSetting' : this.kdSetting, 'caption': caption, 'value': value
         $kdSetting = $this -> inp('kdSetting');
         $caption = $this -> inp('caption');
         $value = $this -> inp('value');

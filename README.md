@@ -1,11 +1,11 @@
 <p align="center">
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='300px'>
 </p>
-<h1 align="center">Aplikasi manajemen laundry</h1>
+<h1 align="center">Aplikasi Manajemen Laundry</h1>
 <br>
 <span align="center">
 
-![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg) [![Twitter](https://img.shields.io/twitter/follow/nadha_alditha.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=nadha_alditha) ![GitHub last commit](https://img.shields.io/github/last-commit/haxorsprogramming/Nadha-Laundry.svg)
+![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg) [![Twitter](https://img.shields.io/twitter/follow/nadha_alditha.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=nadha_alditha) ![GitHub last commit](https://img.shields.io/github/last-commit/haxorsprogramming/Nadha-Laundry.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/badges/shields.svg) 
 
 </span>
 
