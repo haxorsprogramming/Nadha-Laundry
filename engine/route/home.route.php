@@ -2,7 +2,8 @@
 
 class Home extends Route{
     
-    public function index(){       
+    public function index()
+    {       
         $this -> bind('/home/default');
     }  
    
@@ -30,11 +31,11 @@ class Home extends Route{
 
     public function proTambahData()
     {
-        $data['nim'] = $this -> inputPost('txtNim');
-        $data['nama'] = $this -> inputPost('txtNama');
-        $data['email'] = $this -> inputPost('txtEmail');
+        $data['nim'] = $this -> inp('txtNim');
+        $data['nama'] = $this -> inp('txtNama');
+        $data['email'] = $this -> inp('txtEmail');
         $this -> state('homeSt') -> tambahData($data);
-        $this -> toSite('home/formTambah');
+        $this -> goTo('home/formTambah');
     }
 
     public function formTambah()

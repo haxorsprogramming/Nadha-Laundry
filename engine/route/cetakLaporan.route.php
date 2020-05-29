@@ -31,12 +31,14 @@ class cetakLaporan extends Route{
         <tr><th>Bulan</th><th>Total Transaksi Masuk</th><th>Total Transaksi Keluar</th><th>Nominal Transaksi Masuk</th><th>Nominal Transaksi Keluar</th>
         <th>Total Profit</th>
         </tr>';
+        //inisialisasi variabel kosong
         $totalTransaksiTahun = 0;
         $totalTransaksiTahunKeluar = 0;
         $nominalTransaksiMasuk = 0;
         $nominalTransaksiKeluar = 0;
-
+        //ambil jumlah hari dalam bulan
         $arrBulanInt = $this -> getListBulanInt();
+
         for($i = 0; $i < $jumlahBulan; $i++){
             $blnInt = $arrBulanInt[$i];
             //cari nama bulan berdasarkan array
@@ -74,6 +76,7 @@ class cetakLaporan extends Route{
             //total profit
             $totalProfit = $totalNilaiTransaksiBulanan - $totalTransaksiBulananKeluar;
             $capTotalProfit = number_format($totalProfit);
+            //buat body untuk pdf
             $html .= '<tr>
             <td style="padding-left:5px;">'.$bulanCapIndo.'</td>
             <td style="padding-left:5px;">'.$totalTransaksiBulan.'</td>

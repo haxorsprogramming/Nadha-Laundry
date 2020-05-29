@@ -2,6 +2,7 @@
 session_start();
 date_default_timezone_set("Asia/Jakarta");
 
+//import library php mailer (untuk mengirimkan email)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -24,16 +25,15 @@ class Route{
         require_once 'engine/state/'.$state.'.state.php';
         return new $state;
     }
-    //membuat string random(panjang_string)
+    //membuat string random
     public function rnstr($length)
     {
         $bahan = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
         $acak = str_shuffle($bahan);
         $hasil = substr($acak,0,$length);
         return $hasil;
-        //var_dum("Data");
     }
-
+    //membuat int random
     public function rnint($length)
     {
       $bahan = '123456789012345678901234567890123456780';
@@ -45,12 +45,7 @@ class Route{
     //fungsi upload
     public function upload($path)
     {
-        // $data['path'] = $data -> path($path);
-        // if(move_uploaded_file()){
-
-        // }else{
-
-        // }
+        
     }
     //ambil data post
     public function inp($id)
@@ -79,13 +74,13 @@ class Route{
     {
       session_destroy();
     }
-
+    //fungsi untuk redirect halaman
     public function goto($page)
     {
       header("Location:".$page);
       exit();
     }
-
+    //fungsi untuk cek validasi format email
     public function emck($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -94,7 +89,7 @@ class Route{
           echo("false");
         }
     }
-
+    //fungsi untuk cek sesi
     public function cekSesi($ses)
     {
       if(!ISSET($_SESSION[$ses])){
@@ -103,12 +98,12 @@ class Route{
         return 'true';
       }
     }
-
+    //fungsi ubah string ke json
     public function toJson($data)
     {
       echo json_encode($data);
     }
-
+    //fungsi untuk cek user login 
     public function cekUserLogin($ses){
       if(!ISSET($_SESSION[$ses])){
         header("Location:".HOMEBASE.'login');
@@ -116,12 +111,12 @@ class Route{
       }else{
       }
     }
-
+    //ambil data waktu
     public function waktu()
     {
       return date("Y-m-d H:i:s");
     }
-
+    //fungsi untuk ambil jumlah jarak antara 2 tanggal
     function jarakTanggal( $first, $last, $step = '+1 day', $format = 'Y/m/d' ) {
       $dates = array();
       $current = strtotime( $first );
@@ -132,7 +127,7 @@ class Route{
       }
       return $dates;
     }
-
+    //fungsi untuk mengambil jumlah hari dalam satu bulan
     public function ambilHari($bulan)
     {
       $tahun = date('Y');

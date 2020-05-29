@@ -23,7 +23,7 @@ class Login extends Route{
         }else{
 
         }
-        echo json_encode($data);
+        $this -> toJson($data);
     }  
 
 }
