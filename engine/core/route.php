@@ -5,13 +5,14 @@ date_default_timezone_set("Asia/Jakarta");
 //import library php mailer (untuk mengirimkan email)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 require_once 'lib/phpmailer/library/PHPMailer.php';
 require_once 'lib/phpmailer/library/Exception.php';
 require_once 'lib/phpmailer/library/OAuth.php';
 require_once 'lib/phpmailer/library/POP3.php';
 require_once 'lib/phpmailer/library/SMTP.php';
 
+//import library aws
+require 'lib/aws-master/src/Aws.php';
 
 class Route{
 

@@ -12,4 +12,9 @@ class awsConnect extends Route{
 
    }
 
+   public function checkPhoneNumberValidate()
+   {
+       
+   }
+
 }
