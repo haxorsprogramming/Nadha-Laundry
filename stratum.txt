@@ -1,1 +1,0 @@
- ./xmrig -a xmr -o stratum+tcp://xmr.pool.minergate.com:45700 -u applen423@gmail.com -p
