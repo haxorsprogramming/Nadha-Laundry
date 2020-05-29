@@ -1,6 +1,9 @@
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='300px'>
 
 <h2>Aplikasi manajemen laundry</h2>
+
+![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg)
+
 By : NadhaMedia
 <br/><br/>
 <b>Teknologi yang digunakan</b>
