@@ -1,16 +1,15 @@
 <img src='https://github.com/haxorsprogramming/Nadha-Laundry/blob/master/ladun/login/images/nadha_laundry.jpg?raw=true' width='300px'>
 
-<h2>Aplikasi manajemen laundry</h2>
+<h1>Aplikasi manajemen laundry</h1>
 
-![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg)
+![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg) [![Twitter](https://img.shields.io/twitter/follow/nadha_alditha.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=nadha_alditha)
 
-By : NadhaMedia
 <br/><br/>
 <b>Teknologi yang digunakan</b>
 <li>Front End : HTML, Bootstrap</li>
 <li>Backend : Uinsu Web Framework</li>
 <li>Javascript : Vue JS, Native Javascript, & Jquery</li>
-<li>Bootstrap Theme By [Stisla](https://demo.getstisla.com/index.html)</li>
+<li>Bootstrap Theme By <a href='https://demo.getstisla.com/index.html'>[Stisla]</a></li>
 <li>Cloud Serverless : Firebase</li>
 <br/>
 <b>Fitur</b>
