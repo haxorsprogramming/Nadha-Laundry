@@ -53,15 +53,15 @@ public function proDeleteData()
 	$this -> state('crudSt') -> deleteData($nim);
 }
 	
-	public function tesCariBaris()
-	{
-		$nim = $this -> inp('nim');
-	}
+public function tesCariBaris()
+{
+	$nim = $this -> inp('nim');
+}
 	
-	public function hitungBaris($namaTabel)
-	{
+public function hitungBaris($namaTabel)
+{
 		
-	}
+}
 
 
 }
