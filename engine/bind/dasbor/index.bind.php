@@ -45,7 +45,7 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="<?=STYLEBASE; ?>/dasbor/img/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, <?=$_SESSION['userSes']; ?></div>
+                            <div class="d-sm-none d-lg-inline-block">Hi, <?=$data['usernameLogin']; ?></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="<?= HOMEBASE; ?>dasbor/logOut" id='btnLogOutTop'
@@ -67,12 +67,7 @@
                         <a href="#!">NL</a>
                     </div>
                     <?php
-                    $user =  $this -> getses('userSes');
-                    //cari level user 
-                    $this -> st -> query("SELECT tipe_user FROM tbl_user WHERE username='$user';");
-                    $qUser = $this -> st -> querySingle();
-                    $lvlUser = $qUser['tipe_user'];
-
+                    $lvlUser = $data['levelUser'];
                     if($lvlUser == 'admin'){
                         $this -> bind('dasbor/menuAdmin');
                     }else{

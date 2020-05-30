@@ -32,7 +32,7 @@ $('#divProgress').hide();
 });
 
 // fungsi pertama kali dijalankan
-renderMenu(beranda);
+// renderMenu(beranda);
 
 //objek vue footer
 var divFooter = new Vue({

@@ -1,7 +1,5 @@
 <?php
-//import library dompdf
-require_once 'lib/dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
+
 
 class utility extends Route{
 

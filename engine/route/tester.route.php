@@ -3,8 +3,10 @@
 class Tester extends Route{
     
     public function index()
-    {       
-        $this -> bind('/tester/default');
+    {   
+        $data['pelanggan'] = $this -> state('pelanggan') ->  pelangganDataAll();
+
+        echo json_encode($data);
     }  
    
     public function datatable()

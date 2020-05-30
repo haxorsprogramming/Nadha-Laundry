@@ -12,6 +12,7 @@ class Pelanggan extends Route{
         $this -> cekUserLogin('userSes');
         $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY id DESC;");
         $data['pelanggan'] = $this -> st -> queryAll();
+        // $this -> toJson($data);
         $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
