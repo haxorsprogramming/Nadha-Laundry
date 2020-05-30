@@ -5,7 +5,7 @@
 <br>
 <span align="center">
 
-![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg) [![Twitter](https://img.shields.io/twitter/follow/nadha_alditha.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=nadha_alditha) ![GitHub last commit](https://img.shields.io/github/last-commit/haxorsprogramming/Nadha-Laundry.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/badges/shields.svg) 
+![PHP Composer](https://github.com/haxorsprogramming/Nadha-Laundry/workflows/PHP%20Composer/badge.svg) [![Twitter](https://img.shields.io/twitter/follow/nadha_alditha.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=nadha_alditha) ![GitHub last commit](https://img.shields.io/github/last-commit/haxorsprogramming/Nadha-Laundry.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/badges/shields.svg) [![License](https://img.shields.io/github/license/haxorsprogramming/Nadha-Laundry.svg)](LICENSE)
 
 </span>
 
