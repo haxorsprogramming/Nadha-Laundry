@@ -16,10 +16,7 @@ var loginForm = new Vue({
       if (this.userInput === "" || this.passwordInput === "") {
         isiField();
       } else {
-        $.post(
-          urlLoginProses,
-          { username: this.userInput, password: this.passwordInput },
-          function(data) {
+        $.post(urlLoginProses,{username: this.userInput, password: this.passwordInput}, function(data){
             let obj = JSON.parse(data);
             if (obj.jlh > 0) {
               suksesLogin();

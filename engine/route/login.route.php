@@ -1,11 +1,11 @@
 <?php
 
-class Login extends Route{
+class login extends Route{
 
-    public function __construct()
-    {
-    $this -> st = new state;
-    }
+    // public function __construct()
+    // {
+    // $this -> st = new state;
+    // }
 
     public function index()
     {       
@@ -16,10 +16,10 @@ class Login extends Route{
         $user = $this -> inp('username');
         $password = $this -> inp('password');
         $passHash = md5($password);
-        $this -> st -> query("SELECT id FROM tbl_user WHERE username='$user' AND password='$passHash';");
-        $data['jlh'] = $this -> st -> numRow();
-        if($data['jlh'] > 0){
-            $this -> setses('userSes',$user);
+        $jlhUser = $this -> state('loginpage') -> jlhUser($user, $passHash);
+        $data['jlh'] = $jlhUser;
+        if($jlhUser > 0){
+            $this -> setses('userSes', $user);
         }else{
 
         }

@@ -16,4 +16,9 @@ class pelanggan{
    return $this -> st -> queryAll();
   }
 
+  public function cariUser()
+  {
+      return "0";
+  }
+
 }
