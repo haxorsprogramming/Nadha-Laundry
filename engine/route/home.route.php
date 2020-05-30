@@ -10,7 +10,6 @@ class Home extends Route{
     public function dataMahasiswa()
     {
         $data['mhs'] = $this -> state('homeSt') -> mhsData();
-        
         $this -> bind('/home/dataBind',$data);
     }
 

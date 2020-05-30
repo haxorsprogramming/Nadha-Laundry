@@ -14,6 +14,9 @@ class awsConnect extends Route{
 
    public function checkPhoneNumberValidate()
    {
+       $key = '';
+       $username = '';
+       $rom = '';
        
    }
 

@@ -34,7 +34,6 @@ class laundryRoom extends Route{
 
    public function prosesTambahItem()
    {
-    // 'kdReg': kdRegistrasi, 'serviceKd':serviceKd, 'qt': qt
        $kdRegistrasi = $this -> inp('kdReg');
        $kdService = $this -> inp('serviceKd');
        $hargaAt = $this -> inp('hargaAt');
@@ -55,12 +54,13 @@ class laundryRoom extends Route{
        //proses update timeline
        $this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kdRegistrasi' AND kd_event='mulai_cuci';");
        $jlhTimeLine = $this -> st -> numRow();
+
        if($jlhTimeLine < 1){
         $kdTimeline = $this -> rnstr(15);
         $qUpdateTimelineAwal = "INSERT INTO tbl_timeline VALUES(null,'$kdTimeline','$kdRegistrasi','$waktu','$operator','mulai_cuci','Cucian masuk laundry room');";
         $this -> st -> query($qUpdateTimelineAwal);
         $this -> st -> queryRun();
-       }else{ }
+       }else{}
        
        $data['status'] = 'sukses';
        $this -> toJson($data);
@@ -72,6 +72,7 @@ class laundryRoom extends Route{
        $kdRegistrasi = $this -> inp('kdRegistrasi');
        $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
        $dIts = $this -> st -> queryAll();
+
        foreach($dIts as $dis){
         $kdItem = $dis['kd_item'];
         $this -> st -> query("SELECT nama FROM tbl_service WHERE kd_service='$kdItem' LIMIT 0,1;");
@@ -81,7 +82,8 @@ class laundryRoom extends Route{
         $arrTemp['namaCap'] = $dNamaProd['nama'];
         $arrTemp['total'] = $dis['total'];
         $dbdata[] = $arrTemp;
-       } 
+       }
+        
        $this -> toJson($dbdata);
    }
 
