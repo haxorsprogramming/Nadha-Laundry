@@ -14,11 +14,11 @@ class Aws_sdk{
 		));
 	}
 	public function __call($name, $arguments=null)
-   {
+   	{
 		if(!property_exists($this, $name)) {
 			return call_user_func_array(array($this->s3Client,$name), $arguments);
   		}
-   }
+  	}
    /**
     * Wrapper of putObject with duplicate check.
     * If the file exists in bucket, it appends a unix timestamp to filename.
