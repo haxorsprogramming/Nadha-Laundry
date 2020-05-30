@@ -1,5 +1,5 @@
 <?php
-$rankPelanggan = $data['qRankPelanggan'];
+$rankPelanggan = $data['rankPelanggan'];
 //buat range tanggal 
 $waktuNow = date('Y-m-d');
 $mingguDepan = date('Y-m-d', strtotime($waktuNow. ' - 7 days'));
@@ -92,7 +92,6 @@ $dibalik = array_reverse($rentangSeminggu);
                         <th>Tanggal</th><th>Transaksi</th><th>Nominal</th>
                       </tr>
                       <?php
-                      //perulangan - kapan lah ini bisa di masukkan ke dalam model
                         for ($x = 0; $x < 7; $x++) {
                           $tanggalToExplode = $dibalik[$x];
                           $tglResultExplode = explode("/",$tanggalToExplode);
@@ -101,10 +100,9 @@ $dibalik = array_reverse($rentangSeminggu);
                           $tanggalToExplodeFNext = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglDayTambahSatu;
                           $tglStart = $tanggalFNow." 00:00:01";
                           $tglAkhir = $tanggalToExplodeFNext." 00:00:00";
-                          $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE (waktu BETWEEN '$tglStart' AND '$tglAkhir');");
-                          $totalTransaksi = $this -> st -> numRow();
-                          //cari total transaksi 
-                          $qTotal = $this -> st -> queryAll();
+                          $totalTransaksi = $this -> state('dashboard') -> totalTransaksiTanggal($tglStart,  $tglAkhir);
+                          $qTotal = $this -> state('dashboard') -> transaksiTanggal($tglStart, $tglAkhir);
+                          // cari total transaksi 
                           $total = 0;
                           foreach($qTotal as $crTotal){
                               $totalTemp = $crTotal['total_final'];
@@ -134,8 +132,7 @@ $dibalik = array_reverse($rentangSeminggu);
                         $username = $rp['username'];
                         $levelPelanggan = $rp['level'];
                         //cari total cuci pelanggan 
-                        $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$username';");
-                        $jlhTransaksi = $this -> st -> numRow();
+                        $jlhTransaksi = $this -> state('dashboard') -> jlhTransaksiPelanggan($username);
                     ?>
                     <li class="media">
                       
