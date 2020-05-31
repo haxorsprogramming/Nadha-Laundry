@@ -40,7 +40,7 @@ class Route{
       $bahan = '123456789012345678901234567890123456780';
       $acak = str_shuffle($bahan);
       $hasil = substr($acak, 0, $length);
-      echo $hasil;
+      return $hasil;
     }
 
     //fungsi upload
