@@ -4,11 +4,9 @@ class Pelanggan extends Route{
 
     public function index()
     {
-        $this -> cekUserLogin('userSes');
-        $data['pelanggan'] = $this -> state('pelangganData') -> pelangganDataAll();
-        $this -> toJson($data);
-        // $this -> toJson($data);
-        // $this -> bind('/dasbor/pelanggan/pelanggan', $data);
+      $this -> cekUserLogin('userSes');
+      $data['pelanggan'] = $this -> state('pelangganData') -> pelangganDataAll();
+      $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
     public function formTambahPelanggan()
@@ -53,8 +51,7 @@ class Pelanggan extends Route{
     {
       $username = $this -> inp('username');
       $data['username'] = $username;
-      $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE pelanggan='$username';");
-      $data['historyCucian'] = $this -> st -> queryAll();
+      $data['historyCucian'] = $this -> state('pelangganData') -> historyKartuLaundryPelanggan($username);
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
     }
 

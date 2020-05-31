@@ -14,15 +14,13 @@
 foreach($data['pelanggan'] as $pelanggan) :
   //cari status cuci pelanggan 
   $username = $pelanggan['username'];
-  $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$username' AND status='cuci';");
-  $jlhStatusCuci = $this -> st -> numRow();
+  $jlhStatusCuci = $this -> state('pelangganData') -> statusCucianPelanggan($username);
   if($jlhStatusCuci < 1){
     $statusCuci = "Tidak";
   }else{
     $statusCuci = "Ya";
   }
-  $this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$username';");
-  $jlhTransaksi = $this -> st -> numRow();
+  $jlhTransaksi = $this -> state('pelangganData') -> jumlahCucianPelanggan($username);
 ?>
 <tr>
 <td>

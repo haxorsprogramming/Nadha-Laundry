@@ -1,9 +1,7 @@
 <?php
 $usernameParam = $data['username'];
-$this -> st -> query("SELECT * FROM tbl_pelanggan WHERE username='$usernameParam' LIMIT 0,1;");
-$pelanggan = $this -> st -> querySingle();
-$this -> st -> query("SELECT * FROM tbl_level_user;");
-$levelUser = $this -> st -> queryAll();
+$pelanggan = $this -> state('pelangganData') -> pelangganProfileData($usernameParam);
+$levelUser = $this -> state('pelangganData') -> dataLevelPelanggan();
 ?>
 <div id='divFormUpdateProfilePelanggan'>
       <span id='txtUsername' style="display: none;"><?=$pelanggan['username']; ?></span>

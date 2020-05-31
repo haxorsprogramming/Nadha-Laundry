@@ -1,17 +1,15 @@
 <?php
 $usernameParam = $data['username'];
 $historyCucian = $data['historyCucian'];
-$this -> st -> query("SELECT * FROM tbl_pelanggan WHERE username='$usernameParam' LIMIT 0,1;");
-$pelanggan = $this -> st -> querySingle();
+$pelanggan = $this -> state('pelangganData') -> profilePelanggan($usernameParam);
 $poin = $pelanggan['poin_real'];
 $level = $pelanggan['level'];
 $waktuJoin = $pelanggan['waktu_join'];
 //total laundry 
-$this -> st -> query("SELECT id FROM tbl_kartu_laundry WHERE pelanggan='$usernameParam';");
-$jlhTransaksi = $this -> st -> numRow();
+$jlhTransaksi = $this -> state('pelangganData') -> jumlahCucianPelanggan($usernameParam);
 //cari terakhir laundry 
-$this -> st -> query("SELECT waktu_masuk FROM tbl_kartu_laundry WHERE pelanggan='$usernameParam' ORDER BY waktu_masuk DESC;");
-$qTerakhirLaundry = $this -> st -> querySingle();
+
+$qTerakhirLaundry = $this -> state('pelangganData') -> transaksiTerakhirPelanggan($usernameParam);
 $terakhirLaundry = $qTerakhirLaundry['waktu_masuk'];
 if($terakhirLaundry == ''){
   $terakhirLaundry = "Belum pernah melakukan cucian";
@@ -75,9 +73,7 @@ if($terakhirLaundry == ''){
 <div class="card card-warning">
   <div class="card-header">
   <h4 class="d-inline">History cucian pelanggan</h4>
-      <div class="card-header-action">
-      <!-- <a href='#!' class="btn btn-sm btn-primary" v-on:click='historyCucianPelanggan("<?=$usernameParam; ?>")'>Lihat semua</a> -->
-      </div>
+     
   </div>
   <div class="card-body">
   <table class="table table-bordered table-hover">
