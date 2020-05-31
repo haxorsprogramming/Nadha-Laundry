@@ -2,18 +2,13 @@
 
 class Pelanggan extends Route{
 
-    public function __construct()
-    {
-    $this -> st = new state;
-    }
-
     public function index()
     {
         $this -> cekUserLogin('userSes');
-        $this -> st -> query("SELECT * FROM tbl_pelanggan ORDER BY id DESC;");
-        $data['pelanggan'] = $this -> st -> queryAll();
+        $data['pelanggan'] = $this -> state('pelangganData') -> pelangganDataAll();
+        $this -> toJson($data);
         // $this -> toJson($data);
-        $this -> bind('/dasbor/pelanggan/pelanggan', $data);
+        // $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
     public function formTambahPelanggan()
@@ -92,7 +87,7 @@ class Pelanggan extends Route{
 
     public function historyCucianPelanggan($username)
     {
-      echo $username;
+     
     }
 
 }

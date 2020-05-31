@@ -2,11 +2,6 @@
 
 class login extends Route{
 
-    // public function __construct()
-    // {
-    // $this -> st = new state;
-    // }
-
     public function index()
     {       
         $this -> bind('/login/loginPage');
