@@ -122,6 +122,6 @@ var divMenu = new Vue({
 });
 
 function renderMenu(halaman) {
-  // $('#divUtama').html("Memuat ...");
+  $('#divUtama').html("Memuat ...");
   $('#divUtama').load(halaman);
 }

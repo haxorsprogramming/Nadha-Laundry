@@ -25,23 +25,14 @@ class Pelanggan extends Route{
       $data['levelUser'] = $this -> inp('levelUser');
       $usernameParam = $this -> inp('username');
       $usernameFilter = str_replace(' ', '',$usernameParam);
-      $waktu = $this -> waktu();
+      $data['waktu'] = $this -> waktu();
       //cek apakah username sudah terdaftar
-      $this -> st -> query("SELECT id FROM tbl_pelanggan WHERE username='$usernameFilter';");
-      $jlhUser = $this -> st -> numRow();
+      $jlhUser = $this -> state('pelangganData') -> cekUsername($usernameFilter);
 
       if($jlhUser > 0){
         $dataRes['status'] = 'error';
       }else{
-        $query = "INSERT INTO tbl_pelanggan VALUES (null, :username, :nama_lengkap, :alamat, :hp, :email, :level, 0, 0, '1','$waktu');";
-        $this -> st -> query($query);
-        $this -> st -> querySet('username',$usernameFilter);
-        $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
-        $this -> st -> querySet('alamat',$data['alamat']);
-        $this -> st -> querySet('hp',$data['nomorHandphone']);
-        $this -> st -> querySet('email',$data['email']);
-        $this -> st -> querySet('level',$data['levelUser']);
-        $this -> st -> queryRun();
+        $this -> state('pelangganData') -> prosesTambahPelanggan($data, $usernameFilter);
         $dataRes['status'] = 'sukses';
       }
       $this -> toJson($dataRes);
@@ -69,15 +60,7 @@ class Pelanggan extends Route{
       $data['email'] = $this -> inp('email');
       $data['levelUser'] = $this -> inp('levelUser');
       //update profile pelanggan ke database
-      $query = "UPDATE tbl_pelanggan SET nama_lengkap=:nama_lengkap, alamat=:alamat, hp=:hp, email=:email, level=:level WHERE username=:username;";
-      $this -> st -> query($query);
-      $this -> st -> querySet('username',$data['username']);
-      $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
-      $this -> st -> querySet('alamat',$data['alamat']);
-      $this -> st -> querySet('hp',$data['nomorHandphone']);
-      $this -> st -> querySet('email',$data['email']);
-      $this -> st -> querySet('level',$data['levelUser']);
-      $this -> st -> queryRun();
+      $this -> state('pelangganData') -> prosesUpdatePelanggan($data);
       $dataRes['status'] = 'sukses';
       $this -> toJson($dataRes);
     }

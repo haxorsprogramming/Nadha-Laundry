@@ -2,7 +2,6 @@
 
 class pelangganData{
   
- private $tbl = 'tbl_pelanggan';
  private $st;
 
   public function __construct()
@@ -56,6 +55,39 @@ class pelangganData{
   {
     $this -> st -> query("SELECT * FROM tbl_level_user;");
     return $this -> st -> queryAll();
+  }
+
+  public function cekUsername($usernameFilter)
+  {
+    $this -> st -> query("SELECT id FROM tbl_pelanggan WHERE username='$usernameFilter';");
+    return $this -> st -> numRow();
+  }
+  
+  public function prosesTambahPelanggan($data,$usernameFilter)
+  {
+    $query = "INSERT INTO tbl_pelanggan VALUES (null, :username, :nama_lengkap, :alamat, :hp, :email, :level, 0, 0, '1',:waktu);";
+    $this -> st -> query($query);
+    $this -> st -> querySet('username',$usernameFilter);
+    $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
+    $this -> st -> querySet('alamat',$data['alamat']);
+    $this -> st -> querySet('hp',$data['nomorHandphone']);
+    $this -> st -> querySet('email',$data['email']);
+    $this -> st -> querySet('level',$data['levelUser']);
+    $this -> st -> querySet('waktu', $data['waktu']);
+    $this -> st -> queryRun();
+  }
+
+  public function prosesUpdatePelanggan($data)
+  {
+    $query = "UPDATE tbl_pelanggan SET nama_lengkap=:nama_lengkap, alamat=:alamat, hp=:hp, email=:email, level=:level WHERE username=:username;";
+    $this -> st -> query($query);
+    $this -> st -> querySet('username',$data['username']);
+    $this -> st -> querySet('nama_lengkap',$data['namaLengkap']);
+    $this -> st -> querySet('alamat',$data['alamat']);
+    $this -> st -> querySet('hp',$data['nomorHandphone']);
+    $this -> st -> querySet('email',$data['email']);
+    $this -> st -> querySet('level',$data['levelUser']);
+    $this -> st -> queryRun();
   }
 
 }

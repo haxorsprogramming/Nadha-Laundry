@@ -6,7 +6,7 @@
           <input type="text" class="form-control" v-model='username' id='txtUsername'>
     </div>
     <div class="form-group">
-          <label>Nama Lengkap</label>
+          <label>Nama Lengkap</label> 
           <input type="text" class="form-control" v-model='namaLengkap'>
     </div>
     <div class="form-group">

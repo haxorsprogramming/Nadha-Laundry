@@ -17,6 +17,12 @@
 <li>Bootstrap Theme By <a href='https://demo.getstisla.com/index.html'>[Stisla]</a></li>
 <li>Cloud Serverless : Firebase</li>
 <br/>
+<b>Library</b>
+<li>Axios (Resfull API Client)</li>
+<li>Domp PDF (Report for PDF document)</li>
+<li>PHP Mailer (Mail sender)</li>
+<li>AWS Serveless (Coming soon)</li>
+<br/>
 <b>Fitur</b>
 <li> Manajemen cucian</li>
 <li> Manajemen pelanggan</li>
