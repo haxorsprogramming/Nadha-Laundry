@@ -1,12 +1,7 @@
 <?php
-//arus kas route
+
 class promo extends Route{
 
-    public function __construct()
-    {
-    $this -> st = new state;
-    }
-    //route utama
     public function index()
     {
       $this -> bind('dasbor/promo/promo');
@@ -15,8 +10,7 @@ class promo extends Route{
     public function getDataPromo()
     {
         $dbdata = array();
-        $this -> st -> query("SELECT * FROM tbl_promo_code;");
-        $data['dataPromo'] = $this -> st -> queryAll();
+        $data['dataPromo'] = $this -> state('promoData') -> dataPromo();
         foreach($data['dataPromo'] as $dp){
             $arrTemp['kdPromo'] = $dp['kd_promo'];
             $arrTemp['deks'] = $dp['deks'];
@@ -29,23 +23,17 @@ class promo extends Route{
 
     public function prosesTambahPromo()
     {
-        // 'kdPromo':kdPromo, 'deks':deks, 'diskon':diskon
         $kdPromo = $this -> inp('kdPromo');
         $deks = $this -> inp('deks');
         $diskon = $this -> inp('diskon');
         //cek apakah kd promo sudah ada 
-        $this -> st -> query("SELECT id FROM tbl_promo_code WHERE kd_promo='$kdPromo';");
-        $jlhKode = $this -> st -> numRow();
+        $jlhKode = $this -> state('promoData') -> cekKodePromo($kdPromo);
         if($jlhKode == 1){
             $data['status'] = 'exist';
         }else{
-            //proses simpan ke database
-            $querySimpan = "INSERT INTO tbl_promo_code VALUES(null, '$kdPromo', '$deks','$diskon','2020-05-22','2020-05-22','100','y');";
-            $this -> st -> query($querySimpan);
-            $this -> st -> queryRun();
+            $this -> state('promoData') -> prosesTambahPromo($kdPromo,$deks,$diskon);
             $data['status'] = 'success';
         }
-        
         $this -> toJson($data);
     }
   

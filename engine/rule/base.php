@@ -16,12 +16,12 @@ $homeBase = 'http://localhost/Nadha-Laundry/';
 /**
 * Site name (nama situs web)
 */
-$siteName = 'Uinsu Web Framework';
+$siteName = 'Nadha-Laundry';
 
 /**
 * Author (Pengembang / pemilik website)
 */
-$author = '';
+$author = 'Haxorsprogramming';
 
 //main route,not index
 $mainRoute = 'login';
