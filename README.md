@@ -100,8 +100,9 @@ Demo : https://demo.haxors.or.id/Nadha-Laundry
 access administrator<br/>
 username : admin<br/>
 password : admin<br/>
-<span align='justify'>
+<p align='justify'>
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Silahkan menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan, dan aktivasi beberapa fitur yang belum diaktifkan. 
-</span>
-<span align='justify'>
-Apabila ingin menambahkan fitur atau membantu pengembangan aplikasi ini, silahkan pull request agar aplikasi ini dapat lebih baik.Bantu support kami untuk pengembangan club melalui link saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^</span>
+</p>
+<br/>
+<p align='justify'>
+Apabila ingin menambahkan fitur atau membantu pengembangan aplikasi ini, silahkan pull request agar aplikasi ini dapat lebih baik.Bantu support kami untuk pengembangan club melalui link saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^</p>
