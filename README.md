@@ -97,7 +97,7 @@ Sebelum menggunakan : <br/>
 
 Demo : https://demo.haxors.or.id/Nadha-Laundry
 
-access administrator<br/>
+Access administrator<br/>
 username : admin<br/>
 password : admin<br/>
 <p align='justify'>
