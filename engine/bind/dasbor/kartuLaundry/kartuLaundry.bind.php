@@ -47,9 +47,8 @@
           }
           //cari total harga 
           //cari total harga 
-          $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
-          $jlhItem = $this -> st -> numRow();
-          $qTotal = $this -> st -> queryAll();
+          $jlhItem = $this -> state('kartuLaundryData') -> jumlahTemp($kodeService);
+          $qTotal = $this -> state('kartuLaundryData') -> dataTemp($kodeService);
           $hargaAwal = 0;
           foreach($qTotal as $qt){
             $hargaSat = $qt['total'];
