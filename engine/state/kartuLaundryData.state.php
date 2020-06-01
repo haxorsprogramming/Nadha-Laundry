@@ -27,9 +27,15 @@ class kartuLaundryData{
     return $this -> st -> numRow();
   }
 
-  public function dataTemp()
+  public function dataTemp($kodeService)
   {
     $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
+    return $this -> st -> queryAll();
+  }
+
+  public function listPelanggan()
+  {
+    $this -> st -> query("SELECT username, nama_lengkap, email FROM tbl_pelanggan ORDER BY id DESC;");
     return $this -> st -> queryAll();
   }
  
