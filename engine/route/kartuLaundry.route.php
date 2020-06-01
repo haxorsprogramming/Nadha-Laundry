@@ -2,18 +2,12 @@
 
 class kartuLaundry extends Route{
 
-   public function __construct()
-   {
-   $this -> st = new state;
-   }
-
     public function index()
     {
       $this -> cekUserLogin('userSes');
-      $this -> st -> query("SELECT * FROM tbl_kartu_laundry ORDER BY id DESC;");
-      $data['kartuLaundry'] = $this -> st -> queryAll();
+      $data['kartuLaundry'] = $this -> state('kartuLaundryData') -> kartuLaundryAll();
       $this -> bind('dasbor/kartuLaundry/kartuLaundry', $data);
-    }
+    } 
 
     public function formRegistrasiCucian()
     {

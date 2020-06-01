@@ -23,8 +23,7 @@
         foreach ($data['kartuLaundry'] as $kartu) :
           $pelanggan = $kartu['pelanggan'];
           $kodeService = $kartu['kode_service'];
-          $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan';");
-          $namaPelanggan =  $this -> st -> querySingle(); 
+          $namaPelanggan =  $this -> state('kartuLaundryData') -> namaPelanggan($pelanggan);
           $statusCuci = $kartu['status'];
           $waktuDiambil = $kartu['waktu_diambil'];
           if($statusCuci === 'cuci'){
