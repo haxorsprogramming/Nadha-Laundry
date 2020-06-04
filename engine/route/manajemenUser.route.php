@@ -9,7 +9,7 @@ class manajemenUser extends Route{
 
    public function index()
    {
-    $this -> cekUserLogin('userSes');
+    $this -> cekUserLogin('userSes','login');
     $this -> bind('dasbor/manajemenUser/manajemenUser');
    }
 

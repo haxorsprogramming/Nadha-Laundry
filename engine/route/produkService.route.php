@@ -4,7 +4,7 @@ class produkService extends Route{
 
     public function index()
     {
-      $this -> cekUserLogin('userSes');
+      $this -> cekUserLogin('userSes','login');
       $data['produkService'] = $this -> state('produkServiceData') -> produkService();
       $this -> bind('dasbor/produkService/produkService', $data);
     }
