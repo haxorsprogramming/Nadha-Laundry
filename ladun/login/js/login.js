@@ -1,15 +1,19 @@
 const urlLoginProses = "login/prosesLogin";
 const awalLogin = true;
+const usernameF = 'txtUsername';
+const passwordF = 'txtPassword';
+const loginApp = '#login-app';
 
 $(document).ready(function(){
-  document.getElementById("txtUsername").focus();
+  document.getElementById(usernameF).focus();
 });
 
 var loginForm = new Vue({
-  el: "#login-app",
+  el: loginApp,
   data: {
     userInput: "",
-    passwordInput: ""
+    passwordInput: "",
+    developer : "NadhaMedia"
   },
   methods: {
     klikSaya: function() {
@@ -70,7 +74,7 @@ function isiField() {
 }
 
 function clearForm() {
-  document.getElementById("txtUsername").value = "";
-  document.getElementById("txtPassword").value = "";
-  document.getElementById("txtUsername").focus();
+  document.getElementById(usernameF).value = "";
+  document.getElementById(passwordF).value = "";
+  document.getElementById(usernameF).focus();
 }
