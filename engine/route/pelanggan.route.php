@@ -4,14 +4,14 @@ class Pelanggan extends Route{
 
     public function index()
     {
-      $this -> cekUserLogin('userSes');
+      $this -> cekUserLogin('userSes', 'login');
       $data['pelanggan'] = $this -> state('pelangganData') -> pelangganDataAll();
       $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
     public function formTambahPelanggan()
     {
-      $this -> cekUserLogin('userSes');
+      $this -> cekUserLogin('userSes', 'login');
       $this -> bind('dasbor/pelanggan/formTambahPelanggan');
     }
 

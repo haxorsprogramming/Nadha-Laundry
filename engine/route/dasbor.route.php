@@ -4,7 +4,7 @@ class dasbor extends Route{
 
     public function index()
     {     
-        $this -> cekUserLogin('userSes');
+        $this -> cekUserLogin('userSes','login');
         $user =  $this -> getses('userSes');
         $data['usernameLogin'] = $user;
         //cari level user

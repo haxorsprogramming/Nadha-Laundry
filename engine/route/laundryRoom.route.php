@@ -9,7 +9,7 @@ class laundryRoom extends Route{
 
    public function index()
     {
-        $this -> cekUserLogin('userSes');
+        $this -> cekUserLogin('userSes', 'login');
         $this -> st -> query("SELECT * FROM tbl_laundry_room WHERE status !='finish' ORDER BY id DESC;");
         $data['laundryRoom'] = $this -> st -> queryAll();
         $this -> bind('dasbor/laundryRoom/laundryRoom', $data);
@@ -17,7 +17,7 @@ class laundryRoom extends Route{
 
    public function detailCucian()
     {
-        $this -> cekUserLogin('userSes');
+        $this -> cekUserLogin('userSes','login');
         $this -> st -> query("SELECT * FROM tbl_service WHERE aktif='y';");
         $data['listProduk'] = $this -> st -> queryAll();
         $data['kd'] = $this -> inp('kd');

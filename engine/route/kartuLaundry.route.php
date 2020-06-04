@@ -4,7 +4,7 @@ class kartuLaundry extends Route{
 
     public function index()
     {
-      $this -> cekUserLogin('userSes');
+      $this -> cekUserLogin('userSes','login');
       $data['kartuLaundry'] = $this -> state('kartuLaundryData') -> kartuLaundryAll();
       $this -> bind('dasbor/kartuLaundry/kartuLaundry', $data);
     } 
