@@ -81,4 +81,4 @@ iziToast.warning({
         $('#divUtama').load('pengeluaranLaundry/pengeluaranLaundry');
     }
   });
-}
+} 

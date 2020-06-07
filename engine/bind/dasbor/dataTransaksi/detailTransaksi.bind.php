@@ -10,9 +10,7 @@ $tunai = $dt['tunai'];
 $kembali = $tunai - $total;
 $waktuIndo = date('d M Y', strtotime($waktu));
 //cari daftar item cucian 
-$this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
-$qDaftarItem = $this -> st -> queryAll();
-
+$qDaftarItem = $this -> state('dataTransaksiData') -> getTempCucian($kodeService);
 ?>
 <section class="section" id='divDetailTransaksi'>
           <div class="section-body">
@@ -84,8 +82,7 @@ $qDaftarItem = $this -> st -> queryAll();
                             $totalTemp = $di['total'];
                             $hargaAt = $di['harga_at'];
                             //cari deks produk 
-                            $this -> st -> query("SELECT nama, satuan FROM tbl_service WHERE kd_service='$kodeItem' LIMIT 0,1;");
-                            $qNamaProd = $this -> st -> querySingle();
+                            $qNamaProd = $this -> state('dataTransaksiData') -> getDataProduk($kodeItem);
                             $namaProduk = $qNamaProd['nama'];
                             $satuan = $qNamaProd['satuan'];
                         ?>
@@ -106,12 +103,6 @@ $qDaftarItem = $this -> st -> queryAll();
                       <div class="col-lg-8">
                         <div class="section-title">Kode Promo</div>
                         <p class="section-lead">--</p>
-                        <!-- <div class="images">
-                          <img src="assets/img/visa.png" alt="visa">
-                          <img src="assets/img/jcb.png" alt="jcb">
-                          <img src="assets/img/mastercard.png" alt="mastercard">
-                          <img src="assets/img/paypal.png" alt="paypal">
-                        </div> -->
                       </div>
                       <div class="col-lg-4 text-right">
                         <div class="invoice-detail-item">

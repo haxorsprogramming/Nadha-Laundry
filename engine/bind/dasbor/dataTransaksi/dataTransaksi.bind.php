@@ -36,4 +36,4 @@
     </table>
 </div>
 </div>
-<script src="<?= STYLEBASE; ?>/dasbor/dataTransaksi.js"></script>
+<script src="<?= STYLEBASE; ?>/dasbor/dataTransaksi.js"></script> 
