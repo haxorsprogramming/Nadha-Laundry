@@ -2,15 +2,10 @@
 
 class pengeluaranLaundry extends Route{
     
-    public function __construct()
-    {
-    $this -> st = new state;
-    }
-
     public function index()
     {   
         $this -> bind('/dasbor/pengeluaranLaundry/pengeluaranLaundry');
-    }
+    } 
     
     public function formTambahPengeluaran()
     {
@@ -24,25 +19,21 @@ class pengeluaranLaundry extends Route{
 
     public function prosesTambahPengeluaran()
     {
-        // 'kdPengeluaran': this.kdPengeluaran, 'namaPengeluaran': this.namaPengeluaran, 'deks': this.deks, 'jumlah':this.jumlah
         $kd = $this -> inp('kdPengeluaran');
         $nama = $this -> inp('namaPengeluaran');
         $deks = $this -> inp('deks');
         $jumlah = $this -> inp('jumlah');
         $tanggal = $this -> inp('tanggal');
         $operator = $this -> getses('userSes');
-        $qSimpan = "INSERT INTO tbl_pengeluaran VALUES(null, '$kd', '$nama', '$deks', '$tanggal', '$jumlah', '$operator');";
-        $this -> st -> query($qSimpan);
-        $this -> st -> queryRun();
+        //tambah pengeluaran
+        $this -> state('pengeluaranLaundryData') -> prosesTambahPengeluaran($kd, $nama, $deks, $tanggal, $jumlah, $operator);
         //simpan data ke arus kas
         $kdKas = $this -> rnstr(15);
         $asal = 'pengeluaran_laundry';
         $arus = 'keluar';
         $waktuTemp = $this -> waktu();
         $operator = 'admin';
-        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$kd', '$asal', '$arus', '$jumlah', '$waktuTemp', '$operator');";
-        $this -> st -> query($qSimpanKeArusKas);
-        $this -> st -> queryRun();
+        $this -> state('pengeluaranLaundryData') -> simpanArusKas($kdKas, $kd, $asal, $arus, $jumlah, $waktuTemp, $operator);
         $data['status'] = 'sukses';
         $this -> toJson($data);
     }
@@ -50,8 +41,8 @@ class pengeluaranLaundry extends Route{
     public function getDataPengeluaran()
     {
         $dbdata = array();
-        $this -> st -> query("SELECT * FROM tbl_pengeluaran;");
-        $data['dataPengeluaran'] = $this -> st -> queryAll();
+        
+        $data['dataPengeluaran'] = $this -> state('pengeluaranLaundryData') -> dataPengeluaran();
         foreach($data['dataPengeluaran'] as $dis){
             $arrTemp['kdPengeluaran'] = $dis['kd_pengeluaran'];
             $arrTemp['pengeluaran'] = $dis['pengeluaran'];
@@ -70,13 +61,9 @@ class pengeluaranLaundry extends Route{
     {
         $kdPengeluaran = $this -> inp('kdPengeluaran');
         //hapus dari tabel pembayaran
-        $qHapusPembayaran = "DELETE FROM tbl_pengeluaran WHERE kd_pengeluaran='$kdPengeluaran';";
-        $this -> st -> query($qHapusPembayaran);
-        $this -> st -> queryRun();
+        $this -> state('pengeluaranLaundryData') -> hapusPengeluaran($kdPengeluaran);
         //hapus dari tabel arus kas
-        $qHapusArusKas = "DELETE FROM tbl_arus_kas WHERE kd_tracking='$kdPengeluaran';";
-        $this -> st -> query($qHapusArusKas);
-        $this -> st -> queryRun();
+        $this -> state('pengeluaranLaundryData') -> hapusArusKas($kdPengeluaran);
         $data['status'] = 'sukses';
         $this -> toJson($data);
     }

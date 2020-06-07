@@ -39,4 +39,4 @@ class kartuLaundryData{
     return $this -> st -> queryAll();
   }
  
-}
+} 

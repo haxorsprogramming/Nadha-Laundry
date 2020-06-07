@@ -30,4 +30,4 @@ class produkService extends Route{
       $this -> toJson($dataRes);
     }
 
-  }
+  } 
