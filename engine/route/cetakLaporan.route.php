@@ -20,10 +20,8 @@ class cetakLaporan extends Route{
         //inisialisasi awal dompdf
         $dompdf = new Dompdf();
         $jumlahBulan = 12;
-        //inisialisasi variabel awal -> nama laundry
-        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
-        $qNamaLaundry = $this -> st -> querySingle();
-        $namaLaundry = $qNamaLaundry['value'];
+        //inisialisasi variabel awal -> nama laundry 
+        $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
         //buat template html
         $html = '<div><h2>Laporan Tahunan Laundry</h2>';
         $html .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Tahun Laporan : '.$tahun;
@@ -48,9 +46,8 @@ class cetakLaporan extends Route{
             $tglAwalKomplit = $tahun."-".$blnInt."-01 00:00:00";
             $tglAkhirKomplit = $tahun."-".$blnInt."-".$tglAkhir." 23:59:59";
             //rekap transaksi masuk
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
-            $totalTransaksiBulan = $this -> st -> numRow();
-            $qTransaksi = $this -> st -> queryAll();
+            $totalTransaksiBulan = $this -> state('cetakLaporanData') -> getCountRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksi = $this -> state('cetakLaporanData') -> getRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
             $totalNilaiTransaksiBulanan = 0;
             foreach($qTransaksi as $qt){
                 $nilaiTransaksi = $qt['jumlah'];
@@ -61,9 +58,9 @@ class cetakLaporan extends Route{
             $nominalTransaksiMasuk = $nominalTransaksiMasuk + $totalNilaiTransaksiBulanan;
             $capNominalTransaksiMasuk = number_format($nominalTransaksiMasuk);
             //rekap transaksi keluar 
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='keluar';");
-            $totalTransaksiBulanKeluar = $this -> st -> numRow();
-            $qTransaksiKeluar = $this -> st -> queryAll();
+            
+            $totalTransaksiBulanKeluar = $this -> state('cetakLaporanData') -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar = $this -> state('cetakLaporanData') -> getRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
             $totalTransaksiBulananKeluar = 0;
             foreach($qTransaksiKeluar as $qtk){
                 $nilaiTransaksiKeluar = $qtk['jumlah'];
