@@ -8,7 +8,7 @@ class kartuLaundry extends Route{
       $data['kartuLaundry'] = $this -> state('kartuLaundryData') -> kartuLaundryAll();
       $this -> bind('dasbor/kartuLaundry/kartuLaundry', $data);
     } 
-
+ 
     public function formRegistrasiCucian()
     {
        $bHuruf = "QWERTYUIOPLKJHGFDSAZXCVBNM";
@@ -27,37 +27,25 @@ class kartuLaundry extends Route{
       $waktuMasuk = $this -> waktu();
       $pelanggan = $this -> inp('pelanggan');
       $operator = $this -> getses('userSes');
-      $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','$operator', 'hold');";
-      $this -> st -> query($query);
-      $this -> st -> querySet('kode_service', $kode);
-      $this -> st -> querySet('pelanggan', $pelanggan);
-      $this -> st -> querySet('waktu_mulai', $waktuMasuk);
-      $this -> st -> queryRun();
-      
+      $this -> state('kartuLaundryData') -> prosesRegistrasiCucian($kode, $pelanggan, $waktuMasuk, $operator);
       $bHuruf = "QWERTYUIOPLKJHGFDSAZXCVBNM";
       $bAngka = "1234567890";
       $acakHuruf_1 = str_shuffle($bHuruf);
       $acakHuruf_2 = str_shuffle($bHuruf);
       $acakAngka = str_shuffle($bAngka);
       $kodeRoom = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
-      $queryToRoom = "INSERT INTO tbl_laundry_room VALUES(null, '$kodeRoom', '$kode', '0', '$operator', 'ready');";
-      $this -> st -> query($queryToRoom);
-      $this -> st -> queryRun();
+      $this -> state('kartuLaundryData') -> insertLaundryRoom($kodeRoom, $kode, $operator);
       //update timeline 
       $kdTimeline = $this -> rnstr(15);
-      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kode','$waktuMasuk','$operator','registrasi_cucian','Cucian di registrasi');";
-      $this -> st -> query($qUpdateTimeline);
-      $this -> st -> queryRun();
+      $this -> state('kartuLaundryData') -> insertTimeLine($kdTimeline, $kode, $waktuMasuk, $operator);
       $data['status'] = 'sukses';
       $this -> toJson($data);
     }
 
     public function detailKartuLaundry($kdService)
     {
-      $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
-      $data['detailKartu'] = $this -> st -> querySingle();
-      $this -> st -> query("SELECT * FROM tbl_timeline WHERE kd_service='$kdService';");
-      $data['dataTimeline'] = $this -> st -> queryAll();
+      $data['detailKartu'] = $this -> state('kartuLaundryData') -> getKartuLaundry($kdService);
+      $data['dataTimeline'] = $this -> state('kartuLaundryData') -> getTimeline($kdService);
       $this -> bind('dasbor/kartuLaundry/detailKartuLaundry', $data);
     }
 
@@ -66,14 +54,10 @@ class kartuLaundry extends Route{
       $kdService = $this -> inp('kdService');
       $waktuPickUp = $this -> waktu();
       $operator = $this -> getses('userSes');
-      $qUpdatePickUp = "UPDATE tbl_kartu_laundry SET waktu_diambil='$waktuPickUp' WHERE kode_service='$kdService';";
-      $this -> st -> query($qUpdatePickUp);
-      $this -> st -> queryRun();
+      $this -> state('kartuLaundryData') -> updateKartuLaundry($waktuPickUp, $kdService);
       //update timeline 
       $kdTimeline = $this -> rnstr(15);
-      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktuPickUp','$operator','pick_up','Cucian telah diambil');";
-      $this -> st -> query($qUpdateTimeline);
-      $this -> st -> queryRun();
+      $this -> state('kartuLaundryData') -> updateTimelinePickup($kdTimeline, $kdService, $waktuPickUp, $operator);
       $data['status'] = 'sukses';
       $this -> toJson($data);
     }
@@ -81,7 +65,6 @@ class kartuLaundry extends Route{
     public function batalkanCucian()
     {
       $kdService = $this -> inp('kdService');
- 
       //hapus di kartu laundry
       $qDeleteKartuLaundry = "DELETE FROM tbl_kartu_laundry WHERE kode_service='$kdService';";
       $this -> st -> query($qDeleteKartuLaundry);
