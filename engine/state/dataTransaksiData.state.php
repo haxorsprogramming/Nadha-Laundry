@@ -45,4 +45,46 @@ class dataTransaksiData{
     return $this -> st -> querySingle();
   }
 
+  public function getDataTransaksiRange($tglAwalKomplit, $tglAkhirKomplit)
+  {
+    $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE (waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit');");
+    return  $this -> st -> queryAll();
+  }
+
+  public function getNumInvoice($kdTransaksi)
+  {
+    $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
+    return $this -> st -> numRow();
+  }
+
+  public function getDataInvoice($kdTransaksi)
+  {
+    $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
+    return $this -> st -> querySingle();
+  }
+
+  public function getDataPelanggan($kdKartu)
+  {
+    $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdKartu';");
+    return $this -> st -> querySingle();
+  }
+
+  public function getProfilePelanggan($pelanggan)
+  {
+    $this -> st -> query("SELECT nama_lengkap,level FROM tbl_pelanggan WHERE username='$pelanggan';");
+    return $this -> st -> querySingle();
+  }
+
+  public function getBonusCuci($levelPelanggan)
+  {
+    $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
+    return $this -> st -> querySingle();
+  }
+
+  public function getDataItem($kdItem)
+  {
+    $this -> st -> query("SELECT nama, satuan FROM tbl_service WHERE kd_service='$kdItem';");
+    return $this -> st -> querySingle();
+  }
+
 }

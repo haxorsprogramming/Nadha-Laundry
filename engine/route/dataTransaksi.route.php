@@ -23,14 +23,13 @@ class dataTransaksi extends Route{
     public function cetak($kdTransaksi)
     {   
         if(isset($kdTransaksi)){
-            $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi' LIMIT 0,1;");
             //cari invoice ada atau tidak
-            $jlhInvoice = $this -> st -> numRow();
+            $jlhInvoice = $this -> state('dataTransaksiData') -> getNumInvoice($kdTransaksi);
             if($jlhInvoice < 1){
                 echo "<code>Kode invoice tidak valid!!!</code>";
                 die();
             }else{
-                $qTransaksi = $this -> st -> querySingle();
+                $qTransaksi = $this -> state('dataTransaksiData') -> getDataInvoice($kdTransaksi);
                 $kdKartu = $qTransaksi['kd_kartu'];
                 $waktuTransaksi = $qTransaksi['waktu'];
                 $operator = $qTransaksi['operator'];
@@ -41,24 +40,18 @@ class dataTransaksi extends Route{
                 $tunai = $qTransaksi['tunai'];
                 $kembali = $tunai - $totalFinal;
                 //query ambil list item 
-                $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdKartu';");
-                $qListItem = $this -> st -> queryAll();
+                $qListItem = $this -> state('dataTransaksiData') -> getTempCucian($kdKartu);
                 $dompdf = new Dompdf();
                 //inisialisasi variabel awal -> nama laundry
-                $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
-                $qNamaLaundry = $this -> st -> querySingle();
-                $namaLaundry = $qNamaLaundry['value'];
-                //nama pelanggan 
-                $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdKartu';");
-                $qKartuLaundry = $this -> st -> querySingle();
+                $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
+                //data pelanggan 
+                $qKartuLaundry = $this -> state('dataTransaksiData') -> getDataPelanggan($kdKartu);
                 $pelanggan = $qKartuLaundry['pelanggan'];
-                $this -> st -> query("SELECT nama_lengkap,level FROM tbl_pelanggan WHERE username='$pelanggan';");
-                $qNamaPelanggan = $this -> st -> querySingle();
+                $qNamaPelanggan = $this -> state('dataTransaksiData') -> getProfilePelanggan($pelanggan);
                 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
                 $levelPelanggan = $qNamaPelanggan['level'];
                 //cari bonus point cuci 
-                $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
-                $qBonusPoint = $this -> st -> querySingle();
+                $qBonusPoint = $this -> state('dataTransaksiData') -> getBonusCuci($levelPelanggan);
                 $bonusPoint = $qBonusPoint['bonus_point_cuci'];
                 //explode nama awal 
                 $bahanExplodeNama = explode(" ", $namaPelanggan);
@@ -76,8 +69,7 @@ class dataTransaksi extends Route{
                 foreach($qListItem as $ql){
                     $kdItem = $ql['kd_item'];
                     //cari nama item dan satuan 
-                    $this -> st -> query("SELECT nama, satuan FROM tbl_service WHERE kd_service='$kdItem';");
-                    $qItem = $this -> st -> querySingle();
+                    $qItem = $this -> state('dataTransaksiData') -> getDataItem($kdItem);
                     $namaItem = $qItem['nama'];
                     $hargaAt = $ql['harga_at'];
                     $quantity = $ql['qt'];
@@ -118,6 +110,7 @@ class dataTransaksi extends Route{
     {
         $dbdata = array();
         $data['dataTransaksi'] = $this -> state('dataTransaksiData') -> dataPembayaran();
+
         foreach($data['dataTransaksi'] as $dis){
             $arrTemp['invoice'] = $dis['kd_pembayaran'];
             $kodeService = $dis['kd_kartu'];
@@ -132,6 +125,7 @@ class dataTransaksi extends Route{
             $arrTemp['namaPelanggan'] = $qNamaLengkap['nama_lengkap'];
             $dbdata[] = $arrTemp;
         }
+
         $this -> toJson($dbdata);
     }
 
@@ -141,8 +135,8 @@ class dataTransaksi extends Route{
         $tglAkhir = $this -> inp('tglAkhir');
         $tglAwalKomplit = $tglAwal." 00:00:01";
         $tglAkhirKomplit = $tglAkhir." 23:59:59";
-        $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE (waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit');");
-        $data['dataTransaksiRange'] = $this -> st -> queryAll();
+        $data['dataTransaksiRange'] = $this -> state('dataTransaksiData') -> getDataTransaksiRange($tglAwalKomplit, $tglAkhirKomplit);
+
         foreach($data['dataTransaksiRange'] as $dis){
             $arrTemp['invoice'] = $dis['kd_pembayaran'];
             $kodeService = $dis['kd_kartu'];
@@ -150,15 +144,14 @@ class dataTransaksi extends Route{
             $arrTemp['total'] = $dis['total_final'];
             $arrTemp['kodeService'] = $kodeService;
             //cari username dari tabel kartu laundry 
-            $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='$kodeService';");
-            $qUsername = $this -> st -> querySingle();
+            $qUsername = $this -> state('dataTransaksiData') -> getUsernameInLaundryCard($kodeService);
             $username = $qUsername['pelanggan'];
             //cari nama pelanggan dari tabel pelanggan 
-            $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
-            $qNamaLengkap = $this -> st -> querySingle();
+            $qNamaLengkap = $this -> state('dataTransaksiData') -> getPelangganName($username);
             $arrTemp['namaPelanggan'] = $qNamaLengkap['nama_lengkap'];
             $dbdata[] = $arrTemp;
         }
+
         $this -> toJson($dbdata);
     }
 
