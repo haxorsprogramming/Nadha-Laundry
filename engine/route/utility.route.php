@@ -11,8 +11,7 @@ class utility extends Route{
     public function getInfoLaundry()
     {   
         // nama laundry
-        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
-        $qNamaLaundry = $this -> st -> querySingle();
+        
         $data['namaLaundry'] = $qNamaLaundry['value'];
         // alamat
         $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='address' LIMIT 0,1;");

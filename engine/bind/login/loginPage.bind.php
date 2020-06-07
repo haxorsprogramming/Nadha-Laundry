@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" , shrink-to-fit="no">
-    <title>Nadha Laundry</title>
+    <title></title>
     <!-- base:css -->
     <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.css">
@@ -31,6 +31,7 @@
                                 <div class="brand-logo" style='text-align:center;'>
                                     <img src="<?=STYLEBASE; ?>/login/images/nadha_laundry.jpg" alt="logo"
                                         style='width:200px; '>
+                                    <h4 style="font-weight:bold;">Aplikasi Manajemen Laundry</h4>
                                 </div>
                                 <div style='text-align:center;'>
                                     <h6 class="font-weight-light">Harap masuk untuk melanjutkan.</h6>
@@ -54,7 +55,7 @@
                                             </div>
                                             <div class="mt-2">
                                                 <div style='padding-top:12px;'>
-                                                    <h5 class="font-weight-light">2020 &copy; <a href='http://nadha.id'
+                                                    <h5 class="font-weight-light">2020 &copy; <a href='http://haxors.or.id'
                                                             target='new'>{{developer}}</a></h5>
                                                 </div>
                                             </div>
