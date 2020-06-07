@@ -3,7 +3,6 @@
 require_once 'lib/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
-
 class dataTransaksi extends Route{
 
     public function __construct()
