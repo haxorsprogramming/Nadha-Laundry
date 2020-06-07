@@ -41,7 +41,6 @@ class pengeluaranLaundry extends Route{
     public function getDataPengeluaran()
     {
         $dbdata = array();
-        
         $data['dataPengeluaran'] = $this -> state('pengeluaranLaundryData') -> dataPengeluaran();
         foreach($data['dataPengeluaran'] as $dis){
             $arrTemp['kdPengeluaran'] = $dis['kd_pengeluaran'];

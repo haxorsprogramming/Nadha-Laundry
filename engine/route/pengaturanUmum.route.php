@@ -2,11 +2,6 @@
 
 class pengaturanUmum extends Route{
 
-   public function __construct()
-   {
-        $this -> st = new state;
-   }
-
     public function index()
     {
         $this -> bind('dasbor/pengaturanUmum/pengaturanUmum');
@@ -15,8 +10,7 @@ class pengaturanUmum extends Route{
     public function getDataPengaturan()
     {
         $dbdata = array();
-        $this -> st -> query("SELECT * FROM tbl_setting_laundry;");
-        $data['dataPengaturan'] = $this -> st -> queryAll();
+        $data['dataPengaturan'] = $this -> state('pengaturanUmumData') -> getDataPengaturan();
         foreach($data['dataPengaturan'] as $dp){
             $arrTemp['kdSetting'] = $dp['kd_setting'];
             $arrTemp['caption'] = $dp['caption'];
@@ -25,11 +19,10 @@ class pengaturanUmum extends Route{
         }
         $this -> toJson($dbdata);
     }
-
+ 
     public function formEditPengaturan($kdSetting)
     {
-        $this -> st -> query("SELECT * FROM tbl_setting_laundry WHERE kd_setting='$kdSetting';");
-        $data['dataSetting'] = $this -> st -> querySingle();
+        $data['dataSetting'] = $this -> state('pengaturanUmumData') -> formEditPengaturan($kdSetting);
         $this -> bind('dasbor/pengaturanUmum/formEditPengaturan', $data);
     }
 
@@ -38,9 +31,7 @@ class pengaturanUmum extends Route{
         $kdSetting = $this -> inp('kdSetting');
         $caption = $this -> inp('caption');
         $value = $this -> inp('value');
-        $qEdit = "UPDATE tbl_setting_laundry SET value='$value' WHERE kd_setting='$kdSetting';";
-        $this -> st -> query($qEdit);
-        $this -> st -> queryRun();
+        $this -> state('pengaturanUmumData') -> prosesEditPengaturan($value, $kdSetting);
         $data['status'] = 'sukses';
         $this -> toJson($data);
     }
