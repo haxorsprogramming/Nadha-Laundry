@@ -20,8 +20,7 @@ class laundryRoom extends Route{
    public function getInfoProduk()
     {
         $kdProduk = $this -> inp('kdProduk');
-        $this -> st -> query("SELECT * FROM tbl_service WHERE kd_service='$kdProduk';");
-        $dProduk = $this -> st -> querySingle();
+        $dProduk = $this -> state('laundryRoomData') -> getInfoProduk($kdProduk);
         $this -> toJson($dProduk);
     }
 
@@ -35,25 +34,18 @@ class laundryRoom extends Route{
        $waktu = $this -> waktu();
        $total = $hargaAt * $qt;
        $operator = $this -> getses('userSes');
-       $queryToTemp = "INSERT INTO tbl_temp_item_cucian VALUES(null, '$kdTemp', '$kdRegistrasi', '$kdService', '$hargaAt', '$qt', '$total');";
-       $this -> st -> query($queryToTemp);
-       $this -> st -> queryRun();
-       $qUpdate = "UPDATE tbl_laundry_room SET status='cuci' WHERE kd_kartu='$kdRegistrasi';";
-       $this -> st -> query($qUpdate);
-       $this -> st -> queryRun();
-       $qUpdateReg = "UPDATE tbl_kartu_laundry SET status='cuci' WHERE kode_service='$kdRegistrasi';";
-       $this -> st -> query($qUpdateReg);
-       $this -> st -> queryRun();
+       $this -> state('laundryRoomData') -> insertTempCucian($kdTemp, $kdRegistrasi, $kdService, $hargaAt, $qt, $total);
+       $this -> state('laundryRoomData') -> updateLaundryRoom($kdRegistrasi);
+       $this -> state('laundryRoomData') -> updateKartuLaundry($kdRegistrasi);
        //proses update timeline
-       $this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kdRegistrasi' AND kd_event='mulai_cuci';");
-       $jlhTimeLine = $this -> st -> numRow();
+       $jlhTimeLine = $this -> state('laundryRoomData') -> jumlahTimeline($kdRegistrasi);
 
        if($jlhTimeLine < 1){
         $kdTimeline = $this -> rnstr(15);
-        $qUpdateTimelineAwal = "INSERT INTO tbl_timeline VALUES(null,'$kdTimeline','$kdRegistrasi','$waktu','$operator','mulai_cuci','Cucian masuk laundry room');";
-        $this -> st -> query($qUpdateTimelineAwal);
-        $this -> st -> queryRun();
-       }else{}
+        $this -> state('laundryRoomData') -> insertTimeline($kdTimeline, $kdRegistrasi, $waktu, $operator);
+       }else{
+           // do something .. ^_^
+       }
        
        $data['status'] = 'sukses';
        $this -> toJson($data);
@@ -63,13 +55,11 @@ class laundryRoom extends Route{
    {
        $dbdata = array();
        $kdRegistrasi = $this -> inp('kdRegistrasi');
-       $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
-       $dIts = $this -> st -> queryAll();
+       $dIts = $this -> state('laundryRoomData') -> getTempCucian($kdRegistrasi);
 
        foreach($dIts as $dis){
         $kdItem = $dis['kd_item'];
-        $this -> st -> query("SELECT nama FROM tbl_service WHERE kd_service='$kdItem' LIMIT 0,1;");
-        $dNamaProd = $this -> st -> querySingle();
+        $dNamaProd = $this -> state('laundryRoomData') -> getServiceData($kdItem);
         $arrTemp['kd_item'] = $dis['kd_item']; 
         $arrTemp['qt'] = $dis['qt'];
         $arrTemp['namaCap'] = $dNamaProd['nama'];
@@ -86,47 +76,33 @@ class laundryRoom extends Route{
        $waktuSelesai = $this -> waktu();
        $operator = $this -> getses('userSes');
        //update status cucian menjadi selesai 
-       $qUpdate = "UPDATE tbl_laundry_room SET status='finish' WHERE kd_kartu='$kdService';";
-       $this -> st -> query($qUpdate);
-       $this -> st -> queryRun();
-       $qUpdateKartu = "UPDATE tbl_kartu_laundry SET status='finishcuci', waktu_selesai='$waktuSelesai' WHERE kode_service='$kdService'";
-       $this -> st -> query($qUpdateKartu);
-       $this -> st -> queryRun();
+       $this -> state('laundryRoomData') -> updateKartuNRoomLaundry($kdService, $waktuSelesai);
        //cari keseluruhan harga 
-       $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
-       $fHargaTotal = $this -> st -> queryAll();
+       $fHargaTotal = $this -> state('laundryRoomData') ->  totalTempHarga($kdService);
        $hargaAwal = 0;
        foreach($fHargaTotal as $qHar){
         $hargaTemp = $qHar['total'];
         $hargaAwal = $hargaAwal + $hargaTemp;
        }
        //update ke cucian 
-       $qUpdateHargaCucian = "UPDATE tbl_laundry_room SET total_harga='$hargaAwal' WHERE kd_kartu='$kdService';";
-       $this -> st -> query($qUpdateHargaCucian);
-       $this -> st -> queryRun();
+       $this -> state('laundryRoomData') ->  updateHargaCucian($hargaAwal, $kdService);
        //update timeline 
        $kdTimeline = $this -> rnstr(15);
-       $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline', '$kdService', '$waktuSelesai','$operator','cucian_selesai','Cucian telah selesai');";
-       $this -> st -> query($qUpdateTimeline);
-       $this -> st -> queryRun();
-        // kirim email ke pelanggan 
-        $judul = "Status Cucian";
-        // cari email host
-       $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='email_host';");
-       $qEmail = $this -> st -> querySingle();
+       $this -> state('laundryRoomData') -> updateTimeline($kdTimeline, $kdService, $waktuSelesai, $operator);
+       // kirim email ke pelanggan 
+       $judul = "Status Cucian";
+       // cari email host
+       $qEmail = $this -> state('laundryRoomData') -> emailHost();
        $email = $qEmail['value'];
        //password email host 
-       $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='email_host_password';");
-       $qPassword = $this -> st -> querySingle();
+       $qPassword = $this -> state('laundryRoomData') -> passwordHost();
        $password = $qPassword['value'];
        $emailHost = $email;
        $passwordHost = $password;
        //cari email pelanggan 
-       $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='kdService';");
-       $qUsernamePelanggan = $this -> st -> querySingle();
+       $qUsernamePelanggan = $this -> state('laundryRoomData') -> getUsernamePelanggan($kdService);
        $username = $qUsernamePelanggan['pelanggan'];
-       $this -> st -> query("SELECT nama_lengkap, email FROM tbl_pelanggan WHERE username='$username';");
-       $qPelanggan = $this -> st -> querySingle();
+       $qPelanggan = $this -> state('laundryRoomData') -> getDataPelanggan($username);
        $emailPelanggan = $qPelanggan['email'];
        $namaPelanggan = $qPelanggan['nama_lengkapp'];
        $isi = "Halo ".$namaPelanggan.", cucian kamu dengan Kode ".$kdService." sudah selesai dicuci, silahkan ambil di laundry kita ya";
