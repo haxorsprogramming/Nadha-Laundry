@@ -2,24 +2,17 @@
 
 class laundryRoom extends Route{
 
-   public function __construct()
-    {
-    $this -> st = new state;
-    }
-
    public function index()
     {
         $this -> cekUserLogin('userSes','login');
-        $this -> st -> query("SELECT * FROM tbl_laundry_room WHERE status !='finish' ORDER BY id DESC;");
-        $data['laundryRoom'] = $this -> st -> queryAll();
+        $data['laundryRoom'] = $this -> state('laundryRoomData') -> laundryRoomData();
         $this -> bind('dasbor/laundryRoom/laundryRoom', $data);
     }
 
    public function detailCucian()
     {
         $this -> cekUserLogin('userSes','login');
-        $this -> st -> query("SELECT * FROM tbl_service WHERE aktif='y';");
-        $data['listProduk'] = $this -> st -> queryAll();
+        $data['listProduk'] = $this -> state('laundryRoomData') -> listProduk();
         $data['kd'] = $this -> inp('kd');
         $this -> bind('dasbor/laundryRoom/detailCucian', $data);
     }

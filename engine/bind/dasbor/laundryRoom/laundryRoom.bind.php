@@ -18,12 +18,10 @@
           <?php
             foreach($data['laundryRoom'] as $lr):
                 $kdKartu = $lr['kd_kartu'];
-                $this -> st -> query("SELECT pelanggan, waktu_masuk FROM tbl_kartu_laundry WHERE kode_service='$kdKartu' LIMIT 0,1;");
-                $qKodePelanggan =  $this -> st -> querySingle(); 
+                $qKodePelanggan = $this -> state('laundryRoomData') -> laundryRoomMembers($kdKartu);
                 $pelanggan = $qKodePelanggan['pelanggan'];
                 $waktuMasuk = $qKodePelanggan['waktu_masuk'];
-                $this -> st -> query("SELECT nama_lengkap, level FROM tbl_pelanggan WHERE username='$pelanggan' LIMIT 0,1;");
-                $qNamaPelanggan = $this -> st -> querySingle();
+                $qNamaPelanggan = $this -> state('laundryRoomData') -> getMembersData($pelanggan);
                 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
                 $levelUser = $qNamaPelanggan['level'];
 
@@ -35,9 +33,8 @@
                   $warnaTabel = '#f1c40f';
                 }
                 //cari total harga 
-                $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdKartu';");
-                $jlhItem = $this -> st -> numRow();
-                $qTotal = $this -> st -> queryAll();
+                $jlhItem = $this -> state('laundryRoomData') -> jumlahItem($kdKartu);
+                $qTotal = $this -> state('laundryRoomData') -> totalHarga($kdKartu);
                 $hargaAwal = 0;
                 foreach($qTotal as $qt){
                   $hargaSat = $qt['total'];

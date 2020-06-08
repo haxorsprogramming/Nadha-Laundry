@@ -8,12 +8,12 @@ $statusCucian = $detailKartu['status'];
 $pembayaran = $detailKartu['pembayaran'];
 $dataTimeline = $data['dataTimeline'];
 $adit = 'hula';
-//cari nama pelanggan 
-$this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
-$qNamaPelanggan = $this -> st -> querySingle();
+//cari nama pelanggan  
+$qNamaPelanggan = $this -> state('kartuLaundryData') -> getNamaPelanggan($username);
 $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
-$this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kodeService' AND kd_event='pick_up';");
-$jlhPick = $this -> st -> numRow();
+
+$jlhPick = $this -> state('kartuLaundryData') -> jumlahPick($kodeService);
+
 if($statusCucian == 'hold'){
   $capStatusCucian = 'Hold (Sedang dalam antrian ke laundry room)';
   $btnBayar = 'disabled';

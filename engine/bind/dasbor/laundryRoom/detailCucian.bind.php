@@ -2,7 +2,6 @@
 $kd = $data['kd'];
 $this -> st -> query("SELECT * FROM tbl_kartu_laundry ORDER BY id DESC;");
 $data['kartuLaundry'] = $this -> st -> queryAll();
-
 //cari data pelanggan & cucian
 $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kd' LIMIT 0,1;");
 $qKartuLaundry = $this -> st -> querySingle();

@@ -101,8 +101,9 @@ Access administrator<br/>
 username : admin<br/>
 password : admin<br/>
 <p align='justify'>
-Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Silahkan menghubungi kami di 082272177022, dan akan kami bantu untuk setup aplikasi ini jika perlu bantuan, dan aktivasi beberapa fitur yang belum diaktifkan. 
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya ..  
 </p>
 <br/>
 <p align='justify'>
-Apabila ingin menambahkan fitur atau membantu pengembangan aplikasi ini, silahkan pull request agar aplikasi ini dapat lebih baik.Bantu support kami untuk pengembangan club melalui link saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^</p>
+Ingin berkontribusi untuk pengembangan club programming ini? bantu kami melalui donasi lewat saweria di <a href='https://saweria.co/donate/haxorsprogramming'>sini</a>, sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^
+</p>

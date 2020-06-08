@@ -21,6 +21,18 @@ class kartuLaundryData{
     return $this -> st -> querySingle();
   }
 
+  public function getNamaPelanggan($username)
+  {
+    $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$username';");
+    return $this -> st -> querySingle();
+  }
+
+  public function jumlahPick($kodeService)
+  {
+    $this -> st -> query("SELECT id FROM tbl_timeline WHERE kd_service='$kodeService' AND kd_event='pick_up';");
+    return $this -> st -> numRow();
+  }
+
   public function jumlahTemp($kodeService)
   {
     $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kodeService';");
@@ -87,6 +99,26 @@ class kartuLaundryData{
     $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktuPickUp','$operator','pick_up','Cucian telah diambil');";
     $this -> st -> query($qUpdateTimeline);
     $this -> st -> queryRun();
+  }
+
+  public function batalkanCucian($kdService)
+  {
+     //hapus di kartu laundry
+     $qDeleteKartuLaundry = "DELETE FROM tbl_kartu_laundry WHERE kode_service='$kdService';";
+     $this -> st -> query($qDeleteKartuLaundry);
+     $this -> st -> queryRun();
+     //hapus di laundry room 
+     $qDeleteLaundryRoom = "DELETE FROM tbl_laundry_room WHERE kd_kartu='$kdService';";
+     $this -> st -> query($qDeleteLaundryRoom);
+     $this -> st -> queryRun();
+     //hapus di temp item cucian 
+     $qDeleteTempCucian = "DELETE FROM tbl_temp_item_cucian WHERE kd_room='$kdService';";
+     $this -> st -> query($qDeleteTempCucian);
+     $this -> st -> queryRun();
+     //hapus di timeline 
+     $qDeleteTimeline = "DELETE FROM tbl_timeline WHERE kd_service=$kdService'';";
+     $this -> st -> query($qDeleteTimeline);
+     $this -> st -> queryRun();
   }
  
 }  
