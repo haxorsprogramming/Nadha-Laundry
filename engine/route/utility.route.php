@@ -76,4 +76,31 @@ class utility extends Route{
         $this -> toJson($dbdata);
     }
 
+    public function tesWa(){
+        $message = "Apa Kabar, ini pesan dari Nadha-Laundry";
+        $phone_no = "082272177022";
+
+        $message = preg_replace("/(\n)/", "", $message);
+        $message = preg_replace("/(\r)/", "", $message);
+
+        $phone_no = preg_replace("/(\n)/", ",", $phone_no);
+        $phone_no = preg_replace("/(\r)/", "", $phone_no);
+
+        $data = array("phone_no" => $phone_no, "key" => "54d4bbece6348023a3714879f2030ad5a44ff043200750b5", "message" => $message);
+        $data_string = json_encode($data);
+        $ch = curl_init("http://116.203.92.59/api/send_message");
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: '.strlen($data_string))
+        );
+        $result = curl_exec($ch);
+
+    }
+
 }
