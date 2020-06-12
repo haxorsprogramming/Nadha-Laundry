@@ -15,6 +15,8 @@ class login extends Route{
         $data['jlh'] = $jlhUser;
         if($jlhUser > 0){
             $this -> setses('userSes', $user);
+            $waktu = $this -> waktu();
+            $this -> state('loginpage') -> updateLogin($waktu, $user);
         }else{
 
         }
