@@ -9,7 +9,6 @@ class broadcastPesan extends Route{
 
     public function prosesBroadcast()
     {
-        // 'judulPesan':judulPesan, 'isiPesan':isiPesan
         $judulPesan = $this -> inp('judulPesan');
         $isiPesan = $this -> inp('isiPesan');
         $tipeProses = $this -> inp('tipeProses');
@@ -23,6 +22,7 @@ class broadcastPesan extends Route{
         $apiKey = $qApiKey['value'];
         $status = '';
         if($tipeProses == 'langsung'){
+            //start broadcast pesan ke pelanggan
             foreach($qPelanggan as $pel){
                 $namaPelanggan = $pel['nama_lengkap'];
                 $phone_no = $pel['hp'];
@@ -38,6 +38,11 @@ class broadcastPesan extends Route{
         $this -> state('broadcastPesanData') -> simpanBroadcast($idPesan, $judulPesan, $isiPesan, $tipeProses, $waktu, $status);
         $data['status'] = $qPelanggan;
         $this -> toJson($data);
+    }
+
+    public function cronjobBroadcast()
+    {
+        
     }
 
 }
