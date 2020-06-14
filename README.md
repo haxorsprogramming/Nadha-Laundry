@@ -28,11 +28,12 @@
 <li> Manajemen pelanggan</li>
 <li> Sistem promo, level user, point, & diskon</li>
 <li> Notifikasi status cucian ke pelanggan (default : email)</li>
-<li> Notifikasi ke whatsapp pelanggan (Sudah terhubung ke API <a href='https://waresponder.co.id'>waresponder.co.id</a>, silahkan kunjungi untuk mendapatkan api key nya)</li>
+<li> Notifikasi ke whatsapp pelanggan (Sudah terhubung ke API <a href='https://waresponder.co.id'>waresponder</a>, silahkan kunjungi untuk mendapatkan api key nya)</li>
 <li> Manajemen pengeluaran laundry</li>
 <li> Manajemen pembukuan laundry</li>
 <li> Backup & Restore data ke cloud</li>
-<li> Multilevel user</li>
+<li> Multilevel user (Administrator & Operator)</li>
+<li> Sistem broadcast pesan ke pelanggan (untuk promosi, pengumuman, dll)</li>
 <br/>
 <b>Developer Team</b>
 <li> Project Manager & Front End : Hasnah Nur Ardita</li>
