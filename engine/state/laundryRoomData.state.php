@@ -147,7 +147,7 @@ class laundryRoomData{
 
   public function getDataPelanggan($username)
   {
-    $this -> st -> query("SELECT nama_lengkap, email FROM tbl_pelanggan WHERE username='$username';");
+    $this -> st -> query("SELECT nama_lengkap, email, hp FROM tbl_pelanggan WHERE username='$username';");
     return $this -> st -> querySingle();
   }
 
@@ -179,6 +179,12 @@ class laundryRoomData{
   {
     $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kd';");
     return $this -> st -> queryAll();
+  }
+
+  public function getApiKey()
+  {
+    $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='api_key_wa';");
+    return $this -> st -> querySingle();
   }
 
 }

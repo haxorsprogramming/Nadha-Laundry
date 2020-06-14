@@ -156,7 +156,7 @@ function isiYangBenar() {
 function setSelesai() {
   Swal.fire({
     title: "Set selesai?",
-    text: "Set cucian ini ke status selesai cuci?",
+    text: "Set cucian ini ke status selesai cuci? Harap menunggu konfirmasi selesai sebelum meninggalkan form..",
     icon: "info",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",

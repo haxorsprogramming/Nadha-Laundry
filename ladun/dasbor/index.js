@@ -16,6 +16,7 @@ const manajemenUser = 'manajemenUser';
 const arusKas = 'arusKas';
 const pengaturanUmum = 'pengaturanUmum';
 const laporanTransaksi = 'laporanTransaksi';
+const broadcastPesan = 'broadcastPesan';
 
 const d = new Date();
 const tahun = d.getFullYear();
@@ -117,6 +118,11 @@ var divMenu = new Vue({
     backupRestoreAtc : function()
     {
       window.alert("Silahkan kontak tim haxorsprogramming untuk mengaktifkan fitur ini");
+    },
+    broadcastPesanAtc : function()
+    {
+      renderMenu(broadcastPesan);
+      divJudul.judulForm = "Broadcast Pesan";
     }
   }
 });

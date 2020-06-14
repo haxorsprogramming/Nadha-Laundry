@@ -10,6 +10,7 @@
       <li><a class="nav-link" href="#!" v-on:click='pelangganAtc'>Pelanggan</a></li>
       <li><a class="nav-link" href='#!' v-on:click='promoAtc'>Promo</a></li>
       <li><a class="nav-link" href="#!" v-on:click='pengeluaranLaundryAtc'>Pengeluaran Laundry</a></li>
+      <li><a class="nav-link" href="#!" v-on:click='broadcastPesanAtc'>Broadcast Pesan</a></li>
     </ul>
   </li>
   <li><a class="nav-link " href="#!" v-on:click='dataTransaksiAtc'><i class="fas fa-receipt"></i> <span>Data Transaksi</span></a></li>

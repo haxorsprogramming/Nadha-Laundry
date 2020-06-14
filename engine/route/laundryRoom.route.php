@@ -104,10 +104,19 @@ class laundryRoom extends Route{
        $username = $qUsernamePelanggan['pelanggan'];
        $qPelanggan = $this -> state('laundryRoomData') -> getDataPelanggan($username);
        $emailPelanggan = $qPelanggan['email'];
-       $namaPelanggan = $qPelanggan['nama_lengkapp'];
+       $namaPelanggan = $qPelanggan['nama_lengkap'];
+       $phone_no = $qPelanggan['hp'];
        $isi = "Halo ".$namaPelanggan.", cucian kamu dengan Kode ".$kdService." sudah selesai dicuci, silahkan ambil di laundry kita ya";
        //public function kirimEmail($nama,$penerima,$judul,$isi,$emailHost,$passwordHost)
        $this -> kirimEmail($namaPelanggan,$emailPelanggan,$judul,$isi,$emailHost,$passwordHost);
+       //kirim ke wa 
+       $qApiKey = $this -> state('laundryRoomData') -> getApiKey();
+       $apiKey = $qApiKey['value'];
+       $hargaWa = number_format($hargaAwal);
+       //cari nama laundry 
+       $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
+       $message = "Status Cucian - ".$namaLaundry.". Halo ".$namaPelanggan.", cucian anda dengan kode ".$kdService." telah selesai. Dengan total tagihan Rp. ".$hargaWa.", silahkan ambil cucian di laundry kita ya. Terima kasih..";
+       $this -> cucianSelesaiNotif($message, $phone_no, $apiKey);
        $this -> toJson($kdService);
    }
 

@@ -139,6 +139,8 @@ class pembayaran extends Route{
         $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktu','$operator','pembayaran_selesai','Pembayaran telah dilakukan');";
         $this -> st -> query($qUpdateTimeline);
         $this -> st -> queryRun();
+        //notifikasi ke pelanggan 
+        
         $data['status'] = 'sukses';
         $this -> toJson($data);
 
