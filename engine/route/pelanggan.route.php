@@ -19,17 +19,17 @@ class Pelanggan extends Route{
 
     public function proTambahPelanggan()
     {
-      $data['username'] = $this -> inp('username');
-      $data['namaLengkap'] = $this -> inp('namaLengkap');
-      $data['alamat'] = $this -> inp('alamat');
-      $data['nomorHandphone'] = $this -> inp('nomorHandphone');
-      $data['email'] = $this -> inp('email');
-      $data['levelUser'] = $this -> inp('levelUser');
-      $usernameParam = $this -> inp('username');
-      $usernameFilter = str_replace(' ', '',$usernameParam);
-      $data['waktu'] = $this -> waktu();
+      $data['username']         = $this -> inp('username');
+      $data['namaLengkap']      = $this -> inp('namaLengkap');
+      $data['alamat']           = $this -> inp('alamat');
+      $data['nomorHandphone']   = $this -> inp('nomorHandphone');
+      $data['email']            = $this -> inp('email');
+      $data['levelUser']        = $this -> inp('levelUser');
+      $usernameParam            = $this -> inp('username');
+      $usernameFilter           = str_replace(' ', '',$usernameParam);
+      $data['waktu']            = $this -> waktu();
       //cek apakah username sudah terdaftar
-      $jlhUser = $this -> state($this -> sn) -> cekUsername($usernameFilter);
+      $jlhUser                  = $this -> state($this -> sn) -> cekUsername($usernameFilter);
 
       if($jlhUser > 0){
         $dataRes['status'] = 'error';
@@ -42,9 +42,9 @@ class Pelanggan extends Route{
  
     public function pelangganProfile()
     {
-      $username = $this -> inp('username');
-      $data['username'] = $username;
-      $data['historyCucian'] = $this -> state($this -> sn) -> historyKartuLaundryPelanggan($username);
+      $username               = $this -> inp('username');
+      $data['username']       = $username;
+      $data['historyCucian']  = $this -> state($this -> sn) -> historyKartuLaundryPelanggan($username);
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
     }
 
@@ -55,15 +55,15 @@ class Pelanggan extends Route{
 
     public function proEditProfilePelanggan()
     {
-      $data['username'] = $this -> inp('username');
-      $data['namaLengkap'] = $this -> inp('namaLengkap');
-      $data['alamat'] = $this -> inp('alamat');
-      $data['nomorHandphone'] = $this -> inp('nomorHandphone');
-      $data['email'] = $this -> inp('email');
-      $data['levelUser'] = $this -> inp('levelUser');
+      $data['username']         = $this -> inp('username');
+      $data['namaLengkap']      = $this -> inp('namaLengkap');
+      $data['alamat']           = $this -> inp('alamat');
+      $data['nomorHandphone']   = $this -> inp('nomorHandphone');
+      $data['email']            = $this -> inp('email');
+      $data['levelUser']        = $this -> inp('levelUser');
       //update profile pelanggan ke database
       $this -> state($this -> sn) -> prosesUpdatePelanggan($data);
-      $dataRes['status'] = 'sukses';
+      $dataRes['status']        = 'sukses';
       $this -> toJson($dataRes);
     }
 

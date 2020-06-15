@@ -2,7 +2,8 @@
 
 class manajemenUser extends Route{
 
-   
+   private $sn = 'manajemenUserData';
+
    public function index()
    {
         $this -> cekUserLogin('userSes','login');
@@ -11,13 +12,13 @@ class manajemenUser extends Route{
 
    public function getListUser()
    {
-        $dbdata = array();
-        $data['dataUser'] = $this -> state('manajemenUserData') -> getListUser();
+        $dbdata             = array();
+        $data['dataUser']   = $this -> state($this -> sn) -> getListUser();
         foreach($data['dataUser'] as $dis){
-            $arrTemp['username'] = $dis['username'];
-            $arrTemp['tipeUser'] = $dis['tipe_user'];
-            $arrTemp['lastLogin'] = $dis['last_login'];
-            $dbdata[] = $arrTemp;
+            $arrTemp['username']    = $dis['username'];
+            $arrTemp['tipeUser']    = $dis['tipe_user'];
+            $arrTemp['lastLogin']   = $dis['last_login'];
+            $dbdata[]               = $arrTemp;
         }
         $this -> toJson($dbdata);
    }
@@ -29,24 +30,20 @@ class manajemenUser extends Route{
 
    public function prosesTambahUser()
    {
-        $username = $this -> inp('username');
-        $password = md5($this -> inp('password'));
-        $tipeUser = $this -> inp('tipeUser');
-        $waktu = $this -> waktu();
-        $qSimpanUser = "INSERT INTO tbl_user VALUES(null,'$username','$password','$waktu','$tipeUser','1');";
-        $this -> st -> query($qSimpanUser);
-        $this -> st -> queryRun();
+        $username       = $this -> inp('username');
+        $password       = md5($this -> inp('password'));
+        $tipeUser       = $this -> inp('tipeUser');
+        $waktu          = $this -> waktu();
+        $this -> state($this -> sn) -> prosesTambahUser($username, $password, $waktu, $tipeUser);
         $data['status'] = 'sukses';
         $this -> toJson($data);
    }
 
    public function hapusUser()
    {
-       $username = $this -> inp('username');
-       $qUpdate = "DELETE FROM tbl_user WHERE username='$username';";
-       $this -> st -> query($qUpdate);
-       $this -> st -> queryRun();
-       $data['status'] = 'sukses';
+       $username        = $this -> inp('username');
+       $this -> state($this -> sn) -> hapusUser($username);
+       $data['status']  = 'sukses';
        $this -> toJson($data);
    }
 
