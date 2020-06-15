@@ -2,7 +2,7 @@
 
 class pengeluaranLaundry extends Route{
 
-    private $sn = 'pengaturanLaundryData';
+    private $sn = 'pengeluaranLaundryData';
     
     public function index()
     {   
@@ -39,7 +39,7 @@ class pengeluaranLaundry extends Route{
         $data['status']     = 'sukses';
         $this -> toJson($data);
     }
-
+ 
     public function getDataPengeluaran()
     {
         $dbdata                     = array();

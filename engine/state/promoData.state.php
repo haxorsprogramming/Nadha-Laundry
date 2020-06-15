@@ -11,7 +11,7 @@ class promoData{
 
   public function dataPromo()
   {
-    $this -> st -> query("SELECT * FROM tbl_promo_code;");
+    $this -> st -> query("SELECT * FROM tbl_promo_code WHERE aktif='y';");
     return $this -> st -> queryAll();
   }
 
@@ -28,5 +28,11 @@ class promoData{
     $this -> st -> queryRun();
   }
 
+  public function hapusPromo($kdPromo)
+  {
+    $queryHapus = "UPDATE tbl_promo_code SET aktif='n' WHERE kd_promo='$kdPromo';";
+    $this -> st -> query($queryHapus);
+    $this -> st -> queryRun();
+  }
 
 }

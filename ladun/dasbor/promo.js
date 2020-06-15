@@ -31,11 +31,40 @@ var divPromo = new Vue({
                 this.diskon = diskon;
                 prosesSimpan();
             }
+        },
+        hapusAtc : function(kdPromo)
+        {
+           hapusPromo(kdPromo);
         }
     }
 });
 
-
+function hapusPromo(kdPromo)
+{
+    Swal.fire({
+        title: 'Hapus?',
+        text: "Apakah kamu yakin ingin menghapus promo "+kdPromo+" ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelButtonText : 'Batal'
+      }).then((result) => {
+        if (result.value) {
+            $.post('promo/hapusPromo',{'kdPromo':kdPromo}, function(data){
+                Swal.fire({
+                    icon : 'success',
+                    title : 'Sukses',
+                    text : 'Sukses menghapus promo'
+                });
+                renderMenu(promo);
+                divJudul.judulForm = "Kode promo";
+            });
+        }
+      });
+    
+}
 
 function prosesSimpan()
 {

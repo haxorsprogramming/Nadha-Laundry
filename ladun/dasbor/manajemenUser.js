@@ -46,7 +46,7 @@ function konfirmasiHapus(username){
                 $('#divUtama').load('manajemenUser');
             });
         }
-      })
+      });
 }
 
 function berhasilHapus()

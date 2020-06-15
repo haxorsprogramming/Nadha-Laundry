@@ -22,7 +22,7 @@ class promo extends Route{
         }
         $this -> toJson($dbdata);
     }
-
+ 
     public function prosesTambahPromo()
     {
         $kdPromo    = $this -> inp('kdPromo');
@@ -37,6 +37,12 @@ class promo extends Route{
             $data['status'] = 'success';
         }
         $this -> toJson($data);
+    }
+
+    public function hapusPromo()
+    {
+        $kdPromo    = $this -> inp('kdPromo');
+        $this -> state($this -> sn) -> hapusPromo($kdPromo);
     }
   
 
