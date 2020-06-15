@@ -9,9 +9,9 @@ class laporanTransaksi extends Route{
 
     public function index()
     {
-        $bulan = date('m');
-        $data['bulanIni'] = $bulan;
-        $data['bulanIndo'] = $this -> bulanIndo($bulan);
+        $bulan              = date('m');
+        $data['bulanIni']   = $bulan;
+        $data['bulanIndo']  = $this -> bulanIndo($bulan);
         $data['jumlahHari'] = $this -> ambilHari($bulan);
         $this -> bind('dasbor/laporanTransaksi/laporanTransaksi', $data);
     }
@@ -59,11 +59,11 @@ class laporanTransaksi extends Route{
     //buat laporan dari bulan
     public function getBulanReport()
     {
-        $dbdata = array();
-        $tahun = $this -> inp('tahun');
-        $bulan = $this -> inp('bulan');
-        $blnInt = $this -> bulanToInt(strtolower($bulan));
-        $jlhDay = $this -> ambilHari($blnInt);
+        $dbdata         = array();
+        $tahun          = $this -> inp('tahun');
+        $bulan          = $this -> inp('bulan');
+        $blnInt         = $this -> bulanToInt(strtolower($bulan));
+        $jlhDay         = $this -> ambilHari($blnInt);
         for($x = 1; $x <= $jlhDay; $x++){
             $arrTemp['tanggal'] = $x;
             $tglAwalKomplit = $tahun."-".$blnInt."-".$x." 00:00:00";

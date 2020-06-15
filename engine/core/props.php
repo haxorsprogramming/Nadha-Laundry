@@ -29,9 +29,9 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 class Props{
 
-    protected $route = MAINROUTE;
-    protected $method = 'index';
-    protected $params = [];
+    protected $route    = MAINROUTE;
+    protected $method   = 'index';
+    protected $params   = [];
 
     public function __construct()
     {

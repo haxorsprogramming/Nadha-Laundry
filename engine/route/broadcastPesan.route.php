@@ -9,18 +9,19 @@ class broadcastPesan extends Route{
 
     public function prosesBroadcast()
     {
-        $judulPesan = $this -> inp('judulPesan');
-        $isiPesan = $this -> inp('isiPesan');
-        $tipeProses = $this -> inp('tipeProses');
-        $waktu = $this -> inp('waktu');
+        $judulPesan     = $this -> inp('judulPesan');
+        $isiPesan       = $this -> inp('isiPesan');
+        $tipeProses     = $this -> inp('tipeProses');
+        $waktu          = $this -> inp('waktu');
         //buat id pesan
-        $idPesan = $this -> rnstr(10);
+        $idPesan        = $this -> rnstr(10);
         //coba buat regex
-        $qPelanggan = $this -> state('broadcastPesanData') -> getPelanggan();
+        $qPelanggan     = $this -> state('broadcastPesanData') -> getPelanggan();
         //ambil api key 
-        $qApiKey = $this -> state('laundryRoomData') -> getApiKey();
-        $apiKey = $qApiKey['value'];
-        $status = '';
+        $qApiKey        = $this -> state('laundryRoomData') -> getApiKey();
+        $apiKey         = $qApiKey['value'];
+        $status         = '';
+
         if($tipeProses == 'langsung'){
             //start broadcast pesan ke pelanggan
             foreach($qPelanggan as $pel){
@@ -34,7 +35,7 @@ class broadcastPesan extends Route{
         }else{
             $status = 'pending';
         }
-       //simpan ke tabel broadcast 
+        //simpan ke tabel broadcast 
         $this -> state('broadcastPesanData') -> simpanBroadcast($idPesan, $judulPesan, $isiPesan, $tipeProses, $waktu, $status);
         $data['status'] = $qPelanggan;
         $this -> toJson($data);

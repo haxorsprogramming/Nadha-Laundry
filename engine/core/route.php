@@ -29,17 +29,17 @@ class Route{
     //membuat string random dengan parameter(jumlah)
     public function rnstr($length)
     {
-        $bahan = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
-        $acak = str_shuffle($bahan);
-        $hasil = substr($acak,0,$length);
+        $bahan  = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
+        $acak   = str_shuffle($bahan);
+        $hasil  = substr($acak,0,$length);
         return $hasil;
     }
     //membuat int random dengan parameter(jumlah)
     public function rnint($length)
     {
-      $bahan = '123456789012345678901234567890123456780';
-      $acak = str_shuffle($bahan);
-      $hasil = substr($acak, 0, $length);
+      $bahan  = '123456789012345678901234567890123456780';
+      $acak   = str_shuffle($bahan);
+      $hasil  = substr($acak, 0, $length);
       return $hasil;
     }
 
@@ -124,9 +124,9 @@ class Route{
     }
     //fungsi untuk ambil jumlah jarak antara 2 tanggal
     function jarakTanggal( $first, $last, $step = '+1 day', $format = 'Y/m/d' ) {
-      $dates = array();
-      $current = strtotime( $first );
-      $last = strtotime( $last );
+      $dates    = array();
+      $current  = strtotime( $first );
+      $last     = strtotime( $last );
       while( $current <= $last ) {
         $dates[] = date( $format, $current );
         $current = strtotime( $step, $current );
@@ -231,12 +231,12 @@ class Route{
         // Passing `true` enables exceptions
         try {
             //Server settings
-            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->SMTPDebug  = 0;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = $emailHost;                 // SMTP username
-            $mail->Password = $passwordHost;                           // SMTP password
+            $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth   = true;                               // Enable SMTP authentication
+            $mail->Username   = $emailHost;                 // SMTP username
+            $mail->Password   = $passwordHost;                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
             //Recipients
