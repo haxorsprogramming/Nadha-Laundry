@@ -5,58 +5,53 @@ use Dompdf\Dompdf;
 
 class cetakLaporan extends Route{
 
-    public function __construct()
-    {
-    $this -> st = new state;
-    }
-
     public function index()
     {
-
+        echo '<pre>Cetak laporan route</pre>';
     }
 
     public function tahun($tahun)
     {
         //inisialisasi awal dompdf
-        $dompdf = new Dompdf();
-        $jumlahBulan = 12;
+        $dompdf         = new Dompdf();
+        $jumlahBulan    = 12;
         //inisialisasi variabel awal -> nama laundry 
-        $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
+        $namaLaundry    = $this -> state('utilityData') -> getLaundryData('laundry_name');
         //buat template html
-        $html = '<div><h2>Laporan Tahunan Laundry</h2>';
-        $html .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Tahun Laporan : '.$tahun;
-        $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:14px;">
+        $html           = '<div><h2>Laporan Tahunan Laundry</h2>';
+        $html          .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Tahun Laporan : '.$tahun;
+        $html          .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:14px;">
         <tr><th>Bulan</th><th>Total Transaksi Masuk</th><th>Total Transaksi Keluar</th><th>Nominal Transaksi Masuk</th><th>Nominal Transaksi Keluar</th>
         <th>Total Profit</th>
         </tr>';
         //inisialisasi variabel kosong
-        $totalTransaksiTahun = 0;
-        $totalTransaksiTahunKeluar = 0;
-        $nominalTransaksiMasuk = 0;
-        $nominalTransaksiKeluar = 0;
+        $totalTransaksiTahun        = 0;
+        $totalTransaksiTahunKeluar  = 0;
+        $nominalTransaksiMasuk      = 0;
+        $nominalTransaksiKeluar     = 0;
         //ambil jumlah hari dalam bulan
-        $arrBulanInt = $this -> getListBulanInt();
+        $arrBulanInt                = $this -> getListBulanInt();
 
         for($i = 0; $i < $jumlahBulan; $i++){
-            $blnInt = $arrBulanInt[$i];
+            $blnInt             = $arrBulanInt[$i];
             //cari nama bulan berdasarkan array
-            $bulanCapIndo = $this -> bulanIndo($blnInt);
-            $jlhDay = $this -> ambilHari($blnInt);
-            $tglAkhir = $jlhDay;
-            $tglAwalKomplit = $tahun."-".$blnInt."-01 00:00:00";
-            $tglAkhirKomplit = $tahun."-".$blnInt."-".$tglAkhir." 23:59:59";
+            $bulanCapIndo       = $this -> bulanIndo($blnInt);
+            $jlhDay             = $this -> ambilHari($blnInt);
+            $tglAkhir           = $jlhDay;
+            $tglAwalKomplit     = $tahun."-".$blnInt."-01 00:00:00";
+            $tglAkhirKomplit    = $tahun."-".$blnInt."-".$tglAkhir." 23:59:59";
             //rekap transaksi masuk
             $totalTransaksiBulan = $this -> state('cetakLaporanData') -> getCountRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
             $qTransaksi = $this -> state('cetakLaporanData') -> getRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
             $totalNilaiTransaksiBulanan = 0;
             foreach($qTransaksi as $qt){
-                $nilaiTransaksi = $qt['jumlah'];
+                $nilaiTransaksi             = $qt['jumlah'];
                 $totalNilaiTransaksiBulanan = $totalNilaiTransaksiBulanan + $nilaiTransaksi;
             }
-            $capTotalTransaksiBulanan = number_format($totalNilaiTransaksiBulanan);
-            $totalTransaksiTahun = $totalTransaksiTahun + $totalTransaksiBulan;
-            $nominalTransaksiMasuk = $nominalTransaksiMasuk + $totalNilaiTransaksiBulanan;
-            $capNominalTransaksiMasuk = number_format($nominalTransaksiMasuk);
+            $capTotalTransaksiBulanan   = number_format($totalNilaiTransaksiBulanan);
+            $totalTransaksiTahun        = $totalTransaksiTahun + $totalTransaksiBulan;
+            $nominalTransaksiMasuk      = $nominalTransaksiMasuk + $totalNilaiTransaksiBulanan;
+            $capNominalTransaksiMasuk   = number_format($nominalTransaksiMasuk);
             //rekap transaksi keluar 
             
             $totalTransaksiBulanKeluar = $this -> state('cetakLaporanData') -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
@@ -104,9 +99,7 @@ class cetakLaporan extends Route{
     {
         $dompdf = new Dompdf();
         //inisialisasi variabel awal -> nama laundry
-        $this -> st -> query("SELECT value FROM tbl_setting_laundry WHERE kd_setting='laundry_name' LIMIT 0,1;");
-        $qNamaLaundry = $this -> st -> querySingle();
-        $namaLaundry = $qNamaLaundry['value'];
+        $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
         //ubah nama bulan ke lowercase
         $bulanLowCase = strtolower($bulan);
         //ubah bulan ke int
@@ -133,9 +126,9 @@ class cetakLaporan extends Route{
             $tglAwalKomplit = $tahun."-".$bulanInt."-".$tglNow." 00:00:00";
             $tglAkhirKomplit = $tahun."-".$bulanInt."-".$tglNow." 23:59:59";
             $profit = 0;
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='masuk';");
-            $jlhTransaksi = $this -> st -> numRow();
-            $qTransaksi = $this -> st -> queryAll();
+            
+            $jlhTransaksi = $this -> state('cetakLaporanData') -> jlhTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksi = $this -> state('cetakLaporanData') -> getTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
             $nominalTransaksi = 0;
             foreach($qTransaksi as $qt){
                 $tempTransaksi = $qt['jumlah'];
@@ -146,9 +139,9 @@ class cetakLaporan extends Route{
             $nominalTransaksiTanggal = $nominalTransaksiTanggal + $nominalTransaksi;
             $capNominalTransaksiTanggal = number_format($nominalTransaksiTanggal);
             //rekap transaksi keluar
-            $this -> st -> query("SELECT * FROM tbl_arus_kas WHERE(waktu BETWEEN '$tglAwalKomplit' AND '$tglAkhirKomplit') AND arus='keluar';");
-            $jlhTransaksiKeluar = $this -> st -> numRow();
-            $qTransaksiKeluar = $this -> st -> queryAll();
+            
+            $jlhTransaksiKeluar = $this -> state('cetakLaporanData') -> jlhTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar = $this -> state('cetakLaporanData') -> getTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
             $nominalTransaksiKeluar = 0;
             foreach($qTransaksiKeluar as $qtk){
                 $tempTransaksi = $qtk['jumlah'];

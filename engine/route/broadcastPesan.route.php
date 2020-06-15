@@ -25,12 +25,12 @@ class broadcastPesan extends Route{
         if($tipeProses == 'langsung'){
             //start broadcast pesan ke pelanggan
             foreach($qPelanggan as $pel){
-                $namaPelanggan = $pel['nama_lengkap'];
-                $phone_no = $pel['hp'];
-                $message = str_replace("{pelanggan}", $namaPelanggan, $isiPesan);
+                $namaPelanggan  = $pel['nama_lengkap'];
+                $phone_no       = $pel['hp'];
+                $message        = str_replace("{pelanggan}", $namaPelanggan, $isiPesan);
                 $this -> broadcastPesan($message, $phone_no, $apiKey);
-                $status = 'sukses';
-                $waktu  = $this -> waktu();
+                $status         = 'sukses';
+                $waktu          = $this -> waktu();
             }
         }else{
             $status = 'pending';

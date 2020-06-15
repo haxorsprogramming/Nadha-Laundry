@@ -20,10 +20,10 @@
 */
 class state{  
   
-  private $server = DB_SERVER;
-  private $user = DB_USER;
-  private $pass = DB_PASSWORD;
-  private $dbName = DB_NAME;
+  private $server   = DB_SERVER;
+  private $user     = DB_USER;
+  private $pass     = DB_PASSWORD;
+  private $dbName   = DB_NAME;
   
   public function __construct()
   {
