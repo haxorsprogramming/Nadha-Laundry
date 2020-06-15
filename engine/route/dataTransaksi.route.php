@@ -7,16 +7,16 @@ class dataTransaksi extends Route{
 
     public function index()
     {  
-       $bWaktu = date('Y-m-d');
-       $data['waktu'] = $bWaktu;
-       $data['dataTransaksi'] = $this -> state('dataTransaksiData') -> dataPembayaran();
+       $bWaktu                  = date('Y-m-d');
+       $data['waktu']           = $bWaktu;
+       $data['dataTransaksi']   = $this -> state('dataTransaksiData') -> dataPembayaran();
        $this -> bind('dasbor/dataTransaksi/dataTransaksi', $data);
     }
 
     public function detailTransaksi()
     {
-        $kdTransaksi = $this -> inp('kdTransaksi');
-        $data['dataTransaksi'] = $this -> state('dataTransaksiData') -> detailTransaksi($kdTransaksi);
+        $kdTransaksi            = $this -> inp('kdTransaksi');
+        $data['dataTransaksi']  = $this -> state('dataTransaksiData') -> detailTransaksi($kdTransaksi);
         $this -> bind('dasbor/dataTransaksi/detailTransaksi', $data);
     }
 
@@ -29,35 +29,35 @@ class dataTransaksi extends Route{
                 echo "<code>Kode invoice tidak valid!!!</code>";
                 die();
             }else{
-                $qTransaksi = $this -> state('dataTransaksiData') -> getDataInvoice($kdTransaksi);
-                $kdKartu = $qTransaksi['kd_kartu'];
-                $waktuTransaksi = $qTransaksi['waktu'];
-                $operator = $qTransaksi['operator'];
+                $qTransaksi         = $this -> state('dataTransaksiData') -> getDataInvoice($kdTransaksi);
+                $kdKartu            = $qTransaksi['kd_kartu'];
+                $waktuTransaksi     = $qTransaksi['waktu'];
+                $operator           = $qTransaksi['operator'];
                 //data footer 
-                $totalFinal = $qTransaksi['total_final'];
-                $totalCuci = $qTransaksi['total_cuci'];
-                $diskon = $qTransaksi['diskon'];
-                $tunai = $qTransaksi['tunai'];
-                $kembali = $tunai - $totalFinal;
+                $totalFinal         = $qTransaksi['total_final'];
+                $totalCuci          = $qTransaksi['total_cuci'];
+                $diskon             = $qTransaksi['diskon'];
+                $tunai              = $qTransaksi['tunai'];
+                $kembali            = $tunai - $totalFinal;
                 //query ambil list item 
-                $qListItem = $this -> state('dataTransaksiData') -> getTempCucian($kdKartu);
-                $dompdf = new Dompdf();
+                $qListItem          = $this -> state('dataTransaksiData') -> getTempCucian($kdKartu);
+                $dompdf             = new Dompdf();
                 //inisialisasi variabel awal -> nama laundry
-                $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
+                $namaLaundry        = $this -> state('utilityData') -> getLaundryData('laundry_name');
                 //data pelanggan 
-                $qKartuLaundry = $this -> state('dataTransaksiData') -> getDataPelanggan($kdKartu);
-                $pelanggan = $qKartuLaundry['pelanggan'];
-                $qNamaPelanggan = $this -> state('dataTransaksiData') -> getProfilePelanggan($pelanggan);
-                $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
-                $levelPelanggan = $qNamaPelanggan['level'];
+                $qKartuLaundry      = $this -> state('dataTransaksiData') -> getDataPelanggan($kdKartu);
+                $pelanggan          = $qKartuLaundry['pelanggan'];
+                $qNamaPelanggan     = $this -> state('dataTransaksiData') -> getProfilePelanggan($pelanggan);
+                $namaPelanggan      = $qNamaPelanggan['nama_lengkap'];
+                $levelPelanggan     = $qNamaPelanggan['level'];
                 //cari bonus point cuci 
-                $qBonusPoint = $this -> state('dataTransaksiData') -> getBonusCuci($levelPelanggan);
-                $bonusPoint = $qBonusPoint['bonus_point_cuci'];
+                $qBonusPoint        = $this -> state('dataTransaksiData') -> getBonusCuci($levelPelanggan);
+                $bonusPoint         = $qBonusPoint['bonus_point_cuci'];
                 //explode nama awal 
-                $bahanExplodeNama = explode(" ", $namaPelanggan);
-                $namaBawah = $bahanExplodeNama[0];
+                $bahanExplodeNama   = explode(" ", $namaPelanggan);
+                $namaBawah          = $bahanExplodeNama[0];
                 //header 
-                $html = '<div><h2 style="font-size:0.9em;">'.$namaLaundry.'</h2>';
+                $html  = '<div><h2 style="font-size:0.9em;">'.$namaLaundry.'</h2>';
                 $html .= '<p style="font-size:0.7em;">No Transaksi : '.$kdTransaksi.'<br/>';
                 $html .= 'Pelanggan : '.$namaPelanggan.'<br/>';
                 $html .= 'Operator : '.$operator.'<br/>';
@@ -67,15 +67,15 @@ class dataTransaksi extends Route{
                 $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:10px;">';
                 $html .= '<tr><td>Items</td><td>Harga @</td><td>Qt</td><td>Total</td></tr>';
                 foreach($qListItem as $ql){
-                    $kdItem = $ql['kd_item'];
+                    $kdItem     = $ql['kd_item'];
                     //cari nama item dan satuan 
-                    $qItem = $this -> state('dataTransaksiData') -> getDataItem($kdItem);
-                    $namaItem = $qItem['nama'];
-                    $hargaAt = $ql['harga_at'];
-                    $quantity = $ql['qt'];
-                    $satuan = $qItem['satuan'];
-                    $total = $ql['total'];
-                    $html .= '<tr><td>'.$namaItem.'</td>
+                    $qItem      = $this -> state('dataTransaksiData') -> getDataItem($kdItem);
+                    $namaItem   = $qItem['nama'];
+                    $hargaAt    = $ql['harga_at'];
+                    $quantity   = $ql['qt'];
+                    $satuan     = $qItem['satuan'];
+                    $total      = $ql['total'];
+                    $html      .= '<tr><td>'.$namaItem.'</td>
                     <td>Rp. '.number_format($hargaAt).'</td>
                     <td>'.$quantity.' '.$satuan.'</td>
                     <td>Rp. '.number_format($total).'</td></tr>';
@@ -108,21 +108,21 @@ class dataTransaksi extends Route{
 
     public function getDataTransaksi()
     {
-        $dbdata = array();
-        $data['dataTransaksi'] = $this -> state('dataTransaksiData') -> dataPembayaran();
+        $dbdata                 = array();
+        $data['dataTransaksi']  = $this -> state('dataTransaksiData') -> dataPembayaran();
 
         foreach($data['dataTransaksi'] as $dis){
-            $arrTemp['invoice'] = $dis['kd_pembayaran'];
-            $kodeService = $dis['kd_kartu'];
-            $arrTemp['waktu'] = $dis['waktu'];
-            $arrTemp['total'] = $dis['total_final'];
-            $arrTemp['kodeService'] = $kodeService;
+            $arrTemp['invoice']         = $dis['kd_pembayaran'];
+            $kodeService                = $dis['kd_kartu'];
+            $arrTemp['waktu']           = $dis['waktu'];
+            $arrTemp['total']           = $dis['total_final'];
+            $arrTemp['kodeService']     = $kodeService;
             //cari username dari tabel kartu laundry 
-            $qUsername = $this -> state('dataTransaksiData') -> getUsernameInLaundryCard($kodeService);
-            $username = $qUsername['pelanggan'];
+            $qUsername                  = $this -> state('dataTransaksiData') -> getUsernameInLaundryCard($kodeService);
+            $username                   = $qUsername['pelanggan'];
             //cari nama pelanggan dari tabel pelanggan 
-            $qNamaLengkap = $this -> state('dataTransaksiData') -> getPelangganName($username);
-            $arrTemp['namaPelanggan'] = $qNamaLengkap['nama_lengkap'];
+            $qNamaLengkap               = $this -> state('dataTransaksiData') -> getPelangganName($username);
+            $arrTemp['namaPelanggan']   = $qNamaLengkap['nama_lengkap'];
             $dbdata[] = $arrTemp;
         }
 
@@ -130,26 +130,26 @@ class dataTransaksi extends Route{
     }
 
     public function getDataTransaksiRange(){
-        $dbdata = array();
-        $tglAwal = $this -> inp('tglAwal');
-        $tglAkhir = $this -> inp('tglAkhir');
-        $tglAwalKomplit = $tglAwal." 00:00:01";
-        $tglAkhirKomplit = $tglAkhir." 23:59:59";
-        $data['dataTransaksiRange'] = $this -> state('dataTransaksiData') -> getDataTransaksiRange($tglAwalKomplit, $tglAkhirKomplit);
+        $dbdata                         = array();
+        $tglAwal                        = $this -> inp('tglAwal');
+        $tglAkhir                       = $this -> inp('tglAkhir');
+        $tglAwalKomplit                 = $tglAwal." 00:00:01";
+        $tglAkhirKomplit                = $tglAkhir." 23:59:59";
+        $data['dataTransaksiRange']     = $this -> state('dataTransaksiData') -> getDataTransaksiRange($tglAwalKomplit, $tglAkhirKomplit);
 
         foreach($data['dataTransaksiRange'] as $dis){
-            $arrTemp['invoice'] = $dis['kd_pembayaran'];
-            $kodeService = $dis['kd_kartu'];
-            $arrTemp['waktu'] = $dis['waktu'];
-            $arrTemp['total'] = $dis['total_final'];
-            $arrTemp['kodeService'] = $kodeService;
+            $arrTemp['invoice']         = $dis['kd_pembayaran'];
+            $kodeService                = $dis['kd_kartu'];
+            $arrTemp['waktu']           = $dis['waktu'];
+            $arrTemp['total']           = $dis['total_final'];
+            $arrTemp['kodeService']     = $kodeService;
             //cari username dari tabel kartu laundry 
-            $qUsername = $this -> state('dataTransaksiData') -> getUsernameInLaundryCard($kodeService);
-            $username = $qUsername['pelanggan'];
+            $qUsername                  = $this -> state('dataTransaksiData') -> getUsernameInLaundryCard($kodeService);
+            $username                   = $qUsername['pelanggan'];
             //cari nama pelanggan dari tabel pelanggan 
-            $qNamaLengkap = $this -> state('dataTransaksiData') -> getPelangganName($username);
-            $arrTemp['namaPelanggan'] = $qNamaLengkap['nama_lengkap'];
-            $dbdata[] = $arrTemp;
+            $qNamaLengkap               = $this -> state('dataTransaksiData') -> getPelangganName($username);
+            $arrTemp['namaPelanggan']   = $qNamaLengkap['nama_lengkap'];
+            $dbdata[]                   = $arrTemp;
         }
 
         $this -> toJson($dbdata);

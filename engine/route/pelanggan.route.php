@@ -2,10 +2,12 @@
 
 class Pelanggan extends Route{
 
+    private $sn = 'pelangganData';
+
     public function index()
     {
       $this -> cekUserLogin('userSes','login');
-      $data['pelanggan'] = $this -> state('pelangganData') -> pelangganDataAll();
+      $data['pelanggan'] = $this -> state($this -> sn) -> pelangganDataAll();
       $this -> bind('/dasbor/pelanggan/pelanggan', $data);
     }
 
@@ -27,12 +29,12 @@ class Pelanggan extends Route{
       $usernameFilter = str_replace(' ', '',$usernameParam);
       $data['waktu'] = $this -> waktu();
       //cek apakah username sudah terdaftar
-      $jlhUser = $this -> state('pelangganData') -> cekUsername($usernameFilter);
+      $jlhUser = $this -> state($this -> sn) -> cekUsername($usernameFilter);
 
       if($jlhUser > 0){
         $dataRes['status'] = 'error';
       }else{
-        $this -> state('pelangganData') -> prosesTambahPelanggan($data, $usernameFilter);
+        $this -> state($this -> sn) -> prosesTambahPelanggan($data, $usernameFilter);
         $dataRes['status'] = 'sukses';
       }
       $this -> toJson($dataRes);
@@ -42,7 +44,7 @@ class Pelanggan extends Route{
     {
       $username = $this -> inp('username');
       $data['username'] = $username;
-      $data['historyCucian'] = $this -> state('pelangganData') -> historyKartuLaundryPelanggan($username);
+      $data['historyCucian'] = $this -> state($this -> sn) -> historyKartuLaundryPelanggan($username);
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);
     }
 
@@ -60,7 +62,7 @@ class Pelanggan extends Route{
       $data['email'] = $this -> inp('email');
       $data['levelUser'] = $this -> inp('levelUser');
       //update profile pelanggan ke database
-      $this -> state('pelangganData') -> prosesUpdatePelanggan($data);
+      $this -> state($this -> sn) -> prosesUpdatePelanggan($data);
       $dataRes['status'] = 'sukses';
       $this -> toJson($dataRes);
     }
