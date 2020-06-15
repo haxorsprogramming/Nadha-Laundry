@@ -1,5 +1,4 @@
-//inisialisasi variabel lokal
-//ini bisa ada lampu lampunya
+//inisialisasi variabel global
 const beranda = 'dasbor/beranda';
 const produkService = 'produkService';
 const pelanggan = 'pelanggan';
