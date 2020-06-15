@@ -9,6 +9,7 @@
     <!-- base:css -->
     <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@700&family=Nunito:wght@600&display=swap" rel="stylesheet">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/izitoast/css/iziToast.min.css">
 </head>
 
-<body>
+<body style="font-family: 'Nunito', sans-serif;">
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="main-panel">
