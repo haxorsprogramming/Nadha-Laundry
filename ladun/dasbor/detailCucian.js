@@ -184,7 +184,7 @@ function setBayar() {
   var kdReg = document.getElementById("txtKdRegistrasi").innerHTML;
   $("#divUtama").html("Memuat ...");
   divJudul.judulForm = "Pembayaran";
-  $("#divUtama").load("pembayaran/formPembayaran", { kdReg: kdReg });
+  $("#divUtama").load("pembayaran/formPembayaran/"+kdReg);
 }
 
 function konfirmasiPesanSelesai() {

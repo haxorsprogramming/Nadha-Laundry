@@ -121,5 +121,18 @@ class pembayaranData{
       $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
       return $this -> st -> querySingle();
     }
+    
+    public function getDataPelangganBind($pelanggan)
+    {
+      $this -> st -> query("SELECT nama_lengkap, email, hp, level FROM tbl_pelanggan WHERE username='$pelanggan';");
+      return $this -> st -> querySingle();
+    }
+  
+    public function diskonLevelBind($level)
+    {
+      $this -> st -> query("SELECT diskon_cuci FROM tbl_level_user WHERE kd_level='$level';");
+      return $this -> st -> querySingle();
+    }
+  
 
 }

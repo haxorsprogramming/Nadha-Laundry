@@ -2,13 +2,13 @@
 $kd             = $data['kartuRegistrasi'];
 $pelanggan      = $kd['pelanggan'];
 //cari data pelanggan 
-$this -> st -> query("SELECT nama_lengkap, email, hp, level FROM tbl_pelanggan WHERE username='$pelanggan';");
-$dPel           = $this -> st -> querySingle();
+
+$dPel           = $this -> state('pembayaranData') -> getDataPelangganBind($pelanggan);
 $namaPel        = $dPel['nama_lengkap'];
 $level          = $dPel['level'];
 //cari diskon level 
-$this -> st -> query("SELECT diskon_cuci FROM tbl_level_user WHERE kd_level='$level';");
-$qLevel         = $this -> st -> querySingle();
+
+$qLevel         = $this -> state('pembayaranData') -> diskonLevelBind($level);
 $diskonLevel    = $qLevel['diskon_cuci'];
 //buat kode transaksi 
 $tahun          = date("Y");

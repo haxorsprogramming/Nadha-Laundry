@@ -53,11 +53,8 @@ class kartuLaundryData{
 
   public function prosesRegistrasiCucian($kode, $pelanggan, $waktuMasuk, $operator)
   {
-    $query = "INSERT INTO tbl_kartu_laundry VALUES (null, :kode_service, :pelanggan, :waktu_mulai, '0000-00-00 00:00:00','0000-00-00 00:00:00','pending','$operator', 'hold');";
+    $query = "INSERT INTO tbl_kartu_laundry VALUES (null, '$kode', '$pelanggan', '$waktuMasuk', null, null, 'pending', '$operator', 'hold');";
     $this -> st -> query($query);
-    $this -> st -> querySet('kode_service', $kode);
-    $this -> st -> querySet('pelanggan', $pelanggan);
-    $this -> st -> querySet('waktu_mulai', $waktuMasuk);
     $this -> st -> queryRun();
   }
 

@@ -25,6 +25,7 @@
           $namaPelanggan  =  $this -> state('kartuLaundryData') -> namaPelanggan($pelanggan);
           $statusCuci     = $kartu['status'];
           $waktuDiambil   = $kartu['waktu_diambil'];
+          $waktuMasuk = $kartu['waktu_masuk'];
           if($statusCuci === 'cuci'){
             $capStat    = 'Laundry Room';
             $colSc      = 'info';
@@ -62,13 +63,18 @@
             $capSt = "Sudah bayar";
             $colSb = 'success';
           }
-
-          if($waktuDiambil == '0000-00-00 00:00:00'){
+          $waktuSelesai = '';
+          $waktuDiambilCap = '';
+          if($waktuDiambil == $waktuMasuk){
             $capStDiambil   = 'Belum diambil';
             $bgStatPi       = 'warning';
+            $waktuSelesai = '-';
+            $waktuDiambilCap = '-';
           }else{
             $capStDiambil   = 'Sudah diambil';
             $bgStatPi       = 'success';
+            $waktuSelesai = $kartu['waktu_selesai'];
+            $waktuDiambilCap = $kartu['waktu_diambil'];
           }
         ?>
           <tr>
@@ -78,8 +84,8 @@
             <a href="#!" class="badge badge-<?=$colSc; ?>"><i class="<?=$icon; ?>"></i> <?=$capStat; ?></a>
             </td>
             <td>Masuk : <b><?= $kartu['waktu_masuk']; ?></b><br/>
-            Selesai : <b><?=$kartu['waktu_selesai']; ?></b><br/>
-            Diambil : <b><?=$kartu['waktu_diambil']; ?></b></b>
+            Selesai :  <b><?=$waktuSelesai; ?></b><br/>
+            Diambil : <b><?=$waktuDiambilCap; ?></b></b>
             </td>
             <td>Rp. <?=number_format($hargaAwal ); ?></td>
             <td> <span class="badge badge-<?=$colSb; ?>"><i class="fas fa-circle"></i> <?=$capSt; ?></span><br/><br/>

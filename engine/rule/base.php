@@ -6,7 +6,7 @@
 /**
 * URL base, jika di upload ke hosting, perhatikan http/https, karena akan berpengaruh
 */
-$homeBase = 'http://localhost/Nadha-Laundry/';
+$homeBase = 'http://nadha-laundry.haxors.or.id/';
 
 /**
 * Site name (nama situs web)

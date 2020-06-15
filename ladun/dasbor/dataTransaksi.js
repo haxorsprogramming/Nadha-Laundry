@@ -25,7 +25,7 @@ var divDataTransaksi = new Vue({
         detailTransaksiAtc : function(kdTransaksi){
             // window.alert(kdTransaksi);
             $('#divUtama').html('Memuat data transaksi...');
-            $('#divUtama').load('dataTransaksi/detailTransaksi',{'kdTransaksi':kdTransaksi});   
+            $('#divUtama').load('dataTransaksi/detailTransaksi/'+kdTransaksi);   
         },
         tampilkanAtc : function(){
             //ambil waktu spesifik

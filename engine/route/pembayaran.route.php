@@ -6,10 +6,14 @@ class pembayaran extends Route{
     {
         echo "<pre>route_pembayaran</pre>";
     }
-
-    public function formPembayaran()
+  
+    public function tes($kd)
     {
-        $kd                         = $this -> inp('kdReg');
+      echo $kd;
+    }
+
+    public function formPembayaran($kd)
+    {
         $data['kartuRegistrasi']    = $this -> state('pembayaranData') -> getKartuLaundry($kd);
         //ke form pembayaran
         $this -> bind('dasbor/pembayaran/formPembayaran', $data);

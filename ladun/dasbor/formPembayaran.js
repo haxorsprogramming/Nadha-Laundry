@@ -131,7 +131,7 @@ function suksesBayar(kdTransaksi){
         pauseOnHover: false,
         onClosed: function() {
             $('#divUtama').html("Memuat ...");
-            $('#divUtama').load('dataTransaksi/detailTransaksi', {'kdTransaksi':kdTransaksi});
+            $('#divUtama').load('dataTransaksi/detailTransaksi/'+kdTransaksi);
         }
       });
 }
