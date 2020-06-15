@@ -2,6 +2,8 @@
 
 class promo extends Route{
 
+    private $sn = 'promoData';
+
     public function index()
     {
         $this -> bind('dasbor/promo/promo');
@@ -10,7 +12,7 @@ class promo extends Route{
     public function getDataPromo()
     {
         $dbdata = array();
-        $data['dataPromo'] = $this -> state('promoData') -> dataPromo();
+        $data['dataPromo'] = $this -> state($this -> sn) -> dataPromo();
         foreach($data['dataPromo'] as $dp){
             $arrTemp['kdPromo'] = $dp['kd_promo'];
             $arrTemp['deks'] = $dp['deks'];
@@ -23,15 +25,15 @@ class promo extends Route{
 
     public function prosesTambahPromo()
     {
-        $kdPromo = $this -> inp('kdPromo');
-        $deks = $this -> inp('deks');
-        $diskon = $this -> inp('diskon');
+        $kdPromo    = $this -> inp('kdPromo');
+        $deks       = $this -> inp('deks');
+        $diskon     = $this -> inp('diskon');
         //cek apakah kd promo sudah ada 
-        $jlhKode = $this -> state('promoData') -> cekKodePromo($kdPromo);
+        $jlhKode    = $this -> state($this -> sn) -> cekKodePromo($kdPromo);
         if($jlhKode == 1){
             $data['status'] = 'exist';
         }else{
-            $this -> state('promoData') -> prosesTambahPromo($kdPromo,$deks,$diskon);
+            $this -> state($this -> sn) -> prosesTambahPromo($kdPromo,$deks,$diskon);
             $data['status'] = 'success';
         }
         $this -> toJson($data);
