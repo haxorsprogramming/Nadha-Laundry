@@ -1,10 +1,10 @@
 var divBeranda = new Vue({
     el : '#divBeranda',
     data : {
-        caption : 'Berikut ada data statistik anda',
-        jlhPelanggan : '',
-        jlhCucian : '',
-        route : 'utility/getInfoBeranda'
+        caption         : 'Berikut ada data statistik anda',
+        jlhPelanggan    : '',
+        jlhCucian       : '',
+        route           : 'utility/getInfoBeranda'
     },
     methods : {
         pelangganProfile : function(username){
@@ -20,6 +20,6 @@ var divBeranda = new Vue({
 $.post('utility/getInfoBeranda', function(data){
     let obj = JSON.parse(data);
     // console.log(obj);
-    divBeranda.jlhPelanggan = obj.jlhPelanggan;
-    divBeranda.jlhCucian = obj.jlhCucian;
+    divBeranda.jlhPelanggan     = obj.jlhPelanggan;
+    divBeranda.jlhCucian        = obj.jlhCucian;
 });
