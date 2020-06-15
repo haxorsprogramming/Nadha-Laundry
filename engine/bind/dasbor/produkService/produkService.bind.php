@@ -12,9 +12,9 @@
 <tbody>
 <?php
 foreach($data['produkService'] as $ps):
-    $kdService = $ps['kd_service'];
+    $kdService      = $ps['kd_service'];
     //cari total transaksi per service 
-    $jlhTransaksi = $this -> state('produkServiceData') -> totalTransaksiProduk($kdService);
+    $jlhTransaksi   = $this -> state('produkServiceData') -> totalTransaksiProduk($kdService);
 ?>
 <tr>
 <td><span style='font-size:15px;font-weight:bold;'><?=$ps['nama']; ?></span></td>

@@ -1,16 +1,16 @@
 <?php
-$usernameParam = $data['username'];
-$historyCucian = $data['historyCucian'];
-$pelanggan = $this -> state('pelangganData') -> profilePelanggan($usernameParam);
-$poin = $pelanggan['poin_real'];
-$level = $pelanggan['level'];
-$waktuJoin = $pelanggan['waktu_join'];
+$usernameParam  = $data['username'];
+$historyCucian  = $data['historyCucian'];
+$pelanggan      = $this -> state('pelangganData') -> profilePelanggan($usernameParam);
+$poin           = $pelanggan['poin_real'];
+$level          = $pelanggan['level'];
+$waktuJoin      = $pelanggan['waktu_join'];
 //total laundry 
-$jlhTransaksi = $this -> state('pelangganData') -> jumlahCucianPelanggan($usernameParam);
+$jlhTransaksi   = $this -> state('pelangganData') -> jumlahCucianPelanggan($usernameParam);
 //cari terakhir laundry 
 
-$qTerakhirLaundry = $this -> state('pelangganData') -> transaksiTerakhirPelanggan($usernameParam);
-$terakhirLaundry = $qTerakhirLaundry['waktu_masuk'];
+$qTerakhirLaundry   = $this -> state('pelangganData') -> transaksiTerakhirPelanggan($usernameParam);
+$terakhirLaundry    = $qTerakhirLaundry['waktu_masuk'];
 if($terakhirLaundry == ''){
   $terakhirLaundry = "Belum pernah melakukan cucian";
 }else{}
@@ -82,8 +82,8 @@ if($terakhirLaundry == ''){
     </tr>
     <?php 
       foreach($historyCucian as $hc):
-        $kodeService = $hc['kode_service'];
-        $waktu = $hc['waktu_masuk'];
+        $kodeService  = $hc['kode_service'];
+        $waktu        = $hc['waktu_masuk'];
     ?>
     <tr>
       <td><?=$kodeService; ?></td><td><?=$waktu; ?></td><td></td>

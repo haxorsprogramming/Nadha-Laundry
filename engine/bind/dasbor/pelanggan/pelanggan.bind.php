@@ -13,8 +13,8 @@
 <?php
 foreach($data['pelanggan'] as $pelanggan) :
   //cari status cuci pelanggan 
-  $username = $pelanggan['username'];
-  $jlhStatusCuci = $this -> state('pelangganData') -> statusCucianPelanggan($username);
+  $username       = $pelanggan['username'];
+  $jlhStatusCuci  = $this -> state('pelangganData') -> statusCucianPelanggan($username);
   if($jlhStatusCuci < 1){
     $statusCuci = "Tidak";
   }else{

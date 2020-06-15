@@ -1,21 +1,20 @@
 <?php
-$kd = $data['kartuRegistrasi'];
-$pelanggan = $kd['pelanggan'];
-
+$kd             = $data['kartuRegistrasi'];
+$pelanggan      = $kd['pelanggan'];
 //cari data pelanggan 
 $this -> st -> query("SELECT nama_lengkap, email, hp, level FROM tbl_pelanggan WHERE username='$pelanggan';");
-$dPel = $this -> st -> querySingle();
-$namaPel = $dPel['nama_lengkap'];
-$level = $dPel['level'];
+$dPel           = $this -> st -> querySingle();
+$namaPel        = $dPel['nama_lengkap'];
+$level          = $dPel['level'];
 //cari diskon level 
 $this -> st -> query("SELECT diskon_cuci FROM tbl_level_user WHERE kd_level='$level';");
-$qLevel = $this -> st -> querySingle();
-$diskonLevel = $qLevel['diskon_cuci'];
+$qLevel         = $this -> st -> querySingle();
+$diskonLevel    = $qLevel['diskon_cuci'];
 //buat kode transaksi 
-$tahun = date("Y");
-$bulan = date("m");
-$hari = date("d");
-$kodeTransaksi = "INV-".$tahun."-".$bulan."-".$hari."-".substr($kd['kode_service'], 0, 4);
+$tahun          = date("Y");
+$bulan          = date("m");
+$hari           = date("d");
+$kodeTransaksi  = "INV-".$tahun."-".$bulan."-".$hari."-".substr($kd['kode_service'], 0, 4);
 ?>
 <div id='divFormPembayaran'>
   <div class="row">

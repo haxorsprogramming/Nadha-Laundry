@@ -1,65 +1,65 @@
 <?php
-$detailKartu = $data['detailKartu'];
-$kodeService = $detailKartu['kode_service'];
-$waktuRegistrasi = $detailKartu['waktu_masuk'];
-$waktuDiambil = $detailKartu['waktu_diambil'];
-$username = $detailKartu['pelanggan'];
-$statusCucian = $detailKartu['status'];
-$pembayaran = $detailKartu['pembayaran'];
-$dataTimeline = $data['dataTimeline'];
-$adit = 'hula';
+$detailKartu      = $data['detailKartu'];
+$kodeService      = $detailKartu['kode_service'];
+$waktuRegistrasi  = $detailKartu['waktu_masuk'];
+$waktuDiambil     = $detailKartu['waktu_diambil'];
+$username         = $detailKartu['pelanggan'];
+$statusCucian     = $detailKartu['status'];
+$pembayaran       = $detailKartu['pembayaran'];
+$dataTimeline     = $data['dataTimeline'];
+$adit             = 'hula';
 //cari nama pelanggan  
-$qNamaPelanggan = $this -> state('kartuLaundryData') -> getNamaPelanggan($username);
-$namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+$qNamaPelanggan   = $this -> state('kartuLaundryData') -> getNamaPelanggan($username);
+$namaPelanggan    = $qNamaPelanggan['nama_lengkap'];
 
 $jlhPick = $this -> state('kartuLaundryData') -> jumlahPick($kodeService);
 
 if($statusCucian == 'hold'){
-  $capStatusCucian = 'Hold (Sedang dalam antrian ke laundry room)';
-  $btnBayar = 'disabled';
-  $btnSudahDiambil = 'disabled';
-  $btnKeLaundryRoom = '';
-  $statRollback = 'inline';
+  $capStatusCucian    = 'Hold (Sedang dalam antrian ke laundry room)';
+  $btnBayar           = 'disabled';
+  $btnSudahDiambil    = 'disabled';
+  $btnKeLaundryRoom   = '';
+  $statRollback       = 'inline';
 }elseif($statusCucian == 'cuci' and $pembayaran == 'pending'){
-  $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
-  $statusPembayaran = 'Belum';
-  $statusDiambil = 'Belum';
-  $btnBayar = '';
-  $btnSudahDiambil = 'disabled';
-  $btnKeLaundryRoom = '';
-  $statRollback = 'inline';
+  $capStatusCucian    = 'Sedang cuci (Cucian sedang di ke laundry room)';
+  $statusPembayaran   = 'Belum';
+  $statusDiambil      = 'Belum';
+  $btnBayar           = '';
+  $btnSudahDiambil    = 'disabled';
+  $btnKeLaundryRoom   = '';
+  $statRollback       = 'inline';
 }elseif($statusCucian == 'cuci' and $pembayaran == 'selesai'){
-  $capStatusCucian = 'Sedang cuci (Cucian sedang di ke laundry room)';
-  $statusPembayaran = 'Sudah';
-  $statusDiambil = 'Belum';
-  $btnBayar = 'disabled';
-  $btnSudahDiambil = 'disabled';
-  $btnKeLaundryRoom = '';
-  $statRollback = 'none';
+  $capStatusCucian    = 'Sedang cuci (Cucian sedang di ke laundry room)';
+  $statusPembayaran   = 'Sudah';
+  $statusDiambil      = 'Belum';
+  $btnBayar           = 'disabled';
+  $btnSudahDiambil    = 'disabled';
+  $btnKeLaundryRoom   = '';
+  $statRollback       = 'none';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'pending'){
-  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
-  $statusPembayaran = 'Belum';
-  $statusDiambil = 'Belum';
-  $btnBayar = '';
-  $btnSudahDiambil = 'disabled';
-  $btnKeLaundryRoom = 'disabled';
-  $statRollback = 'inline';
+  $capStatusCucian    = 'Selesai (Cucian sudah selesai)';
+  $statusPembayaran   = 'Belum';
+  $statusDiambil      = 'Belum';
+  $btnBayar           = '';
+  $btnSudahDiambil    = 'disabled';
+  $btnKeLaundryRoom   = 'disabled';
+  $statRollback       = 'inline';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '0'){
-  $capStatusCucian = 'Selesai (Cucian sudah selesai)';
-  $statusPembayaran = 'Sudah';
-  $statusDiambil = 'Belum';
-  $btnBayar = 'disabled';
-  $btnSudahDiambil = '';
-  $btnKeLaundryRoom = 'disabled';
-  $statRollback = 'none';
+  $capStatusCucian    = 'Selesai (Cucian sudah selesai)';
+  $statusPembayaran   = 'Sudah';
+  $statusDiambil      = 'Belum';
+  $btnBayar           = 'disabled';
+  $btnSudahDiambil    = '';
+  $btnKeLaundryRoom   = 'disabled';
+  $statRollback       = 'none';
 }elseif($statusCucian == 'finishcuci' and $pembayaran == 'selesai' and $jlhPick == '1'){
-  $capStatusCucian = 'Selesai & Diambil (Cucian sudah selesai dan diambil oleh pelanggan)';
-  $statusPembayaran = 'Sudah';
-  $statusDiambil = 'Sudah';
-  $btnBayar = 'disabled';
-  $btnSudahDiambil = 'disabled';
-  $btnKeLaundryRoom = 'disabled';
-  $statRollback = 'none';
+  $capStatusCucian    = 'Selesai & Diambil (Cucian sudah selesai dan diambil oleh pelanggan)';
+  $statusPembayaran   = 'Sudah';
+  $statusDiambil      = 'Sudah';
+  $btnBayar           = 'disabled';
+  $btnSudahDiambil    = 'disabled';
+  $btnKeLaundryRoom   = 'disabled';
+  $statRollback       = 'none';
 }
 
 ?>
@@ -111,9 +111,9 @@ if($statusCucian == 'hold'){
         <div class="activities">
                 <?php 
                   foreach($dataTimeline as $dT): 
-                    $waktu = $dT['waktu'];
-                    $caption = $dT['caption'];
-                    $kdEvent = $dT['kd_event'];
+                    $waktu    = $dT['waktu'];
+                    $caption  = $dT['caption'];
+                    $kdEvent  = $dT['kd_event'];
                     //set icon 
                     if($kdEvent == 'registrasi_cucian'){
                       $iconTm = 'fas fa-clipboard-check';

@@ -1,10 +1,10 @@
 <?php
-$rankPelanggan = $data['rankPelanggan'];
+$rankPelanggan    = $data['rankPelanggan'];
 //buat range tanggal 
-$waktuNow = date('Y-m-d');
-$mingguDepan = date('Y-m-d', strtotime($waktuNow. ' - 7 days'));
-$rentangSeminggu = $this -> jarakTanggal($mingguDepan, $waktuNow);
-$dibalik = array_reverse($rentangSeminggu);
+$waktuNow         = date('Y-m-d');
+$mingguDepan      = date('Y-m-d', strtotime($waktuNow. ' - 7 days'));
+$rentangSeminggu  = $this -> jarakTanggal($mingguDepan, $waktuNow);
+$dibalik          = array_reverse($rentangSeminggu);
 ?>
 <div id='divBeranda'>
 <div>
@@ -93,20 +93,20 @@ $dibalik = array_reverse($rentangSeminggu);
                       </tr>
                       <?php
                         for ($x = 0; $x < 7; $x++) {
-                          $tanggalToExplode = $dibalik[$x];
-                          $tglResultExplode = explode("/",$tanggalToExplode);
-                          $tanggalFNow = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglResultExplode[2];
-                          $tglDayTambahSatu = $tglResultExplode[2] + 1;
-                          $tanggalToExplodeFNext = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglDayTambahSatu;
-                          $tglStart = $tanggalFNow." 00:00:01";
-                          $tglAkhir = $tanggalToExplodeFNext." 00:00:00";
-                          $totalTransaksi = $this -> state('dashboard') -> totalTransaksiTanggal($tglStart,  $tglAkhir);
-                          $qTotal = $this -> state('dashboard') -> transaksiTanggal($tglStart, $tglAkhir);
+                          $tanggalToExplode       = $dibalik[$x];
+                          $tglResultExplode       = explode("/",$tanggalToExplode);
+                          $tanggalFNow            = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglResultExplode[2];
+                          $tglDayTambahSatu       = $tglResultExplode[2] + 1;
+                          $tanggalToExplodeFNext  = $tglResultExplode[0]."-".$tglResultExplode[1]."-".$tglDayTambahSatu;
+                          $tglStart               = $tanggalFNow." 00:00:01";
+                          $tglAkhir               = $tanggalToExplodeFNext." 00:00:00";
+                          $totalTransaksi         = $this -> state('dashboard') -> totalTransaksiTanggal($tglStart,  $tglAkhir);
+                          $qTotal                 = $this -> state('dashboard') -> transaksiTanggal($tglStart, $tglAkhir);
                           // cari total transaksi 
-                          $total = 0;
+                          $total                  = 0;
                           foreach($qTotal as $crTotal){
-                              $totalTemp = $crTotal['total_final'];
-                              $total = $total + $totalTemp;
+                              $totalTemp  = $crTotal['total_final'];
+                              $total      = $total + $totalTemp;
                           }
                           $capTotal = number_format($total);
                           echo "<tr><td>".$tanggalFNow."</td><td>".$totalTransaksi."</td><td> Rp. ".$capTotal."</td></tr>";
@@ -129,10 +129,10 @@ $dibalik = array_reverse($rentangSeminggu);
                   <ul class="list-unstyled list-unstyled-border">
                     <?php 
                       foreach($rankPelanggan as $rp):
-                        $username = $rp['username'];
-                        $levelPelanggan = $rp['level'];
+                        $username         = $rp['username'];
+                        $levelPelanggan   = $rp['level'];
                         //cari total cuci pelanggan 
-                        $jlhTransaksi = $this -> state('dashboard') -> jlhTransaksiPelanggan($username);
+                        $jlhTransaksi     = $this -> state('dashboard') -> jlhTransaksiPelanggan($username);
                     ?>
                     <li class="media">
                       

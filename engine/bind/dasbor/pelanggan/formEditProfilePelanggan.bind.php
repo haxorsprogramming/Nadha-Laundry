@@ -1,7 +1,7 @@
 <?php
-$usernameParam = $data['username'];
-$pelanggan = $this -> state('pelangganData') -> pelangganProfileData($usernameParam);
-$levelUser = $this -> state('pelangganData') -> dataLevelPelanggan();
+$usernameParam    = $data['username'];
+$pelanggan        = $this -> state('pelangganData') -> pelangganProfileData($usernameParam);
+$levelUser        = $this -> state('pelangganData') -> dataLevelPelanggan();
 ?>
 <div id='divFormUpdateProfilePelanggan'>
       <span id='txtUsername' style="display: none;"><?=$pelanggan['username']; ?></span>

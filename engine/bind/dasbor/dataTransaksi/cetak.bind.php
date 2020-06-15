@@ -1,27 +1,27 @@
 <?php
-$dataPembayaran = $data['qPembayaran'];
-$kdPembayaran = $dataPembayaran['kd_pembayaran'];
-$kdService = $dataPembayaran['kd_kartu'];
-$total = $dataPembayaran['total_final'];
-$totalCuci = $dataPembayaran['total_cuci'];
-$diskon = $dataPembayaran['diskon'];
-$tunai = $dataPembayaran['tunai'];
-$kembali = $tunai - $total;
-$waktu = $dataPembayaran['waktu'];
-$waktuIndo = date('d M Y', strtotime($waktu));
+$dataPembayaran     = $data['qPembayaran'];
+$kdPembayaran       = $dataPembayaran['kd_pembayaran'];
+$kdService          = $dataPembayaran['kd_kartu'];
+$total              = $dataPembayaran['total_final'];
+$totalCuci          = $dataPembayaran['total_cuci'];
+$diskon             = $dataPembayaran['diskon'];
+$tunai              = $dataPembayaran['tunai'];
+$kembali            = $tunai - $total;
+$waktu              = $dataPembayaran['waktu'];
+$waktuIndo          = date('d M Y', strtotime($waktu));
 //cari nama pelanggan 
 $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
-$qKartuLaundry = $this -> st -> querySingle();
-$pelanggan = $qKartuLaundry['pelanggan'];
+$qKartuLaundry      = $this -> st -> querySingle();
+$pelanggan          = $qKartuLaundry['pelanggan'];
 $this -> st -> query("SELECT nama_lengkap FROM tbl_pelanggan WHERE username='$pelanggan';");
-$qNamaPelanggan = $this -> st -> querySingle();
-$namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+$qNamaPelanggan     = $this -> st -> querySingle();
+$namaPelanggan      = $qNamaPelanggan['nama_lengkap'];
 //cari list item 
 $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
-$qListItem = $this -> st -> queryAll();
+$qListItem          = $this -> st -> queryAll();
 //explode nama awal 
-$bahanExplodeNama = explode(" ", $namaPelanggan);
-$namaBawah = $bahanExplodeNama[0];
+$bahanExplodeNama   = explode(" ", $namaPelanggan);
+$namaBawah          = $bahanExplodeNama[0];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

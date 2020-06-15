@@ -17,28 +17,28 @@
       <tbody>
           <?php
             foreach($data['laundryRoom'] as $lr):
-                $kdKartu = $lr['kd_kartu'];
-                $qKodePelanggan = $this -> state('laundryRoomData') -> laundryRoomMembers($kdKartu);
-                $pelanggan = $qKodePelanggan['pelanggan'];
-                $waktuMasuk = $qKodePelanggan['waktu_masuk'];
-                $qNamaPelanggan = $this -> state('laundryRoomData') -> getMembersData($pelanggan);
-                $namaPelanggan = $qNamaPelanggan['nama_lengkap'];
-                $levelUser = $qNamaPelanggan['level'];
+                $kdKartu          = $lr['kd_kartu'];
+                $qKodePelanggan   = $this -> state('laundryRoomData') -> laundryRoomMembers($kdKartu);
+                $pelanggan        = $qKodePelanggan['pelanggan'];
+                $waktuMasuk       = $qKodePelanggan['waktu_masuk'];
+                $qNamaPelanggan   = $this -> state('laundryRoomData') -> getMembersData($pelanggan);
+                $namaPelanggan    = $qNamaPelanggan['nama_lengkap'];
+                $levelUser        = $qNamaPelanggan['level'];
 
                 if($lr['status'] == 'cuci'){
-                  $capStat =  "Sedang cuci";
-                  $warnaTabel = '#2ecc71';
+                  $capStat      =  "Sedang cuci";
+                  $warnaTabel   = '#2ecc71';
                 }else{
-                  $capStat =  "Ready";
-                  $warnaTabel = '#f1c40f';
+                  $capStat      =  "Ready";
+                  $warnaTabel   = '#f1c40f';
                 }
                 //cari total harga 
-                $jlhItem = $this -> state('laundryRoomData') -> jumlahItem($kdKartu);
-                $qTotal = $this -> state('laundryRoomData') -> totalHarga($kdKartu);
-                $hargaAwal = 0;
+                $jlhItem    = $this -> state('laundryRoomData') -> jumlahItem($kdKartu);
+                $qTotal     = $this -> state('laundryRoomData') -> totalHarga($kdKartu);
+                $hargaAwal  = 0;
                 foreach($qTotal as $qt){
-                  $hargaSat = $qt['total'];
-                  $hargaAwal = $hargaAwal + $hargaSat;
+                  $hargaSat   = $qt['total'];
+                  $hargaAwal  = $hargaAwal + $hargaSat;
                 }
           ?>
         <tr>

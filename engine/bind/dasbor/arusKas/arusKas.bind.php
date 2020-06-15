@@ -19,9 +19,9 @@
             $saldoAwal = $data['saldo'];
             $saldoTemp = $saldoAwal;
                 foreach($data['arusKas'] as $as) : 
-                    $kdTransaksi = $as['kd_tracking'];
-                    $asal = $as['asal'];
-                    $total = $as['jumlah'];
+                    $kdTransaksi    = $as['kd_tracking'];
+                    $asal           = $as['asal'];
+                    $total          = $as['jumlah'];
                     if($asal == 'pembayaran_cucian'){
                         $asalCap = "Pembayaran cucian";
                     }else{

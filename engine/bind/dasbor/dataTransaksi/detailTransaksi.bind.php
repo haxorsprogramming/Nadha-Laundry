@@ -1,16 +1,16 @@
 <?php
-$dt = $data['dataTransaksi'];
-$kodeTransaksi = $dt['kd_pembayaran'];
-$kodeService = $dt['kd_kartu'];
-$diskon = $dt['diskon'];
-$subTotal = $dt['total_cuci'];
-$total = $dt['total_final'];
-$waktu = $dt['waktu'];
-$tunai = $dt['tunai'];
-$kembali = $tunai - $total;
-$waktuIndo = date('d M Y', strtotime($waktu));
+$dt             = $data['dataTransaksi'];
+$kodeTransaksi  = $dt['kd_pembayaran'];
+$kodeService    = $dt['kd_kartu'];
+$diskon         = $dt['diskon'];
+$subTotal       = $dt['total_cuci'];
+$total          = $dt['total_final'];
+$waktu          = $dt['waktu'];
+$tunai          = $dt['tunai'];
+$kembali        = $tunai - $total;
+$waktuIndo      = date('d M Y', strtotime($waktu));
 //cari daftar item cucian 
-$qDaftarItem = $this -> state('dataTransaksiData') -> getTempCucian($kodeService);
+$qDaftarItem    = $this -> state('dataTransaksiData') -> getTempCucian($kodeService);
 ?>
 <section class="section" id='divDetailTransaksi'>
           <div class="section-body">

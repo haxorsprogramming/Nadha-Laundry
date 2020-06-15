@@ -1,5 +1,4 @@
 <div class="row" style="padding-left:15px;padding-right:15px;" id='divPengaturanUmum'>
-
     <table id='tblPengaturanUmum' class='table table-hover'>
         <thead>
             <tr>

@@ -1,30 +1,30 @@
 <?php
-$kd = $data['kd'];
-$data['kartuLaundry'] = $this -> state('laundryRoomData') -> dataKartuLaundry();
+$kd                     = $data['kd'];
+$data['kartuLaundry']   = $this -> state('laundryRoomData') -> dataKartuLaundry();
 //cari data pelanggan & cucian
-$qKartuLaundry = $this -> state('laundryRoomData') -> getDataPelangganCucian($kd);
-$pelanggan = $qKartuLaundry['pelanggan'];
-$waktuMasuk = $qKartuLaundry['waktu_masuk'];
-$pembayaran = $qKartuLaundry['pembayaran'];
+$qKartuLaundry          = $this -> state('laundryRoomData') -> getDataPelangganCucian($kd);
+$pelanggan              = $qKartuLaundry['pelanggan'];
+$waktuMasuk             = $qKartuLaundry['waktu_masuk'];
+$pembayaran             = $qKartuLaundry['pembayaran'];
 //cari nama pelanggan 
-$qNamaPelanggan = $this -> state('laundryRoomData') -> getNamaPelanggan($pelanggan);
-$namaPelanggan = $qNamaPelanggan['nama_lengkap'];
+$qNamaPelanggan         = $this -> state('laundryRoomData') -> getNamaPelanggan($pelanggan);
+$namaPelanggan          = $qNamaPelanggan['nama_lengkap'];
 //cari data cucian              
-$jlhItem = $this -> state('laundryRoomData') ->  getJumlahCucianDetail($kd);
-$qTotal = $this -> state('laundryRoomData') ->  getDataCucianDetail($kd);
-$hargaAwal = 0;
+$jlhItem                = $this -> state('laundryRoomData') ->  getJumlahCucianDetail($kd);
+$qTotal                 = $this -> state('laundryRoomData') ->  getDataCucianDetail($kd);
+$hargaAwal              = 0;
 
 foreach($qTotal as $qt){
-    $hargaSat = $qt['total'];
-    $hargaAwal = $hargaAwal + $hargaSat;
+    $hargaSat   = $qt['total'];
+    $hargaAwal  = $hargaAwal + $hargaSat;
 }
 
 if($pembayaran == 'selesai'){
-$capBtnbayar = "style='display:none;'";
-$capTblTambahItem = "style='display:none;'";
+$capBtnbayar        = "style='display:none;'";
+$capTblTambahItem   = "style='display:none;'";
 }else{
-$capBtnbayar = '';
-$capTblTambahItem = "";
+$capBtnbayar        = '';
+$capTblTambahItem   = "";
 }//cari status pembayaran 
 ?>
 <div id='divDetailCucian'>

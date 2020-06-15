@@ -1,5 +1,4 @@
 <!-- tambah verifikasi cek ke session terlebih dahulu -->
-
 <div id='divKartuLaundry'>
   <div style='margin-bottom:25px;' id='divOperasi'>
     <a href='#!' class='btn btn-lg btn-primary  btn-icon icon-left' v-on:click='tambahPelanggan'>
@@ -21,38 +20,38 @@
       <tbody>
         <?php
         foreach ($data['kartuLaundry'] as $kartu) :
-          $pelanggan = $kartu['pelanggan'];
-          $kodeService = $kartu['kode_service'];
-          $namaPelanggan =  $this -> state('kartuLaundryData') -> namaPelanggan($pelanggan);
-          $statusCuci = $kartu['status'];
-          $waktuDiambil = $kartu['waktu_diambil'];
+          $pelanggan      = $kartu['pelanggan'];
+          $kodeService    = $kartu['kode_service'];
+          $namaPelanggan  =  $this -> state('kartuLaundryData') -> namaPelanggan($pelanggan);
+          $statusCuci     = $kartu['status'];
+          $waktuDiambil   = $kartu['waktu_diambil'];
           if($statusCuci === 'cuci'){
-            $capStat = 'Laundry Room';
-            $colSc = 'info';
-            $colBgSc = '#3abaf4';
-            $icon = 'fas fa-tshirt';
-            $sCapBayar = $kodeService;
+            $capStat    = 'Laundry Room';
+            $colSc      = 'info';
+            $colBgSc    = '#3abaf4';
+            $icon       = 'fas fa-tshirt';
+            $sCapBayar  = $kodeService;
           }else if($statusCuci === 'hold'){
-            $capStat = 'Hold';
-            $colSc = 'secondary';
-            $icon = 'fas fa-upload';
-            $colBgSc = '#34395e';
-            $sCapBayar = 'no';
+            $capStat    = 'Hold';
+            $colSc      = 'secondary';
+            $icon       = 'fas fa-upload';
+            $colBgSc    = '#34395e';
+            $sCapBayar  = 'no';
           }else if($statusCuci === 'finishcuci'){
-            $capStat = 'Selesai Cuci';
-            $colSc = 'success';
-            $colBgSc = '#63ed7a';
-            $icon = 'fas fa-check-circle';
-            $sCapBayar = $kodeService;
+            $capStat    = 'Selesai Cuci';
+            $colSc      = 'success';
+            $colBgSc    = '#63ed7a';
+            $icon       = 'fas fa-check-circle';
+            $sCapBayar  = $kodeService;
           }
           //cari total harga 
           //cari total harga 
-          $jlhItem = $this -> state('kartuLaundryData') -> jumlahTemp($kodeService);
-          $qTotal = $this -> state('kartuLaundryData') -> dataTemp($kodeService);
-          $hargaAwal = 0;
+          $jlhItem    = $this -> state('kartuLaundryData') -> jumlahTemp($kodeService);
+          $qTotal     = $this -> state('kartuLaundryData') -> dataTemp($kodeService);
+          $hargaAwal  = 0;
           foreach($qTotal as $qt){
-            $hargaSat = $qt['total'];
-            $hargaAwal = $hargaAwal + $hargaSat;
+            $hargaSat   = $qt['total'];
+            $hargaAwal  = $hargaAwal + $hargaSat;
           }
           //cari status pembayaran 
           $statPay = $kartu['pembayaran'];
@@ -65,11 +64,11 @@
           }
 
           if($waktuDiambil == '0000-00-00 00:00:00'){
-            $capStDiambil = 'Belum diambil';
-            $bgStatPi = 'warning';
+            $capStDiambil   = 'Belum diambil';
+            $bgStatPi       = 'warning';
           }else{
-            $capStDiambil = 'Sudah diambil';
-            $bgStatPi = 'success';
+            $capStDiambil   = 'Sudah diambil';
+            $bgStatPi       = 'success';
           }
         ?>
           <tr>
