@@ -85,61 +85,45 @@ class pembayaran extends Route{
             $qPromo         = $this -> state('pembayaranData') ->  qPromo($kdPromo);
             $diskonPromo    = $qPromo['disc'];
         }
-        $hargaFixDiskonPromo = $diskonPromo * $hargaAfterDiskon / 100;
-        $hargaAfterFiskonPromo = $hargaAfterDiskon - $hargaFixDiskonPromo;
-        $diskonTotal = $hargaFixDiskon + $hargaFixDiskonPromo;
-        $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','$tunai','$operator');";
-        $this -> st -> query($qSimpanPembayaran);
-        $this -> st -> queryRun();
+        $hargaFixDiskonPromo    = $diskonPromo * $hargaAfterDiskon / 100;
+        $hargaAfterFiskonPromo  = $hargaAfterDiskon - $hargaFixDiskonPromo;
+        $diskonTotal            = $hargaFixDiskon + $hargaFixDiskonPromo;
+        $this -> state('pembayaranData') -> simpanPembayaran($kdTransaksi, $kdService, $waktu, $total, $diskonTotal, $kdPromo, $hargaAfterFiskonPromo, $tunai, $operator);
         //insert ke tbl_arus kas
-        $kdKas = $this -> rnstr(15);
-        $asal = 'pembayaran_cucian';
-        $arus = 'masuk';
-        $waktuTemp = $this -> waktu();
+        $kdKas      = $this -> rnstr(15);
+        $asal       = 'pembayaran_cucian';
+        $arus       = 'masuk';
+        $waktuTemp  = $this -> waktu();
         // $operator = 'admin';
-        $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$kdTransaksi', '$asal', '$arus', '$hargaAfterFiskonPromo', '$waktuTemp', '$operator');";
-        $this -> st -> query($qSimpanKeArusKas);
-        $this -> st -> queryRun();
+        $this -> state('pembayaranData') -> simpanArusKas($kdKas, $kdTransaksi, $asal, $arus, $hargaAfterFiskonPromo, $waktuTemp, $operator);
         //update status pembayaran di kartu laundry
-        $qUpdateStatus = "UPDATE tbl_kartu_laundry SET pembayaran='selesai' WHERE kode_service='$kdService';";
-        $this -> st -> query($qUpdateStatus);
-        $this -> st -> queryRun();
+        $this -> state('pembayaranData') -> updateStatusPembayaran($kdService);
         //update point pengguna
         //cari jumlah bonus point melalui level
-        $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
-        $qDataKartuLaundrySet = $this -> st -> querySingle();
-        $usernamePelanggan = $qDataKartuLaundrySet['pelanggan'];
-        $this -> st -> query("SELECT level FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
-        $qLevelPelanggan = $this -> st -> querySingle();
-        $levelPelanggan = $qLevelPelanggan['level'];
-        $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
-        $qBonusPointCuci = $this -> st -> querySingle();
-        $bonusPointCuci = $qBonusPointCuci['bonus_point_cuci'];
+        $qDataKartuLaundrySet   = $this -> state('pembayaranData') -> getUsernameKartuLaundry($kdService);
+        $usernamePelanggan      = $qDataKartuLaundrySet['pelanggan'];
+        $qLevelPelanggan        = $this -> state('pembayaranData') ->  getLevelPelanggan($usernamePelanggan);
+        $levelPelanggan         = $qLevelPelanggan['level'];
+        $qBonusPointCuci        = $this -> state('pembayaranData') -> getBonusCuci($levelPelanggan);
+        $bonusPointCuci         = $qBonusPointCuci['bonus_point_cuci'];
         //ambil point lama pelanggan 
-        $this -> st -> query("SELECT poin_real FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
-        $qPoinReal = $this -> st -> querySingle();
-        $poinReal = $qPoinReal['poin_real'];
-        $poinBaru = $poinReal + $bonusPointCuci;
+        $qPoinReal              = $this -> state('pembayaranRoute') ->  getPoinPelanggan($usernamePelanggan);
+        $poinReal               = $qPoinReal['poin_real'];
+        $poinBaru               = $poinReal + $bonusPointCuci;
         //update ke point pelanggan
-        $qUpdatePoint = "UPDATE tbl_pelanggan SET poin_real='$poinBaru' WHERE username='$usernamePelanggan';";
-        $this -> st -> query($qUpdatePoint);
-        $this -> st -> queryRun();
+        $this -> state('pembayaranData') -> updatePoinPelanggan($poinBaru, $usernamePelanggan);
         //update timeline 
-        $kdTimeline = $this -> rnstr(15);
-        $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktu','$operator','pembayaran_selesai','Pembayaran telah dilakukan');";
-        $this -> st -> query($qUpdateTimeline);
-        $this -> st -> queryRun();
+        $kdTimeline             = $this -> rnstr(15);
+        $this -> state('pembayaranData') -> updateTimeLine($kdTimeline, $kdService, $waktu, $operator);
         //notifikasi ke pelanggan         
-        $data['status'] = 'sukses';
+        $data['status']         = 'sukses';
         $this -> toJson($data);
-
     }
 
     public function detailPembayaran()
     {
-        $kdTransaksi = $this -> inp('kdTransaksi');
-        $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
-        $data['dataTransaksi'] = $this -> st -> querySingle();
+        $kdTransaksi            = $this -> inp('kdTransaksi');
+        $data['dataTransaksi']  = $this -> state('pembayaranData') -> detailPembayaran($kdTransaksi);
         $this -> bind('dasbor/pembayaran/detailPembayaran', $data);
     }
 

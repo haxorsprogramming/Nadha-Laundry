@@ -57,4 +57,69 @@ class pembayaranData{
       return $this -> st -> querySingle();
     }
 
+    public function simpanPembayaran($kdTransaksi, $kdService, $waktu, $total, $diskonTotal, $kdPromo, $hargaAfterFiskonPromo, $tunai, $operator)
+    {
+      $qSimpanPembayaran = "INSERT INTO tbl_pembayaran VALUES(null,'$kdTransaksi','$kdService','$waktu','$total','$diskonTotal','$kdPromo','$hargaAfterFiskonPromo','$tunai','$operator');";
+      $this -> st -> query($qSimpanPembayaran);
+      $this -> st -> queryRun();
+    }
+
+    public function simpanArusKas($kdKas, $kdTransaksi, $asal, $arus, $hargaAfterFiskonPromo, $waktuTemp, $operator)
+    {
+      $qSimpanKeArusKas = "INSERT INTO tbl_arus_kas VALUES(null, '$kdKas', '$kdTransaksi', '$asal', '$arus', '$hargaAfterFiskonPromo', '$waktuTemp', '$operator');";
+      $this -> st -> query($qSimpanKeArusKas);
+      $this -> st -> queryRun();
+    }
+
+    public function updateStatusPembayaran($kdService)
+    {
+      $qUpdateStatus = "UPDATE tbl_kartu_laundry SET pembayaran='selesai' WHERE kode_service='$kdService';";
+      $this -> st -> query($qUpdateStatus);
+      $this -> st -> queryRun();
+    }
+
+    public function getUsernameKartuLaundry($kdService)
+    {
+      $this -> st -> query("SELECT pelanggan FROM tbl_kartu_laundry WHERE kode_service='$kdService';");
+      return $this -> st -> querySingle();
+    }
+
+    public function getLevelPelanggan($usernamePelanggan)
+    {
+      $this -> st -> query("SELECT level FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
+      return  $this -> st -> querySingle();
+    }
+
+    public function getBonusCuci($levelPelanggan)
+    {
+      $this -> st -> query("SELECT bonus_point_cuci FROM tbl_level_user WHERE kd_level='$levelPelanggan';");
+      return $this -> st -> querySingle();
+    }
+
+    public function getPoinPelanggan($usernamePelanggan)
+    {
+      $this -> st -> query("SELECT poin_real FROM tbl_pelanggan WHERE username='$usernamePelanggan';");
+      return $this -> st -> querySingle();
+    }
+
+    public function updatePoinPelanggan($poinBaru, $usernamePelanggan)
+    {
+      $qUpdatePoint = "UPDATE tbl_pelanggan SET poin_real='$poinBaru' WHERE username='$usernamePelanggan';";
+      $this -> st -> query($qUpdatePoint);
+      $this -> st -> queryRun();
+    }
+
+    public function updateTimeLine($kdTimeline, $kdService, $waktu, $operator)
+    {
+      $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktu','$operator','pembayaran_selesai','Pembayaran telah dilakukan');";
+      $this -> st -> query($qUpdateTimeline);
+      $this -> st -> queryRun();
+    }
+
+    public function detailPembayaran($kdTransaksi)
+    {
+      $this -> st -> query("SELECT * FROM tbl_pembayaran WHERE kd_pembayaran='$kdTransaksi';");
+      return $this -> st -> querySingle();
+    }
+
 }
