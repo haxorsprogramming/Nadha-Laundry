@@ -1,38 +1,35 @@
 <?php
 /**
-* Database configuration
-* Uinsu Web Framework
-*
+* Database rule file Uinsu-Web-Framework
 */
 
 /**
- * 
- * Database server location
- */
+* Database server (cth : localhost)
+*/
 $dbServer = 'localhost';
+
 /**
- * 
- * Database user
- */
+* Database user
+*/
 $dbUser = 'root';
+
 /**
- * 
- * Database password
- */
+* Database password
+*/
 $dbPassword = '';
+
 /**
- * 
- * Database name
- */
+* Database name
+*/
 $dbName = 'dbs_nadha_laundry';
+
 /**
- * 
- * Database driver
- */
+* Database driver
+*/
 $dbDriver = 'mysqli';
 
 /**
-* Database configuration (Dont change value or variable name)
+* Query builder
 */
 
 $insert = 'INSERT INTO ';
@@ -41,7 +38,7 @@ $delete = 'DELETE FROM ';
 $update = 'UPDATE ';
 
 /**
-* Query builder 
+* Define to public
 */
 
 define('DB_DRIVER',$dbDriver);

@@ -18,7 +18,7 @@ class kartuLaundry extends Route{
        $acakAngka = str_shuffle($bAngka);
        $data['kodeRegistrasi'] = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
        $data['waktuMasuk'] = date("Y-m-d H:i");
-      $this -> bind('dasbor/kartuLaundry/formRegistrasiCucian', $data);
+       $this -> bind('dasbor/kartuLaundry/formRegistrasiCucian', $data);
     }
 
     public function prosesRegistrasiCucian()

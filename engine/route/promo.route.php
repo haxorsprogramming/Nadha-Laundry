@@ -4,7 +4,7 @@ class promo extends Route{
 
     public function index()
     {
-      $this -> bind('dasbor/promo/promo');
+        $this -> bind('dasbor/promo/promo');
     }
 
     public function getDataPromo()

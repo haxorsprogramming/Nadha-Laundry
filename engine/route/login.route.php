@@ -18,7 +18,7 @@ class login extends Route{
             $waktu = $this -> waktu();
             $this -> state('loginpage') -> updateLogin($waktu, $user);
         }else{
-
+            //do something boys :D 
         }
         $this -> toJson($data);
     }  

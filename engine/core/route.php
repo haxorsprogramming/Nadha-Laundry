@@ -11,7 +11,7 @@ require_once 'lib/phpmailer/library/OAuth.php';
 require_once 'lib/phpmailer/library/POP3.php';
 require_once 'lib/phpmailer/library/SMTP.php';
 
-//import library aws
+//import library aws (untuk kebutuhan serverless)
 require 'lib/aws-master/src/Aws.php';
 
 class Route{
@@ -26,7 +26,7 @@ class Route{
         require_once 'engine/state/'.$state.'.state.php';
         return new $state;
     }
-    //membuat string random
+    //membuat string random dengan parameter(jumlah)
     public function rnstr($length)
     {
         $bahan = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
@@ -34,7 +34,7 @@ class Route{
         $hasil = substr($acak,0,$length);
         return $hasil;
     }
-    //membuat int random
+    //membuat int random dengan parameter(jumlah)
     public function rnint($length)
     {
       $bahan = '123456789012345678901234567890123456780';
@@ -99,7 +99,7 @@ class Route{
         return 'true';
       }
     }
-    //fungsi ubah string ke json
+    //fungsi ubah string ke json via echo
     public function toJson($data)
     {
       echo json_encode($data);
@@ -112,10 +112,15 @@ class Route{
       }else{
       }
     }
-    //ambil data waktu
+    //ambil data waktu full
     public function waktu()
     {
       return date("Y-m-d H:i:s");
+    }
+    //ambil data tanggal full (tahun-bulan-tanggal)
+    public function tanggal()
+    {
+      return date("Y-m-d");
     }
     //fungsi untuk ambil jumlah jarak antara 2 tanggal
     function jarakTanggal( $first, $last, $step = '+1 day', $format = 'Y/m/d' ) {
@@ -249,7 +254,7 @@ class Route{
           return 'error';
         }
     }
-
+    //xss filter data
     public function xss_filter($data)
     {
     // Fix &entity\n;
@@ -285,8 +290,8 @@ class Route{
     // we are done...
     return $data;
     }
-
-    public function cucianSelesaiNotif($message, $phone_no, $apiKey){
+    //send notifikasi cucian selesai
+  public function cucianSelesaiNotif($message, $phone_no, $apiKey){
       $message = preg_replace( "/(\n)/", "<ENTER>", $message );
       $message = preg_replace( "/(\r)/", "<ENTER>", $message );
       

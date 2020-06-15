@@ -1,4 +1,1 @@
 <?php
-/**
-* Webhook file
-*/

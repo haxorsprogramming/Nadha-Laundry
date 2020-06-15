@@ -1,5 +1,1 @@
 <?php
-/**
-* Security file
-*
-*/

@@ -37,7 +37,7 @@ class utility extends Route{
          //hp 
          $hp = $this -> state('utilityData') -> getLaundryData('hp');
          $data['hp'] = $hp;
-        $this -> toJson($data);
+         $this -> toJson($data);
     }
 
     public function getInfoPelanggan()
@@ -61,7 +61,6 @@ class utility extends Route{
         //cari jumlah cucian 
         $jlhCucian = $this -> state('utilityData') -> getJumlahCucian();
         $data['jlhCucian'] = $jlhCucian;
-        
         $this -> toJson($data);
     }
 
@@ -76,6 +75,5 @@ class utility extends Route{
         }
         $this -> toJson($dbdata);
     }
-
    
 }

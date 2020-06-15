@@ -23,7 +23,7 @@ class pembayaran extends Route{
 
     public function getInfoItem()
     {
-        $dbdata = array();
+       $dbdata = array();
        $kdRegistrasi = $this -> inp('kdService');
        $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
        $dIts = $this -> st -> queryAll();
@@ -139,8 +139,7 @@ class pembayaran extends Route{
         $qUpdateTimeline = "INSERT INTO tbl_timeline VALUES(null, '$kdTimeline','$kdService','$waktu','$operator','pembayaran_selesai','Pembayaran telah dilakukan');";
         $this -> st -> query($qUpdateTimeline);
         $this -> st -> queryRun();
-        //notifikasi ke pelanggan 
-        
+        //notifikasi ke pelanggan         
         $data['status'] = 'sukses';
         $this -> toJson($data);
 
