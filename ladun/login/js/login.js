@@ -7,6 +7,7 @@ const titlePage = 'Nadha Laundry (Aplikasi Manajemen Laundry) - Login Page';
 
 $(document).ready(function(){
   document.getElementById(usernameF).focus();
+  document.title = titlePage;
 });
 
 var loginForm = new Vue({

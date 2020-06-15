@@ -31,6 +31,6 @@
       <li><a class="nav-link" href="#!" v-on:click='backupRestoreAtc'>Backup & Restore Data</a></li>
     </ul>
   </li>
-  <li><a class="nav-link" id='btnBantuan' href='#!'><i class="fas fa-info-circle"></i> <span>Bantuan</span></a></li>
+  <li><a class="nav-link" id='btnBantuan' href='#!' v-on:click='bantuanAtc'><i class="fas fa-info-circle"></i> <span>Bantuan</span></a></li>
   <li><a class="nav-link" id='btnLogOut' href="<?= HOMEBASE; ?>dasbor/logOut"><i class="fas fa-sign-out-alt"></i> <span>LogOut</span></a></li>
 </ul> 

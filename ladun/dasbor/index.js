@@ -16,6 +16,7 @@ const arusKas = 'arusKas';
 const pengaturanUmum = 'pengaturanUmum';
 const laporanTransaksi = 'laporanTransaksi';
 const broadcastPesan = 'broadcastPesan';
+const bantuan = 'bantuan';
 
 const d = new Date();
 const tahun = d.getFullYear();
@@ -122,6 +123,11 @@ var divMenu = new Vue({
     {
       renderMenu(broadcastPesan);
       divJudul.judulForm = "Broadcast Pesan";
+    },
+    bantuanAtc : function()
+    {
+      renderMenu(bantuan);
+      divJudul.judulForm = "Pusat Bantuan";
     }
   }
 });
