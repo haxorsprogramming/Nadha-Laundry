@@ -5,6 +5,8 @@ use Dompdf\Dompdf;
 
 class cetakLaporan extends Route{
 
+    private $sn = 'cetakLaporanData';
+
     public function index()
     {
         echo '<pre>Cetak laporan route</pre>';
@@ -41,8 +43,8 @@ class cetakLaporan extends Route{
             $tglAwalKomplit     = $tahun."-".$blnInt."-01 00:00:00";
             $tglAkhirKomplit    = $tahun."-".$blnInt."-".$tglAkhir." 23:59:59";
             //rekap transaksi masuk
-            $totalTransaksiBulan = $this -> state('cetakLaporanData') -> getCountRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksi = $this -> state('cetakLaporanData') -> getRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
+            $totalTransaksiBulan = $this -> state($this -> sn) -> getCountRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksi = $this -> state($this -> sn) -> getRekapTransaksiMasuk($tglAwalKomplit, $tglAkhirKomplit);
             $totalNilaiTransaksiBulanan = 0;
             foreach($qTransaksi as $qt){
                 $nilaiTransaksi             = $qt['jumlah'];
@@ -54,8 +56,8 @@ class cetakLaporan extends Route{
             $capNominalTransaksiMasuk   = number_format($nominalTransaksiMasuk);
             //rekap transaksi keluar 
             
-            $totalTransaksiBulanKeluar      = $this -> state('cetakLaporanData') -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksiKeluar               = $this -> state('cetakLaporanData') -> getRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $totalTransaksiBulanKeluar      = $this -> state($this -> sn) -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar               = $this -> state($this -> sn) -> getRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
             $totalTransaksiBulananKeluar    = 0;
             foreach($qTransaksiKeluar as $qtk){
                 $nilaiTransaksiKeluar           = $qtk['jumlah'];
@@ -127,8 +129,8 @@ class cetakLaporan extends Route{
             $tglAkhirKomplit    = $tahun."-".$bulanInt."-".$tglNow." 23:59:59";
             $profit             = 0;
             
-            $jlhTransaksi       = $this -> state('cetakLaporanData') -> jlhTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksi         = $this -> state('cetakLaporanData') -> getTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
+            $jlhTransaksi       = $this -> state($this -> sn) -> jlhTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksi         = $this -> state($this -> sn) -> getTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
             $nominalTransaksi   = 0;
             foreach($qTransaksi as $qt){
                 $tempTransaksi      = $qt['jumlah'];
@@ -140,8 +142,8 @@ class cetakLaporan extends Route{
             $capNominalTransaksiTanggal = number_format($nominalTransaksiTanggal);
             //rekap transaksi keluar
             
-            $jlhTransaksiKeluar     = $this -> state('cetakLaporanData') -> jlhTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksiKeluar       = $this -> state('cetakLaporanData') -> getTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $jlhTransaksiKeluar     = $this -> state($this -> sn) -> jlhTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar       = $this -> state($this -> sn) -> getTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
             $nominalTransaksiKeluar = 0;
             foreach($qTransaksiKeluar as $qtk){
                 $tempTransaksi          = $qtk['jumlah'];

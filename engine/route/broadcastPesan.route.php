@@ -2,6 +2,8 @@
 
 class broadcastPesan extends Route{
 
+    private $sn = 'broadcastPesanData';
+
     public function index()
     {
         $this -> bind('dasbor/broadcastPesan/broadcastPesan');
@@ -16,7 +18,7 @@ class broadcastPesan extends Route{
         //buat id pesan
         $idPesan        = $this -> rnstr(10);
         //coba buat regex
-        $qPelanggan     = $this -> state('broadcastPesanData') -> getPelanggan();
+        $qPelanggan     = $this -> state($this -> sn) -> getPelanggan();
         //ambil api key 
         $qApiKey        = $this -> state('laundryRoomData') -> getApiKey();
         $apiKey         = $qApiKey['value'];
@@ -36,7 +38,7 @@ class broadcastPesan extends Route{
             $status = 'pending';
         }
         //simpan ke tabel broadcast 
-        $this -> state('broadcastPesanData') -> simpanBroadcast($idPesan, $judulPesan, $isiPesan, $tipeProses, $waktu, $status);
+        $this -> state($this -> sn) -> simpanBroadcast($idPesan, $judulPesan, $isiPesan, $tipeProses, $waktu, $status);
         $data['status'] = $qPelanggan;
         $this -> toJson($data);
     }

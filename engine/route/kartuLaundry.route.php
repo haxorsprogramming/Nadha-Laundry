@@ -2,10 +2,12 @@
 
 class kartuLaundry extends Route{
 
+    private $sn = 'kartuLaundryData';
+
     public function index()
     {
       $this -> cekUserLogin('userSes','login');
-      $data['kartuLaundry'] = $this -> state('kartuLaundryData') -> kartuLaundryAll();
+      $data['kartuLaundry'] = $this -> state($this -> sn) -> kartuLaundryAll();
       $this -> bind('dasbor/kartuLaundry/kartuLaundry', $data);
     } 
  
@@ -27,25 +29,25 @@ class kartuLaundry extends Route{
       $waktuMasuk       = $this -> waktu();
       $pelanggan        = $this -> inp('pelanggan');
       $operator         = $this -> getses('userSes');
-      $this -> state('kartuLaundryData') -> prosesRegistrasiCucian($kode, $pelanggan, $waktuMasuk, $operator);
+      $this -> state($this -> sn) -> prosesRegistrasiCucian($kode, $pelanggan, $waktuMasuk, $operator);
       $bHuruf           = "QWERTYUIOPLKJHGFDSAZXCVBNM";
       $bAngka           = "1234567890";
       $acakHuruf_1      = str_shuffle($bHuruf);
       $acakHuruf_2      = str_shuffle($bHuruf);
       $acakAngka        = str_shuffle($bAngka);
       $kodeRoom         = substr($acakHuruf_1, 0, 2).substr($acakAngka, 0, 6).substr($acakHuruf_2, 0, 4);
-      $this -> state('kartuLaundryData') -> insertLaundryRoom($kodeRoom, $kode, $operator);
+      $this -> state($this -> sn) -> insertLaundryRoom($kodeRoom, $kode, $operator);
       //update timeline 
       $kdTimeline       = $this -> rnstr(15);
-      $this -> state('kartuLaundryData') -> insertTimeLine($kdTimeline, $kode, $waktuMasuk, $operator);
+      $this -> state($this -> sn) -> insertTimeLine($kdTimeline, $kode, $waktuMasuk, $operator);
       $data['status']   = 'sukses';
       $this -> toJson($data);
     }
 
     public function detailKartuLaundry($kdService)
     {
-      $data['detailKartu']  = $this -> state('kartuLaundryData') -> getKartuLaundry($kdService);
-      $data['dataTimeline'] = $this -> state('kartuLaundryData') -> getTimeline($kdService);
+      $data['detailKartu']  = $this -> state($this -> sn) -> getKartuLaundry($kdService);
+      $data['dataTimeline'] = $this -> state($this -> sn) -> getTimeline($kdService);
       $this -> bind('dasbor/kartuLaundry/detailKartuLaundry', $data);
     }
 
@@ -54,10 +56,10 @@ class kartuLaundry extends Route{
       $kdService        = $this -> inp('kdService');
       $waktuPickUp      = $this -> waktu();
       $operator         = $this -> getses('userSes');
-      $this -> state('kartuLaundryData') -> updateKartuLaundry($waktuPickUp, $kdService);
+      $this -> state($this -> sn) -> updateKartuLaundry($waktuPickUp, $kdService);
       //update timeline 
       $kdTimeline       = $this -> rnstr(15);
-      $this -> state('kartuLaundryData') -> updateTimelinePickup($kdTimeline, $kdService, $waktuPickUp, $operator);
+      $this -> state($this -> sn) -> updateTimelinePickup($kdTimeline, $kdService, $waktuPickUp, $operator);
       $data['status']   = 'sukses';
       $this -> toJson($data);
     }
@@ -65,7 +67,7 @@ class kartuLaundry extends Route{
     public function batalkanCucian()
     {
       $kdService      = $this -> inp('kdService');
-      $this -> state('kartuLaundryData') -> batalkanCucian($kdService);
+      $this -> state($this -> sn) -> batalkanCucian($kdService);
       $data['status'] = 'sukses';
       $this -> toJson($data);
     }
