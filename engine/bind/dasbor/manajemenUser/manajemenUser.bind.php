@@ -22,7 +22,7 @@
                         <i class='fas fa-bars'></i> Aksi
                       </button>
                       <div class="dropdown-menu" x-placement="bottom-start" style="border:1px solid grey;position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item has-icon" href="#!"><i class="fas fa-info-circle"></i> Detail</a>
+                        <!-- <a class="dropdown-item has-icon" href="#!"><i class="fas fa-info-circle"></i> Detail</a> -->
                         <a class="dropdown-item has-icon" href="#!" v-on:click='hapusAtc(lu.username)'><i class="fas fa-trash-alt"></i> Hapus</a>
                       </div>
                     </div>
