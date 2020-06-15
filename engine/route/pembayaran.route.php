@@ -2,11 +2,6 @@
 
 class pembayaran extends Route{
 
-   public function __construct()
-   {
-   $this -> st = new state;
-   }
-
     public function index()
     {
         echo "<pre>route_pembayaran</pre>";
@@ -14,28 +9,26 @@ class pembayaran extends Route{
 
     public function formPembayaran()
     {
-        $kd = $this -> inp('kdReg');
-        $this -> st -> query("SELECT * FROM tbl_kartu_laundry WHERE kode_service='$kd';");
-        $data['kartuRegistrasi'] = $this -> st -> querySingle();
-        //buat nomor faktur 
+        $kd                         = $this -> inp('kdReg');
+        $data['kartuRegistrasi']    = $this -> state('pembayaranData') -> getKartuLaundry($kd);
+        //ke form pembayaran
         $this -> bind('dasbor/pembayaran/formPembayaran', $data);
     }
 
     public function getInfoItem()
     {
-       $dbdata = array();
-       $kdRegistrasi = $this -> inp('kdService');
-       $this -> st -> query("SELECT * FROM tbl_temp_item_cucian WHERE kd_room='$kdRegistrasi';");
-       $dIts = $this -> st -> queryAll();
+       $dbdata          = array();
+       $kdRegistrasi    = $this -> inp('kdService');
+       $dIts            = $this -> state('pembayaranData') -> getItemCucian($kdRegistrasi);
+       //looping
        foreach($dIts as $dis){
-        $kdItem = $dis['kd_item'];
-        $this -> st -> query("SELECT nama FROM tbl_service WHERE kd_service='$kdItem' LIMIT 0,1;");
-        $dNamaProd = $this -> st -> querySingle();
+        $kdItem             = $dis['kd_item'];
+        $dNamaProd          = $this -> state('pembayaranData') -> getNamaService($kdItem);
         $arrTemp['kd_item'] = $dis['kd_item']; 
-        $arrTemp['qt'] = $dis['qt'];
+        $arrTemp['qt']      = $dis['qt'];
         $arrTemp['namaCap'] = $dNamaProd['nama'];
-        $arrTemp['total'] = $dis['total'];
-        $dbdata[] = $arrTemp;
+        $arrTemp['total']   = $dis['total'];
+        $dbdata[]           = $arrTemp;
        } 
        $this -> toJson($dbdata);
     }
@@ -44,56 +37,53 @@ class pembayaran extends Route{
     {
         $kd = $this -> inp('kdPromo');
         //cek apakah kode valid 
-        $this -> st -> query("SELECT * FROM tbl_promo_code WHERE kd_promo='$kd' AND aktif='y' LIMIT 0,1;");
-        $jp = $this -> st -> numRow();
+        $jp = $this -> state('pembayaranData') -> jlhPromoCode($kd);
         if($jp < 1){
             $data['status'] = 'kode_invalid';
         }else{
             //ambil data promo code
-            $qPromo = $this -> st -> querySingle();
-            $data['deks'] = $qPromo['deks'];
+            $qPromo         = $this -> state('pembayaranData') -> getPromo($kd);
+            $data['deks']   = $qPromo['deks'];
             $data['diskon'] = $qPromo['disc'];
         }
         $this -> toJson($data);
     }
 
     public function cekPromo(){
-        $tanggalSekarang = strtotime(date("Y-m-d"));
-        $tanggalNanti = strtotime("2019-03-21");
-        $diff = abs($tanggalSekarang - $tanggalNanti); 
-        $tahun = floor($diff / (365*60*60*24));
-        $bulan = floor(($diff - $tahun * 365*60*60*24) / (30*60*60*24));  
-        $hari = floor(($diff - $tahun * 365*60*60*24 - $bulan*30*60*60*24)/ (60*60*24)); 
+        $tanggalSekarang    = strtotime(date("Y-m-d"));
+        $tanggalNanti       = strtotime("2019-03-21");
+        $diff               = abs($tanggalSekarang - $tanggalNanti); 
+        $tahun              = floor($diff / (365*60*60*24));
+        $bulan              = floor(($diff - $tahun * 365*60*60*24) / (30*60*60*24));  
+        $hari               = floor(($diff - $tahun * 365*60*60*24 - $bulan*30*60*60*24)/ (60*60*24)); 
     }
 
     public function prosesPembayaran()
     {
-        $waktu = $this -> waktu();
-        $kdPromo = $this -> inp('kdPromo');
-        $kdTransaksi = $this -> inp('kdTransaksi');
-        $kdService = $this -> inp('kdService');
-        $diskonLevel = $this -> inp('diskonLevel');
-        $tunai = $this -> inp('tunai');
-        $operator = $this -> getses('userSes');
+        $waktu          = $this -> waktu();
+        $kdPromo        = $this -> inp('kdPromo');
+        $kdTransaksi    = $this -> inp('kdTransaksi');
+        $kdService      = $this -> inp('kdService');
+        $diskonLevel    = $this -> inp('diskonLevel');
+        $tunai          = $this -> inp('tunai');
+        $operator       = $this -> getses('userSes');
         //cari total cucian 
-        $this -> st -> query("SELECT total FROM tbl_temp_item_cucian WHERE kd_room='$kdService';");
-        $qTotal = $this -> st -> queryAll();
-        $total = 0;
+        $qTotal         = $this -> state('pembayaranData') -> getTempCucian($kdService);
+        $total          = 0;
         foreach($qTotal as $qt){
-            $totalTemp = $qt['total'];
-            $total = $total + $totalTemp;
+            $totalTemp  = $qt['total'];
+            $total      = $total + $totalTemp;
         }
         //cari diskon 
-        $hargaFixDiskon = $diskonLevel * $total / 100;
-        $hargaAfterDiskon = $total - $hargaFixDiskon;
+        $hargaFixDiskon     = $diskonLevel * $total / 100;
+        $hargaAfterDiskon   = $total - $hargaFixDiskon;
         //hitung diskon lewat promo 
-        $this -> st -> query("SELECT * FROM tbl_promo_code WHERE kd_promo='$kdPromo' AND aktif='y' LIMIT 0,1;");
-        $jp = $this -> st -> numRow();
+        $jp                 = $this -> state('pembayaranData') ->  jlhPromo($kdPromo);
         if($jp < 1){
             $diskonPromo = 0;
         }else{
-            $qPromo = $this -> st -> querySingle();
-            $diskonPromo = $qPromo['disc'];
+            $qPromo         = $this -> state('pembayaranData') ->  qPromo($kdPromo);
+            $diskonPromo    = $qPromo['disc'];
         }
         $hargaFixDiskonPromo = $diskonPromo * $hargaAfterDiskon / 100;
         $hargaAfterFiskonPromo = $hargaAfterDiskon - $hargaFixDiskonPromo;

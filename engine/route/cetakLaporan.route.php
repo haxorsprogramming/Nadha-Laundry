@@ -54,20 +54,20 @@ class cetakLaporan extends Route{
             $capNominalTransaksiMasuk   = number_format($nominalTransaksiMasuk);
             //rekap transaksi keluar 
             
-            $totalTransaksiBulanKeluar = $this -> state('cetakLaporanData') -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksiKeluar = $this -> state('cetakLaporanData') -> getRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
-            $totalTransaksiBulananKeluar = 0;
+            $totalTransaksiBulanKeluar      = $this -> state('cetakLaporanData') -> getCountRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar               = $this -> state('cetakLaporanData') -> getRekapTransaksiKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $totalTransaksiBulananKeluar    = 0;
             foreach($qTransaksiKeluar as $qtk){
-                $nilaiTransaksiKeluar = $qtk['jumlah'];
-                $totalTransaksiBulananKeluar = $totalTransaksiBulananKeluar + $nilaiTransaksiKeluar;
+                $nilaiTransaksiKeluar           = $qtk['jumlah'];
+                $totalTransaksiBulananKeluar    = $totalTransaksiBulananKeluar + $nilaiTransaksiKeluar;
             }
             $capTotalTransaksiBulananKeluar = number_format($totalTransaksiBulananKeluar);
-            $totalTransaksiTahunKeluar = $totalTransaksiTahunKeluar + $totalTransaksiBulanKeluar;
-            $nominalTransaksiKeluar = $nominalTransaksiKeluar + $totalTransaksiBulananKeluar;
-            $capNominalTransaksiKeluar = number_format($nominalTransaksiKeluar);
+            $totalTransaksiTahunKeluar      = $totalTransaksiTahunKeluar + $totalTransaksiBulanKeluar;
+            $nominalTransaksiKeluar         = $nominalTransaksiKeluar + $totalTransaksiBulananKeluar;
+            $capNominalTransaksiKeluar      = number_format($nominalTransaksiKeluar);
             //total profit
-            $totalProfit = $totalNilaiTransaksiBulanan - $totalTransaksiBulananKeluar;
-            $capTotalProfit = number_format($totalProfit);
+            $totalProfit                    = $totalNilaiTransaksiBulanan - $totalTransaksiBulananKeluar;
+            $capTotalProfit                 = number_format($totalProfit);
             //buat body untuk pdf
             $html .= '<tr>
             <td style="padding-left:5px;">'.$bulanCapIndo.'</td>
@@ -97,63 +97,63 @@ class cetakLaporan extends Route{
 
     public function bulan($bulan,$tahun)
     {
-        $dompdf = new Dompdf();
+        $dompdf         = new Dompdf();
         //inisialisasi variabel awal -> nama laundry
-        $namaLaundry = $this -> state('utilityData') -> getLaundryData('laundry_name');
+        $namaLaundry    = $this -> state('utilityData') -> getLaundryData('laundry_name');
         //ubah nama bulan ke lowercase
-        $bulanLowCase = strtolower($bulan);
+        $bulanLowCase   = strtolower($bulan);
         //ubah bulan ke int
-        $bulanInt = $this -> bulanToInt($bulanLowCase);
+        $bulanInt       = $this -> bulanToInt($bulanLowCase);
 
         //cari jumlah hari dalam bulan 
-        $jlhDay = $this -> ambilHari($bulanInt);
-        $dim = '-';
-        $html = '<div><h2>Laporan Bulanan Laundry</h2>';
-        $html .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Bulan Laporan : '.$bulan.' '.$tahun;
-        $html .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:13px;">
+        $jlhDay     = $this -> ambilHari($bulanInt);
+        $dim        = '-';
+        $html       = '<div><h2>Laporan Bulanan Laundry</h2>';
+        $html      .= '<p>Nama Laundry : '.$namaLaundry.'<br/>Bulan Laporan : '.$bulan.' '.$tahun;
+        $html      .= '<table border="1" width="100%" style="border-collapse: collapse; border: 0px;font-size:13px;">
         <tr><th>Tanggal</th><th>Total Transaksi Masuk</th><th>Total Transaksi Keluar</th><th>Nominal Transaksi Masuk</th><th>Nominal Transaksi Keluar</th>
         <th>Total Profit</th>
         </tr>';
-        $totalTransaksiTanggal = 0;
-        $totalTransaksiTanggalKeluar = 0;
-        $nominalTransaksiTanggal = 0;
-        $nominalTransaksiTanggalKeluar = 0;
+        $totalTransaksiTanggal          = 0;
+        $totalTransaksiTanggalKeluar    = 0;
+        $nominalTransaksiTanggal        = 0;
+        $nominalTransaksiTanggalKeluar  = 0;
        
         //rekap transaksi masuk
         for($i = 1; $i <= $jlhDay; $i++){
             //mulai ribetnya coy
-            $tglNow = $this -> getTanggalBedaDigit($i);
-            $tglAwalKomplit = $tahun."-".$bulanInt."-".$tglNow." 00:00:00";
-            $tglAkhirKomplit = $tahun."-".$bulanInt."-".$tglNow." 23:59:59";
-            $profit = 0;
+            $tglNow             = $this -> getTanggalBedaDigit($i);
+            $tglAwalKomplit     = $tahun."-".$bulanInt."-".$tglNow." 00:00:00";
+            $tglAkhirKomplit    = $tahun."-".$bulanInt."-".$tglNow." 23:59:59";
+            $profit             = 0;
             
-            $jlhTransaksi = $this -> state('cetakLaporanData') -> jlhTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksi = $this -> state('cetakLaporanData') -> getTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
-            $nominalTransaksi = 0;
+            $jlhTransaksi       = $this -> state('cetakLaporanData') -> jlhTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksi         = $this -> state('cetakLaporanData') -> getTransaksiBulan($tglAwalKomplit, $tglAkhirKomplit);
+            $nominalTransaksi   = 0;
             foreach($qTransaksi as $qt){
-                $tempTransaksi = $qt['jumlah'];
-                $nominalTransaksi = $nominalTransaksi + $tempTransaksi;
+                $tempTransaksi      = $qt['jumlah'];
+                $nominalTransaksi   = $nominalTransaksi + $tempTransaksi;
             }
-            $capNominalTransaksi = number_format($nominalTransaksi);
-            $totalTransaksiTanggal = $totalTransaksiTanggal + $jlhTransaksi;
-            $nominalTransaksiTanggal = $nominalTransaksiTanggal + $nominalTransaksi;
+            $capNominalTransaksi        = number_format($nominalTransaksi);
+            $totalTransaksiTanggal      = $totalTransaksiTanggal + $jlhTransaksi;
+            $nominalTransaksiTanggal    = $nominalTransaksiTanggal + $nominalTransaksi;
             $capNominalTransaksiTanggal = number_format($nominalTransaksiTanggal);
             //rekap transaksi keluar
             
-            $jlhTransaksiKeluar = $this -> state('cetakLaporanData') -> jlhTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
-            $qTransaksiKeluar = $this -> state('cetakLaporanData') -> getTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $jlhTransaksiKeluar     = $this -> state('cetakLaporanData') -> jlhTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
+            $qTransaksiKeluar       = $this -> state('cetakLaporanData') -> getTransaksiBulanKeluar($tglAwalKomplit, $tglAkhirKomplit);
             $nominalTransaksiKeluar = 0;
             foreach($qTransaksiKeluar as $qtk){
-                $tempTransaksi = $qtk['jumlah'];
+                $tempTransaksi          = $qtk['jumlah'];
                 $nominalTransaksiKeluar = $nominalTransaksiKeluar + $tempTransaksi;
             }
-            $capNominalTransaksiKeluar = number_format($nominalTransaksiKeluar);
-            $totalTransaksiTanggalKeluar = $totalTransaksiTanggalKeluar + $jlhTransaksiKeluar;
-            $nominalTransaksiTanggalKeluar = $nominalTransaksiTanggalKeluar + $nominalTransaksiKeluar;
-            $capNominalTransaksiTanggalKeluar = number_format($nominalTransaksiTanggalKeluar);
+            $capNominalTransaksiKeluar          = number_format($nominalTransaksiKeluar);
+            $totalTransaksiTanggalKeluar        = $totalTransaksiTanggalKeluar + $jlhTransaksiKeluar;
+            $nominalTransaksiTanggalKeluar      = $nominalTransaksiTanggalKeluar + $nominalTransaksiKeluar;
+            $capNominalTransaksiTanggalKeluar   = number_format($nominalTransaksiTanggalKeluar);
 
-            $profit = $nominalTransaksi - $nominalTransaksiKeluar;
-            $capProfit = number_format($profit);
+            $profit     = $nominalTransaksi - $nominalTransaksiKeluar;
+            $capProfit  = number_format($profit);
 
             $html .= '<tr>
             <td style="padding-left:5px;">'.$tglNow.'</td>

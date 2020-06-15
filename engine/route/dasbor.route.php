@@ -5,27 +5,27 @@ class dasbor extends Route{
     public function index()
     {     
         $this -> cekUserLogin('userSes','login');
-        $user =  $this -> getses('userSes');
-        $data['usernameLogin'] = $user;
+        $user                   =  $this -> getses('userSes');
+        $data['usernameLogin']  = $user;
         //cari level user
-        $qUser = $this -> state('dashboard') -> levelUserLogin($user);
-        $data['levelUser'] = $qUser['tipe_user'];
+        $qUser                  = $this -> state('dashboard') -> levelUserLogin($user);
+        $data['levelUser']      = $qUser['tipe_user'];
         $this -> bind('/dasbor/index', $data);
     }
 
     public function beranda()
     {
-        $data['rankPelanggan'] = $this -> state('dashboard') -> rankPelanggan();
+        $data['rankPelanggan']          = $this -> state('dashboard') -> rankPelanggan();
         //cari jumlah transaksi harian 
-        $waktu = $this -> waktu();
-        $pecahTglWaktu = explode(" ", $waktu);
-        $bahanTanggal = explode("-", $pecahTglWaktu[0]);
-        $tanggalKedepan = $bahanTanggal[2] + 1;
-        $tglNext = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan;
-        $waktuStart = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$bahanTanggal[2]." 00:00:01";
-        $waktuAkhir = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan." 00:00:00";
-        $data['jlhTransaksiHarian'] = $this -> state('dashboard') -> jlhTransaksiHarian($waktuStart, $waktuAkhir);
-        $data['waktu_akhir'] = $tanggalKedepan;
+        $waktu                          = $this -> waktu();
+        $pecahTglWaktu                  = explode(" ", $waktu);
+        $bahanTanggal                   = explode("-", $pecahTglWaktu[0]);
+        $tanggalKedepan                 = $bahanTanggal[2] + 1;
+        $tglNext                        = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan;
+        $waktuStart                     = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$bahanTanggal[2]." 00:00:01";
+        $waktuAkhir                     = $bahanTanggal[0]."-".$bahanTanggal[1]."-".$tanggalKedepan." 00:00:00";
+        $data['jlhTransaksiHarian']     = $this -> state('dashboard') -> jlhTransaksiHarian($waktuStart, $waktuAkhir);
+        $data['waktu_akhir']            = $tanggalKedepan;
         $this -> bind('/dasbor/beranda', $data);   
     }
 
