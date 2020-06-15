@@ -27,5 +27,12 @@ class broadcastPesanData{
       $this -> st -> query($query);
       $this -> st -> queryRun();
   }
+  
+  public function hapusBroadcast($idPesan)
+  {
+    $query = "DELETE FROM tbl_broadcast_pesan WHERE id_pesan='$idPesan';";
+    $this -> st -> query($query);
+    $this -> st -> queryRun();
+  }
 
 }

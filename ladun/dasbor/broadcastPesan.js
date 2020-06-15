@@ -19,7 +19,15 @@ var divBroadcastPesan = new Vue({
             this.isiPesan = document.getElementById('txtIsi').value;
             this.tipeProses = document.getElementById('txtProses').value;
             this.waktu = document.getElementById('txtWaktuProses').value;
-            prosesKirimPesan();
+            if(this.judulForm === '' || this.isiPesan === '' || this.tipeProses === ''){
+                Swal.fire({icon : 'warning', title : 'Isi field!!', text : 'Harap lengkapi field!....'});
+            }else{
+                prosesKirimPesan();
+            }
+        },
+        hapusAtc : function(idPesan)
+        {
+            hapusBroadcast(idPesan);
         }
     }
 });
@@ -62,9 +70,42 @@ function prosesKirimPesan()
 
 function suksesKirim()
 {
+    let tipeProses = divBroadcastPesan.tipeProses;
+    let pesan = '';
+    if(tipeProses == 'langsung'){
+        pesan = 'Berhasil mengirimkan pesan broadcast ...';
+    }else{
+        pesan = 'Berhasil menjadwalkan pesan broadcast';
+    }
     Swal.fire(
         'Sukses ..',
-        'Berhasil mengirimkan pesan broadcast ...',
+        pesan,
         'success'
       )
+}
+
+function hapusBroadcast(idPesan)
+{
+    Swal.fire({
+        title: 'Hapus?',
+        text: "Apakah kamu yakin ingin menghapus pesan broadcast?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelButtonText : 'Batal'
+      }).then((result) => {
+        if (result.value) {
+           $.post('broadcastPesan/hapusPesan', {'idPesan':idPesan}, function(data){
+               Swal.fire({
+                title : 'Sukses..',
+                text : 'Berhasil menghapus list broadcast pesan',
+                icon : 'success'
+               });
+                renderMenu(broadcastPesan);
+                divJudul.judulForm = "Broadcast Pesan";
+           });
+        }
+      });
 }

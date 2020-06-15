@@ -48,4 +48,12 @@ class broadcastPesan extends Route{
         
     }
 
+    public function hapusPesan()
+    {
+        $idPesan = $this -> inp('idPesan');
+        $data['idPesan'] = $idPesan;
+        $this -> state($this -> sn) -> hapusBroadcast($idPesan);
+        $this -> toJson($data);
+    }
+
 }

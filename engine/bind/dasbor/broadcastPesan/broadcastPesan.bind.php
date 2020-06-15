@@ -62,7 +62,7 @@ $qBroadcastData = $this -> state('broadcastPesanData') -> getBroadcastData();
                     <td><?=$qb['sistem']; ?></td>
                     <td><?=$qb['waktu']; ?></td>
                     <td><?=$qb['status']; ?></td>
-                    <td><a href='#!' class="btn btn-primary btn-sm btn-icon icon-left"><i class='fas fa-trash-alt'></i> Hapus</a></td>
+                    <td><a href='#!' v-on:click='hapusAtc("<?=$qb['id_pesan']; ?>")' class="btn btn-primary btn-sm btn-icon icon-left"><i class='fas fa-trash-alt'></i> Hapus</a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
