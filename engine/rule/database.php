@@ -16,7 +16,7 @@ $dbUser = 'root';
 /**
 * Database password
 */
-$dbPassword = 'RooTHaxor5';
+$dbPassword = '';
 
 /**
 * Database name

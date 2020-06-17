@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2020 at 11:57 PM
+-- Generation Time: Jun 15, 2020 at 10:50 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -39,18 +39,28 @@ CREATE TABLE `tbl_arus_kas` (
   `operator` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tbl_arus_kas`
+-- Table structure for table `tbl_bantuan`
 --
 
-INSERT INTO `tbl_arus_kas` (`id`, `kd_kas`, `kd_tracking`, `asal`, `arus`, `jumlah`, `waktu`, `operator`) VALUES
-(1, 'viwhykecgCPHIfA', 'INV-2020-05-30-UP49', 'pembayaran_cucian', 'masuk', 27000, '2020-05-30 02:55:02', 'admin'),
-(2, 'VHUaAWjXkDilhvg', '05-2020-OEN', 'pengeluaran_laundry', 'keluar', 100000, '2020-05-31 14:32:21', 'admin'),
-(4, 'gofjyvBDEXdabYG', 'INV-2020-06-09-UO70', 'pembayaran_cucian', 'masuk', 56160, '2020-06-08 18:10:16', 'admin'),
-(5, 'fbFLQHDEUNZgzGa', 'INV-2020-06-09-NL64', 'pembayaran_cucian', 'masuk', 57800, '2020-06-08 18:14:09', 'admin'),
-(6, 'cJatfMQSPbvGVkD', '06-2020-NNK', 'pengeluaran_laundry', 'keluar', 50000, '2020-06-08 18:15:38', 'admin'),
-(7, 'GQqmiMDsHuNrxTL', 'INV-2020-06-14-ED16', 'pembayaran_cucian', 'masuk', 7200, '2020-06-14 15:48:31', 'admin'),
-(8, 'xlJgTIRuhpzLUCr', 'INV-2020-06-15-OZ19', 'pembayaran_cucian', 'masuk', 25200, '2020-06-14 21:31:43', 'admin');
+CREATE TABLE `tbl_bantuan` (
+  `id` int(3) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `deks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_bantuan`
+--
+
+INSERT INTO `tbl_bantuan` (`id`, `judul`, `deks`) VALUES
+(1, 'Cara mendaftarkan cucian', 'Proses mendaftrkan cucian yaitu dengan cara melakukan registrasi melalui menu \"Kartu Laundry\" kemudian tambahkan'),
+(2, 'Email notifikasi tidak terkirim', 'Pastikan email_host yang digunakan telah diaktifkan untuk menerima pengiriman melalui pihak ketiga'),
+(3, 'Notifikasi ke whatsapp pelanggan tidak terkirim', 'Pastikan Api_Key yang anda masukkan valid, silahkan kunjungi <a href=\'https://waresponder.co.id/\'>waresponder.co.id</a> untuk mendapatkan Api_Key yang valid. Pastikan juga nomor handphone pelanggan valid'),
+(4, 'Bagaimana melakukan proses pembayaran laundry?', 'Untuk melakukan proses pembayaran, silahkan masuk ke menu laundry room(apabila cucian belum selesai), klik cucian, kemudian klik tombol \"Bayar\"'),
+(5, 'Bagaimana alur lengkap operasional laundry dari awal hingga akhir?', 'Pertama, lakukan registrasi cucian melalui menu <b>Kartu Laundry</b>, kemudian masuk ke menu laundry room dan pilih cucian untuk menambahkan item cucian. Setelah menambahkan item cucian, pelanggan dapat memilih apakah pembayaran langsung atau pada saat mengambil cucian yang sudah selesai. Setelah cucian selesai, set status cucian ke \'selesai\' di laundry room, cucian yang sudah di set ke selesai tidak akan ditampilkan di laundry room. Apabila pelanggan sudah mengambil cucian, pembayaran dapat dilakukan melalui menu <b>Kartu Laundry</b>, silahkan lakukan pembayaran, dan update status cucian ke \'sudah di ambil\'');
 
 -- --------------------------------------------------------
 
@@ -73,8 +83,8 @@ CREATE TABLE `tbl_broadcast_pesan` (
 --
 
 INSERT INTO `tbl_broadcast_pesan` (`id`, `id_pesan`, `judul`, `isi`, `sistem`, `waktu`, `status`) VALUES
-(3, 'VSJUsOxHzw', 'Promo mahasiswa', 'Halo {pelanggan}, kita lagi ada promo buat mahasiswa nih, silahkan masukkan kode promo PROMOMHS untuk mendapatkan promo 5%, ditunggu ya ... ', 'langsung', '2020-06-14 21:45:44', 'sukses'),
-(4, 'XvfzybYmWO', 'Promo mahasiswa 2021', 'Halo {pelanggan}, kita lagi ada promo buat mahasiswa nih, silahkan masukkan kode promo PROMOMHS untuk mendapatkan promo 5%, ditunggu ya ...', 'terjadwal', '2020-06-23 17:00:00', 'pending');
+(6, 'qLikTvjJKr', 'Promo mahasiswa', 'Halo {pelanggan}, kita lagi ada promo buat mahasiswa nih, silahkan masukkan kode promo PROMOMHS untuk mendapatkan diskon 5%, ditunggu ya..', 'terjadwal', '2020-06-17 17:00:00', 'pending'),
+(7, 'azSnPsVyCF', 'Promo mahasiswa', 'Halo {pelanggan}, kita lagi ada promo buat mahasiswa nih, silahkan masukkan kode promo PROMOMHS untuk mendapatkan diskon 5%, ditunggu ya..', 'langsung', '2020-06-15 20:38:33', 'sukses');
 
 -- --------------------------------------------------------
 
@@ -94,18 +104,6 @@ CREATE TABLE `tbl_kartu_laundry` (
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_kartu_laundry`
---
-
-INSERT INTO `tbl_kartu_laundry` (`id`, `kode_service`, `pelanggan`, `waktu_masuk`, `waktu_selesai`, `waktu_diambil`, `pembayaran`, `operator`, `status`) VALUES
-(1, 'UP495278MYKJ', 'dianavita', '2020-05-26 11:08:20', '2020-06-14 15:44:02', '0000-00-00 00:00:00', 'selesai', 'admin', 'finishcuci'),
-(2, 'EJ965740HZJN', 'dianavita', '2020-05-30 02:47:50', '2020-06-14 15:42:41', '0000-00-00 00:00:00', 'pending', 'admin', 'finishcuci'),
-(3, 'UO703981FUCB', 'dianavita', '2020-06-08 16:33:07', '2020-06-14 15:33:49', '2020-06-14 15:42:01', 'selesai', 'admin', 'finishcuci'),
-(4, 'ED167940XSWB', 'adityadarmanst', '2020-06-08 18:07:53', '2020-06-14 15:46:25', '2020-06-14 15:48:51', 'selesai', 'admin', 'finishcuci'),
-(5, 'NL647130OGXS', 'kurniawan', '2020-06-08 18:12:50', '2020-06-08 18:14:47', '2020-06-08 18:14:56', 'selesai', 'admin', 'finishcuci'),
-(6, 'OZ196502IFPU', 'adityadarmanst', '2020-06-14 16:25:10', '2020-06-14 21:31:56', '0000-00-00 00:00:00', 'selesai', 'admin', 'finishcuci');
-
 -- --------------------------------------------------------
 
 --
@@ -120,18 +118,6 @@ CREATE TABLE `tbl_laundry_room` (
   `operator` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_laundry_room`
---
-
-INSERT INTO `tbl_laundry_room` (`id`, `kd_room`, `kd_kartu`, `total_harga`, `operator`, `status`) VALUES
-(1, 'ND542601WEVN', 'UP495278MYKJ', 27000, 'admin', 'finish'),
-(2, 'DS862514AIGY', 'EJ965740HZJN', 15000, 'admin', 'finish'),
-(3, 'HZ182736ERMS', 'UO703981FUCB', 62400, 'admin', 'finish'),
-(4, 'SM724983IUSN', 'ED167940XSWB', 8000, 'admin', 'finish'),
-(5, 'CD169028TKJZ', 'NL647130OGXS', 68000, 'admin', 'finish'),
-(6, 'CF409382VAGS', 'OZ196502IFPU', 28000, 'admin', 'finish');
 
 -- --------------------------------------------------------
 
@@ -182,9 +168,7 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id`, `username`, `nama_lengkap`, `alamat`, `hp`, `email`, `level`, `poin_commit`, `poin_real`, `aktif`, `waktu_join`) VALUES
-(2, 'kurniawan', 'Kurniawan Putra', 'Medan Barat', '082370940928', 'kurniawanputra@gmail.com', 'Basic', 0, 5, '1', '2020-06-14 16:04:19'),
-(3, 'adityadarmanst', 'Aditia Darma Nst', 'Perbaungan', '082272177022', 'alditha.forum@gmail.com', 'Basic', 0, 10, '1', '2020-06-14 21:31:43'),
-(5, 'akhyarie', 'Akhyarie', 'Medan', '082323026919', 'akhyarie@gmail.com', 'Gold', 0, 0, '1', '2020-06-14 21:44:24');
+(6, 'adityadarmanst', 'Aditia Darma Nst', 'Perbaungan', '082272177022', 'alditha.forum@gmail.com', 'Basic', 0, 0, '1', '2020-06-15 20:32:04');
 
 -- --------------------------------------------------------
 
@@ -205,17 +189,6 @@ CREATE TABLE `tbl_pembayaran` (
   `operator` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_pembayaran`
---
-
-INSERT INTO `tbl_pembayaran` (`id`, `kd_pembayaran`, `kd_kartu`, `waktu`, `total_cuci`, `diskon`, `kode_promo`, `total_final`, `tunai`, `operator`) VALUES
-(1, 'INV-2020-05-30-UP49', 'UP495278MYKJ', '2020-05-30 02:55:02', 27000, 0, '', 27000, 30000, 'admin'),
-(2, 'INV-2020-06-09-UO70', 'UO703981FUCB', '2020-06-08 18:10:16', 62400, 6240, 'PROMOMHS', 56160, 60000, 'admin'),
-(3, 'INV-2020-06-09-NL64', 'NL647130OGXS', '2020-06-08 18:14:09', 68000, 10200, 'PROMOLEBARAN', 57800, 60000, 'admin'),
-(4, 'INV-2020-06-14-ED16', 'ED167940XSWB', '2020-06-14 15:48:31', 8000, 800, 'PROMOMHS', 7200, 10000, 'admin'),
-(5, 'INV-2020-06-15-OZ19', 'OZ196502IFPU', '2020-06-14 21:31:43', 28000, 2800, 'PROMOMHS', 25200, 30000, 'admin');
-
 -- --------------------------------------------------------
 
 --
@@ -231,14 +204,6 @@ CREATE TABLE `tbl_pengeluaran` (
   `jumlah` int(20) NOT NULL,
   `operator` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_pengeluaran`
---
-
-INSERT INTO `tbl_pengeluaran` (`id`, `kd_pengeluaran`, `pengeluaran`, `keterangan`, `waktu`, `jumlah`, `operator`) VALUES
-(1, '05-2020-OEN', 'Listrik', 'Pembelian token listrik mingguan', '2020-05-31 00:00:00', 100000, 'admin'),
-(3, '06-2020-NNK', 'Listrik', 'Pembelian token listrik mingguan', '2020-06-09 00:00:00', 50000, 'admin');
 
 -- --------------------------------------------------------
 
@@ -266,8 +231,8 @@ INSERT INTO `tbl_promo_code` (`id`, `kd_promo`, `deks`, `disc`, `tgl_mulai`, `tg
 (2, 'PROMOLEBARAN', 'Promo hari raya idul fitri', 15, '2020-04-01', '2020-04-03', 100, 'y'),
 (3, 'PROMOMHS', 'Promo mahasiswa', 10, '2020-04-03', '2020-04-13', 100, 'y'),
 (6, 'TAHUNBARU10', 'Promo tahun baru', 10, '2020-05-22', '2020-05-22', 100, 'y'),
-(7, 'TAHUNBARU5', 'Promo tahun baru ', 5, '2020-05-22', '2020-05-22', 100, 'y'),
-(8, 'PROMOADH', 'Promo suka suka kita', 20, '2020-05-22', '2020-05-22', 100, 'y');
+(7, 'TAHUNBARU5', 'Promo tahun baru ', 5, '2020-05-22', '2020-05-22', 100, 'n'),
+(8, 'PROMOADH', 'Promo suka suka kita', 20, '2020-05-22', '2020-05-22', 100, 'n');
 
 -- --------------------------------------------------------
 
@@ -365,20 +330,6 @@ CREATE TABLE `tbl_temp_item_cucian` (
   `total` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_temp_item_cucian`
---
-
-INSERT INTO `tbl_temp_item_cucian` (`id`, `kd_temp`, `kd_room`, `kd_item`, `harga_at`, `qt`, `total`) VALUES
-(1, 'Kxkqovudcg', 'UP495278MYKJ', 'ZVL17359WK', 5000, 5.4, 27000),
-(2, 'DYTBflcyZi', 'EJ965740HZJN', 'ZVL17359WK', 5000, 3, 15000),
-(3, 'SNmuIthPeZ', 'UO703981FUCB', 'OUA28594JH', 50000, 1, 50000),
-(4, 'umlcvsyJRG', 'UO703981FUCB', 'TXP28695AC', 4000, 3.1, 12400),
-(5, 'vQJANIcBVO', 'NL647130OGXS', 'TXP28695AC', 4000, 9.5, 38000),
-(6, 'ChSwcFpgRa', 'NL647130OGXS', 'LCD87416QB', 30000, 1, 30000),
-(7, 'zWUPKYOgRb', 'ED167940XSWB', 'TXP28695AC', 4000, 2, 8000),
-(8, 'sqVTWoNrmd', 'OZ196502IFPU', 'ZVL17359WK', 5000, 5.6, 28000);
-
 -- --------------------------------------------------------
 
 --
@@ -394,38 +345,6 @@ CREATE TABLE `tbl_timeline` (
   `kd_event` varchar(50) DEFAULT NULL,
   `caption` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_timeline`
---
-
-INSERT INTO `tbl_timeline` (`id`, `kd_timeline`, `kd_service`, `waktu`, `admin`, `kd_event`, `caption`) VALUES
-(1, 'uCWvBxXoYhPAsNT', 'UP495278MYKJ', '2020-05-26 11:08:20', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(2, 'zesEPDtYrmuxIFq', 'UP495278MYKJ', '2020-05-26 11:08:31', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(3, 'VCtpPeUAujrRkGn', 'EJ965740HZJN', '2020-05-30 02:47:50', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(4, 'GVNcXSHdkjmbhas', 'UP495278MYKJ', '2020-05-30 02:55:02', 'admin', 'pembayaran_selesai', 'Pembayaran telah dilakukan'),
-(5, 'tGTESiWQRlOFdkg', 'UO703981FUCB', '2020-06-08 16:33:07', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(6, 'FpXyithDuSMaAkT', 'EJ965740HZJN', '2020-06-08 17:49:23', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(7, 'ncFWyrCPRExgpBZ', 'UO703981FUCB', '2020-06-08 17:49:36', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(8, 'jctvMwZdSHepAOU', 'ED167940XSWB', '2020-06-08 18:07:53', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(9, 'tOGxQBZnrCIwdmM', 'UO703981FUCB', '2020-06-08 18:10:16', 'admin', 'pembayaran_selesai', 'Pembayaran telah dilakukan'),
-(10, 'wcgklLdNSfHMZUe', 'NL647130OGXS', '2020-06-08 18:12:50', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(11, 'wOdkavGMYxfLgUt', 'NL647130OGXS', '2020-06-08 18:13:18', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(12, 'MboZfqjpJrgxXUG', 'NL647130OGXS', '2020-06-08 18:14:09', 'admin', 'pembayaran_selesai', 'Pembayaran telah dilakukan'),
-(13, 'tgCIjpkbGimUxal', 'NL647130OGXS', '2020-06-08 18:14:47', 'admin', 'cucian_selesai', 'Cucian telah selesai'),
-(14, 'WnwjPcxMHvsfTUa', 'NL647130OGXS', '2020-06-08 18:14:56', 'admin', 'pick_up', 'Cucian telah diambil'),
-(15, 'fMsxYiQcaNIyRpO', 'UO703981FUCB', '2020-06-14 15:33:49', 'admin', 'cucian_selesai', 'Cucian telah selesai'),
-(16, 'eZEDBJpLSHtRawK', 'UO703981FUCB', '2020-06-14 15:42:01', 'admin', 'pick_up', 'Cucian telah diambil'),
-(17, 'nbHVBqJvRtTXMLk', 'EJ965740HZJN', '2020-06-14 15:42:41', 'admin', 'cucian_selesai', 'Cucian telah selesai'),
-(18, 'kMJhzsyALoETHYB', 'UP495278MYKJ', '2020-06-14 15:44:02', 'admin', 'cucian_selesai', 'Cucian telah selesai'),
-(19, 'PtyclzGgRSVKhZq', 'ED167940XSWB', '2020-06-14 15:44:30', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(20, 'ZeJyiaAsXnWObdQ', 'ED167940XSWB', '2020-06-14 15:46:25', 'admin', 'cucian_selesai', 'Cucian telah selesai'),
-(21, 'fpyShXoIMmWxswj', 'ED167940XSWB', '2020-06-14 15:48:31', 'admin', 'pembayaran_selesai', 'Pembayaran telah dilakukan'),
-(22, 'CuOfRSFjxevBgGH', 'ED167940XSWB', '2020-06-14 15:48:51', 'admin', 'pick_up', 'Cucian telah diambil'),
-(23, 'tHcrdqnPgphMOvU', 'OZ196502IFPU', '2020-06-14 16:25:10', 'admin', 'registrasi_cucian', 'Cucian di registrasi'),
-(24, 'adOrEqeCZmBPFVz', 'OZ196502IFPU', '2020-06-14 21:31:23', 'admin', 'mulai_cuci', 'Cucian masuk laundry room'),
-(25, 'GOKucMCbTNpmYvj', 'OZ196502IFPU', '2020-06-14 21:31:43', 'admin', 'pembayaran_selesai', 'Pembayaran telah dilakukan'),
-(26, 'bwYvCDJBgjlutxa', 'OZ196502IFPU', '2020-06-14 21:31:56', 'admin', 'cucian_selesai', 'Cucian telah selesai');
 
 -- --------------------------------------------------------
 
@@ -462,8 +381,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `last_login`, `tipe_user`, `active`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-06-14 14:52:29', 'admin', '1'),
-(2, 'operator_1', '21232f297a57a5a743894a0e4a801fc3', '2020-02-18 14:26:36', 'operator', '1'),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-06-15 19:53:58', 'admin', '1'),
 (4, 'aditia', '21232f297a57a5a743894a0e4a801fc3', '2020-04-25 20:20:52', 'admin', '1'),
 (5, 'arafahmuldianty', '21232f297a57a5a743894a0e4a801fc3', '2020-04-26 00:41:33', 'operator', '1');
 
@@ -475,6 +393,12 @@ INSERT INTO `tbl_user` (`id`, `username`, `password`, `last_login`, `tipe_user`,
 -- Indexes for table `tbl_arus_kas`
 --
 ALTER TABLE `tbl_arus_kas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_bantuan`
+--
+ALTER TABLE `tbl_bantuan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -578,10 +502,16 @@ ALTER TABLE `tbl_arus_kas`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `tbl_bantuan`
+--
+ALTER TABLE `tbl_bantuan`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_broadcast_pesan`
 --
 ALTER TABLE `tbl_broadcast_pesan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_kartu_laundry`
@@ -605,7 +535,7 @@ ALTER TABLE `tbl_level_user`
 -- AUTO_INCREMENT for table `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pelanggan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_pembayaran`
