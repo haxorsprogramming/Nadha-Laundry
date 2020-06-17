@@ -11,11 +11,11 @@ class laundryRoom extends Route{
         $this -> bind('dasbor/laundryRoom/laundryRoom', $data);
     }
 
-   public function detailCucian()
+   public function detailCucian($kd)
     {
         $this -> cekUserLogin('userSes','login');
         $data['listProduk']     = $this -> state($this -> sn) -> listProduk();
-        $data['kd']             = $this -> inp('kd');
+        $data['kd']             = $kd;
         $this -> bind('dasbor/laundryRoom/detailCucian', $data);
     }
 

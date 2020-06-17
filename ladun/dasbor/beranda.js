@@ -9,7 +9,7 @@ var divBeranda = new Vue({
     methods : {
         pelangganProfile : function(username){
             $('#divUtama').html("Memuat ...");
-            $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+            $('#divUtama').load('pelanggan/pelangganProfile/'+username);
         },
         getInfoStatBar : function() {
             

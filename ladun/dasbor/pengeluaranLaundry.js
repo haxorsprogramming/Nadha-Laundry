@@ -10,7 +10,7 @@ var divPengeluaranLaundry = new Vue({
             $('#divUtama').load('pengeluaranLaundry/formTambahPengeluaran');
         },
         detailPengeluaran : function(kdPengeluaran){
-            console.log("Ke halaman detail pengeluaran : "+kdPengeluaran);
+            // console.log("Ke halaman detail pengeluaran : "+kdPengeluaran);
         },
         hapusAtc : function(kdPengeluaran){
             hapus(kdPengeluaran);

@@ -17,7 +17,7 @@ var divFormUpdateProfilePelanggan = new Vue({
     kembali : function(){
       let username = document.getElementById('txtUsername').innerHTML;
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+      $('#divUtama').load('pelanggan/pelangganProfile/'+username);
     }
   }
 });
@@ -34,7 +34,7 @@ function suksesUpdate() {
       let username = document.getElementById('txtUsername').innerHTML;
       divJudul.judulForm = "Detail Pelanggan";
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+      $('#divUtama').load('pelanggan/pelangganProfile/'+username);
     }
   });
 }

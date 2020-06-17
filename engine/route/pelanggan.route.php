@@ -40,9 +40,8 @@ class Pelanggan extends Route{
       $this -> toJson($dataRes);
     }
  
-    public function pelangganProfile()
+    public function pelangganProfile($username)
     {
-      $username               = $this -> inp('username');
       $data['username']       = $username;
       $data['historyCucian']  = $this -> state($this -> sn) -> historyKartuLaundryPelanggan($username);
       $this -> bind('dasbor/pelanggan/pelangganProfile', $data);

@@ -7,12 +7,12 @@ var divDetailKartuLaundry = new Vue({
         bayarAtc : function(kdService){
             $('#divUtama').html("Memuat ...");
             divJudul.judulForm = "Pembayaran";
-            $('#divUtama').load('pembayaran/formPembayaran', {'kdReg':kdService});
+            $('#divUtama').load('pembayaran/formPembayaran/'+kdService);
         },
         keLaundryRoomAtc : function(kdService){
             divJudul.judulForm = "Detail Cucian";
             $('#divUtama').html("Memuat ...");
-            $('#divUtama').load('laundryRoom/detailCucian',{'kd':kdService});
+            $('#divUtama').load('laundryRoom/detailCucian/'+kdService);
         },
         pickUpAtc : function(kdService){
             setDiambil(kdService);

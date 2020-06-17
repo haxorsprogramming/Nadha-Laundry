@@ -20,7 +20,7 @@ var divKartuLaundry = new Vue({
     laundryRoomAtc : function(kdService){
       divJudul.judulForm = "Detail Cucian"+kdService;
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('laundryRoom/detailCucian',{'kd':kdService});
+      $('#divUtama').load('laundryRoom/detailCucian/'+kdService); 
     }
   }
 });

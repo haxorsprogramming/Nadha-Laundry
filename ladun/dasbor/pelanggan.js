@@ -17,7 +17,7 @@ var divTabelPelanggan = new Vue({
   methods : {
     pelangganProfile : function(username){
       $('#divUtama').html("Memuat ...");
-      $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+      $('#divUtama').load('pelanggan/pelangganProfile/'+username);
   }
   }
 });
@@ -26,5 +26,5 @@ $('#tblPelanggan').on('click','.btnDetail',function(){
   let username = $(this).attr('id');
   divJudul.judulForm = "Detail Pelanggan";
   $('#divUtama').html("Memuat ...");
-  $('#divUtama').load('pelanggan/pelangganProfile',{'username':username});
+  $('#divUtama').load('pelanggan/pelangganProfile/'+username);
 });
