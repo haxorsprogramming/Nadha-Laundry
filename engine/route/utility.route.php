@@ -4,6 +4,11 @@ class utility extends Route{
 
     private $sn = 'utilityData';
 
+    public function index()
+    {
+
+    }
+
     public function getInfoLaundry()
     {   
         // nama laundry
@@ -76,6 +81,30 @@ class utility extends Route{
             $dbdata[]           = $arrTemp;
         }
         $this -> toJson($dbdata);
+    }
+
+    public function uploadFoto()
+    {
+        $this -> bind('dasbor/utility/upload');
+    }
+
+    public function prosesUpload()
+    {
+        $nama = $this -> rnstr(10);
+        $sourcePath = $this -> getTempFile('file');
+        $namaFile = $this -> getNameFile('file');
+        $tipeFile = $this -> getTypeFile($namaFile);
+        $uploadFolder = "ladun/".$nama.$tipeFile;
+
+        if(move_uploaded_file($sourcePath, $uploadFolder)){ 
+            
+        }
+
+        $data['sumber'] = $sourcePath;
+        $data['nama'] = $namaFile;
+        $data['tipeFile'] = $tipeFile;
+        $this -> toJson($data);
+        
     }
    
 }

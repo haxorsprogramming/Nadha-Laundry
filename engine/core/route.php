@@ -60,6 +60,22 @@ class Route{
         $id = $_POST[$id];
         return $id;
     }
+    //fungsi ambil temp file
+    public function getTempFile($id)
+    {
+      return $_FILES[$id]['tmp_name'];
+    }
+    //fungsi untuk ambil filename 
+    public function getNameFile($id)
+    {
+      return $_FILES[$id]["name"];
+    }
+    //fungsi untuk ambil tipe file
+    public function getTypeFile($id)
+    {
+      $bex = explode(".", $id);
+      return $bex[1];
+    }
     //fungsi untuk membuat session
     public function setses($id, $val)
     {
