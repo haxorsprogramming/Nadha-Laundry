@@ -94,7 +94,7 @@ class utility extends Route{
         $sourcePath = $this -> getTempFile('file');
         $namaFile = $this -> getNameFile('file');
         $tipeFile = $this -> getTypeFile($namaFile);
-        $uploadFolder = "ladun/".$nama.$tipeFile;
+        $uploadFolder = "ladun/".$nama.".".$tipeFile;
 
         if(move_uploaded_file($sourcePath, $uploadFolder)){ 
             
