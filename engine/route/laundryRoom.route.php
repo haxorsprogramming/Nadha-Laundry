@@ -25,7 +25,7 @@ class laundryRoom extends Route{
         $dProduk    = $this -> state($this -> sn) -> getInfoProduk($kdProduk);
         $this -> toJson($dProduk);
     }
-
+ 
    public function prosesTambahItem()
    {
        $kdRegistrasi    = $this -> inp('kdReg');
@@ -70,7 +70,7 @@ class laundryRoom extends Route{
         
        $this -> toJson($dbdata);
    }
-
+ 
    public function setCucianSelesai()
    {
        $kdService       = $this -> inp('kdService');

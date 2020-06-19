@@ -20,11 +20,11 @@ class pembayaran extends Route{
     {
        $dbdata          = array();
        $kdRegistrasi    = $this -> inp('kdService');
-       $dIts            = $this -> state('pembayaranData') -> getItemCucian($kdRegistrasi);
+       $dIts            = $this -> state($this -> sn) -> getItemCucian($kdRegistrasi);
        //looping
        foreach($dIts as $dis){
         $kdItem             = $dis['kd_item'];
-        $dNamaProd          = $this -> state('pembayaranData') -> getNamaService($kdItem);
+        $dNamaProd          = $this -> state($this -> sn) -> getNamaService($kdItem);
         $arrTemp['kd_item'] = $dis['kd_item']; 
         $arrTemp['qt']      = $dis['qt'];
         $arrTemp['namaCap'] = $dNamaProd['nama'];
@@ -38,12 +38,12 @@ class pembayaran extends Route{
     {
         $kd = $this -> inp('kdPromo');
         //cek apakah kode valid 
-        $jp = $this -> state('pembayaranData') -> jlhPromoCode($kd);
+        $jp = $this -> state($this -> sn) -> jlhPromoCode($kd);
         if($jp < 1){
             $data['status'] = 'kode_invalid';
         }else{
             //ambil data promo code
-            $qPromo         = $this -> state('pembayaranData') -> getPromo($kd);
+            $qPromo         = $this -> state($this -> sn) -> getPromo($kd);
             $data['deks']   = $qPromo['deks'];
             $data['diskon'] = $qPromo['disc'];
         }
@@ -69,7 +69,7 @@ class pembayaran extends Route{
         $tunai          = $this -> inp('tunai');
         $operator       = $this -> getses('userSes');
         //cari total cucian 
-        $qTotal         = $this -> state('pembayaranData') -> getTempCucian($kdService);
+        $qTotal         = $this -> state($this -> sn) -> getTempCucian($kdService);
         $total          = 0;
         foreach($qTotal as $qt){
             $totalTemp  = $qt['total'];
@@ -79,36 +79,36 @@ class pembayaran extends Route{
         $hargaFixDiskon     = $diskonLevel * $total / 100;
         $hargaAfterDiskon   = $total - $hargaFixDiskon;
         //hitung diskon lewat promo 
-        $jp                 = $this -> state('pembayaranData') ->  jlhPromo($kdPromo);
+        $jp                 = $this -> state($this -> sn) ->  jlhPromo($kdPromo);
         if($jp < 1){
             $diskonPromo = 0;
         }else{
-            $qPromo         = $this -> state('pembayaranData') ->  qPromo($kdPromo);
+            $qPromo         = $this -> state($this -> sn) ->  qPromo($kdPromo);
             $diskonPromo    = $qPromo['disc'];
         }
         $hargaFixDiskonPromo    = $diskonPromo * $hargaAfterDiskon / 100;
         $hargaAfterFiskonPromo  = $hargaAfterDiskon - $hargaFixDiskonPromo;
         $diskonTotal            = $hargaFixDiskon + $hargaFixDiskonPromo;
-        $this -> state('pembayaranData') -> simpanPembayaran($kdTransaksi, $kdService, $waktu, $total, $diskonTotal, $kdPromo, $hargaAfterFiskonPromo, $tunai, $operator);
+        $this -> state($this -> sn) -> simpanPembayaran($kdTransaksi, $kdService, $waktu, $total, $diskonTotal, $kdPromo, $hargaAfterFiskonPromo, $tunai, $operator);
         //insert ke tbl_arus kas
         $kdKas      = $this -> rnstr(15);
         $asal       = 'pembayaran_cucian';
         $arus       = 'masuk';
         $waktuTemp  = $this -> waktu();
         // $operator = 'admin';
-        $this -> state('pembayaranData') -> simpanArusKas($kdKas, $kdTransaksi, $asal, $arus, $hargaAfterFiskonPromo, $waktuTemp, $operator);
+        $this -> state($this -> sn) -> simpanArusKas($kdKas, $kdTransaksi, $asal, $arus, $hargaAfterFiskonPromo, $waktuTemp, $operator);
         //update status pembayaran di kartu laundry
-        $this -> state('pembayaranData') -> updateStatusPembayaran($kdService);
+        $this -> state($this -> sn) -> updateStatusPembayaran($kdService);
         //update point pengguna
         //cari jumlah bonus point melalui level
-        $qDataKartuLaundrySet   = $this -> state('pembayaranData') -> getUsernameKartuLaundry($kdService);
+        $qDataKartuLaundrySet   = $this -> state($this -> sn) -> getUsernameKartuLaundry($kdService);
         $usernamePelanggan      = $qDataKartuLaundrySet['pelanggan'];
-        $qLevelPelanggan        = $this -> state('pembayaranData') ->  getLevelPelanggan($usernamePelanggan);
+        $qLevelPelanggan        = $this -> state($this -> sn) ->  getLevelPelanggan($usernamePelanggan);
         $levelPelanggan         = $qLevelPelanggan['level'];
-        $qBonusPointCuci        = $this -> state('pembayaranData') -> getBonusCuci($levelPelanggan);
+        $qBonusPointCuci        = $this -> state($this -> sn) -> getBonusCuci($levelPelanggan);
         $bonusPointCuci         = $qBonusPointCuci['bonus_point_cuci'];
         //ambil point lama pelanggan 
-        $qPoinReal              = $this -> state('pembayaranRoute') ->  getPoinPelanggan($usernamePelanggan);
+        $qPoinReal              = $this -> state($this -> sn) ->  getPoinPelanggan($usernamePelanggan);
         $poinReal               = $qPoinReal['poin_real'];
         $poinBaru               = $poinReal + $bonusPointCuci;
         //update ke point pelanggan
@@ -124,7 +124,7 @@ class pembayaran extends Route{
     public function detailPembayaran()
     {
         $kdTransaksi            = $this -> inp('kdTransaksi');
-        $data['dataTransaksi']  = $this -> state('pembayaranData') -> detailPembayaran($kdTransaksi);
+        $data['dataTransaksi']  = $this -> state($this -> sn) -> detailPembayaran($kdTransaksi);
         $this -> bind('dasbor/pembayaran/detailPembayaran', $data);
     }
 

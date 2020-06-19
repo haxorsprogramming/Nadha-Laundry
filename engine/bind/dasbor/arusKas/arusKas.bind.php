@@ -11,7 +11,6 @@
                 <th>Arus</th>
                 <th>Total</th>
                 <th>Saldo</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +42,6 @@
                 <td><?=$arus; ?></td>
                 <td>Rp. <?=number_format($total); ?></td>
                 <td>Rp. <?=number_format($saldoTemp); ?></td>
-                <td><a><i class='fas fa-print'></i> Cetak Invoice</a></td>
             </tr>
             <?php 
                 endforeach;

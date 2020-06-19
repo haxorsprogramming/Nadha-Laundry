@@ -15,7 +15,7 @@ var divLaundryRoom = new Vue({
         detailsAtc : function(kd){
             divJudul.judulForm = "Detail Cucian";
             $('#divUtama').html("Memuat ...");
-            $('#divUtama').load('laundryRoom/detailCucian',{'kd':kd});
+            $('#divUtama').load('laundryRoom/detailCucian/'+kd);
         }
     }
 })
