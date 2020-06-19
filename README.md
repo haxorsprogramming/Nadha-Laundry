@@ -34,6 +34,7 @@
 <li> Backup & Restore data ke cloud</li>
 <li> Multilevel user (Administrator & Operator)</li>
 <li> Sistem broadcast pesan ke pelanggan (untuk promosi, pengumuman, dll)</li>
+<li> Print struk melalui printer thermal (Thermal Printer GP-5890XIII, Epson TM-T82, MiniPOS MP-RP58L disarankan)</li>
 <br/>
 <b>Developer Team</b>
 <li> Project Manager & Front End : Hasnah Nur Ardita</li>
@@ -79,7 +80,7 @@
 
 <img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/pembayaran.png?raw=true'>
 
->> Struk
+>> Struk (Thermal Print)
 
 <img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/print_struk.png?raw=true'>
 
@@ -94,7 +95,8 @@
 <br/>
 
 Sebelum menggunakan : <br/>
-<li>Setting alamat(url), database, dll di 'engine/rule/base' dan 'engine/rule/database' </li>
+<li> Setting alamat(url), database, dll ..  di 'engine/rule/base' dan 'engine/rule/database' </li>
+<li> Semua fungsi berjalan baik untuk localhost dengan kondisi terhubung ke internet, apabila anda ingin menggunakan di hosting/vps, dipastikan akan ada fungsi yang tidak berjalan, silahkan bertanya kepada kami untuk permasalahannya</li>
 <br/>
 
 Demo : https://demo.haxors.or.id/Nadha-Laundry
