@@ -1,8 +1,11 @@
 <?php
 /**
-* Uinsu Web Framework
+* Uinsu Web Framework 
 * Small, Fast, & Secure Web Framework
 * Based on PHP
+* Special thanks to 
+* Bapak Sandika Galih (Web Programmign Unpas)
+*
 * Thanks for support
 * Muhammad Ikhsan, ST. M.Kom (Pembina Haxors Programming Club)
 * Muhammad Furqan, S.Si, Sc, M.Comp (Ketua Prodi Ilmu Komputer UINSU)
@@ -33,40 +36,6 @@
 
 function __construct(){
 	$getSelfData = [];
-}
-
-class exportAll{
-	/**
-	* Page 
-	*/
-	private $page = "";
-	/**
-	* Props 
-	*/
-	private $props = "";
-	/**
-	* Route 
-	*/
-	private $route = "";
-	/**
-	* Bind 
-	*/
-	private $bind = "";
-	/**
-	* State 
-	*/
-	private $state = "";
-
-	function exPage($id, $page, $props, $route, $bind, $state)
-	{
-		return $id;
-		return $page;
-		return $route;
-		return $bind;
-		return $props;
-		return $state;
-	}
-
 }
 
 /**
