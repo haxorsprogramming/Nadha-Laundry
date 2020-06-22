@@ -42,11 +42,21 @@ class Route{
       $hasil  = substr($acak, 0, $length);
       return $hasil;
     }
-
-    //fungsi upload
-    public function upload($path)
+    //hash password 
+    public function hashPassword($pass)
     {
-        
+      return password_hash($pass, PASSWORD_DEFAULT);
+    }
+    //verify password 
+    public function verifPassword($pass_1, $pass_2)
+    {
+        //pass 1 = string awal
+        //pass 2 = string hash
+        if (password_verify($pass_1, $pass_2)) {
+          return true;
+        } else {
+          return false;
+        }
     }
     //ambil data post
     public function inp($id)
@@ -75,6 +85,17 @@ class Route{
     {
       $bex = explode(".", $id);
       return $bex[1];
+    }
+    //fungsi untuk ambil size file 
+    public function getSizeFile($id)
+    {
+      return $_FILES[$id]['size'];
+    }
+    //fungsi untuk upload file 
+    public function uploadFile($source, $destination)
+    {
+      if(move_uploaded_file($source, $destination)){      
+      }
     }
     //fungsi untuk membuat session
     public function setses($id, $val)
