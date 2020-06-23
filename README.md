@@ -101,6 +101,8 @@ Sebelum menggunakan : <br/>
 
 Demo : https://demo.haxors.or.id/Nadha-Laundry
 
+Video : https://www.youtube.com/watch?v=IMLtmcrtffg
+
 Access administrator<br/>
 username : admin<br/>
 password : admin<br/>
