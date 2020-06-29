@@ -110,7 +110,7 @@ password : admin<br/>
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya ..  
 </p>
 
-<h1>Aplikasi ini sedang akan mendapatkan update besar, kami sarankan tidak menggunakannya untuk tahap produksi, kami akan informasikan segera jika sudah selesai & bisa digunakan untuk tahap produksi</h1> 
+<h2>Aplikasi ini sedang akan mendapatkan update besar. Untuk versi sekarang kami sarankan tidak menggunakannya untuk tahap produksi, kami akan informasikan segera jika sudah selesai & bisa digunakan untuk tahap produksi</h2> 
 
 Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang di kembangan oleh haxorsprogramming
 <h3>https://t.me/haxorsupdate</h3>
