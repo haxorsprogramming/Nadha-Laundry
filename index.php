@@ -4,7 +4,7 @@
 * Small, Fast, & Secure Web Framework
 * Based on PHP
 * Special thanks to 
-* Bapak Sandika Galih (Web Programmign Unpas)
+* Bapak Sandhika Galih (Web Programming Unpas)
 *
 * Thanks for support
 * Muhammad Ikhsan, ST. M.Kom (Pembina Haxors Programming Club)

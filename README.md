@@ -110,11 +110,9 @@ password : admin<br/>
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya ..  
 </p>
 
-<h2>Aplikasi ini sedang akan mendapatkan update besar. Untuk versi sekarang kami sarankan tidak menggunakannya untuk tahap produksi, kami akan informasikan segera jika sudah selesai & bisa digunakan untuk tahap produksi</h2> 
-
 Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang di kembangan oleh haxorsprogramming
 <h3>https://t.me/haxorsupdate</h3>
 
 <p align='justify'>
-Ingin berkontribusi untuk pengembangan club programming ini? bantu kami melalui donasi lewat saweria di <h2><a href='https://saweria.co/donate/haxorsprogramming'>Saweria Haxorsprogramming</a></h2>sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^
+Ingin berkontribusi untuk pengembangan club programming ini? bantu kami melalui donasi lewat saweria di <h2><a href='https://saweria.co/donate/haxorsprogramming'>Saweria Haxorsprogramming</a></h2>Sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^
 </p>
