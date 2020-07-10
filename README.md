@@ -95,7 +95,7 @@
 <br/>
 
 Sebelum menggunakan : <br/>
-<li> Setting alamat(url), database, dll ..  di 'engine/rule/base' dan 'engine/rule/database' </li>
+<li> Setting alamat(url), database, dll ..  di <code>engine/rule/base</code> dan <code>engine/rule/database</code> </li>
 <li> Semua fungsi berjalan baik untuk localhost dengan kondisi terhubung ke internet, apabila anda ingin menggunakan di hosting/vps, dipastikan akan ada fungsi yang tidak berjalan, silahkan bertanya kepada kami untuk permasalahannya</li>
 <br/>
 
@@ -107,7 +107,7 @@ Access administrator<br/>
 username : admin<br/>
 password : admin<br/>
 <p align='justify'>
-Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya ..  
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis, pastikan yang anda gunakan adalah versi relase dari repo ini. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya.
 </p>
 
 Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang di kembangan oleh haxorsprogramming
