@@ -110,8 +110,8 @@ password : admin<br/>
 Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis, pastikan yang anda gunakan adalah versi relase dari repo ini. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya.
 </p>
 
-Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang di kembangan oleh haxorsprogramming
-<h3>https://t.me/haxorsupdate</h3>
+Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang dikembangkan oleh haxorsprogramming : 
+<h3><a href='https://t.me/haxorsupdate'>Channel Telegram Haxorsprogramming</a></h3>
 
 <p align='justify'>
 Ingin berkontribusi untuk pengembangan club programming ini? bantu kami melalui donasi lewat saweria di <h2><a href='https://saweria.co/donate/haxorsprogramming'>Saweria Haxorsprogramming</a></h2>Sedikit banyaknya donasi dapat memberi kontribusi yang positif bagi perkembangan club ini. Terima kasih, salam koding .. ^_^
