@@ -4,6 +4,8 @@ date_default_timezone_set("Asia/Jakarta");
 //import library php mailer (untuk mengirimkan email)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
 require_once 'lib/phpmailer/library/PHPMailer.php';
 require_once 'lib/phpmailer/library/Exception.php';
 require_once 'lib/phpmailer/library/OAuth.php';
@@ -12,6 +14,10 @@ require_once 'lib/phpmailer/library/SMTP.php';
 //import library aws (untuk kebutuhan serverless)
 require 'lib/aws-master/src/Aws.php';
 //import library firebase (coming soon)
+require_once 'lib/escopos/autoload.php';
+
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 class Route{
     //fungsi bind (memasukkan view ke dalam controller)
@@ -28,7 +34,7 @@ class Route{
     //membuat string random dengan parameter(jumlah)
     public function rnstr($length)
     {
-        $bahan  = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
+        $bahan  = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNMqwertyuioplkjhgfdsazxcvbnm';
         $acak   = str_shuffle($bahan);
         $hasil  = substr($acak,0,$length);
         return $hasil;
@@ -114,7 +120,7 @@ class Route{
     //fungsi untuk redirect halaman
     public function goto($page)
     {
-      header("Location:".$page);
+      header("Location:".HOMEBASE.$page);
       exit();
     }
     //fungsi untuk cek validasi format email
@@ -157,6 +163,16 @@ class Route{
     public function tanggal()
     {
       return date("Y-m-d");
+    }
+    //fungsi cek apakah tanggal sudah lewat atau tidak (yyyy-mm-dd) - tanggal awal - tanggal sekarang
+    function cekDateCompare($tglCompare, $tglSekarang)
+    {
+      $selisih = $tglCompare - $tglSekarang;
+      if($selisih < 1){
+        return false;
+      }else{
+        return true;
+      }
     }
     //fungsi untuk ambil jumlah jarak antara 2 tanggal
     function jarakTanggal( $first, $last, $step = '+1 day', $format = 'Y/m/d' ) {
@@ -266,7 +282,7 @@ class Route{
         $mail = new PHPMailer(false);  
         try {
             //Server settings
-            $mail->SMTPDebug  = 0;                                  // Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                                   // Enable verbose debug output
             $mail->isSMTP();                                        // Set mailer to use SMTP
             $mail->Host       = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
             $mail->SMTPAuth   = true;                               // Enable SMTP authentication
@@ -275,17 +291,16 @@ class Route{
             $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                      // TCP port to connect to
             //Recipients
-            $mail->setFrom($emailHost, 'Haxors Uinsu');
+            $mail->setFrom($emailHost, 'NadhaResto');
             $mail->addAddress($penerima, $nama);                    // Add a recipient
             //Content
             $mail->isHTML(true);                                    // Set email format to HTML
             $mail->Subject = $judul;
             $mail->Body    = $isi;
             $mail->AltBody = $isi;
-
             $mail->send();
             return 'sukses';
-        } catch (Exception $e) {
+        }catch(Exception $e){
           return 'error';
         }
     }
