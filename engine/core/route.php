@@ -154,6 +154,11 @@ class Route{
       }else{
       }
     }
+    //fungsi hapus hapus csrf token
+    public function clearCsrfToken()
+    {
+      unset($_SESSION['csrf_token']);
+    }
     //ambil data waktu full
     public function waktu()
     {
