@@ -46,51 +46,51 @@
 
 >> Login
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/login.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/login.png?raw=true'>
 
 >> Beranda
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/beranda.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/beranda.png?raw=true'>
 
 >> Kartu Cucian
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/kartu_laundry.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/kartu_laundry.png?raw=true'>
 
 >> Detail Kartu Cucian 
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/detail_kartu_laundry.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/detail_kartu_laundry.png?raw=true'>
 
 >> Laundry Room
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/laundry_room.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laundry_room.png?raw=true'>
 
 >> Manajemen Pelanggan
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/manajemen_pelanggan.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/manajemen_pelanggan.png?raw=true'>
 
 >> Manajemen Produk
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/manajemen_produk.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/manajemen_produk.png?raw=true'>
 
 >> Invoice
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/invoice.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/invoice.png?raw=true'>
 
 >> Form Pembayaran
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/pembayaran.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/pembayaran.png?raw=true'>
 
 >> Struk (Thermal Print)
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/print_struk.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/print_struk.png?raw=true'>
 
 >> Laporan Tahunan
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/laporan_tahunan.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laporan_tahunan.png?raw=true'>
 
 >> Laporan Bulanan 
 
-<img src='https://github.com/haxorsprogramming/Haxors-Contributors/blob/master/haxors_project/nadha_laundry_ss/laporan_bulanan.png?raw=true'>
+<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laporan_bulanan.png?raw=true'>
 
 <br/>
 
