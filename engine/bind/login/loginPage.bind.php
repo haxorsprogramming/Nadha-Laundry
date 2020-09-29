@@ -18,7 +18,7 @@
     <!-- endinject -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/izitoast/css/iziToast.min.css">
+    <link rel="stylesheet" href="http://asset.justhasnah.my.id/cdn/izi_toast/iziToast.min.css">
 </head>
 
 <body style="font-family: 'Nunito', sans-serif;">
@@ -76,7 +76,7 @@
             <script src="<?=STYLEBASE; ?>/login/js/login.js"></script>
             <script src="<?=STYLEBASE; ?>/login/js/page/auth-workers.js"></script>
             <script src="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.js"></script>
-            <script src="https://demo.getstisla.com/assets/modules/izitoast/js/iziToast.min.js"></script>
+            <script src="http://asset.justhasnah.my.id/cdn/izi_toast/iziToast.min.js"></script>
             <!-- endinject -->
             <!-- inject:js -->
             <script src="<?=STYLEBASE; ?>/login/js/template.js"></script>
