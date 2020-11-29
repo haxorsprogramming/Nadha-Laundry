@@ -11,7 +11,7 @@
 
 <br/><br/>
 <b>Teknologi yang digunakan</b>
-<li>Front End : HTML, Bootstrap</li>
+<li>Front End : HTML, Bootstrap (Stisla Theme)</li>
 <li>Backend : Uinsu Web Framework (PHP >= 7) - Base php MVC tutorial pak Sandhika Galih(Web Programming Unpas)</li>
 <li>Javascript : Vue JS, Native Javascript, & Jquery</li>
 <li>Bootstrap Theme By <a href='https://demo.getstisla.com/index.html'>[Stisla]</a></li>
