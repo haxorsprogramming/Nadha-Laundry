@@ -46,51 +46,51 @@
 
 >> Login
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/login.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/login.png'>
 
 >> Beranda
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/beranda.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/beranda.png'>
 
 >> Kartu Cucian
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/kartu_laundry.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/kartu_laundry.png'>
 
 >> Detail Kartu Cucian 
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/detail_kartu_laundry.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/detail_kartu_laundry.png'>
 
 >> Laundry Room
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laundry_room.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laundry_room.png'>
 
 >> Manajemen Pelanggan
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/manajemen_pelanggan.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/manajemen_pelanggan.png'>
 
 >> Manajemen Produk
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/manajemen_produk.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/manajemen_produk.png'>
 
 >> Invoice
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/invoice.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/invoice.png'>
 
 >> Form Pembayaran
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/pembayaran.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/pembayaran.png'>
 
 >> Struk (Thermal Print)
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/print_struk.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/print_struk.png'>
 
 >> Laporan Tahunan
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laporan_tahunan.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laporan_tahunan.png'>
 
 >> Laporan Bulanan 
 
-<img src='http://asset.justhasnah.my.id/screenshoot/Nadha_Laundry/laporan_bulanan.png?raw=true'>
+<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laporan_bulanan.png'>
 
 <br/>
 
