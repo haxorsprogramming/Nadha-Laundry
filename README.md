@@ -1,5 +1,5 @@
 <p align="center">
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/logo/nadha_laundry_new.png' width='300px'>
+<img src='https://media.publit.io/file/cloudladun/NadhaLaundry/nadha_laundry-8.jpg' width='300px'>
 </p>
 <h1 align="center">Aplikasi Manajemen Laundry</h1>
 <br>
