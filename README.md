@@ -46,7 +46,7 @@
 
 >> Login
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/login.png'>
+<img src='https://media.publit.io/file/cloudladun/NadhaLaundry/login.png'>
 
 >> Beranda
 
