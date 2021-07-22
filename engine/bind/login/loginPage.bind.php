@@ -73,12 +73,16 @@
             </div>
             <!-- container-scroller -->
             <!-- base:js -->
-            <script src="<?=STYLEBASE; ?>/login/js/login.js"></script>
+            
             <script src="<?=STYLEBASE; ?>/login/vendors/base/vendor.bundle.base.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
             <!-- endinject -->
             <!-- inject:js -->
             <script src="<?=STYLEBASE; ?>/login/js/template.js"></script>
+            <script>
+                const server = "http://localhost/Nadha-Laundry/";
+            </script>
+            <script src="<?=STYLEBASE; ?>/login/js/login.js"></script>
 
             <!-- endinject -->
 </body>

@@ -8,6 +8,7 @@ class login extends Route{
     {       
         $this -> bind('/login/loginPage');
     }
+    
     public function prosesLogin()
     {
         $user           = $this -> inp('username');

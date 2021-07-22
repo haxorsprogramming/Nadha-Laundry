@@ -1,4 +1,4 @@
-const urlLoginProses = "login/prosesLogin";
+const urlLoginProses = server + "login/prosesLogin";
 const awalLogin = true;
 const usernameF = 'txtUsername';
 const passwordF = 'txtPassword';
