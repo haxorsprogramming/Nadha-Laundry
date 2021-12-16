@@ -99,7 +99,7 @@ Sebelum menggunakan : <br/>
 <li> Semua fungsi berjalan baik untuk localhost dengan kondisi terhubung ke internet, apabila anda ingin menggunakan di hosting/vps, dipastikan akan ada fungsi yang tidak berjalan, silahkan bertanya kepada kami untuk permasalahannya</li>
 <br/>
 
-Demo : https://demo.haxors.or.id/Nadha-Laundry
+Demo : http://nadha-laundry.justhasnah.me/
 
 Video : https://www.youtube.com/watch?v=IMLtmcrtffg
 
