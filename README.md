@@ -1,5 +1,5 @@
 <p align="center">
-<img src='https://nadhamedia.s3.ap-southeast-1.amazonaws.com/nadha_asset/logo_project/nadha_laundry_logo.jpg' width='300px'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/logo.jpg' width='300px'>
 </p>
 <h1 align="center">Aplikasi Manajemen Laundry</h1>
 <br>
@@ -46,51 +46,44 @@
 
 >> Login
 
-<img src='https://media.publit.io/file/cloudladun/NadhaLaundry/login.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/login.png'>
 
 >> Beranda
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/beranda.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/beranda.png'>
 
 >> Kartu Cucian
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/kartu_laundry.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/kartu_laundry.png'>
 
 >> Detail Kartu Cucian 
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/detail_kartu_laundry.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/detail_kartu_laundry.png'>
 
 >> Laundry Room
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laundry_room.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/laundry_room.png'>
 
 >> Manajemen Pelanggan
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/manajemen_pelanggan.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/manajemen_pelanggan.png'>
 
 >> Manajemen Produk
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/manajemen_produk.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/manajemen_produk.png'>
 
 >> Invoice
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/invoice.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/invoice.png'>
 
 >> Form Pembayaran
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/pembayaran.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/pembayaran.png'>
 
 >> Struk (Thermal Print)
 
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/print_struk.png'>
+<img src='https://s3.jagoanstorage.com/aditia-ss-storage-3561/NADHA-LAUNDRY/print_struk.png'>
 
->> Laporan Tahunan
-
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laporan_tahunan.png'>
-
->> Laporan Bulanan 
-
-<img src='https://s3-id-jkt-1.kilatstorage.id/nadhamedia/screenshoot/Nadha-Laundry/laporan_bulanan.png'>
 
 <br/>
 
