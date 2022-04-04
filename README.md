@@ -100,7 +100,7 @@ Access administrator<br/>
 username : admin<br/>
 password : admin<br/>
 <p align='justify'>
-Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis, pastikan yang anda gunakan adalah versi relase dari repo ini. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Whatsapp (082272177022). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya.
+Aplikasi ini merupakan project bersama yang dibuat oleh anggota Haxorsprogramming, jika anda tertarik menggunakan aplikasi ini untuk usaha. Anda dapat menggunakannnya secara gratis, pastikan yang anda gunakan adalah versi relase dari repo ini. Jika perlu bantuan untuk setup, silahkan menghubungi kami di Email (alditha.forum@gmail.com). Aplikasi ini juga bebas dikembangkan bagi teman" developer yang tertarik untuk mengembangkannya.
 </p>
 
 Silahkan subs channel Haxors Update di telegram untuk mendapatkan informasi terbaru seputar perkembangan aplikasi" yang sedang dikembangkan oleh haxorsprogramming : 
